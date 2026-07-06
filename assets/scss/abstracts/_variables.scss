@@ -1,0 +1,131 @@
+// =============================================================
+//  DESIGN TOKENS — sumber tunggal untuk seluruh gaya visual.
+//  Ubah di sini, seluruh aplikasi ikut berubah. Jangan pakai
+//  nilai warna/ukuran "hardcoded" di komponen — pakai token ini.
+// =============================================================
+
+// ---- Warna Merek (Brand) -----------------------------------
+$color-primary: #6c5ce7; // ungu premium
+$color-primary-dark: #4834d4;
+$color-primary-light: #a29bfe;
+
+$color-secondary: #00cec9; // toska
+$color-secondary-dark: #00a8a3;
+$color-accent: #ff6b9d; // pink hangat
+$color-accent-2: #feca57; // kuning madu
+
+// ---- Warna per Mata Pelajaran ------------------------------
+$color-english: #ff9f43; // oranye
+$color-english-dark: #ee7752;
+$color-math: #4b7bec; // biru
+$color-math-dark: #3867d6;
+
+// ---- Warna Status ------------------------------------------
+$color-success: #05c46b;
+$color-warning: #ffc048;
+$color-error: #ff5e57;
+$color-star: #ffc312;
+
+// ---- Warna Netral (nada premium: navy, bukan abu polos) ----
+$color-white: #ffffff;
+$color-ink: #1a1035; // teks utama gelap keunguan
+$color-ink-soft: #4a4066;
+$color-bg: #f4f3ff; // latar lembut keunguan
+$color-bg-alt: #ffffff;
+$color-surface: #ffffff;
+$color-text: $color-ink;
+$color-text-muted: #7a748f;
+$color-border: #ebe9f7;
+
+// ---- Gradien (kunci tampilan premium) ----------------------
+$gradient-primary: linear-gradient(135deg, #7f5bff 0%, #6c5ce7 45%, #4834d4 100%);
+$gradient-aurora: linear-gradient(135deg, #6c5ce7 0%, #a18cd1 40%, #00cec9 100%);
+$gradient-english: linear-gradient(135deg, #ffb347 0%, #ff9f43 45%, #ff6b6b 100%);
+$gradient-math: linear-gradient(135deg, #5f9dff 0%, #4b7bec 45%, #3867d6 100%);
+$gradient-warm: linear-gradient(135deg, #ff6b9d 0%, #feca57 100%);
+$gradient-sky: linear-gradient(135deg, #a29bfe 0%, #74b9ff 100%);
+$gradient-mint: linear-gradient(135deg, #55efc4 0%, #00cec9 100%);
+$gradient-hero: radial-gradient(
+  120% 120% at 15% 10%,
+  #efeaff 0%,
+  #f6f2ff 35%,
+  #fdf1ff 65%,
+  #eefcff 100%
+);
+
+// ---- Tipografi ---------------------------------------------
+$font-family-display: 'Baloo 2', 'Comic Sans MS', system-ui, sans-serif; // judul
+$font-family-base: 'Nunito', 'Segoe UI', system-ui, sans-serif; // teks isi
+$font-size-base: 17px;
+$font-weight-regular: 400;
+$font-weight-medium: 600;
+$font-weight-semibold: 700;
+$font-weight-bold: 800;
+
+$line-height-base: 1.65;
+
+// Skala ukuran font (rem)
+$font-sizes: (
+  'xs': 0.78rem,
+  'sm': 0.92rem,
+  'md': 1.05rem,
+  'lg': 1.35rem,
+  'xl': 1.9rem,
+  'xxl': 2.8rem,
+  'display': 4rem,
+  'giant': 5.5rem,
+);
+
+// ---- Spacing (kelipatan 4px) -------------------------------
+$spacing: (
+  'xs': 0.25rem,
+  'sm': 0.5rem,
+  'md': 1rem,
+  'lg': 1.5rem,
+  'xl': 2.5rem,
+  'xxl': 4rem,
+  'section': 6rem,
+);
+
+// ---- Sudut / Radius ----------------------------------------
+$radius-sm: 10px;
+$radius-md: 18px;
+$radius-lg: 28px;
+$radius-xl: 40px;
+$radius-pill: 999px;
+
+// ---- Bayangan (shadow berlapis untuk kedalaman premium) ----
+$shadow-sm: 0 2px 8px rgba(26, 16, 53, 0.06);
+$shadow-md: 0 10px 30px rgba(26, 16, 53, 0.1);
+$shadow-lg: 0 20px 50px rgba(26, 16, 53, 0.14);
+$shadow-xl: 0 30px 70px rgba(26, 16, 53, 0.2);
+$shadow-primary: 0 16px 40px rgba(108, 92, 231, 0.4);
+$shadow-glow-english: 0 20px 45px rgba(255, 159, 67, 0.4);
+$shadow-glow-math: 0 20px 45px rgba(75, 123, 236, 0.4);
+
+// ---- Glassmorphism -----------------------------------------
+$glass-bg: rgba(255, 255, 255, 0.65);
+$glass-bg-strong: rgba(255, 255, 255, 0.85);
+$glass-border: rgba(255, 255, 255, 0.6);
+$glass-blur: 16px;
+
+// ---- Transisi & Animasi ------------------------------------
+$transition-fast: 0.15s ease;
+$transition-base: 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+$transition-bounce: 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+$transition-smooth: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+// ---- Breakpoints -------------------------------------------
+$breakpoints: (
+  'sm': 480px,
+  'md': 768px,
+  'lg': 1024px,
+  'xl': 1280px,
+);
+
+// ---- Layer (z-index) ---------------------------------------
+$z-base: 1;
+$z-header: 100;
+$z-overlay: 900;
+$z-modal: 1000;
+$z-toast: 1100;

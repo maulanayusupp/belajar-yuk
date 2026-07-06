@@ -1,0 +1,42 @@
+@use '../abstracts' as *;
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: $font-family-display;
+  font-weight: $font-weight-bold;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: $color-ink;
+}
+
+h1 {
+  font-size: font-size('xxl');
+
+  @include respond-to('md') {
+    font-size: font-size('display');
+  }
+}
+
+h2 {
+  font-size: font-size('xl');
+
+  @include respond-to('md') {
+    font-size: font-size('xxl');
+  }
+}
+
+h3 {
+  font-size: font-size('lg');
+}
+
+p {
+  font-size: font-size('md');
+  color: $color-text-muted;
+}
+
+strong {
+  font-weight: $font-weight-bold;
+  color: $color-ink;
+}

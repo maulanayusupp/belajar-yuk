@@ -1,0 +1,10 @@
+// =============================================================
+//  Entry point stylesheet global (dimuat sekali via nuxt.config).
+//  Hanya file yang MENGHASILKAN CSS yang di-@use di sini.
+//  Design tokens (variabel/mixin/fungsi) sudah auto-inject.
+// =============================================================
+@use 'base/reset';
+@use 'base/typography';
+@use 'base/animations';
+@use 'base/confetti';
+@use 'base/utilities';

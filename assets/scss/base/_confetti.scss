@@ -1,0 +1,27 @@
+@use '../abstracts' as *;
+
+// Confetti dirender ke <body> oleh composable useConfetti, jadi
+// gayanya harus global (tidak scoped). Nilai acak per-partikel
+// masuk lewat CSS custom properties (--x, --color, dst).
+.confetti-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: $z-toast;
+  overflow: hidden;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -10vh;
+  left: var(--x, 50vw);
+  width: var(--size, 10px);
+  height: var(--size, 10px);
+  background: var(--color, #{$color-primary});
+  border-radius: 2px;
+  animation: confetti-fall var(--duration, 3s) linear var(--delay, 0s) forwards;
+
+  &:nth-child(even) {
+    border-radius: 50%;
+  }
+}

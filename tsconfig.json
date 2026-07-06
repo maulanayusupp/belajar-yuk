@@ -1,0 +1,4 @@
+{
+  // Nuxt otomatis membuat konfigurasi dasar di .nuxt/tsconfig.json
+  "extends": "./.nuxt/tsconfig.json"
+}
