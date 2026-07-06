@@ -16,11 +16,18 @@ penuh animasi & suara. Tampilan bergaya **premium**.
 ```bash
 npm run dev       # dev server http://localhost:3000
 npm run build     # build produksi (WAJIB lolos sebelum selesai — menangkap error SCSS/TS)
-npm run preview   # pratinjau hasil build
+npm run preview   # pratinjau hasil build (uji PWA/offline di sini)
+npm run lint      # ESLint (WAJIB bersih)
+npm run format    # Prettier (rapikan) · format:check untuk cek
+npm run test      # Vitest unit test (WAJIB lolos)
+npm run assets    # regenerasi favicon & OG image dari SVG
 ```
 
-> Verifikasi perubahan dengan menjalankan `npm run build`. Bila ada dev server
-> yang masih jalan, hentikan dulu (atau `NUXT_IGNORE_LOCK=1`).
+> **Sebelum menyelesaikan tugas: `npm run lint`, `npm run test`, dan `npm run build`
+> harus lolos.** Bila ada dev server yang masih jalan, hentikan dulu (atau `NUXT_IGNORE_LOCK=1`).
+>
+> Catatan: ESLint memakai `Object.groupBy` (Node 21+); `eslint.config.mjs` sudah
+> memuat polyfill agar jalan di Node 20. CI memakai Node 22.
 
 ## Arsitektur & Lapisan
 
@@ -31,19 +38,23 @@ data/ (konten)  →  services/ (logika)  →  composables/ (reaktif)  →  compo
                         ↑ utils/ (helper murni)   ↑ types/ (kontrak data)
 ```
 
-| Folder | Isi | Aturan |
-|---|---|---|
-| `data/` | Konten pelajaran (**1 materi = 1 folder** + `index.ts` agregat) | Data murni, tanpa logika. Lihat `data/README.md` |
-| `services/` | `lessonService`, `progressService`, `audioService` | Logika bisnis. Komponen akses data HANYA lewat sini |
-| `composables/` | `useAudio`, `useProgress`, `useConfetti` | Pembungkus reaktif Vue untuk services |
-| `utils/` | `array`, `math`, `storage` | Fungsi murni, tanpa efek samping (kecuali `storage`) |
-| `types/` | Semua `interface`/`type` | Sumber tunggal bentuk data |
-| `components/` | UI | Lihat konvensi di bawah |
-| `pages/[subject]/` | Routing dinamis: `/english`, `/math`, `/:subject/:id` | Validasi subject; `createError` 404 bila tidak ada |
+| Folder             | Isi                                                             | Aturan                                                |
+| ------------------ | --------------------------------------------------------------- | ----------------------------------------------------- |
+| `data/`            | Konten pelajaran (**1 materi = 1 folder** + `index.ts` agregat) | Data murni, tanpa logika. Lihat `data/README.md`      |
+| `services/`        | `lessonService`, `progressService`, `audioService`              | Logika bisnis. Komponen akses data HANYA lewat sini   |
+| `composables/`     | `useAudio`, `useProgress`, `useConfetti`                        | Pembungkus reaktif Vue untuk services                 |
+| `utils/`           | `array`, `math`, `storage`                                      | Fungsi murni, tanpa efek samping (kecuali `storage`)  |
+| `types/`           | Semua `interface`/`type`                                        | Sumber tunggal bentuk data                            |
+| `components/`      | UI                                                              | Lihat konvensi di bawah                               |
+| `pages/[subject]/` | Routing dinamis: `/english`, `/math`, `/:subject/:id`           | Validasi subject; `createError` 404 bila tidak ada    |
+| `error.vue`        | Halaman error/404 global ramah-anak                             | Pakai `clearError({ redirect: '/' })`                 |
+| `tests/`           | Unit test Vitest (`*.test.ts`)                                  | Tes util & service (murni). Composable butuh env Nuxt |
+| `scripts/`         | `generate-assets.mjs` + SVG sumber (favicon, OG)                | Jalankan via `npm run assets`                         |
 
 ## Konvensi Kode
 
 ### Vue / TypeScript
+
 - Selalu `<script setup lang="ts">`.
 - Props & emits **wajib bertipe**: `defineProps<{...}>()`, `defineEmits<{...}>()`.
   Pakai `withDefaults` untuk nilai default.
@@ -52,6 +63,7 @@ data/ (konten)  →  services/ (logika)  →  composables/ (reaktif)  →  compo
   Services/utils/types **di-import eksplisit** dengan alias `~/`.
 
 ### Penamaan komponen (auto-import Nuxt = nama folder + file)
+
 - `components/base/Button.vue` → `<BaseButton>`
 - `components/layout/AppHeader.vue` → `<LayoutAppHeader>`
 - `components/english/FlashCard.vue` → `<EnglishFlashCard>`
@@ -61,6 +73,7 @@ data/ (konten)  →  services/ (logika)  →  composables/ (reaktif)  →  compo
 - **Jangan** ulangi prefix folder di nama file (hindari `<BaseBaseButton>`).
 
 ### Styling (PENTING)
+
 - **Tanpa inline CSS.** Semua gaya di `<style scoped lang="scss">` atau file SCSS.
 - **Pakai design token**, jangan nilai hardcoded. Warna/spacing/font/shadow/gradient
   ada di `assets/scss/abstracts/_variables.scss`.
@@ -78,13 +91,21 @@ data/ (konten)  →  services/ (logika)  →  composables/ (reaktif)  →  compo
   `flex`, `flex-center`, `card`, `tappable`, `respond-to('md')`, `reduced-motion`.
 
 ### Aksesibilitas
+
 - Beri `aria-label`/`role` pada kontrol; emoji dekoratif diberi `aria-hidden="true"`.
 - Semua animasi harus hormati `prefers-reduced-motion` (sudah ditangani global di
   `_reset.scss` & mixin `reduced-motion`).
 
 ### Suara & Animasi
-- Suara lewat `useAudio()` → `play('correct'|'wrong'|'click'|'win'|'pop')` &
-  `speak(teks, lang)`. Tanpa file audio (Web Speech + Web Audio API). Hormati status `muted`.
+
+- Suara lewat `useAudio()`:
+  - `play('correct'|'wrong'|'click'|'win'|'pop')` — efek suara (Web Audio API).
+  - `pronounce(teks, audioUrl?, lang?)` — **titik masuk pengucapan**. Bila `audioUrl`
+    diisi, mainkan file itu (dengan fallback ke sintesis bila gagal); bila kosong,
+    pakai suara sintesis Google/Web Speech (**default**). Pakai ini untuk kata.
+  - `speak(teks, lang)` — paksa suara sintesis (mis. instruksi maskot).
+  - Semua hormati status `muted`. Materi bisa menambah `audioUrl` di `VocabularyItem`
+    untuk audio eksternal (file/CDN) tanpa ubah kode.
 - Animasi reusable sebagai keyframes di `assets/scss/base/_animations.scss`
   (mis. `bounce-in`, `pop`, `float`, `rise-in`, `shimmer`). Tambah di sini bila perlu.
 
@@ -97,8 +118,15 @@ plus aset opsional pelajaran itu). Detail & contoh: `data/README.md`.
   (export `EnglishLesson`), lalu daftarkan di `data/english/index.ts`.
 - **Pelajaran Matematika** → buat folder baru di `data/math/<nama>/index.ts`
   (export `MathLesson`), lalu daftarkan di `data/math/index.ts`.
-- **Metode Matematika baru** → tambah nilai `MathMethod` di `types/`, tambah cabang
-  render di `components/math/SingaporeLesson.vue`, buat komponen visual bila perlu.
+- **Metode Matematika baru** (mesin materi dinamis, 3 langkah):
+  1. Tambah nilai di `MathMethod` (`types/index.ts`).
+  2. Tambah entri metadata (ikon, label, deskripsi, instruksi) di
+     `data/math/methods.ts` → UI (beranda, header, maskot) otomatis ikut.
+  3. Tambah cabang render visual di `components/math/SingaporeLesson.vue`.
+     Metode saat ini: `counting` (pakai `problem.emoji`), `number-bond`, `block-addition`,
+     `block-subtraction` (pakai prop `taken` di `MathBlockGroup`).
+- **Parameter/nilai baru tanpa ubah tipe inti** → pakai `meta?: Record<string, unknown>`
+  di lesson (escape-hatch untuk eksperimen). Bila jadi permanen, angkat ke tipe eksplisit.
 - **Mata pelajaran baru** → tambah di `data/subjects.ts` + `SubjectId`/tipe terkait,
   buat folder mata pelajaran (pola sama), lalu ekspor dari `data/index.ts`.
 - Semua konten diakses lewat `~/data` (agregat) → `services/lessonService.ts`.
@@ -107,15 +135,33 @@ plus aset opsional pelajaran itu). Detail & contoh: `data/README.md`.
 
 ## SEO & Aset
 
-- Meta/OG global diatur di `nuxt.config.ts` (`app.head`). Judul default memakai
-  `titleTemplate`. Tiap halaman set judul via `useHead`/`useSeoMeta`.
-- **Ganti `SITE_URL` di `nuxt.config.ts` dengan domain produksi** — dipakai untuk
-  URL absolut `og:image` (wajib absolut agar preview WhatsApp/Twitter muncul).
-- Aset di `public/`: `favicon.svg`, `favicon.ico`, `apple-touch-icon.png`,
-  `og-image.png` (1200×630, preview share). Regenerasi: `node scripts/generate-assets.mjs`.
+- Meta dasar (title, `titleTemplate`, keywords, favicon) di `nuxt.config.ts` (`app.head`).
+- **Open Graph & Twitter** diatur di `app.vue` via `useSeoMeta`, memakai URL absolut
+  dari `runtimeConfig.public.siteUrl` (`og:url`/canonical mengikuti halaman aktif).
+- **Ganti `SITE_URL` di `nuxt.config.ts`** (atau env `NUXT_PUBLIC_SITE_URL`) dengan domain
+  produksi — wajib absolut agar preview WhatsApp/Twitter muncul.
+- Aset di `public/`: `favicon.svg/.ico`, `apple-touch-icon.png`, `icon-192/512.png`,
+  `og-image.png` (1200×630). Sumber SVG di `scripts/`; regenerasi: `npm run assets`.
+
+## PWA
+
+- Diatur modul `@vite-pwa/nuxt` (`pwa` di `nuxt.config.ts`). Manifest & registrasi
+  service worker otomatis. **SW hanya aktif di build produksi** (`devOptions.enabled: false`).
+- Uji offline/install lewat `npm run preview` + Chrome DevTools → Application.
+- Ikon manifest merujuk `public/icon-192.png` & `icon-512.png` (dari `npm run assets`).
+
+## Testing & Kualitas
+
+- Unit test di `tests/*.test.ts` (Vitest, env `happy-dom`). Alias `~`/`@` diset di
+  `vitest.config.ts`. Uji **util & service** (murni) — jangan composable (butuh env Nuxt).
+- Tambah materi/metode → tambah/junguat tes terkait bila relevan (mis. invariant di
+  `tests/lessonService.test.ts` sudah cek `id` unik & konsistensi jawaban soal).
+- ESLint (`eslint.config.mjs`, basis `@nuxt/eslint`) + Prettier (`.prettierrc`).
+  Formatting = Prettier; kualitas = ESLint. Jalankan `npm run lint` & `npm run format`.
 
 ## Yang TIDAK boleh
+
 - Menaruh nilai warna/ukuran hardcoded di komponen (pakai token).
 - Inline `style` untuk styling statis (hanya untuk CSS custom property dinamis).
 - Komponen mengimpor file `data/` langsung (lewat `services/`).
-- Menyelesaikan tugas tanpa `npm run build` lolos.
+- Menyelesaikan tugas tanpa `npm run lint`, `npm run test`, & `npm run build` lolos.

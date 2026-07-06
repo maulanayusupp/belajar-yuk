@@ -2,11 +2,17 @@
 import { range } from '~/utils/array'
 
 // Sekelompok blok (pendekatan "Concrete" pada Singapore Math).
-// Anak bisa menghitung blok satu per satu secara nyata.
-withDefaults(
-  defineProps<{ count: number; color?: 'a' | 'b' | 'sum'; label?: string }>(),
-  { color: 'a' },
+// `taken` = jumlah blok terakhir yang "diambil" (memudar & dicoret) —
+// dipakai untuk memvisualkan pengurangan.
+const props = withDefaults(
+  defineProps<{ count: number; color?: 'a' | 'b' | 'sum'; label?: string; taken?: number }>(),
+  { color: 'a', taken: 0 },
 )
+
+// Sebuah blok dianggap "diambil" bila indeksnya termasuk `taken` terakhir.
+function isTaken(i: number) {
+  return i >= props.count - props.taken
+}
 </script>
 
 <template>
@@ -16,10 +22,12 @@ withDefaults(
         v-for="i in range(count)"
         :key="i"
         class="block-group__block"
-        :class="`block-group__block--${color}`"
+        :class="[`block-group__block--${color}`, { 'block-group__block--taken': isTaken(i) }]"
         :style="{ '--i': i }"
         aria-hidden="true"
-      />
+      >
+        <span v-if="isTaken(i)" class="block-group__cross">✕</span>
+      </span>
     </div>
     <span v-if="label" class="block-group__label">{{ label }}</span>
   </div>
@@ -37,6 +45,7 @@ withDefaults(
   }
 
   &__block {
+    @include flex-center;
     width: 34px;
     height: 34px;
     border-radius: $radius-sm;
@@ -54,6 +63,17 @@ withDefaults(
     &--sum {
       background: $color-success;
     }
+
+    &--taken {
+      opacity: 0.35;
+      filter: grayscale(0.6);
+    }
+  }
+
+  &__cross {
+    color: $color-white;
+    font-weight: $font-weight-bold;
+    font-size: font-size('sm');
   }
 
   &__label {

@@ -9,12 +9,25 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "assets": "node scripts/generate-assets.mjs"
   },
   "devDependencies": {
+    "@nuxt/eslint": "^1.16.0",
     "@resvg/resvg-js": "^2.6.2",
+    "@vite-pwa/nuxt": "^1.1.1",
+    "eslint": "^10.6.0",
+    "happy-dom": "^20.10.6",
     "nuxt": "^3.14.0",
     "png-to-ico": "^3.0.1",
-    "sass": "^1.80.0"
+    "prettier": "^3.9.4",
+    "sass": "^1.80.0",
+    "vitest": "^4.1.9"
   }
 }

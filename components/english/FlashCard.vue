@@ -5,26 +5,26 @@ import type { VocabularyItem } from '~/types'
 // pengucapan. Otomatis mengucapkan kata saat pertama muncul.
 const props = defineProps<{ item: VocabularyItem; autoSpeak?: boolean }>()
 
-const { speak, play } = useAudio()
+const { pronounce, play } = useAudio()
 
-function pronounce() {
+function sayWord() {
   play('pop')
-  speak(props.item.word)
+  pronounce(props.item.word, props.item.audioUrl)
 }
 
 onMounted(() => {
-  if (props.autoSpeak) speak(props.item.word)
+  if (props.autoSpeak) pronounce(props.item.word, props.item.audioUrl)
 })
 
 // Ucapkan otomatis setiap ganti kata.
 watch(
   () => props.item.id,
-  () => props.autoSpeak && speak(props.item.word),
+  () => props.autoSpeak && pronounce(props.item.word, props.item.audioUrl),
 )
 </script>
 
 <template>
-  <button class="flashcard anim-bounce-in" type="button" @click="pronounce">
+  <button class="flashcard anim-bounce-in" type="button" @click="sayWord">
     <span class="flashcard__emoji" aria-hidden="true">{{ item.emoji }}</span>
     <span class="flashcard__word">{{ item.word }}</span>
     <span class="flashcard__translation">{{ item.translation }}</span>

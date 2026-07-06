@@ -24,7 +24,10 @@ useHead(() => ({ title: `${lesson.value?.title} — Belajar Yuk!` }))
       <h1 class="lesson-page__title">
         <span aria-hidden="true">{{ lesson.emoji }}</span> {{ lesson.title }}
       </h1>
-      <p v-if="lesson.subject === 'math'" class="lesson-page__method">{{ lesson.methodLabel }}</p>
+      <p v-if="lesson.subject === 'math'" class="lesson-page__method">
+        <span aria-hidden="true">{{ lessonService.getMathMethodMeta(lesson.method).icon }}</span>
+        {{ lesson.methodLabel }}
+      </p>
     </header>
 
     <!-- Pilih komponen pelajaran sesuai mata pelajaran -->

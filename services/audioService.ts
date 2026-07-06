@@ -16,7 +16,9 @@ let audioCtx: AudioContext | null = null
 function getCtx(): AudioContext | null {
   if (!isBrowser) return null
   if (!audioCtx) {
-    const Ctx = window.AudioContext || (window as any).webkitAudioContext
+    const Ctx =
+      window.AudioContext ||
+      (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
     if (!Ctx) return null
     audioCtx = new Ctx()
   }
@@ -26,7 +28,13 @@ function getCtx(): AudioContext | null {
 }
 
 /** Mainkan satu nada singkat. */
-function tone(ctx: AudioContext, freq: number, start: number, duration: number, type: OscillatorType = 'sine') {
+function tone(
+  ctx: AudioContext,
+  freq: number,
+  start: number,
+  duration: number,
+  type: OscillatorType = 'sine',
+) {
   const osc = ctx.createOscillator()
   const gain = ctx.createGain()
   osc.type = type
@@ -74,8 +82,11 @@ function pickEnglishVoice(): SpeechSynthesisVoice | undefined {
   )
 }
 
+// Simpan referensi audio file yang sedang diputar agar bisa dihentikan.
+let currentClip: HTMLAudioElement | null = null
+
 export const audioService = {
-  /** Ucapkan teks Bahasa Inggris (default) atau bahasa lain. */
+  /** Ucapkan teks Bahasa Inggris (default) atau bahasa lain (suara sintesis). */
   speak(text: string, lang = 'en-US'): void {
     if (!isBrowser || !('speechSynthesis' in window)) return
     window.speechSynthesis.cancel() // hentikan ucapan sebelumnya
@@ -88,8 +99,38 @@ export const audioService = {
     window.speechSynthesis.speak(utter)
   },
 
+  /**
+   * Mainkan file audio dari URL/path. Bila gagal (file tak ada/format
+   * tak didukung), otomatis fallback ke suara sintesis `fallbackText`.
+   */
+  playClip(url: string, fallbackText?: string, lang = 'en-US'): void {
+    if (!isBrowser) return
+    this.stopSpeaking()
+    try {
+      currentClip?.pause()
+      const audio = new Audio(url)
+      currentClip = audio
+      audio.play().catch(() => {
+        if (fallbackText) this.speak(fallbackText, lang)
+      })
+    } catch {
+      if (fallbackText) this.speak(fallbackText, lang)
+    }
+  },
+
+  /**
+   * Ucapkan sebuah kata: pakai file audio bila `audioUrl` ada, jika tidak
+   * pakai suara sintesis (default). Titik masuk tunggal untuk pengucapan.
+   */
+  pronounce(text: string, audioUrl?: string, lang = 'en-US'): void {
+    if (audioUrl) this.playClip(audioUrl, text, lang)
+    else this.speak(text, lang)
+  },
+
   stopSpeaking(): void {
     if (isBrowser && 'speechSynthesis' in window) window.speechSynthesis.cancel()
+    currentClip?.pause()
+    currentClip = null
   },
 
   /** Mainkan efek suara pendek. */

@@ -33,6 +33,17 @@ const features = [
 
 const trust = ['🆓 Gratis', '🚫 Tanpa Iklan', '👶 Usia 6+', '📱 Bisa di HP']
 
+// Metode belajar (dinamis dari registry) + pendekatan Bahasa Inggris.
+const mathMethods = lessonService.getUsedMathMethods()
+
+// Statistik dinamis — otomatis ikut bertambah saat materi/metode ditambah.
+const stats = [
+  { value: lessonService.getLessons().length, label: 'Pelajaran seru' },
+  { value: mathMethods.length, label: 'Metode Matematika' },
+  { value: subjects.length, label: 'Mata pelajaran' },
+  { value: '6+', label: 'Cocok usia' },
+]
+
 useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
 </script>
 
@@ -47,8 +58,8 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
           <span class="hero__title-grad">Petualangan Seru</span>
         </h1>
         <p class="hero__subtitle">
-          Bahasa Inggris & Matematika untuk anak usia 6 tahun ke atas —
-          penuh animasi, suara, dan permainan yang bikin ketagihan belajar.
+          Bahasa Inggris & Matematika untuk anak usia 6 tahun ke atas — penuh animasi, suara, dan
+          permainan yang bikin ketagihan belajar.
         </p>
 
         <div class="hero__actions">
@@ -108,7 +119,7 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
     </section>
 
     <!-- ============ PILIH PELAJARAN ============ -->
-    <section class="section" id="subjects">
+    <section id="subjects" class="section">
       <HomeSectionHeader
         eyebrow="Pilih Pelajaran"
         title="Mau belajar apa hari ini?"
@@ -127,21 +138,30 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
         subtitle="Bukan sekadar hafalan — anak paham konsepnya."
       />
       <div class="method-grid">
-        <div class="method-card">
+        <div v-for="m in mathMethods" :key="m.method" class="method-card">
+          <span class="method-card__icon" aria-hidden="true">{{ m.icon }}</span>
           <span class="method-card__tag">Matematika</span>
-          <h3>Singapore Math</h3>
-          <p>
-            Number Bond & pendekatan Concrete–Pictorial–Abstract membuat anak
-            benar-benar memahami angka, bukan cuma menghafal.
-          </p>
+          <h3 class="method-card__title">{{ m.label }}</h3>
+          <p>{{ m.description }}</p>
         </div>
         <div class="method-card">
+          <span class="method-card__icon" aria-hidden="true">🗣️</span>
           <span class="method-card__tag method-card__tag--english">Bahasa Inggris</span>
-          <h3>Dengar & Ucapkan</h3>
+          <h3 class="method-card__title">Dengar & Ucapkan</h3>
           <p>
-            Kosakata bergambar dengan pengucapan asli. Ketuk kartu, dengar
-            bunyinya, lalu uji lewat kuis interaktif.
+            Kosakata bergambar dengan pengucapan asli — ketuk kartu, dengar bunyinya, lalu uji lewat
+            kuis.
           </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STATISTIK ============ -->
+    <section class="section">
+      <div class="stats anim-rise">
+        <div v-for="s in stats" :key="s.label" class="stats__item">
+          <span class="stats__value">{{ s.value }}</span>
+          <span class="stats__label">{{ s.label }}</span>
         </div>
       </div>
     </section>
@@ -362,16 +382,29 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
   grid-template-columns: 1fr;
   gap: spacing('lg');
 
-  @include respond-to('md') {
-    grid-template-columns: 1fr 1fr;
+  @include respond-to('sm') {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   }
 }
 
 .method-card {
-  @include card(spacing('xl'));
+  @include card(spacing('lg'));
   @include hover-lift(-6px);
   @include flex(column, flex-start, flex-start, spacing('sm'));
   border: 1px solid $color-border;
+
+  &__icon {
+    @include flex-center;
+    width: 56px;
+    height: 56px;
+    font-size: font-size('xl');
+    background: rgba($color-primary, 0.1);
+    border-radius: $radius-md;
+  }
+
+  &__title {
+    margin: 0;
+  }
 
   &__tag {
     padding: spacing('xs') spacing('md');
@@ -387,6 +420,40 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
       color: $color-english-dark;
       background: rgba($color-english, 0.15);
     }
+  }
+}
+
+// ---------------- STATISTIK ----------------
+.stats {
+  @include glass($glass-bg-strong);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: spacing('lg');
+  padding: spacing('xl');
+  border-radius: $radius-xl;
+  box-shadow: $shadow-md;
+
+  @include respond-to('md') {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  &__item {
+    @include flex(column, center, center, spacing('xs'));
+    text-align: center;
+  }
+
+  &__value {
+    @include gradient-text($gradient-primary);
+    font-family: $font-family-display;
+    font-weight: $font-weight-bold;
+    font-size: font-size('xxl');
+    line-height: 1;
+  }
+
+  &__label {
+    font-size: font-size('sm');
+    font-weight: $font-weight-semibold;
+    color: $color-text-muted;
   }
 }
 

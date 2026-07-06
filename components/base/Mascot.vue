@@ -23,12 +23,7 @@ function speakEnglish() {
     <div class="mascot__avatar anim-float" aria-hidden="true">{{ emoji }}</div>
     <div class="mascot__bubble">
       <p class="mascot__text">{{ message }}</p>
-      <button
-        v-if="messageEn"
-        class="mascot__en"
-        type="button"
-        @click="speakEnglish"
-      >
+      <button v-if="messageEn" class="mascot__en" type="button" @click="speakEnglish">
         🔊 {{ messageEn }}
       </button>
     </div>

@@ -13,7 +13,9 @@ withDefaults(
 
 <template>
   <div class="feature">
-    <span class="feature__icon" :class="`feature__icon--${tint}`" aria-hidden="true">{{ icon }}</span>
+    <span class="feature__icon" :class="`feature__icon--${tint}`" aria-hidden="true">{{
+      icon
+    }}</span>
     <h3 class="feature__title">{{ title }}</h3>
     <p class="feature__text">{{ text }}</p>
   </div>

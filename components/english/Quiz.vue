@@ -7,7 +7,7 @@ import { shuffle } from '~/utils/array'
 const props = defineProps<{ items: VocabularyItem[] }>()
 const emit = defineEmits<{ complete: [payload: { correct: number; total: number }] }>()
 
-const { speak, play } = useAudio()
+const { pronounce, play } = useAudio()
 
 // Susun daftar soal (urutan diacak) beserta 4 opsi jawaban.
 interface Question {
@@ -33,7 +33,7 @@ const isLast = computed(() => index.value === questions.value.length - 1)
 function choose(option: VocabularyItem) {
   if (answered.value) return
   selectedId.value = option.id
-  speak(option.word)
+  pronounce(option.word, option.audioUrl)
   if (option.id === current.value.item.id) {
     correct.value++
     play('correct')
@@ -64,11 +64,12 @@ function optionState(option: VocabularyItem): 'default' | 'correct' | 'wrong' {
     <p class="quiz__counter">Soal {{ index + 1 }} / {{ questions.length }}</p>
 
     <div class="quiz__prompt">
-      <span class="quiz__emoji anim-bounce-in" :key="current.item.id" aria-hidden="true">
+      <span :key="current.item.id" class="quiz__emoji anim-bounce-in" aria-hidden="true">
         {{ current.item.emoji }}
       </span>
       <p class="quiz__question">
-        Apa Bahasa Inggris dari <strong>{{ current.item.translation }}</strong>?
+        Apa Bahasa Inggris dari <strong>{{ current.item.translation }}</strong
+        >?
       </p>
     </div>
 

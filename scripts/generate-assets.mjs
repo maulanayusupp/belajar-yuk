@@ -39,7 +39,11 @@ for (const [name, size] of icons) {
 }
 
 // --- favicon.ico (gabungan 16/32/48) ---
-const icoBuf = await pngToIco([svgToPng(faviconSvg, 16), svgToPng(faviconSvg, 32), svgToPng(faviconSvg, 48)])
+const icoBuf = await pngToIco([
+  svgToPng(faviconSvg, 16),
+  svgToPng(faviconSvg, 32),
+  svgToPng(faviconSvg, 48),
+])
 writeFileSync(resolve(pub, 'favicon.ico'), icoBuf)
 console.log('✓ public/favicon.ico (16/32/48)')
 

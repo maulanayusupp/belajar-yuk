@@ -37,7 +37,9 @@
 @mixin tappable {
   cursor: pointer;
   border: none;
-  transition: transform v.$transition-bounce, box-shadow v.$transition-base;
+  transition:
+    transform v.$transition-bounce,
+    box-shadow v.$transition-base;
   user-select: none;
 
   &:hover {
@@ -106,7 +108,9 @@
 
 // -------- Efek angkat halus saat hover (premium) ------------
 @mixin hover-lift($y: -8px) {
-  transition: transform v.$transition-base, box-shadow v.$transition-base;
+  transition:
+    transform v.$transition-base,
+    box-shadow v.$transition-base;
   will-change: transform;
 
   &:hover {
@@ -122,4 +126,3 @@
     padding-block: f.spacing('section');
   }
 }
-

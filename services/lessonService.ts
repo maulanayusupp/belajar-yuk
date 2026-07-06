@@ -1,5 +1,6 @@
-import type { EnglishLesson, Lesson, MathLesson, SubjectId } from '~/types'
+import type { EnglishLesson, Lesson, MathLesson, MathMethod, SubjectId } from '~/types'
 import { allLessons, subjects } from '~/data'
+import { mathMethodMeta, type MathMethodMeta } from '~/data/math/methods'
 
 // Sumber data pelajaran terpusat. Komponen TIDAK mengakses file
 // data langsung — selalu lewat service ini. Nanti mudah diganti
@@ -34,5 +35,19 @@ export const lessonService = {
   getMathLesson(id: string): MathLesson | null {
     const lesson = this.getLesson(id)
     return lesson && lesson.subject === 'math' ? lesson : null
+  },
+
+  /** Metadata (ikon/label/instruksi) sebuah metode Matematika. */
+  getMathMethodMeta(method: MathMethod): MathMethodMeta {
+    return mathMethodMeta[method]
+  },
+
+  /** Daftar metode Matematika yang benar-benar dipakai oleh pelajaran. */
+  getUsedMathMethods(): Array<{ method: MathMethod } & MathMethodMeta> {
+    const used = new Set<MathMethod>()
+    for (const lesson of allLessons) {
+      if (lesson.subject === 'math') used.add(lesson.method)
+    }
+    return [...used].map((method) => ({ method, ...mathMethodMeta[method] }))
   },
 }

@@ -187,7 +187,9 @@
 // Transisi halaman (dipakai oleh Nuxt pageTransition "page")
 .page-enter-active,
 .page-leave-active {
-  transition: opacity $transition-base, transform $transition-base;
+  transition:
+    opacity $transition-base,
+    transform $transition-base;
 }
 .page-enter-from {
   opacity: 0;

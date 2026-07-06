@@ -59,11 +59,7 @@ function goHome() {
         message-en="Tap the card to listen!"
       />
 
-      <BaseProgressBar
-        :current="cardIndex + 1"
-        :total="lesson.items.length"
-        accent="english"
-      />
+      <BaseProgressBar :current="cardIndex + 1" :total="lesson.items.length" accent="english" />
 
       <div class="vlesson__stage">
         <EnglishFlashCard :item="currentItem" auto-speak />

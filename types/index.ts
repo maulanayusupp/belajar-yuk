@@ -28,10 +28,20 @@ export interface VocabularyItem {
   emoji: string
   /** Contoh kalimat sederhana (opsional). */
   example?: string
+  /**
+   * URL/path audio pengucapan (opsional). Bila diisi, audio ini yang
+   * dimainkan; bila kosong, dipakai suara sintesis (Google/Web Speech).
+   * Contoh: '/audio/en/apple.mp3' atau 'https://cdn.../apple.mp3'.
+   */
+  audioUrl?: string
 }
 
 /** Metode Matematika yang didukung (mudah ditambah). */
-export type MathMethod = 'number-bond' | 'block-addition'
+export type MathMethod =
+  | 'number-bond' // Ikatan Bilangan (penjumlahan)
+  | 'block-addition' // Penjumlahan dengan blok (CPA)
+  | 'block-subtraction' // Pengurangan dengan blok (ambil/coret)
+  | 'counting' // Menghitung banyak benda
 
 /** Satu soal Matematika. */
 export interface MathProblem {
@@ -40,6 +50,8 @@ export interface MathProblem {
   operandB: number
   operator: '+' | '-'
   answer: number
+  /** Emoji benda untuk metode 'counting' (mis. '🍎'). */
+  emoji?: string
 }
 
 /** Properti umum semua pelajaran. */
@@ -52,6 +64,11 @@ interface LessonBase {
   emoji: string
   /** Perkiraan durasi (menit) untuk ditampilkan. */
   durationMin: number
+  /**
+   * Kantong data tambahan (opsional) untuk parameter masa depan tanpa
+   * mengubah tipe inti — mis. { theme: 'ocean', unlockLevel: 2 }.
+   */
+  meta?: Record<string, unknown>
 }
 
 export interface EnglishLesson extends LessonBase {

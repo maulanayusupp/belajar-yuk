@@ -15,7 +15,12 @@ withDefaults(
 </script>
 
 <template>
-  <div class="stars" :class="`stars--${size}`" role="img" :aria-label="`${value} dari ${max} bintang`">
+  <div
+    class="stars"
+    :class="`stars--${size}`"
+    role="img"
+    :aria-label="`${value} dari ${max} bintang`"
+  >
     <span
       v-for="i in range(max)"
       :key="i"

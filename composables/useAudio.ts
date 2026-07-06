@@ -23,5 +23,13 @@ export function useAudio() {
     if (!muted.value) audioService.speak(text, lang)
   }
 
-  return { muted, toggleMute, play, speak }
+  /**
+   * Ucapkan kata: pakai file audio bila `audioUrl` ada, jika tidak pakai
+   * suara sintesis (default Google). Titik masuk pengucapan yang disarankan.
+   */
+  function pronounce(text: string, audioUrl?: string, lang = 'en-US') {
+    if (!muted.value) audioService.pronounce(text, audioUrl, lang)
+  }
+
+  return { muted, toggleMute, play, speak, pronounce }
 }

@@ -13,7 +13,10 @@ defineProps<{ whole: number | null; partA: number; partB: number }>()
       <line x1="140" y1="32" x2="228" y2="138" />
     </svg>
 
-    <div class="bond__circle bond__circle--whole" :class="{ 'bond__circle--empty': whole === null }">
+    <div
+      class="bond__circle bond__circle--whole"
+      :class="{ 'bond__circle--empty': whole === null }"
+    >
       {{ whole ?? '?' }}
     </div>
     <div class="bond__circle bond__circle--a">{{ partA }}</div>

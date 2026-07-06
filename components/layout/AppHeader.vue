@@ -15,12 +15,7 @@ const nav = [
       </NuxtLink>
 
       <nav class="app-header__nav">
-        <NuxtLink
-          v-for="item in nav"
-          :key="item.to"
-          :to="item.to"
-          class="app-header__link"
-        >
+        <NuxtLink v-for="item in nav" :key="item.to" :to="item.to" class="app-header__link">
           {{ item.label }}
         </NuxtLink>
       </nav>

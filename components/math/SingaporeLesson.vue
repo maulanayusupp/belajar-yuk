@@ -1,12 +1,17 @@
 <script setup lang="ts">
 import type { MathLesson } from '~/types'
+import { lessonService } from '~/services/lessonService'
 import { generateNumberOptions } from '~/utils/math'
-import { clamp } from '~/utils/array'
+import { clamp, range } from '~/utils/array'
 
-// Menjalankan satu pelajaran Matematika. Memvisualkan tiap soal
-// sesuai metode (Number Bond / Block Addition), lalu anak memilih
-// jawaban. Diakhiri layar perayaan + simpan progres.
+// Menjalankan satu pelajaran Matematika. Memvisualkan tiap soal sesuai
+// metode (Number Bond / Block Addition / Block Subtraction / Counting),
+// lalu anak memilih jawaban. Diakhiri layar perayaan + simpan progres.
 const props = defineProps<{ lesson: MathLesson }>()
+
+// Metadata metode (ikon + instruksi) diambil dari registry terpusat.
+const methodMeta = computed(() => lessonService.getMathMethodMeta(props.lesson.method))
+const instruction = computed(() => methodMeta.value.instruction)
 
 const { saveResult } = useProgress()
 const { play, speak } = useAudio()
@@ -83,18 +88,13 @@ function optionState(value: number): 'default' | 'correct' | 'wrong' {
 <template>
   <div class="mlesson">
     <template v-if="!done">
-      <BaseMascot
-        :message="lesson.method === 'number-bond'
-          ? 'Gabungkan dua bagian ini. Berapa jumlah seluruhnya?'
-          : 'Hitung semua bloknya. Ada berapa jumlahnya?'"
-        message-en="How many altogether?"
-      />
+      <BaseMascot :message="instruction" message-en="Let's count!" />
 
       <BaseProgressBar :current="index + 1" :total="lesson.problems.length" accent="math" />
 
       <BaseCard accent="math">
         <div class="mlesson__stage">
-          <!-- Metode 1: Number Bond -->
+          <!-- Metode: Number Bond -->
           <MathNumberBond
             v-if="lesson.method === 'number-bond'"
             :key="`nb-${problem.id}-${answered}`"
@@ -103,17 +103,49 @@ function optionState(value: number): 'default' | 'correct' | 'wrong' {
             :part-b="problem.operandB"
           />
 
-          <!-- Metode 2: Block Addition (Concrete–Pictorial–Abstract) -->
+          <!-- Metode: Counting (hitung benda) -->
+          <div
+            v-else-if="lesson.method === 'counting'"
+            :key="`ct-${problem.id}`"
+            class="mlesson__objects"
+          >
+            <span
+              v-for="i in range(problem.operandA)"
+              :key="i"
+              class="mlesson__object"
+              :style="{ '--i': i }"
+              aria-hidden="true"
+            >
+              {{ problem.emoji }}
+            </span>
+          </div>
+
+          <!-- Metode: Block Subtraction (ambil sebagian) -->
+          <div v-else-if="lesson.method === 'block-subtraction'" class="mlesson__blocks">
+            <MathBlockGroup
+              :key="`sb-${problem.id}`"
+              :count="problem.operandA"
+              color="a"
+              :taken="problem.operandB"
+              :label="String(problem.operandA)"
+            />
+          </div>
+
+          <!-- Metode: Block Addition (Concrete–Pictorial–Abstract) -->
           <div v-else class="mlesson__blocks">
             <MathBlockGroup :count="problem.operandA" color="a" :label="String(problem.operandA)" />
             <span class="mlesson__op">+</span>
             <MathBlockGroup :count="problem.operandB" color="b" :label="String(problem.operandB)" />
           </div>
 
-          <!-- Persamaan abstrak -->
-          <p class="mlesson__equation">
+          <!-- Pertanyaan abstrak -->
+          <p v-if="lesson.method === 'counting'" class="mlesson__equation">Ada berapa?</p>
+          <p v-else class="mlesson__equation">
             {{ problem.operandA }} {{ problem.operator }} {{ problem.operandB }} =
-            <span class="mlesson__answer" :class="{ 'mlesson__answer--revealed': answered && isCorrect }">
+            <span
+              class="mlesson__answer"
+              :class="{ 'mlesson__answer--revealed': answered && isCorrect }"
+            >
               {{ answered && isCorrect ? problem.answer : '?' }}
             </span>
           </p>
@@ -156,6 +188,21 @@ function optionState(value: number): 'default' | 'correct' | 'wrong' {
 
   &__stage {
     @include flex(column, center, center, spacing('lg'));
+  }
+
+  &__objects {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: spacing('sm');
+    max-width: 420px;
+  }
+
+  &__object {
+    font-size: font-size('xxl');
+    line-height: 1;
+    animation: bounce-in 0.4s $transition-bounce both;
+    animation-delay: calc(var(--i) * 0.08s);
   }
 
   &__blocks {
