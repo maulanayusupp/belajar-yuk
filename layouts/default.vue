@@ -1,5 +1,11 @@
 <script setup lang="ts">
 // Layout utama: header lengket + area konten + latar dekoratif.
+const footerNav = [
+  { to: '/', label: 'Beranda' },
+  { to: '/kemajuan', label: 'Kemajuan' },
+  { to: '/orangtua', label: 'Orang Tua' },
+  { to: '/changelog', label: 'Changelog' },
+]
 </script>
 
 <template>
@@ -19,6 +25,16 @@
     </main>
 
     <footer class="layout__footer">
+      <nav class="layout__footer-nav">
+        <NuxtLink
+          v-for="item in footerNav"
+          :key="item.to"
+          :to="item.to"
+          class="layout__footer-link"
+        >
+          {{ item.label }}
+        </NuxtLink>
+      </nav>
       <p>Dibuat dengan ❤️ untuk anak-anak hebat</p>
     </footer>
   </div>
@@ -38,10 +54,34 @@
   }
 
   &__footer {
-    text-align: center;
+    @include flex(column, flex-start, center, spacing('sm'));
     padding: spacing('lg');
     color: $color-text-muted;
     font-size: font-size('sm');
+    text-align: center;
+  }
+
+  &__footer-nav {
+    @include flex(row, center, center, spacing('sm'));
+    flex-wrap: wrap;
+  }
+
+  &__footer-link {
+    font-weight: $font-weight-semibold;
+    color: $color-ink-soft;
+    padding: spacing('xs') spacing('md');
+    border-radius: $radius-pill;
+    transition: all $transition-base;
+
+    &:hover {
+      color: $color-primary-dark;
+      background: rgba($color-primary, 0.1);
+    }
+
+    &.router-link-active {
+      color: $color-primary-dark;
+      background: rgba($color-primary, 0.12);
+    }
   }
 
   // Latar dekoratif (lingkaran warna lembut yang mengambang)

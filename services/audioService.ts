@@ -10,6 +10,9 @@ import type { SoundEffect } from '~/types'
 
 const isBrowser = typeof window !== 'undefined'
 
+// Kecepatan bicara (0.1–1). Sengaja pelan agar anak mudah menyimak.
+const SPEECH_RATE = 0.7
+
 // -------- Efek suara (Web Audio API) ------------------------
 let audioCtx: AudioContext | null = null
 
@@ -92,7 +95,7 @@ export const audioService = {
     window.speechSynthesis.cancel() // hentikan ucapan sebelumnya
     const utter = new SpeechSynthesisUtterance(text)
     utter.lang = lang
-    utter.rate = 0.85 // sedikit lebih pelan untuk anak
+    utter.rate = SPEECH_RATE // lebih pelan agar mudah disimak anak
     utter.pitch = 1.1
     const voice = pickEnglishVoice()
     if (voice) utter.voice = voice

@@ -1,0 +1,99 @@
+[
+  {
+    "date": "2026-07-06",
+    "version": "0.9.1",
+    "tag": "Perbaikan",
+    "title": "Perbaikan tampilan",
+    "changes": [
+      "Warna judul Kartu Pencapaian kini terbaca jelas di latar berwarna.",
+      "Peta Jalur Belajar tidak lagi terpotong — memakai grid yang membungkus ke bawah.",
+      "Ritme jarak antar-bagian di beranda diseragamkan agar lebih rapi."
+    ]
+  },
+  {
+    "date": "2026-07-06",
+    "version": "0.9.0",
+    "tag": "Fitur",
+    "title": "Halaman Changelog",
+    "changes": [
+      "Tambah halaman Changelog yang bisa diakses dari menu footer.",
+      "Riwayat perubahan diurutkan dari yang terbaru."
+    ]
+  },
+  {
+    "date": "2026-07-06",
+    "version": "0.8.0",
+    "tag": "Fitur",
+    "title": "Pencapaian, Lencana & Target Harian",
+    "changes": [
+      "Kartu Pencapaian yang bisa dibagikan ke WhatsApp (gambar otomatis).",
+      "9 lencana pencapaian yang terbuka sesuai progres.",
+      "Target harian untuk mendorong kebiasaan belajar."
+    ]
+  },
+  {
+    "date": "2026-07-06",
+    "version": "0.7.0",
+    "tag": "Fitur",
+    "title": "Profil, Kemajuan & Area Orang Tua",
+    "changes": [
+      "Profil anak (nama + avatar) dengan sapaan personal.",
+      "Rentetan hari belajar (streak) & dashboard Kemajuan.",
+      "Peta Jalur Belajar per mata pelajaran + rekomendasi pelajaran berikutnya.",
+      "Area Orang Tua terlindungi untuk pengaturan & reset."
+    ]
+  },
+  {
+    "date": "2026-07-06",
+    "version": "0.6.0",
+    "tag": "Konten",
+    "title": "Lebih banyak materi & metode",
+    "changes": [
+      "Kategori tingkat: Pemula, Menengah, Mahir.",
+      "Phonics A–Z, kata CVC, sight words, dan banyak kosakata bertema.",
+      "Bilangan belasan (nilai tempat) & metode Garis Bilangan.",
+      "Tag metode pada tiap pelajaran + penjelasan 'Cara Singapore vs Cara Biasa'."
+    ]
+  },
+  {
+    "date": "2026-07-06",
+    "version": "0.5.0",
+    "tag": "Fitur",
+    "title": "PWA, SEO & Kualitas Kode",
+    "changes": [
+      "Bisa dipasang di layar utama & dipakai offline (PWA).",
+      "Pratinjau tautan untuk WhatsApp/Twitter (Open Graph) + favicon & ikon.",
+      "Halaman error ramah-anak, ESLint, Prettier, unit test, & CI."
+    ]
+  },
+  {
+    "date": "2026-07-06",
+    "version": "0.4.0",
+    "tag": "Perbaikan",
+    "title": "Revamp tampilan premium",
+    "changes": [
+      "Beranda baru: hero beranimasi, pita emoji, metode dinamis, & statistik.",
+      "Animasi scroll-reveal dan mikro-interaksi di seluruh halaman."
+    ]
+  },
+  {
+    "date": "2026-07-06",
+    "version": "0.3.0",
+    "tag": "Fitur",
+    "title": "Metode Singapore Math & Phonics",
+    "changes": [
+      "Number Bond, Ten Frame, Garis Bilangan, blok, & berhitung benda.",
+      "Phonics (bunyi huruf) untuk fondasi membaca."
+    ]
+  },
+  {
+    "date": "2026-07-06",
+    "version": "0.1.0",
+    "tag": "Rilis",
+    "title": "Rilis awal Belajar Yuk!",
+    "changes": [
+      "Belajar Bahasa Inggris (kartu kosakata + kuis) dengan suara.",
+      "Belajar Matematika dengan pendekatan Singapore Math."
+    ]
+  }
+]

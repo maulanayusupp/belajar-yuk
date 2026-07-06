@@ -110,3 +110,12 @@ export interface LessonProgress {
 
 /** Efek suara yang tersedia. */
 export type SoundEffect = 'click' | 'correct' | 'wrong' | 'win' | 'pop'
+
+/** Satu entri catatan perubahan (changelog). */
+export interface ChangelogEntry {
+  date: string // ISO 'YYYY-MM-DD'
+  version: string
+  tag: 'Fitur' | 'Perbaikan' | 'Konten' | 'Rilis'
+  title: string
+  changes: string[]
+}
