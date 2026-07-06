@@ -4,6 +4,9 @@ import { clamp } from '~/utils/array'
 
 const STORAGE_KEY = 'belajar-yuk:progress'
 
+/** Target jumlah pelajaran per hari (untuk "Target Harian"). */
+export const DAILY_GOAL = 3
+
 type ProgressMap = Record<string, LessonProgress>
 
 // Menyimpan & membaca progres belajar dari localStorage.
@@ -37,6 +40,14 @@ export const progressService = {
 
   isCompleted(lessonId: string): boolean {
     return this.get(lessonId)?.completed ?? false
+  },
+
+  /** Jumlah pelajaran yang dikerjakan hari ini (untuk target harian). */
+  completedToday(): number {
+    const start = new Date()
+    start.setHours(0, 0, 0, 0)
+    const startMs = start.getTime()
+    return Object.values(this.getAll()).filter((e) => e.updatedAt >= startMs).length
   },
 
   reset(): void {

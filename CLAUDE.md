@@ -38,20 +38,20 @@ data/ (konten)  →  services/ (logika)  →  composables/ (reaktif)  →  compo
                         ↑ utils/ (helper murni)   ↑ types/ (kontrak data)
 ```
 
-| Folder             | Isi                                                                                   | Aturan                                                |
-| ------------------ | ------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| `data/`            | Konten pelajaran (**1 materi = 1 folder** + `index.ts` agregat)                       | Data murni, tanpa logika. Lihat `data/README.md`      |
-| `services/`        | `lessonService`, `progressService`, `audioService`, `profileService`, `streakService` | Logika bisnis. Komponen akses data HANYA lewat sini   |
-| `composables/`     | `useAudio`, `useProgress`, `useConfetti`, `useProfile`, `useStreak`                   | Pembungkus reaktif Vue untuk services                 |
-| `utils/`           | `array`, `math`, `storage`                                                            | Fungsi murni, tanpa efek samping (kecuali `storage`)  |
-| `types/`           | Semua `interface`/`type`                                                              | Sumber tunggal bentuk data                            |
-| `components/`      | UI                                                                                    | Lihat konvensi di bawah                               |
-| `pages/[subject]/` | Routing dinamis: `/english`, `/math`, `/:subject/:id`                                 | Validasi subject; `createError` 404 bila tidak ada    |
-| `pages/kemajuan`   | Dashboard: sapaan, streak, bintang, rekomendasi, peta jalur                           | Pakai `useProfile`/`useStreak`/`useProgress`          |
-| `pages/orangtua`   | Area Orang Tua: gerbang (7×8) → suara, profil, reset                                  | Reset via `resetAll` + `streak.reset`                 |
-| `error.vue`        | Halaman error/404 global ramah-anak                                                   | Pakai `clearError({ redirect: '/' })`                 |
-| `tests/`           | Unit test Vitest (`*.test.ts`)                                                        | Tes util & service (murni). Composable butuh env Nuxt |
-| `scripts/`         | `generate-assets.mjs` + SVG sumber (favicon, OG)                                      | Jalankan via `npm run assets`                         |
+| Folder             | Isi                                                                                                   | Aturan                                                  |
+| ------------------ | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| `data/`            | Konten pelajaran (**1 materi = 1 folder** + `index.ts` agregat)                                       | Data murni, tanpa logika. Lihat `data/README.md`        |
+| `services/`        | `lessonService`, `progressService`, `audioService`, `profileService`, `streakService`, `badgeService` | Logika bisnis. Komponen akses data HANYA lewat sini     |
+| `composables/`     | `useAudio`, `useProgress`, `useConfetti`, `useProfile`, `useStreak`, `useShareCard`                   | Pembungkus reaktif Vue untuk services                   |
+| `utils/`           | `array`, `math`, `storage`                                                                            | Fungsi murni, tanpa efek samping (kecuali `storage`)    |
+| `types/`           | Semua `interface`/`type`                                                                              | Sumber tunggal bentuk data                              |
+| `components/`      | UI                                                                                                    | Lihat konvensi di bawah                                 |
+| `pages/[subject]/` | Routing dinamis: `/english`, `/math`, `/:subject/:id`                                                 | Validasi subject; `createError` 404 bila tidak ada      |
+| `pages/kemajuan`   | Dashboard: sapaan, streak, target harian, lencana, kartu share, rekomendasi, peta jalur               | `badgeService.all(stats)`, `useShareCard`, `DAILY_GOAL` |
+| `pages/orangtua`   | Area Orang Tua: gerbang (7×8) → suara, profil, reset                                                  | Reset via `resetAll` + `streak.reset`                   |
+| `error.vue`        | Halaman error/404 global ramah-anak                                                                   | Pakai `clearError({ redirect: '/' })`                   |
+| `tests/`           | Unit test Vitest (`*.test.ts`)                                                                        | Tes util & service (murni). Composable butuh env Nuxt   |
+| `scripts/`         | `generate-assets.mjs` + SVG sumber (favicon, OG)                                                      | Jalankan via `npm run assets`                           |
 
 ## Konvensi Kode
 

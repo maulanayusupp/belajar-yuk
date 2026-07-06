@@ -1,5 +1,10 @@
 import type { EnglishLesson } from '~/types'
 import { phonics } from './phonics'
+import { phonicsGL } from './phonics-glm'
+import { phonicsMR } from './phonics-mnr'
+import { phonicsSZ } from './phonics-sz'
+import { sightWords } from './sight-words'
+import { feelings } from './feelings'
 import { animals } from './animals'
 import { fruits } from './fruits'
 import { colors } from './colors'
@@ -26,7 +31,13 @@ import { nature } from './nature'
 // Semua materi saat ini setingkat Pemula (mekaniknya sama: kenali & pilih kata).
 // Menengah & Mahir akan hadir lewat aktivitas yang lebih menantang (Listening, Eja, dll).
 export const englishLessons: EnglishLesson[] = [
+  // Fondasi membaca (phonics A–Z + kata umum)
   phonics,
+  phonicsGL,
+  phonicsMR,
+  phonicsSZ,
+  sightWords,
+  // Kosakata bertema
   animals,
   fruits,
   colors,
@@ -41,6 +52,7 @@ export const englishLessons: EnglishLesson[] = [
   food,
   days,
   verbs,
+  feelings,
   greetings,
   opposites,
   jobs,

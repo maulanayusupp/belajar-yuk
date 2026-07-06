@@ -1,19 +1,44 @@
 <script setup lang="ts">
 import { lessonService } from '~/services/lessonService'
+import { badgeService } from '~/services/badgeService'
+import { DAILY_GOAL } from '~/services/progressService'
 
-// Halaman kemajuan: sapaan, streak, ringkasan bintang, rekomendasi,
-// dan peta jalur belajar per mata pelajaran.
+// Halaman kemajuan: sapaan, streak, target harian, lencana, kartu
+// pencapaian (share), rekomendasi, & peta jalur belajar.
 const { profile, greetingName } = useProfile()
 const { current, best } = useStreak()
-const { isCompleted, getStars } = useProgress()
+const { progress, isCompleted } = useProgress()
 
 const subjects = lessonService.getSubjects()
 const allLessons = lessonService.getLessons()
-
-const totalStars = computed(() => allLessons.reduce((sum, l) => sum + getStars(l.id), 0))
 const maxStars = computed(() => allLessons.length * 3)
-const completed = computed(() => allLessons.filter((l) => isCompleted(l.id)).length)
 const nextLesson = computed(() => lessonService.getNextLesson(isCompleted))
+
+// Ringkasan progres (reaktif dari map progres).
+const stats = computed(() => {
+  const entries = Object.values(progress.value).filter((e) => e.completed)
+  const bySubject = (s: string) =>
+    entries.filter((e) => lessonService.getLesson(e.lessonId)?.subject === s).length
+  return {
+    completed: entries.length,
+    mathCompleted: bySubject('math'),
+    englishCompleted: bySubject('english'),
+    perfect: entries.filter((e) => e.stars >= 3).length,
+    totalStars: entries.reduce((sum, e) => sum + e.stars, 0),
+    streakBest: best.value,
+  }
+})
+
+const badges = computed(() => badgeService.all(stats.value))
+const earnedBadges = computed(() => badges.value.filter((b) => b.earned).length)
+
+// Target harian (jumlah pelajaran hari ini).
+const goal = DAILY_GOAL
+const doneToday = computed(() => {
+  const start = new Date()
+  start.setHours(0, 0, 0, 0)
+  return Object.values(progress.value).filter((e) => e.updatedAt >= start.getTime()).length
+})
 
 useHead({ title: 'Kemajuan Belajar' })
 </script>
@@ -36,19 +61,22 @@ useHead({ title: 'Kemajuan Belajar' })
       </div>
     </section>
 
+    <!-- Target harian -->
+    <DailyGoal :done="doneToday" :goal="goal" />
+
     <!-- Ringkasan -->
     <section class="tiles">
       <div class="tile">
-        <span class="tile__value">⭐ {{ totalStars }}</span>
+        <span class="tile__value">⭐ {{ stats.totalStars }}</span>
         <span class="tile__label">dari {{ maxStars }} bintang</span>
       </div>
       <div class="tile">
-        <span class="tile__value">✅ {{ completed }}</span>
+        <span class="tile__value">✅ {{ stats.completed }}</span>
         <span class="tile__label">dari {{ allLessons.length }} pelajaran</span>
       </div>
       <div class="tile">
-        <span class="tile__value">🏆 {{ best }}</span>
-        <span class="tile__label">rekor hari beruntun</span>
+        <span class="tile__value">🏅 {{ earnedBadges }}</span>
+        <span class="tile__label">dari {{ badges.length }} lencana</span>
       </div>
     </section>
 
@@ -60,6 +88,26 @@ useHead({ title: 'Kemajuan Belajar' })
       </div>
       <span class="resume__cta">Main →</span>
     </NuxtLink>
+
+    <!-- Kartu pencapaian (share ke WhatsApp) -->
+    <AchievementCard
+      :name="greetingName"
+      :avatar="profile?.avatar ?? '🦉'"
+      :stars="stats.totalStars"
+      :lessons="stats.completed"
+      :streak="current"
+      :badges="badges"
+    />
+
+    <!-- Lencana -->
+    <section class="badges-section">
+      <HomeSectionHeader
+        align="left"
+        eyebrow="Lencana"
+        :title="`Lencana kamu (${earnedBadges}/${badges.length})`"
+      />
+      <BadgeShelf :badges="badges" />
+    </section>
 
     <!-- Peta jalur belajar -->
     <section class="paths">
@@ -199,7 +247,8 @@ useHead({ title: 'Kemajuan Belajar' })
   }
 }
 
-.paths {
+.paths,
+.badges-section {
   @include flex(column, flex-start, stretch, spacing('lg'));
 }
 </style>
