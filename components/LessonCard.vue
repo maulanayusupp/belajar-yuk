@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import type { Lesson } from '~/types'
+import { lessonService } from '~/services/lessonService'
 
-// Kartu satu pelajaran (tampilan premium) dengan bintang progres.
+// Kartu satu pelajaran (tampilan premium) dengan bintang progres,
+// tag metode/aktivitas, dan badge tingkat.
 const props = defineProps<{ lesson: Lesson }>()
 
 const { getStars, isCompleted } = useProgress()
 
-const levelLabel: Record<Lesson['level'], string> = {
-  beginner: 'Pemula',
-  intermediate: 'Menengah',
-  advanced: 'Mahir',
-}
+// Tag metode (mis. "Ikatan Bilangan", "Phonics") + tingkat dari service.
+const tag = computed(() => lessonService.getLessonTag(props.lesson))
+const levelMeta = computed(() => lessonService.getLevelMeta(props.lesson.level))
 
 const stars = computed(() => getStars(props.lesson.id))
 const done = computed(() => isCompleted(props.lesson.id))
@@ -29,9 +29,18 @@ const done = computed(() => isCompleted(props.lesson.id))
         <h3 class="lesson-card__title">{{ lesson.title }}</h3>
         <span v-if="done" class="lesson-card__badge" aria-label="Selesai">✓</span>
       </div>
-      <p class="lesson-card__meta">
-        {{ lesson.titleEn }} · {{ levelLabel[lesson.level] }} · ⏱ {{ lesson.durationMin }} mnt
-      </p>
+
+      <!-- Tag metode/aktivitas + tingkat -->
+      <div class="lesson-card__tags">
+        <span class="lesson-card__tag" :class="`lesson-card__tag--${lesson.subject}`">
+          <span aria-hidden="true">{{ tag.icon }}</span> {{ tag.label }}
+        </span>
+        <span class="lesson-card__level" :class="`lesson-card__level--${lesson.level}`">
+          {{ levelMeta.icon }} {{ levelMeta.label }}
+        </span>
+      </div>
+
+      <p class="lesson-card__meta">{{ lesson.titleEn }} · ⏱ {{ lesson.durationMin }} mnt</p>
       <div class="lesson-card__footer">
         <BaseStarRating :value="stars" size="sm" />
         <span class="lesson-card__play">Main →</span>
@@ -115,6 +124,48 @@ const done = computed(() => isCompleted(props.lesson.id))
     font-weight: $font-weight-bold;
     flex-shrink: 0;
     box-shadow: $shadow-sm;
+  }
+
+  &__tags {
+    @include flex(row, flex-start, center, spacing('xs'));
+    flex-wrap: wrap;
+    margin-block: spacing('xs');
+  }
+
+  &__tag {
+    font-size: font-size('xs');
+    font-weight: $font-weight-bold;
+    padding: 2px spacing('sm');
+    border-radius: $radius-pill;
+
+    &--math {
+      color: $color-math-dark;
+      background: rgba($color-math, 0.12);
+    }
+    &--english {
+      color: $color-english-dark;
+      background: rgba($color-english, 0.15);
+    }
+  }
+
+  &__level {
+    font-size: font-size('xs');
+    font-weight: $font-weight-bold;
+    padding: 2px spacing('sm');
+    border-radius: $radius-pill;
+
+    &--beginner {
+      color: #05987a;
+      background: rgba($color-success, 0.15);
+    }
+    &--intermediate {
+      color: $color-primary-dark;
+      background: rgba($color-primary, 0.12);
+    }
+    &--advanced {
+      color: #c2410c;
+      background: rgba($color-accent-2, 0.22);
+    }
   }
 
   &__meta {

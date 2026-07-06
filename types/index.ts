@@ -43,6 +43,7 @@ export type MathMethod =
   | 'block-subtraction' // Pengurangan dengan blok (ambil/coret)
   | 'counting' // Menghitung banyak benda
   | 'ten-frame' // Sepuluh Kotak (ten frame)
+  | 'number-line' // Garis Bilangan (kenali angka pada garis)
 
 /** Satu soal Matematika. */
 export interface MathProblem {

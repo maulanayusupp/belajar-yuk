@@ -53,4 +53,10 @@ export const mathMethodMeta: Record<MathMethod, MathMethodMeta> = {
     description: 'Ten Frame: melihat bilangan dalam kerangka 10 untuk membangun rasa angka.',
     instruction: 'Lihat titik di dalam kotak. Ada berapa jumlahnya?',
   },
+  'number-line': {
+    icon: '📏',
+    label: 'Garis Bilangan',
+    description: 'Mengenali posisi angka pada garis bilangan — dasar penjumlahan lanjut.',
+    instruction: 'Lihat penanda di garis. Ada di angka berapa?',
+  },
 }

@@ -126,11 +126,15 @@ plus aset opsional pelajaran itu). Detail & contoh: `data/README.md`.
   2. Tambah entri metadata (ikon, label, deskripsi, instruksi) di
      `data/math/methods.ts` → UI (beranda, header, maskot) otomatis ikut.
   3. Tambah cabang render visual di `components/math/SingaporeLesson.vue`.
-     Metode saat ini: `counting` (pakai `problem.emoji`), `ten-frame` (komponen
-     `MathTenFrame`), `number-bond`, `block-addition`, `block-subtraction` (prop `taken`).
+     Metode saat ini: `counting` (`problem.emoji`), `ten-frame` (`MathTenFrame`),
+     `number-line` (`MathNumberLine`, jawaban = `operandA`), `number-bond`,
+     `block-addition`, `block-subtraction` (prop `taken`).
 - **Aktivitas Bahasa Inggris baru** (mis. phonics): tambah nilai di `EnglishActivity`
   (`types/`), entri di `data/english/methods.ts`, buat komponen runner (mis.
   `EnglishPhonicsLesson`), lalu cabang di `pages/[subject]/[id].vue` berdasarkan `lesson.type`.
+- **Tingkat (Pemula/Menengah/Mahir)**: set `level` pada tiap pelajaran. Metadata kategori
+  di `data/levels.ts`. Halaman pelajaran mengelompokkan via `lessonService.getLessonsGrouped`;
+  kartu menampilkan tag metode + badge tingkat via `lessonService.getLessonTag` & `getLevelMeta`.
 - **Parameter/nilai baru tanpa ubah tipe inti** → pakai `meta?: Record<string, unknown>`
   di lesson (escape-hatch untuk eksperimen). Bila jadi permanen, angkat ke tipe eksplisit.
 - **Mata pelajaran baru** → tambah di `data/subjects.ts` + `SubjectId`/tipe terkait,

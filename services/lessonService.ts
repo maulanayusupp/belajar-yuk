@@ -2,6 +2,7 @@ import type {
   EnglishActivity,
   EnglishLesson,
   Lesson,
+  Level,
   MathLesson,
   MathMethod,
   SubjectId,
@@ -9,6 +10,7 @@ import type {
 import { allLessons, subjects } from '~/data'
 import { mathMethodMeta, type MathMethodMeta } from '~/data/math/methods'
 import { englishActivityMeta, type EnglishActivityMeta } from '~/data/english/methods'
+import { levels, type LevelMeta } from '~/data/levels'
 
 // Sumber data pelajaran terpusat. Komponen TIDAK mengakses file
 // data langsung — selalu lewat service ini. Nanti mudah diganti
@@ -71,5 +73,35 @@ export const lessonService = {
       if (lesson.subject === 'english') used.add(lesson.type)
     }
     return [...used].map((activity) => ({ activity, ...englishActivityMeta[activity] }))
+  },
+
+  /** Metadata tingkat (Pemula/Menengah/Mahir). */
+  getLevels(): LevelMeta[] {
+    return levels
+  },
+
+  getLevelMeta(level: Level): LevelMeta {
+    return levels.find((l) => l.id === level) ?? levels[0]
+  },
+
+  /**
+   * Pelajaran satu mata pelajaran dikelompokkan per tingkat (untuk kategori
+   * di halaman pelajaran). Hanya tingkat yang berisi pelajaran yang dikembalikan.
+   */
+  getLessonsGrouped(subject: SubjectId): Array<{ meta: LevelMeta; lessons: Lesson[] }> {
+    const lessons = this.getLessons(subject)
+    return levels
+      .map((meta) => ({ meta, lessons: lessons.filter((l) => l.level === meta.id) }))
+      .filter((group) => group.lessons.length > 0)
+  },
+
+  /** Label + ikon "tag" metode/aktivitas sebuah pelajaran (untuk kartu). */
+  getLessonTag(lesson: Lesson): { icon: string; label: string } {
+    if (lesson.subject === 'math') {
+      const meta = mathMethodMeta[lesson.method]
+      return { icon: meta.icon, label: meta.label }
+    }
+    const meta = englishActivityMeta[lesson.type]
+    return { icon: meta.icon, label: meta.label }
   },
 }

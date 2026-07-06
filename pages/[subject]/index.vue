@@ -14,6 +14,8 @@ definePageMeta({
 
 const subject = computed(() => lessonService.getSubject(subjectId.value))
 const lessons = computed(() => lessonService.getLessons(subjectId.value))
+// Kelompokkan per tingkat (Pemula/Menengah/Mahir) untuk kategori.
+const groups = computed(() => lessonService.getLessonsGrouped(subjectId.value))
 
 if (!subject.value) {
   throw createError({ statusCode: 404, statusMessage: 'Mata pelajaran tidak ditemukan' })
@@ -43,8 +45,23 @@ useHead(() => ({ title: `${subject.value?.title} — Belajar Yuk!` }))
       message-en="Pick a lesson to start!"
     />
 
-    <section class="subject-page__list">
-      <LessonCard v-for="lesson in lessons" :key="lesson.id" :lesson="lesson" />
+    <!-- Pelajaran dikelompokkan per tingkat -->
+    <section
+      v-for="group in groups"
+      :key="group.meta.id"
+      class="level-group"
+      :class="`level-group--${group.meta.id}`"
+    >
+      <header class="level-group__head">
+        <h2 class="level-group__title">
+          <span aria-hidden="true">{{ group.meta.icon }}</span> {{ group.meta.label }}
+          <span class="level-group__count">{{ group.lessons.length }}</span>
+        </h2>
+        <p class="level-group__desc">{{ group.meta.description }}</p>
+      </header>
+      <div class="subject-page__list">
+        <LessonCard v-for="lesson in group.lessons" :key="lesson.id" :lesson="lesson" />
+      </div>
     </section>
   </div>
 </template>
@@ -75,6 +92,35 @@ useHead(() => ({ title: `${subject.value?.title} — Belajar Yuk!` }))
     @include respond-to('md') {
       grid-template-columns: 1fr 1fr;
     }
+  }
+}
+
+.level-group {
+  @include flex(column, flex-start, stretch, spacing('md'));
+
+  &__head {
+    @include flex(column, flex-start, flex-start, spacing('xs'));
+  }
+
+  &__title {
+    @include flex(row, flex-start, center, spacing('sm'));
+    margin: 0;
+  }
+
+  &__count {
+    font-family: $font-family-base;
+    font-size: font-size('sm');
+    font-weight: $font-weight-bold;
+    color: $color-text-muted;
+    background: $color-white;
+    padding: 2px spacing('sm');
+    border-radius: $radius-pill;
+    box-shadow: $shadow-sm;
+  }
+
+  &__desc {
+    margin: 0;
+    font-size: font-size('sm');
   }
 }
 

@@ -24,6 +24,11 @@ const stars = ref(0)
 const scoreText = ref('')
 
 const problem = computed(() => props.lesson.problems[index.value])
+
+// Skala garis bilangan (0..10 atau 0..20) sesuai jawaban terbesar.
+const lineMax = computed(() =>
+  Math.max(...props.lesson.problems.map((p) => p.answer)) > 10 ? 20 : 10,
+)
 const answered = computed(() => selected.value !== null)
 const isCorrect = computed(() => selected.value === problem.value.answer)
 const isLast = computed(() => index.value === props.lesson.problems.length - 1)
@@ -128,6 +133,14 @@ function optionState(value: number): 'default' | 'correct' | 'wrong' {
             :count="problem.operandA"
           />
 
+          <!-- Metode: Number Line (garis bilangan) -->
+          <MathNumberLine
+            v-else-if="lesson.method === 'number-line'"
+            :key="`nl-${problem.id}`"
+            :value="problem.operandA"
+            :max="lineMax"
+          />
+
           <!-- Metode: Block Subtraction (ambil sebagian) -->
           <div v-else-if="lesson.method === 'block-subtraction'" class="mlesson__blocks">
             <MathBlockGroup
@@ -152,6 +165,9 @@ function optionState(value: number): 'default' | 'correct' | 'wrong' {
             class="mlesson__equation"
           >
             Ada berapa?
+          </p>
+          <p v-else-if="lesson.method === 'number-line'" class="mlesson__equation">
+            Ada di angka berapa?
           </p>
           <p v-else class="mlesson__equation">
             {{ problem.operandA }} {{ problem.operator }} {{ problem.operandB }} =
