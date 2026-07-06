@@ -123,8 +123,10 @@ plus aset opsional pelajaran itu). Detail & contoh: `data/README.md`.
   (export `MathLesson`), lalu daftarkan di `data/math/index.ts`.
 - **Metode Matematika baru** (mesin materi dinamis, 3 langkah):
   1. Tambah nilai di `MathMethod` (`types/index.ts`).
-  2. Tambah entri metadata (ikon, label, deskripsi, instruksi) di
-     `data/math/methods.ts` → UI (beranda, header, maskot) otomatis ikut.
+  2. Tambah entri metadata (ikon, label, deskripsi, instruksi, `singaporeWay`,
+     `usualWay`) di `data/math/methods.ts` → UI (beranda, header, maskot, panel
+     penjelasan `MathMethodInfo`) otomatis ikut. `MathMethodInfo` (di halaman lesson
+     math) menampilkan perbandingan "Cara Singapore vs Cara Biasa".
   3. Tambah cabang render visual di `components/math/SingaporeLesson.vue`.
      Metode saat ini: `counting` (`problem.emoji`), `ten-frame` (`MathTenFrame`),
      `number-line` (`MathNumberLine`, jawaban = `operandA`), `number-bond`,

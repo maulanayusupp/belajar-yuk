@@ -9,7 +9,7 @@ export const additionTo20: MathLesson = {
   methodLabel: 'Singapore Math — Concrete–Pictorial–Abstract',
   title: 'Menjumlah sampai 20',
   titleEn: 'Adding to 20',
-  level: 'intermediate',
+  level: 'beginner',
   emoji: '➕',
   durationMin: 7,
   problems: [

@@ -9,7 +9,7 @@ export const subtractionTo20: MathLesson = {
   methodLabel: 'Singapore Math — Pengurangan dengan Blok',
   title: 'Mengurang sampai 20',
   titleEn: 'Subtracting within 20',
-  level: 'intermediate',
+  level: 'beginner',
   emoji: '✂️',
   durationMin: 7,
   problems: [

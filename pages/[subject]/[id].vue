@@ -39,7 +39,10 @@ useHead(() => ({ title: `${lesson.value?.title} — Belajar Yuk!` }))
       <EnglishPhonicsLesson v-if="lesson.type === 'phonics'" :lesson="lesson" />
       <EnglishVocabularyLesson v-else :lesson="lesson" />
     </template>
-    <MathSingaporeLesson v-else :lesson="lesson" />
+    <template v-else>
+      <MathMethodInfo :method="lesson.method" />
+      <MathSingaporeLesson :lesson="lesson" />
+    </template>
   </div>
 </template>
 

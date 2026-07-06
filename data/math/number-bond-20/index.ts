@@ -9,7 +9,7 @@ export const numberBond20: MathLesson = {
   methodLabel: 'Singapore Math — Ikatan Bilangan (Number Bond)',
   title: 'Ikatan Bilangan sampai 20',
   titleEn: 'Number Bonds to 20',
-  level: 'intermediate',
+  level: 'beginner',
   emoji: '🧩',
   durationMin: 7,
   problems: [

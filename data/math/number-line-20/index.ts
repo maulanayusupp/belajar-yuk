@@ -9,7 +9,7 @@ export const numberLine20: MathLesson = {
   methodLabel: 'Singapore Math — Garis Bilangan (0–20)',
   title: 'Garis Bilangan 0–20',
   titleEn: 'Number Line to 20',
-  level: 'intermediate',
+  level: 'beginner',
   emoji: '📐',
   durationMin: 6,
   problems: [
