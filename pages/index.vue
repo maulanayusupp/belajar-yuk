@@ -41,7 +41,7 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
     <!-- ============ HERO ============ -->
     <section class="hero">
       <div class="hero__content anim-rise">
-        <span class="hero__badge">✨ Platform Belajar Anak Nomor Satu</span>
+        <span class="hero__badge">🌈 Belajar Sambil Bermain, Gratis!</span>
         <h1 class="hero__title">
           Belajar jadi
           <span class="hero__title-grad">Petualangan Seru</span>

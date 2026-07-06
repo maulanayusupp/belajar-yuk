@@ -1,12 +1,9 @@
 import type { EnglishLesson, Lesson, MathLesson, SubjectId } from '~/types'
-import { subjects } from '~/data/subjects'
-import { englishLessons } from '~/data/english'
-import { mathLessons } from '~/data/math'
+import { allLessons, subjects } from '~/data'
 
 // Sumber data pelajaran terpusat. Komponen TIDAK mengakses file
 // data langsung — selalu lewat service ini. Nanti mudah diganti
 // ke API/CMS tanpa mengubah komponen.
-const allLessons: Lesson[] = [...englishLessons, ...mathLessons]
 
 export const lessonService = {
   /** Semua mata pelajaran (untuk halaman utama). */

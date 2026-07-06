@@ -12,7 +12,9 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
     "nuxt": "^3.14.0",
+    "png-to-ico": "^3.0.1",
     "sass": "^1.80.0"
   }
 }

@@ -1,0 +1,40 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Belajar Yuk">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7F5BFF"/>
+      <stop offset="0.5" stop-color="#6C5CE7"/>
+      <stop offset="1" stop-color="#4834D4"/>
+    </linearGradient>
+    <linearGradient id="balloon" x1="176" y1="96" x2="336" y2="360" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#FFE0EC"/>
+    </linearGradient>
+    <radialGradient id="shine" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(212 168) rotate(45) scale(70)">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Latar rounded square -->
+  <rect width="512" height="512" rx="120" fill="url(#bg)"/>
+
+  <!-- Aksen lingkaran halus -->
+  <circle cx="430" cy="90" r="120" fill="#FFFFFF" opacity="0.08"/>
+  <circle cx="80" cy="440" r="150" fill="#FFFFFF" opacity="0.06"/>
+
+  <!-- Tali balon -->
+  <path d="M256 322 C 246 356, 274 372, 256 408" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" opacity="0.85"/>
+
+  <!-- Badan balon -->
+  <path d="M256 96 C 322 96, 356 148, 356 210 C 356 280, 306 322, 256 330 C 206 322, 156 280, 156 210 C 156 148, 190 96, 256 96 Z" fill="url(#balloon)"/>
+
+  <!-- Simpul balon -->
+  <path d="M242 326 L 270 326 L 256 348 Z" fill="#FFD3E2"/>
+
+  <!-- Kilau -->
+  <ellipse cx="212" cy="168" rx="34" ry="46" fill="url(#shine)" opacity="0.9" transform="rotate(-20 212 168)"/>
+
+  <!-- Bintang percikan -->
+  <path d="M368 250 l 10 24 l 24 10 l -24 10 l -10 24 l -10 -24 l -24 -10 l 24 -10 Z" fill="#FECA57"/>
+  <path d="M150 150 l 6 15 l 15 6 l -15 6 l -6 15 l -6 -15 l -15 -6 l 15 -6 Z" fill="#00CEC9"/>
+</svg>
