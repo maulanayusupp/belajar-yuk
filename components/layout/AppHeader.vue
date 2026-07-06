@@ -3,6 +3,7 @@
 const nav = [
   { to: '/english', label: 'Bahasa Inggris' },
   { to: '/math', label: 'Matematika' },
+  { to: '/kemajuan', label: 'Kemajuan' },
 ]
 </script>
 
@@ -20,7 +21,17 @@ const nav = [
         </NuxtLink>
       </nav>
 
-      <BaseSoundToggle />
+      <div class="app-header__actions">
+        <NuxtLink
+          to="/orangtua"
+          class="app-header__parent"
+          aria-label="Area Orang Tua"
+          title="Area Orang Tua"
+        >
+          <span aria-hidden="true">👨‍👩‍👧</span>
+        </NuxtLink>
+        <BaseSoundToggle />
+      </div>
     </div>
   </header>
 </template>
@@ -79,6 +90,25 @@ const nav = [
     &.router-link-active {
       color: $color-primary-dark;
       background: rgba($color-primary, 0.12);
+    }
+  }
+
+  &__actions {
+    @include flex(row, flex-end, center, spacing('sm'));
+  }
+
+  &__parent {
+    @include flex-center;
+    width: 48px;
+    height: 48px;
+    font-size: font-size('lg');
+    background: $color-white;
+    border-radius: $radius-pill;
+    box-shadow: $shadow-sm;
+    transition: transform $transition-base;
+
+    &:hover {
+      transform: translateY(-2px);
     }
   }
 }

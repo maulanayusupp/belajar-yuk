@@ -25,7 +25,16 @@ watch(
 
 <template>
   <button class="flashcard anim-bounce-in" type="button" @click="sayWord">
-    <span class="flashcard__emoji" aria-hidden="true">{{ item.emoji }}</span>
+    <span class="flashcard__sticker" aria-hidden="true">
+      <img
+        v-if="item.image"
+        :src="item.image"
+        :alt="item.word"
+        class="flashcard__img"
+        loading="lazy"
+      />
+      <span v-else class="flashcard__emoji">{{ item.emoji }}</span>
+    </span>
     <span class="flashcard__word">{{ item.word }}</span>
     <span class="flashcard__translation">{{ item.translation }}</span>
     <span v-if="item.example" class="flashcard__example">"{{ item.example }}"</span>
@@ -42,9 +51,28 @@ watch(
   max-width: 360px;
   text-align: center;
 
+  &__sticker {
+    @include flex-center;
+    width: 160px;
+    height: 160px;
+    border-radius: $radius-pill;
+    background: radial-gradient(
+      circle at 50% 35%,
+      rgba($color-english, 0.18),
+      rgba($color-english, 0.06)
+    );
+    box-shadow: inset 0 -6px 16px rgba($color-english, 0.15);
+    animation: float 3s ease-in-out infinite;
+  }
+
   &__emoji {
     font-size: font-size('display');
-    animation: float 3s ease-in-out infinite;
+  }
+
+  &__img {
+    width: 78%;
+    height: 78%;
+    object-fit: contain;
   }
 
   &__word {

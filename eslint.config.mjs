@@ -23,5 +23,7 @@ export default withNuxt({
     'vue/multi-word-component-names': 'off',
     // Props opsional TS wajar bernilai undefined — tak perlu default eksplisit.
     'vue/require-default-prop': 'off',
+    // Format self-closing diserahkan ke Prettier (hindari konflik void element).
+    'vue/html-self-closing': 'off',
   },
 })

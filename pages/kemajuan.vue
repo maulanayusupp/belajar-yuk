@@ -1,0 +1,205 @@
+<script setup lang="ts">
+import { lessonService } from '~/services/lessonService'
+
+// Halaman kemajuan: sapaan, streak, ringkasan bintang, rekomendasi,
+// dan peta jalur belajar per mata pelajaran.
+const { profile, greetingName } = useProfile()
+const { current, best } = useStreak()
+const { isCompleted, getStars } = useProgress()
+
+const subjects = lessonService.getSubjects()
+const allLessons = lessonService.getLessons()
+
+const totalStars = computed(() => allLessons.reduce((sum, l) => sum + getStars(l.id), 0))
+const maxStars = computed(() => allLessons.length * 3)
+const completed = computed(() => allLessons.filter((l) => isCompleted(l.id)).length)
+const nextLesson = computed(() => lessonService.getNextLesson(isCompleted))
+
+useHead({ title: 'Kemajuan Belajar' })
+</script>
+
+<template>
+  <div class="progress-page">
+    <NuxtLink to="/" class="progress-page__back">← Beranda</NuxtLink>
+
+    <!-- Sapaan + streak -->
+    <section class="hello">
+      <span class="hello__avatar" aria-hidden="true">{{ profile?.avatar ?? '🦉' }}</span>
+      <div class="hello__text">
+        <h1 class="hello__title">Halo, {{ greetingName }}! 👋</h1>
+        <p class="hello__sub">Ini kemajuan belajarmu. Terus semangat!</p>
+      </div>
+      <div class="hello__streak">
+        <span class="hello__flame" aria-hidden="true">🔥</span>
+        <span class="hello__streak-num">{{ current }}</span>
+        <span class="hello__streak-label">hari beruntun</span>
+      </div>
+    </section>
+
+    <!-- Ringkasan -->
+    <section class="tiles">
+      <div class="tile">
+        <span class="tile__value">⭐ {{ totalStars }}</span>
+        <span class="tile__label">dari {{ maxStars }} bintang</span>
+      </div>
+      <div class="tile">
+        <span class="tile__value">✅ {{ completed }}</span>
+        <span class="tile__label">dari {{ allLessons.length }} pelajaran</span>
+      </div>
+      <div class="tile">
+        <span class="tile__value">🏆 {{ best }}</span>
+        <span class="tile__label">rekor hari beruntun</span>
+      </div>
+    </section>
+
+    <!-- Rekomendasi -->
+    <NuxtLink v-if="nextLesson" :to="`/${nextLesson.subject}/${nextLesson.id}`" class="resume">
+      <div class="resume__text">
+        <span class="resume__eyebrow">Lanjutkan belajar</span>
+        <span class="resume__title">{{ nextLesson.emoji }} {{ nextLesson.title }}</span>
+      </div>
+      <span class="resume__cta">Main →</span>
+    </NuxtLink>
+
+    <!-- Peta jalur belajar -->
+    <section class="paths">
+      <HomeSectionHeader align="left" eyebrow="Peta Jalur" title="Perjalanan belajarmu" />
+      <JourneyPath v-for="s in subjects" :key="s.id" :subject="s.id" />
+    </section>
+  </div>
+</template>
+
+<style scoped lang="scss">
+.progress-page {
+  @include flex(column, flex-start, stretch, spacing('xl'));
+  padding-block: spacing('lg');
+
+  &__back {
+    align-self: flex-start;
+    font-weight: $font-weight-bold;
+    color: $color-primary-dark;
+    padding: spacing('xs') spacing('md');
+    border-radius: $radius-pill;
+
+    &:hover {
+      background: rgba($color-primary, 0.1);
+    }
+  }
+}
+
+.hello {
+  @include glass($glass-bg-strong);
+  @include flex(row, flex-start, center, spacing('md'));
+  flex-wrap: wrap;
+  padding: spacing('lg');
+  border-radius: $radius-xl;
+  box-shadow: $shadow-md;
+
+  &__avatar {
+    @include flex-center;
+    width: 72px;
+    height: 72px;
+    font-size: font-size('xl');
+    background: rgba($color-primary, 0.1);
+    border-radius: $radius-pill;
+  }
+
+  &__text {
+    flex: 1;
+    min-width: 180px;
+  }
+
+  &__title {
+    margin: 0;
+  }
+  &__sub {
+    margin: 0;
+  }
+
+  &__streak {
+    @include flex(column, center, center);
+    padding: spacing('sm') spacing('lg');
+    background: rgba($color-accent-2, 0.18);
+    border-radius: $radius-lg;
+  }
+  &__flame {
+    font-size: font-size('lg');
+  }
+  &__streak-num {
+    font-family: $font-family-display;
+    font-weight: $font-weight-bold;
+    font-size: font-size('xl');
+    color: #c2410c;
+    line-height: 1;
+  }
+  &__streak-label {
+    font-size: font-size('xs');
+    font-weight: $font-weight-bold;
+    color: $color-text-muted;
+  }
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: spacing('md');
+
+  @include respond-to('sm') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.tile {
+  @include glass($glass-bg-strong);
+  @include flex(column, center, center, spacing('xs'));
+  padding: spacing('lg');
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+  text-align: center;
+
+  &__value {
+    font-family: $font-family-display;
+    font-weight: $font-weight-bold;
+    font-size: font-size('xl');
+    color: $color-ink;
+  }
+  &__label {
+    font-size: font-size('sm');
+    color: $color-text-muted;
+  }
+}
+
+.resume {
+  @include flex(row, space-between, center, spacing('md'));
+  padding: spacing('lg') spacing('xl');
+  border-radius: $radius-xl;
+  background: $gradient-primary;
+  box-shadow: $shadow-primary;
+  color: $color-white;
+
+  &__eyebrow {
+    display: block;
+    font-size: font-size('sm');
+    font-weight: $font-weight-bold;
+    opacity: 0.85;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  &__title {
+    font-family: $font-family-display;
+    font-weight: $font-weight-bold;
+    font-size: font-size('lg');
+  }
+  &__cta {
+    @include glass(rgba(255, 255, 255, 0.22));
+    padding: spacing('sm') spacing('lg');
+    border-radius: $radius-pill;
+    font-weight: $font-weight-bold;
+    flex-shrink: 0;
+  }
+}
+
+.paths {
+  @include flex(column, flex-start, stretch, spacing('lg'));
+}
+</style>

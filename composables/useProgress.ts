@@ -1,5 +1,6 @@
 import type { LessonProgress } from '~/types'
 import { progressService } from '~/services/progressService'
+import { streakService } from '~/services/streakService'
 
 // Composable progres reaktif. Membungkus progressService agar
 // perubahan otomatis memperbarui tampilan (peta pelajaran, bintang).
@@ -17,6 +18,7 @@ export function useProgress() {
   function saveResult(lessonId: string, stars: number) {
     const entry = progressService.save(lessonId, stars)
     progress.value = { ...progress.value, [lessonId]: entry }
+    streakService.record() // catat rentetan hari belajar
     return entry
   }
 

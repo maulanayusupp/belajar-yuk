@@ -35,6 +35,15 @@ export const lessonService = {
     return allLessons.find((l) => l.id === id) ?? null
   },
 
+  /**
+   * Rekomendasi pelajaran berikutnya: yang pertama belum selesai
+   * (opsional difilter per mata pelajaran). `isCompleted` dari useProgress.
+   */
+  getNextLesson(isCompleted: (id: string) => boolean, subject?: SubjectId): Lesson | null {
+    const list = this.getLessons(subject)
+    return list.find((l) => !isCompleted(l.id)) ?? list[0] ?? null
+  },
+
   /** Ambil pelajaran Bahasa Inggris dengan tipe yang sudah dipersempit. */
   getEnglishLesson(id: string): EnglishLesson | null {
     const lesson = this.getLesson(id)

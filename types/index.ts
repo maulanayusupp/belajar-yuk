@@ -26,6 +26,11 @@ export interface VocabularyItem {
   word: string
   translation: string
   emoji: string
+  /**
+   * URL/path gambar/ilustrasi (opsional). Bila diisi, gambar ini dipakai
+   * menggantikan emoji — mis. '/images/en/apple.png'.
+   */
+  image?: string
   /** Contoh kalimat sederhana (opsional). */
   example?: string
   /**

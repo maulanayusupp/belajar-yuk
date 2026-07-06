@@ -1,8 +1,28 @@
 <script setup lang="ts">
 import { lessonService } from '~/services/lessonService'
+import { profileService } from '~/services/profileService'
+import { storage } from '~/utils/storage'
 
 // Halaman utama (landing premium).
 const subjects = lessonService.getSubjects()
+
+// Profil, progres, & rekomendasi (klien).
+const { hasProfile, greetingName, profile } = useProfile()
+const { isCompleted } = useProgress()
+const nextLesson = computed(() => lessonService.getNextLesson(isCompleted))
+
+// Onboarding profil: tampil sekali untuk pengunjung baru.
+const ONBOARD_KEY = 'belajar-yuk:onboarded'
+const mounted = ref(false)
+const showSetup = ref(false)
+onMounted(() => {
+  mounted.value = true
+  if (!profileService.get() && !storage.get(ONBOARD_KEY, false)) showSetup.value = true
+})
+function closeSetup() {
+  showSetup.value = false
+  storage.set(ONBOARD_KEY, true)
+}
 
 const features = [
   {
@@ -53,6 +73,20 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
 
 <template>
   <div class="home">
+    <!-- Sapaan kembali untuk anak yang sudah punya profil -->
+    <NuxtLink
+      v-if="mounted && hasProfile && nextLesson"
+      :to="`/${nextLesson.subject}/${nextLesson.id}`"
+      class="welcome anim-rise"
+    >
+      <span class="welcome__avatar" aria-hidden="true">{{ profile?.avatar }}</span>
+      <span class="welcome__text">
+        <strong>Halo lagi, {{ greetingName }}! 👋</strong>
+        Lanjut ke: {{ nextLesson.emoji }} {{ nextLesson.title }}
+      </span>
+      <span class="welcome__cta">Lanjutkan →</span>
+    </NuxtLink>
+
     <!-- ============ HERO ============ -->
     <section class="hero">
       <div class="hero__content anim-rise">
@@ -209,6 +243,9 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
         </BaseButton>
       </div>
     </section>
+
+    <!-- Onboarding profil (sekali untuk pengunjung baru) -->
+    <ProfileSetup v-if="mounted && showSetup" @close="closeSetup" />
   </div>
 </template>
 
@@ -220,6 +257,42 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
 .section {
   @include section-spacing;
   @include flex(column, flex-start, stretch, spacing('xl'));
+}
+
+.welcome {
+  @include glass($glass-bg-strong);
+  @include flex(row, flex-start, center, spacing('md'));
+  flex-wrap: wrap;
+  margin-top: spacing('lg');
+  padding: spacing('md') spacing('lg');
+  border-radius: $radius-lg;
+  box-shadow: $shadow-md;
+  border: 2px solid rgba($color-primary, 0.25);
+
+  &__avatar {
+    @include flex-center;
+    width: 48px;
+    height: 48px;
+    font-size: font-size('lg');
+    background: rgba($color-primary, 0.1);
+    border-radius: $radius-pill;
+  }
+
+  &__text {
+    flex: 1;
+    min-width: 160px;
+    color: $color-text-muted;
+
+    strong {
+      display: block;
+      color: $color-ink;
+    }
+  }
+
+  &__cta {
+    font-weight: $font-weight-bold;
+    color: $color-primary-dark;
+  }
 }
 
 // ---------------- HERO ----------------
