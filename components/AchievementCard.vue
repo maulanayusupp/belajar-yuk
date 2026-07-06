@@ -88,6 +88,7 @@ async function onShare() {
     font-family: $font-family-display;
     font-weight: $font-weight-bold;
     font-size: font-size('lg');
+    color: $color-white; // override aturan global `p { color: muted }`
   }
 
   &__stats {
