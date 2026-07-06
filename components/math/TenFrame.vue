@@ -1,28 +1,39 @@
 <script setup lang="ts">
-import { range } from '~/utils/array'
+import { range, clamp } from '~/utils/array'
 
-// Ten Frame (Sepuluh Kotak): kerangka 2×5. `count` sel pertama diisi titik.
+// Ten Frame (Sepuluh Kotak): kerangka 2×5. Untuk bilangan > 10 (belasan),
+// otomatis menampilkan beberapa kerangka (10 penuh + sisanya) — sekaligus
+// memperkenalkan nilai tempat "sepuluh + satuan".
 const props = defineProps<{ count: number }>()
 
-function isFilled(i: number) {
-  return i < props.count
-}
+// Jumlah kerangka & berapa titik terisi di tiap kerangka.
+const frames = computed(() => {
+  const total = Math.max(1, Math.ceil(props.count / 10))
+  return range(total).map((f) => clamp(props.count - f * 10, 0, 10))
+})
 </script>
 
 <template>
-  <div class="ten-frame" role="img" :aria-label="`${count} dari 10`">
-    <span
-      v-for="i in range(10)"
-      :key="i"
-      class="ten-frame__cell"
-      :class="{ 'ten-frame__cell--filled': isFilled(i) }"
-    >
-      <span v-if="isFilled(i)" class="ten-frame__dot" :style="{ '--i': i }" aria-hidden="true" />
-    </span>
+  <div class="ten-frames" role="img" :aria-label="`${count} titik`">
+    <div v-for="(filled, f) in frames" :key="f" class="ten-frame">
+      <span
+        v-for="i in range(10)"
+        :key="i"
+        class="ten-frame__cell"
+        :class="{ 'ten-frame__cell--filled': i < filled }"
+      >
+        <span v-if="i < filled" class="ten-frame__dot" :style="{ '--i': i }" aria-hidden="true" />
+      </span>
+    </div>
   </div>
 </template>
 
 <style scoped lang="scss">
+.ten-frames {
+  @include flex(row, center, center, spacing('md'));
+  flex-wrap: wrap;
+}
+
 .ten-frame {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -33,21 +44,21 @@ function isFilled(i: number) {
 
   &__cell {
     @include flex-center;
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
     background: $color-white;
     border: 2px solid rgba($color-math, 0.35);
     border-radius: $radius-sm;
   }
 
   &__dot {
-    width: 26px;
-    height: 26px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     background: $gradient-math;
     box-shadow: $shadow-sm;
     animation: bounce-in 0.35s $transition-bounce both;
-    animation-delay: calc(var(--i) * 0.05s);
+    animation-delay: calc(var(--i) * 0.04s);
   }
 }
 </style>

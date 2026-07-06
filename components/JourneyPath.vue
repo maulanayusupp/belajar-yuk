@@ -50,6 +50,7 @@ function status(id: string): 'done' | 'current' | 'todo' {
 <style scoped lang="scss">
 .journey {
   @include flex(column, flex-start, stretch, spacing('md'));
+  min-width: 0; // izinkan menyusut agar area scroll tak melebarkan halaman
 
   &__head {
     @include flex(row, flex-start, center, spacing('sm'));
@@ -78,6 +79,8 @@ function status(id: string): 'done' | 'current' | 'todo' {
   &__track {
     display: flex;
     gap: spacing('md');
+    min-width: 0;
+    max-width: 100%;
     overflow-x: auto;
     padding-bottom: spacing('sm');
     scroll-snap-type: x proximity;

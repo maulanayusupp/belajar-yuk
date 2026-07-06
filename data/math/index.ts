@@ -3,6 +3,7 @@ import { counting } from './counting'
 import { countingTo10 } from './counting-to-10'
 import { countingTo20 } from './counting-to-20'
 import { tenFrame } from './ten-frame'
+import { teenNumbers } from './teen-numbers'
 import { numberBond5 } from './number-bond-5'
 import { numberBond10 } from './number-bond-10'
 import { numberBond20 } from './number-bond-20'
@@ -29,6 +30,7 @@ export const mathLessons: MathLesson[] = [
   countingTo10,
   countingTo20,
   tenFrame,
+  teenNumbers,
   // Ikatan bilangan
   numberBond5,
   numberBond10,

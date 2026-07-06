@@ -366,12 +366,19 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
 </template>
 
 <style scoped lang="scss">
+// Ritme vertikal SERAGAM: satu sumber jarak antar-section di `.home`.
 .home {
-  @include flex(column, flex-start, stretch, 0);
+  display: flex;
+  flex-direction: column;
+  gap: spacing('xxl');
+
+  @include respond-to('md') {
+    gap: spacing('section');
+  }
 }
 
+// Section = kolom konten; jarak antar-section diatur oleh `.home` (tanpa padding dobel).
 .section {
-  @include section-spacing;
   @include flex(column, flex-start, stretch, spacing('xl'));
 }
 
@@ -379,7 +386,6 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
   @include glass($glass-bg-strong);
   @include flex(row, flex-start, center, spacing('md'));
   flex-wrap: wrap;
-  margin-top: spacing('lg');
   padding: spacing('md') spacing('lg');
   border-radius: $radius-lg;
   box-shadow: $shadow-md;
@@ -417,11 +423,10 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
   grid-template-columns: 1fr;
   gap: spacing('xl');
   align-items: center;
-  padding-block: spacing('xl') spacing('xxl');
+  padding-top: spacing('md');
 
   @include respond-to('lg') {
     grid-template-columns: 1.05fr 0.95fr;
-    padding-block: spacing('xxl');
   }
 
   &__content {

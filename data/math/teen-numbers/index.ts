@@ -1,0 +1,24 @@
+import type { MathLesson } from '~/types'
+
+// Bilangan belasan (11–20) = sepuluh + satuan. Ditampilkan pada DUA
+// "Sepuluh Kotak" (satu penuh + sisanya) untuk membangun nilai tempat.
+// Common Core K.NBT.A.1. operandB tidak dipakai; jawaban = operandA.
+export const teenNumbers: MathLesson = {
+  id: 'mt-teen-numbers',
+  subject: 'math',
+  type: 'singapore-math',
+  method: 'ten-frame',
+  methodLabel: 'Singapore Math — Sepuluh Kotak (Nilai Tempat)',
+  title: 'Bilangan Belasan (11–20)',
+  titleEn: 'Teen Numbers',
+  level: 'beginner',
+  emoji: '🔟',
+  durationMin: 6,
+  problems: [
+    { id: 'tn-1', operandA: 11, operandB: 0, operator: '+', answer: 11 },
+    { id: 'tn-2', operandA: 13, operandB: 0, operator: '+', answer: 13 },
+    { id: 'tn-3', operandA: 16, operandB: 0, operator: '+', answer: 16 },
+    { id: 'tn-4', operandA: 19, operandB: 0, operator: '+', answer: 19 },
+    { id: 'tn-5', operandA: 20, operandB: 0, operator: '+', answer: 20 },
+  ],
+}

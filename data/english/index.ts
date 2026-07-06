@@ -10,6 +10,7 @@ import { animals } from './animals'
 import { fruits } from './fruits'
 import { colors } from './colors'
 import { numbers } from './numbers'
+import { numbers1120 } from './numbers-11-20'
 import { body } from './body'
 import { shapes } from './shapes'
 import { family } from './family'
@@ -44,6 +45,7 @@ export const englishLessons: EnglishLesson[] = [
   fruits,
   colors,
   numbers,
+  numbers1120,
   body,
   shapes,
   transport,

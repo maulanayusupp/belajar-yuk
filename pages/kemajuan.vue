@@ -250,5 +250,6 @@ useHead({ title: 'Kemajuan Belajar' })
 .paths,
 .badges-section {
   @include flex(column, flex-start, stretch, spacing('lg'));
+  min-width: 0; // cegah anak (jalur scroll) melebarkan halaman
 }
 </style>
