@@ -4,6 +4,7 @@ import { phonicsGL } from './phonics-glm'
 import { phonicsMR } from './phonics-mnr'
 import { phonicsSZ } from './phonics-sz'
 import { sightWords } from './sight-words'
+import { cvcWords } from './cvc-words'
 import { feelings } from './feelings'
 import { animals } from './animals'
 import { fruits } from './fruits'
@@ -36,6 +37,7 @@ export const englishLessons: EnglishLesson[] = [
   phonicsGL,
   phonicsMR,
   phonicsSZ,
+  cvcWords,
   sightWords,
   // Kosakata bertema
   animals,

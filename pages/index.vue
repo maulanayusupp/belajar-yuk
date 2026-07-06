@@ -68,6 +68,65 @@ const stats = [
 // Emoji untuk pita berjalan (marquee) — digandakan agar mulus.
 const marquee = ['🐶', '🍎', '🔢', '🌈', '✋', '⭐', '🐱', '🍌', '🔤', '🧱', '🦁', '🍓', '🔟', '🎈']
 
+// Cara kerja (3 langkah).
+const steps = [
+  {
+    icon: '👆',
+    title: 'Pilih pelajaran',
+    text: 'Pilih Bahasa Inggris atau Matematika sesuai tingkat.',
+  },
+  {
+    icon: '🎮',
+    title: 'Belajar sambil bermain',
+    text: 'Ketuk, dengar, & jawab — dipandu maskot yang ramah.',
+  },
+  {
+    icon: '🏆',
+    title: 'Raih bintang & lencana',
+    text: 'Kumpulkan bintang, jaga streak, buka lencana baru.',
+  },
+]
+
+// Keterampilan yang dipelajari (selaras kerangka literasi & numerasi).
+const skills = [
+  {
+    icon: '🔤',
+    title: 'Membaca (Phonics)',
+    text: 'Bunyi huruf A–Z & kata CVC — fondasi membaca.',
+    tint: 'english' as const,
+  },
+  {
+    icon: '📗',
+    title: 'Kosakata & Kata Umum',
+    text: 'Ratusan kata bergambar + sight words.',
+    tint: 'english' as const,
+  },
+  {
+    icon: '🔢',
+    title: 'Berhitung 1–20',
+    text: 'Mengenal & menghitung angka dengan benda nyata.',
+    tint: 'math' as const,
+  },
+  {
+    icon: '➕',
+    title: 'Tambah & Kurang',
+    text: 'Operasi dasar dengan blok, ten frame, & garis bilangan.',
+    tint: 'math' as const,
+  },
+  {
+    icon: '🧠',
+    title: 'Singapore Math',
+    text: 'Number bond & pendekatan konkret–gambar–abstrak.',
+    tint: 'primary' as const,
+  },
+  {
+    icon: '😊',
+    title: 'Sosial-Emosional',
+    text: 'Mengenal perasaan & sapaan sehari-hari.',
+    tint: 'warm' as const,
+  },
+]
+
 useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
 </script>
 
@@ -175,6 +234,19 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
       </div>
     </section>
 
+    <!-- ============ CARA KERJA ============ -->
+    <section class="section">
+      <HomeSectionHeader v-reveal eyebrow="Cara Kerja" title="Belajar dalam 3 langkah mudah" />
+      <div class="steps">
+        <div v-for="(s, i) in steps" :key="s.title" v-reveal="i * 90" class="step">
+          <span class="step__num">{{ i + 1 }}</span>
+          <span class="step__icon" aria-hidden="true">{{ s.icon }}</span>
+          <h3 class="step__title">{{ s.title }}</h3>
+          <p class="step__text">{{ s.text }}</p>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ PILIH PELAJARAN ============ -->
     <section id="subjects" class="section">
       <HomeSectionHeader
@@ -189,6 +261,27 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
           :key="subject.id"
           v-reveal="i * 120"
           :subject="subject"
+        />
+      </div>
+    </section>
+
+    <!-- ============ YANG DIPELAJARI ============ -->
+    <section class="section">
+      <HomeSectionHeader
+        v-reveal
+        eyebrow="Yang Dipelajari"
+        title="Keterampilan penting sejak dini"
+        subtitle="Mengikuti kerangka literasi & numerasi yang terbukti."
+      />
+      <div class="feature-grid">
+        <HomeFeatureCard
+          v-for="(s, i) in skills"
+          :key="s.title"
+          v-reveal="i * 70"
+          :icon="s.icon"
+          :title="s.title"
+          :text="s.text"
+          :tint="s.tint"
         />
       </div>
     </section>
@@ -228,6 +321,29 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
     <section class="section">
       <div v-reveal class="stats">
         <HomeStat v-for="s in stats" :key="s.label" :value="s.value" :label="s.label" />
+      </div>
+    </section>
+
+    <!-- ============ UNTUK ORANG TUA ============ -->
+    <section class="section">
+      <div v-reveal class="parents">
+        <div class="parents__text">
+          <span class="parents__eyebrow">👨‍👩‍👧 Untuk Orang Tua</span>
+          <h2 class="parents__title">Pantau kemajuan si kecil</h2>
+          <p class="parents__desc">
+            Lihat bintang, streak harian, & lencana yang diraih di halaman Kemajuan. Atur suara,
+            profil, & reset lewat Area Orang Tua yang terlindungi.
+          </p>
+          <div class="parents__actions">
+            <BaseButton variant="primary" @click="navigateTo('/kemajuan')"
+              >📊 Lihat Kemajuan</BaseButton
+            >
+            <BaseButton variant="ghost" @click="navigateTo('/orangtua')"
+              >👨‍👩‍👧 Area Orang Tua</BaseButton
+            >
+          </div>
+        </div>
+        <span class="parents__emoji anim-float" aria-hidden="true">📈</span>
       </div>
     </section>
 
@@ -568,6 +684,100 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
       color: $color-english-dark;
       background: rgba($color-english, 0.15);
     }
+  }
+}
+
+// ---------------- CARA KERJA ----------------
+.steps {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: spacing('lg');
+
+  @include respond-to('md') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.step {
+  @include glass($glass-bg-strong);
+  @include hover-lift(-6px);
+  @include flex(column, flex-start, flex-start, spacing('sm'));
+  position: relative;
+  padding: spacing('xl') spacing('lg') spacing('lg');
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+
+  &__num {
+    @include flex-center;
+    position: absolute;
+    top: -18px;
+    left: spacing('lg');
+    width: 40px;
+    height: 40px;
+    font-family: $font-family-display;
+    font-weight: $font-weight-bold;
+    color: $color-white;
+    background: $gradient-primary;
+    border-radius: $radius-pill;
+    box-shadow: $shadow-primary;
+  }
+
+  &__icon {
+    font-size: font-size('xxl');
+  }
+
+  &__title {
+    margin: 0;
+  }
+
+  &__text {
+    margin: 0;
+    font-size: font-size('sm');
+  }
+}
+
+// ---------------- UNTUK ORANG TUA ----------------
+.parents {
+  @include flex(row, space-between, center, spacing('xl'));
+  flex-wrap: wrap;
+  padding: spacing('xl');
+  border-radius: $radius-xl;
+  background: $gradient-mint;
+  box-shadow: 0 16px 40px rgba(0, 206, 201, 0.35);
+  color: $color-white;
+
+  &__text {
+    flex: 1;
+    min-width: 260px;
+    @include flex(column, flex-start, flex-start, spacing('sm'));
+  }
+
+  &__eyebrow {
+    font-weight: $font-weight-bold;
+    background: rgba($color-white, 0.2);
+    padding: spacing('xs') spacing('md');
+    border-radius: $radius-pill;
+  }
+
+  &__title {
+    color: $color-white;
+    margin: 0;
+  }
+
+  &__desc {
+    color: rgba($color-white, 0.95);
+    margin: 0;
+    max-width: 560px;
+  }
+
+  &__actions {
+    @include flex(row, flex-start, center, spacing('md'));
+    flex-wrap: wrap;
+    margin-top: spacing('sm');
+  }
+
+  &__emoji {
+    font-size: font-size('giant');
   }
 }
 
