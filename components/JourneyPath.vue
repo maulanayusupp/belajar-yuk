@@ -75,41 +75,20 @@ function status(id: string): 'done' | 'current' | 'todo' {
     margin: 0;
   }
 
-  // Jalur bisa di-scroll horizontal bila panjang.
+  // Grid membungkus ke bawah — tidak ada yang terpotong di layar mana pun.
   &__track {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
     gap: spacing('md');
-    min-width: 0;
-    max-width: 100%;
-    overflow-x: auto;
-    padding-bottom: spacing('sm');
-    scroll-snap-type: x proximity;
   }
 
   &__node {
     @include flex(column, flex-start, center, spacing('xs'));
-    flex: 0 0 auto;
-    width: 108px;
-    padding: spacing('md') spacing('sm');
+    min-width: 0;
+    padding: spacing('md') spacing('xs');
     text-align: center;
     border-radius: $radius-lg;
-    scroll-snap-align: start;
     transition: transform $transition-base;
-    position: relative;
-
-    // Garis penghubung antar-node
-    &::after {
-      content: '';
-      position: absolute;
-      top: 42px;
-      right: -#{spacing('md')};
-      width: spacing('md');
-      height: 4px;
-      background: $color-border;
-    }
-    &:last-child::after {
-      display: none;
-    }
 
     &:hover {
       transform: translateY(-4px);
@@ -150,6 +129,9 @@ function status(id: string): 'done' | 'current' | 'todo' {
     font-weight: $font-weight-semibold;
     color: $color-ink;
     line-height: 1.2;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
 }
 </style>
