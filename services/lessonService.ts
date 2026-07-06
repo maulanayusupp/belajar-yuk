@@ -95,6 +95,12 @@ export const lessonService = {
       .filter((group) => group.lessons.length > 0)
   },
 
+  /** Tingkat yang belum memiliki pelajaran (untuk teaser "segera hadir"). */
+  getUpcomingLevels(subject: SubjectId): LevelMeta[] {
+    const filled = new Set(this.getLessonsGrouped(subject).map((g) => g.meta.id))
+    return levels.filter((l) => !filled.has(l.id))
+  },
+
   /** Label + ikon "tag" metode/aktivitas sebuah pelajaran (untuk kartu). */
   getLessonTag(lesson: Lesson): { icon: string; label: string } {
     if (lesson.subject === 'math') {

@@ -7,7 +7,7 @@ export const verbs: EnglishLesson = {
   type: 'vocabulary',
   title: 'Kata Kerja',
   titleEn: 'Action Verbs',
-  level: 'intermediate',
+  level: 'beginner',
   emoji: '🏃',
   durationMin: 6,
   items: [

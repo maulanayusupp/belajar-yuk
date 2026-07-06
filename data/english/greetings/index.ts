@@ -7,7 +7,7 @@ export const greetings: EnglishLesson = {
   type: 'vocabulary',
   title: 'Sapaan & Ungkapan',
   titleEn: 'Greetings & Phrases',
-  level: 'advanced',
+  level: 'beginner',
   emoji: '👋',
   durationMin: 7,
   items: [

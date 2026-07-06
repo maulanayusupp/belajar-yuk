@@ -15,18 +15,19 @@ export const levels: LevelMeta[] = [
     id: 'beginner',
     label: 'Pemula',
     icon: '🌱',
-    description: 'Langkah pertama — mengenal huruf, angka, & kata-kata dasar.',
+    description: 'Langkah pertama — mengenal huruf, kata, & angka sampai 10 dengan bantuan gambar.',
   },
   {
     id: 'intermediate',
     label: 'Menengah',
     icon: '🚀',
-    description: 'Menambah kosakata & kemampuan berhitung ke level berikutnya.',
+    description: 'Selangkah lebih tinggi — berhitung dengan angka lebih besar (sampai 20).',
   },
   {
     id: 'advanced',
     label: 'Mahir',
     icon: '🏆',
-    description: 'Tantangan lebih seru untuk anak yang sudah siap melangkah jauh.',
+    description:
+      'Tantangan lanjutan: menyimak tanpa teks, menyusun kata, & soal abstrak. Segera hadir! 🚧',
   },
 ]

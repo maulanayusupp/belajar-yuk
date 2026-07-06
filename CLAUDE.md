@@ -135,6 +135,11 @@ plus aset opsional pelajaran itu). Detail & contoh: `data/README.md`.
 - **Tingkat (Pemula/Menengah/Mahir)**: set `level` pada tiap pelajaran. Metadata kategori
   di `data/levels.ts`. Halaman pelajaran mengelompokkan via `lessonService.getLessonsGrouped`;
   kartu menampilkan tag metode + badge tingkat via `lessonService.getLessonTag` & `getLevelMeta`.
+  Tingkat kosong tampil sebagai teaser "segera hadir" (`getUpcomingLevels`).
+  Catatan kejujuran: saat ini beda level hanya rentang angka (≤10 vs ≤20) untuk math;
+  semua kosakata masih Pemula (mekanik sama). Diferensiasi kesulitan SEJATI (aktivitas
+  berbeda: Listening/Eja untuk EN, soal abstrak/bagian-hilang untuk math) adalah pekerjaan
+  lanjutan — jangan tandai Menengah/Mahir hanya karena beda tema.
 - **Parameter/nilai baru tanpa ubah tipe inti** → pakai `meta?: Record<string, unknown>`
   di lesson (escape-hatch untuk eksperimen). Bila jadi permanen, angkat ke tipe eksplisit.
 - **Mata pelajaran baru** → tambah di `data/subjects.ts` + `SubjectId`/tipe terkait,

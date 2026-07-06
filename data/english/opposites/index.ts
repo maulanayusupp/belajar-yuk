@@ -7,7 +7,7 @@ export const opposites: EnglishLesson = {
   type: 'vocabulary',
   title: 'Lawan Kata',
   titleEn: 'Opposites',
-  level: 'advanced',
+  level: 'beginner',
   emoji: '↔️',
   durationMin: 7,
   items: [

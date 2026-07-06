@@ -7,7 +7,7 @@ export const family: EnglishLesson = {
   type: 'vocabulary',
   title: 'Anggota Keluarga',
   titleEn: 'Family',
-  level: 'intermediate',
+  level: 'beginner',
   emoji: '👨‍👩‍👧‍👦',
   durationMin: 6,
   items: [

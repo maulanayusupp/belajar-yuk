@@ -7,7 +7,7 @@ export const days: EnglishLesson = {
   type: 'vocabulary',
   title: 'Hari dalam Seminggu',
   titleEn: 'Days of the Week',
-  level: 'intermediate',
+  level: 'beginner',
   emoji: '📅',
   durationMin: 7,
   items: [

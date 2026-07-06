@@ -7,7 +7,7 @@ export const food: EnglishLesson = {
   type: 'vocabulary',
   title: 'Makanan & Minuman',
   titleEn: 'Food & Drink',
-  level: 'intermediate',
+  level: 'beginner',
   emoji: '🍚',
   durationMin: 6,
   items: [

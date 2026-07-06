@@ -16,6 +16,8 @@ const subject = computed(() => lessonService.getSubject(subjectId.value))
 const lessons = computed(() => lessonService.getLessons(subjectId.value))
 // Kelompokkan per tingkat (Pemula/Menengah/Mahir) untuk kategori.
 const groups = computed(() => lessonService.getLessonsGrouped(subjectId.value))
+// Tingkat yang materinya belum ada → tampilkan sebagai "segera hadir".
+const upcoming = computed(() => lessonService.getUpcomingLevels(subjectId.value))
 
 if (!subject.value) {
   throw createError({ statusCode: 404, statusMessage: 'Mata pelajaran tidak ditemukan' })
@@ -62,6 +64,12 @@ useHead(() => ({ title: `${subject.value?.title} — Belajar Yuk!` }))
       <div class="subject-page__list">
         <LessonCard v-for="lesson in group.lessons" :key="lesson.id" :lesson="lesson" />
       </div>
+    </section>
+
+    <!-- Teaser tingkat yang belum ada materinya -->
+    <section v-for="level in upcoming" :key="level.id" class="upcoming">
+      <span class="upcoming__badge">{{ level.icon }} {{ level.label }} · Segera Hadir 🚧</span>
+      <p class="upcoming__desc">{{ level.description }}</p>
     </section>
   </div>
 </template>
@@ -116,6 +124,24 @@ useHead(() => ({ title: `${subject.value?.title} — Belajar Yuk!` }))
     padding: 2px spacing('sm');
     border-radius: $radius-pill;
     box-shadow: $shadow-sm;
+  }
+
+  &__desc {
+    margin: 0;
+    font-size: font-size('sm');
+  }
+}
+
+.upcoming {
+  @include flex(column, flex-start, flex-start, spacing('xs'));
+  padding: spacing('lg');
+  border: 2px dashed $color-border;
+  border-radius: $radius-lg;
+  background: rgba($color-white, 0.4);
+
+  &__badge {
+    font-weight: $font-weight-bold;
+    color: $color-text-muted;
   }
 
   &__desc {

@@ -7,7 +7,7 @@ export const jobs: EnglishLesson = {
   type: 'vocabulary',
   title: 'Pekerjaan',
   titleEn: 'Jobs',
-  level: 'advanced',
+  level: 'beginner',
   emoji: '👷',
   durationMin: 6,
   items: [
