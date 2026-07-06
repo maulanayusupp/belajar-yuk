@@ -28,10 +28,17 @@ useHead(() => ({ title: `${lesson.value?.title} — Belajar Yuk!` }))
         <span aria-hidden="true">{{ lessonService.getMathMethodMeta(lesson.method).icon }}</span>
         {{ lesson.methodLabel }}
       </p>
+      <p v-else class="lesson-page__method lesson-page__method--english">
+        <span aria-hidden="true">{{ lessonService.getEnglishActivityMeta(lesson.type).icon }}</span>
+        {{ lessonService.getEnglishActivityMeta(lesson.type).label }}
+      </p>
     </header>
 
-    <!-- Pilih komponen pelajaran sesuai mata pelajaran -->
-    <EnglishVocabularyLesson v-if="lesson.subject === 'english'" :lesson="lesson" />
+    <!-- Pilih komponen pelajaran sesuai mata pelajaran & jenis aktivitas -->
+    <template v-if="lesson.subject === 'english'">
+      <EnglishPhonicsLesson v-if="lesson.type === 'phonics'" :lesson="lesson" />
+      <EnglishVocabularyLesson v-else :lesson="lesson" />
+    </template>
     <MathSingaporeLesson v-else :lesson="lesson" />
   </div>
 </template>
@@ -59,6 +66,11 @@ useHead(() => ({ title: `${lesson.value?.title} — Belajar Yuk!` }))
     padding: spacing('xs') spacing('md');
     border-radius: $radius-pill;
     margin-top: spacing('xs');
+
+    &--english {
+      color: $color-english-dark;
+      background: rgba($color-english, 0.15);
+    }
   }
 }
 </style>

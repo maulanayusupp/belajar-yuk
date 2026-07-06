@@ -1,6 +1,14 @@
-import type { EnglishLesson, Lesson, MathLesson, MathMethod, SubjectId } from '~/types'
+import type {
+  EnglishActivity,
+  EnglishLesson,
+  Lesson,
+  MathLesson,
+  MathMethod,
+  SubjectId,
+} from '~/types'
 import { allLessons, subjects } from '~/data'
 import { mathMethodMeta, type MathMethodMeta } from '~/data/math/methods'
+import { englishActivityMeta, type EnglishActivityMeta } from '~/data/english/methods'
 
 // Sumber data pelajaran terpusat. Komponen TIDAK mengakses file
 // data langsung — selalu lewat service ini. Nanti mudah diganti
@@ -49,5 +57,19 @@ export const lessonService = {
       if (lesson.subject === 'math') used.add(lesson.method)
     }
     return [...used].map((method) => ({ method, ...mathMethodMeta[method] }))
+  },
+
+  /** Metadata (ikon/label) sebuah jenis aktivitas Bahasa Inggris. */
+  getEnglishActivityMeta(activity: EnglishActivity): EnglishActivityMeta {
+    return englishActivityMeta[activity]
+  },
+
+  /** Daftar jenis aktivitas Bahasa Inggris yang dipakai pelajaran. */
+  getUsedEnglishActivities(): Array<{ activity: EnglishActivity } & EnglishActivityMeta> {
+    const used = new Set<EnglishActivity>()
+    for (const lesson of allLessons) {
+      if (lesson.subject === 'english') used.add(lesson.type)
+    }
+    return [...used].map((activity) => ({ activity, ...englishActivityMeta[activity] }))
   },
 }

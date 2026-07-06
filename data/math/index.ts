@@ -1,5 +1,6 @@
 import type { MathLesson } from '~/types'
 import { counting } from './counting'
+import { tenFrame } from './ten-frame'
 import { numberBond10 } from './number-bond-10'
 import { blockAddition } from './block-addition'
 import { subtraction } from './subtraction'
@@ -12,4 +13,10 @@ import { subtraction } from './subtraction'
 //   2. Import di sini, lalu masukkan ke array (posisi = urutan tampil).
 //   Butuh metode baru? Tambah nilai di `MathMethod` (types) & cabang render
 //   di components/math/SingaporeLesson.vue.
-export const mathLessons: MathLesson[] = [counting, numberBond10, blockAddition, subtraction]
+export const mathLessons: MathLesson[] = [
+  counting,
+  tenFrame,
+  numberBond10,
+  blockAddition,
+  subtraction,
+]

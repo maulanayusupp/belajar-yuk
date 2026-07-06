@@ -107,7 +107,10 @@ data/ (konten)  →  services/ (logika)  →  composables/ (reaktif)  →  compo
   - Semua hormati status `muted`. Materi bisa menambah `audioUrl` di `VocabularyItem`
     untuk audio eksternal (file/CDN) tanpa ubah kode.
 - Animasi reusable sebagai keyframes di `assets/scss/base/_animations.scss`
-  (mis. `bounce-in`, `pop`, `float`, `rise-in`, `shimmer`). Tambah di sini bila perlu.
+  (mis. `bounce-in`, `pop`, `float`, `rise-in`, `shimmer`, `marquee`, `sparkle`). Tambah di sini.
+- **Scroll-reveal**: directive `v-reveal` (dari `plugins/reveal.ts`, universal) — pakai
+  `v-reveal` atau `v-reveal="150"` (jeda ms untuk stagger). Client-only, hormati reduced-motion.
+- **Count-up angka**: komponen `HomeStat` (`components/home/Stat.vue`).
 
 ## Cara Menambah Konten (tanpa sentuh logika)
 
@@ -123,8 +126,11 @@ plus aset opsional pelajaran itu). Detail & contoh: `data/README.md`.
   2. Tambah entri metadata (ikon, label, deskripsi, instruksi) di
      `data/math/methods.ts` → UI (beranda, header, maskot) otomatis ikut.
   3. Tambah cabang render visual di `components/math/SingaporeLesson.vue`.
-     Metode saat ini: `counting` (pakai `problem.emoji`), `number-bond`, `block-addition`,
-     `block-subtraction` (pakai prop `taken` di `MathBlockGroup`).
+     Metode saat ini: `counting` (pakai `problem.emoji`), `ten-frame` (komponen
+     `MathTenFrame`), `number-bond`, `block-addition`, `block-subtraction` (prop `taken`).
+- **Aktivitas Bahasa Inggris baru** (mis. phonics): tambah nilai di `EnglishActivity`
+  (`types/`), entri di `data/english/methods.ts`, buat komponen runner (mis.
+  `EnglishPhonicsLesson`), lalu cabang di `pages/[subject]/[id].vue` berdasarkan `lesson.type`.
 - **Parameter/nilai baru tanpa ubah tipe inti** → pakai `meta?: Record<string, unknown>`
   di lesson (escape-hatch untuk eksperimen). Bila jadi permanen, angkat ke tipe eksplisit.
 - **Mata pelajaran baru** → tambah di `data/subjects.ts` + `SubjectId`/tipe terkait,

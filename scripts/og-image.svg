@@ -26,15 +26,15 @@
 
   <!-- ============ Kolom kiri: teks ============ -->
   <!-- Pill -->
-  <rect x="80" y="96" width="360" height="52" rx="26" fill="#FFFFFF" opacity="0.18"/>
-  <text x="108" y="131" font-family="Nunito, Arial, sans-serif" font-size="24" font-weight="800" fill="#FFFFFF">PLATFORM BELAJAR ANAK</text>
+  <rect x="80" y="96" width="470" height="52" rx="26" fill="#FFFFFF" opacity="0.18"/>
+  <text x="108" y="131" font-family="Nunito, Arial, sans-serif" font-size="24" font-weight="800" fill="#FFFFFF">BELAJAR TERSTRUKTUR UNTUK ANAK</text>
 
   <!-- Judul -->
-  <text x="76" y="270" font-family="'Baloo 2', Nunito, Arial, sans-serif" font-size="118" font-weight="800" fill="#FFFFFF" letter-spacing="-2">Belajar Yuk!</text>
+  <text x="76" y="266" font-family="'Baloo 2', Nunito, Arial, sans-serif" font-size="104" font-weight="800" fill="#FFFFFF" letter-spacing="-2">Belajar Yuk!</text>
 
-  <!-- Tagline -->
-  <text x="80" y="340" font-family="Nunito, Arial, sans-serif" font-size="38" font-weight="700" fill="#FFFFFF" opacity="0.96">Bahasa Inggris &amp; Matematika</text>
-  <text x="80" y="392" font-family="Nunito, Arial, sans-serif" font-size="38" font-weight="700" fill="#FFFFFF" opacity="0.96">jadi Petualangan Seru</text>
+  <!-- Tagline (fokus manfaat & materi) -->
+  <text x="80" y="336" font-family="Nunito, Arial, sans-serif" font-size="38" font-weight="700" fill="#FFFFFF" opacity="0.96">Kuasai Bahasa Inggris &amp; Matematika</text>
+  <text x="80" y="388" font-family="Nunito, Arial, sans-serif" font-size="38" font-weight="700" fill="#FFFFFF" opacity="0.96">sejak dini — metode Singapore Math</text>
 
   <!-- Chips mata pelajaran -->
   <g>
@@ -46,8 +46,8 @@
     <text x="366" y="485" font-family="Nunito, Arial, sans-serif" font-size="30" font-weight="800" fill="#3867D6">1+2 · Matematika</text>
   </g>
 
-  <!-- Trust -->
-  <text x="82" y="560" font-family="Nunito, Arial, sans-serif" font-size="26" font-weight="700" fill="#FFFFFF" opacity="0.9">Gratis · Tanpa Iklan · Usia 6+ · Penuh Animasi &amp; Suara</text>
+  <!-- Manfaat / metode -->
+  <text x="82" y="560" font-family="Nunito, Arial, sans-serif" font-size="26" font-weight="700" fill="#FFFFFF" opacity="0.9">Singapore Math · Phonics · Belajar Bertahap · Usia 6+</text>
 
   <!-- ============ Kolom kanan: balon ============ -->
   <g filter="url(#soft)">

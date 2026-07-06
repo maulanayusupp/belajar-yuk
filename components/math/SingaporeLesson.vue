@@ -35,7 +35,8 @@ watch(index, () => {
 })
 
 function choose(value: number) {
-  if (answered.value) return
+  // Kunci hanya setelah jawaban BENAR. Jika salah, anak boleh mencoba lagi.
+  if (isCorrect.value) return
   selected.value = value
   if (value === problem.value.answer) {
     correct.value++
@@ -120,6 +121,13 @@ function optionState(value: number): 'default' | 'correct' | 'wrong' {
             </span>
           </div>
 
+          <!-- Metode: Ten Frame (sepuluh kotak) -->
+          <MathTenFrame
+            v-else-if="lesson.method === 'ten-frame'"
+            :key="`tf-${problem.id}`"
+            :count="problem.operandA"
+          />
+
           <!-- Metode: Block Subtraction (ambil sebagian) -->
           <div v-else-if="lesson.method === 'block-subtraction'" class="mlesson__blocks">
             <MathBlockGroup
@@ -139,7 +147,12 @@ function optionState(value: number): 'default' | 'correct' | 'wrong' {
           </div>
 
           <!-- Pertanyaan abstrak -->
-          <p v-if="lesson.method === 'counting'" class="mlesson__equation">Ada berapa?</p>
+          <p
+            v-if="lesson.method === 'counting' || lesson.method === 'ten-frame'"
+            class="mlesson__equation"
+          >
+            Ada berapa?
+          </p>
           <p v-else class="mlesson__equation">
             {{ problem.operandA }} {{ problem.operator }} {{ problem.operandB }} =
             <span

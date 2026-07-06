@@ -6,9 +6,10 @@ const site = useRuntimeConfig().public
 const route = useRoute()
 
 const DESCRIPTION =
-  'Platform belajar Bahasa Inggris & Matematika untuk anak usia 6 tahun ke atas — ' +
-  'penuh animasi, suara, dan permainan seru. Metode Singapore Math. Gratis & tanpa iklan.'
-const SHARE_TITLE = 'Belajar Yuk! — Belajar jadi Petualangan Seru'
+  'Bantu anak usia 6+ menguasai Bahasa Inggris & Matematika langkah demi langkah dengan ' +
+  'metode Singapore Math yang terbukti — Number Bond, Ten Frame, hingga Phonics. Belajar ' +
+  'terstruktur yang membangun fondasi kuat & rasa percaya diri sejak dini.'
+const SHARE_TITLE = 'Belajar Yuk! — Kuasai Bahasa Inggris & Matematika Sejak Dini'
 const ogImage = `${site.siteUrl}/og-image.png`
 
 useSeoMeta({

@@ -42,6 +42,7 @@ export type MathMethod =
   | 'block-addition' // Penjumlahan dengan blok (CPA)
   | 'block-subtraction' // Pengurangan dengan blok (ambil/coret)
   | 'counting' // Menghitung banyak benda
+  | 'ten-frame' // Sepuluh Kotak (ten frame)
 
 /** Satu soal Matematika. */
 export interface MathProblem {
@@ -71,9 +72,13 @@ interface LessonBase {
   meta?: Record<string, unknown>
 }
 
+/** Jenis aktivitas pelajaran Bahasa Inggris. */
+export type EnglishActivity = 'vocabulary' | 'phonics'
+
 export interface EnglishLesson extends LessonBase {
   subject: 'english'
-  type: 'vocabulary'
+  /** 'vocabulary' = kartu kata + kuis; 'phonics' = bunyi huruf. */
+  type: EnglishActivity
   items: VocabularyItem[]
 }
 

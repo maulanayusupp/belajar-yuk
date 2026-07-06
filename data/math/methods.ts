@@ -47,4 +47,10 @@ export const mathMethodMeta: Record<MathMethod, MathMethodMeta> = {
     description: 'Ambil sebagian blok untuk memahami konsep pengurangan.',
     instruction: 'Blok yang dicoret sudah diambil. Berapa sisanya?',
   },
+  'ten-frame': {
+    icon: '🔟',
+    label: 'Sepuluh Kotak',
+    description: 'Ten Frame: melihat bilangan dalam kerangka 10 untuk membangun rasa angka.',
+    instruction: 'Lihat titik di dalam kotak. Ada berapa jumlahnya?',
+  },
 }
