@@ -90,11 +90,16 @@ const RECIPES: Record<SoundEffect, Array<[number, number, number]>> = {
 }
 
 // -------- Pengucapan (SpeechSynthesis) ----------------------
+// Utamakan voice LOKAL (localService) karena voice "remote/Google" sering
+// mengabaikan `rate` (suara tetap cepat walau di-set pelan).
 function pickEnglishVoice(): SpeechSynthesisVoice | undefined {
   const voices = window.speechSynthesis.getVoices()
+  const en = voices.filter((v) => /^en/i.test(v.lang))
   return (
-    voices.find((v) => /en[-_]US/i.test(v.lang)) ||
-    voices.find((v) => /^en/i.test(v.lang)) ||
+    en.find((v) => v.localService && /en[-_]US/i.test(v.lang)) ||
+    en.find((v) => v.localService) ||
+    en.find((v) => /en[-_]US/i.test(v.lang)) ||
+    en[0] ||
     voices[0]
   )
 }
