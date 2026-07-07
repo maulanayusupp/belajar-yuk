@@ -13,7 +13,8 @@ const isBrowser = typeof window !== 'undefined'
 
 // Kecepatan bicara — bisa diatur orang tua (disimpan di localStorage).
 // Default sengaja pelan agar anak mudah menyimak.
-const RATE_KEY = 'belajar-yuk:speechRate'
+// v2: buang nilai lama yang mungkin "nyangkut" (mis. pernah di-set Cepat).
+const RATE_KEY = 'belajar-yuk:speechRate:v2'
 export const DEFAULT_SPEECH_RATE = 0.55 // "Pelan" — mudah disimak anak
 // Pilihan preset untuk UI pengaturan.
 export const SPEECH_RATE_OPTIONS = [
