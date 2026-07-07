@@ -1,4 +1,5 @@
 import type { SoundEffect } from '~/types'
+import { storage } from '~/utils/storage'
 
 // =============================================================
 //  Layanan suara — tanpa file audio eksternal:
@@ -10,8 +11,21 @@ import type { SoundEffect } from '~/types'
 
 const isBrowser = typeof window !== 'undefined'
 
-// Kecepatan bicara (0.1–1). Sengaja pelan agar anak mudah menyimak.
-const SPEECH_RATE = 0.7
+// Kecepatan bicara — bisa diatur orang tua (disimpan di localStorage).
+// Default sengaja pelan agar anak mudah menyimak.
+const RATE_KEY = 'belajar-yuk:speechRate'
+export const DEFAULT_SPEECH_RATE = 0.7
+// Pilihan preset untuk UI pengaturan.
+export const SPEECH_RATE_OPTIONS = [
+  { value: 0.55, label: 'Pelan' },
+  { value: 0.7, label: 'Sedang' },
+  { value: 0.9, label: 'Cepat' },
+]
+
+function getSpeechRate(): number {
+  const r = storage.get<number>(RATE_KEY, DEFAULT_SPEECH_RATE)
+  return Math.min(Math.max(r, 0.3), 1) // jaga di rentang aman
+}
 
 // -------- Efek suara (Web Audio API) ------------------------
 let audioCtx: AudioContext | null = null
@@ -95,7 +109,7 @@ export const audioService = {
     window.speechSynthesis.cancel() // hentikan ucapan sebelumnya
     const utter = new SpeechSynthesisUtterance(text)
     utter.lang = lang
-    utter.rate = SPEECH_RATE // lebih pelan agar mudah disimak anak
+    utter.rate = getSpeechRate() // dari pengaturan (default pelan)
     utter.pitch = 1.1
     const voice = pickEnglishVoice()
     if (voice) utter.voice = voice
@@ -128,6 +142,16 @@ export const audioService = {
   pronounce(text: string, audioUrl?: string, lang = 'en-US'): void {
     if (audioUrl) this.playClip(audioUrl, text, lang)
     else this.speak(text, lang)
+  },
+
+  /** Kecepatan bicara saat ini (dari pengaturan). */
+  getRate(): number {
+    return getSpeechRate()
+  },
+
+  /** Simpan kecepatan bicara. */
+  setRate(rate: number): void {
+    storage.set(RATE_KEY, rate)
   },
 
   stopSpeaking(): void {

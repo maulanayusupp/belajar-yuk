@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { SPEECH_RATE_OPTIONS } from '~/services/audioService'
+
 // Area Orang Tua: dilindungi "gerbang" sederhana (soal untuk dewasa)
 // agar anak tak sengaja masuk. Berisi pengaturan suara, profil, & reset.
 const GATE_ANSWER = 56 // 7 × 8
@@ -16,7 +18,7 @@ function tryUnlock() {
   }
 }
 
-const { muted, toggleMute } = useAudio()
+const { muted, toggleMute, speechRate, setSpeechRate } = useAudio()
 const { profile } = useProfile()
 const { resetAll } = useProgress()
 const { reset: resetStreak } = useStreak()
@@ -62,6 +64,21 @@ useHead({ title: 'Area Orang Tua' })
           <BaseButton variant="ghost" @click="toggleMute">
             {{ muted ? '🔇 Nyalakan' : '🔊 Matikan' }}
           </BaseButton>
+        </div>
+        <div class="panel__row">
+          <span>Kecepatan bicara</span>
+          <div class="speed">
+            <button
+              v-for="opt in SPEECH_RATE_OPTIONS"
+              :key="opt.value"
+              class="speed__btn"
+              :class="{ 'speed__btn--active': speechRate === opt.value }"
+              type="button"
+              @click="setSpeechRate(opt.value)"
+            >
+              {{ opt.label }}
+            </button>
+          </div>
         </div>
       </section>
 
@@ -175,6 +192,28 @@ useHead({ title: 'Area Orang Tua' })
   &__row {
     @include flex(row, space-between, center, spacing('md'));
     flex-wrap: wrap;
+  }
+}
+
+.speed {
+  @include flex(row, flex-end, center, spacing('xs'));
+  flex-wrap: wrap;
+
+  &__btn {
+    @include tappable;
+    padding: spacing('xs') spacing('md');
+    font-weight: $font-weight-bold;
+    color: $color-ink-soft;
+    background: $color-white;
+    border: 2px solid $color-border;
+    border-radius: $radius-pill;
+    box-shadow: $shadow-sm;
+
+    &--active {
+      color: $color-white;
+      background: $color-primary;
+      border-color: $color-primary;
+    }
   }
 }
 </style>

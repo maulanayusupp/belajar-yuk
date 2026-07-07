@@ -23,6 +23,17 @@ export function useAudio() {
     if (!muted.value) audioService.speak(text, lang)
   }
 
+  // Kecepatan bicara (untuk UI pengaturan). Playback selalu baca nilai tersimpan.
+  const speechRate = useState<number>('speech-rate', () => audioService.getRate())
+  onMounted(() => {
+    speechRate.value = audioService.getRate()
+  })
+  function setSpeechRate(rate: number) {
+    speechRate.value = rate
+    audioService.setRate(rate) // simpan pengaturan
+    if (!muted.value) audioService.speak('Hello!') // contoh (hormati mute)
+  }
+
   /**
    * Ucapkan kata: pakai file audio bila `audioUrl` ada, jika tidak pakai
    * suara sintesis (default Google). Titik masuk pengucapan yang disarankan.
@@ -31,5 +42,5 @@ export function useAudio() {
     if (!muted.value) audioService.pronounce(text, audioUrl, lang)
   }
 
-  return { muted, toggleMute, play, speak, pronounce }
+  return { muted, toggleMute, play, speak, pronounce, speechRate, setSpeechRate }
 }
