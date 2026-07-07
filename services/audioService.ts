@@ -101,19 +101,27 @@ function pickEnglishVoice(): SpeechSynthesisVoice | undefined {
 
 // Simpan referensi audio file yang sedang diputar agar bisa dihentikan.
 let currentClip: HTMLAudioElement | null = null
+// Timer jeda cancel→speak (workaround bug Chrome).
+let speakTimer = 0
 
 export const audioService = {
   /** Ucapkan teks Bahasa Inggris (default) atau bahasa lain (suara sintesis). */
   speak(text: string, lang = 'en-US'): void {
     if (!isBrowser || !('speechSynthesis' in window)) return
-    window.speechSynthesis.cancel() // hentikan ucapan sebelumnya
+    const synth = window.speechSynthesis
+    synth.cancel() // hentikan ucapan sebelumnya
+    if (speakTimer) window.clearTimeout(speakTimer)
+
     const utter = new SpeechSynthesisUtterance(text)
     utter.lang = lang
     utter.rate = getSpeechRate() // dari pengaturan (default pelan)
     utter.pitch = 1.1
     const voice = pickEnglishVoice()
     if (voice) utter.voice = voice
-    window.speechSynthesis.speak(utter)
+
+    // Workaround bug Chrome: cancel() lalu speak() sinkron sering membuat
+    // `rate` diabaikan (suara jadi kecepatan normal). Beri jeda kecil.
+    speakTimer = window.setTimeout(() => synth.speak(utter), 70)
   },
 
   /**
@@ -155,6 +163,7 @@ export const audioService = {
   },
 
   stopSpeaking(): void {
+    if (speakTimer) window.clearTimeout(speakTimer)
     if (isBrowser && 'speechSynthesis' in window) window.speechSynthesis.cancel()
     currentClip?.pause()
     currentClip = null
