@@ -91,10 +91,21 @@ const RECIPES: Record<SoundEffect, Array<[number, number, number]>> = {
 }
 
 // -------- Pengucapan (SpeechSynthesis) ----------------------
-// Utamakan voice LOKAL (localService) karena voice "remote/Google" sering
-// mengabaikan `rate` (suara tetap cepat walau di-set pelan).
+// Cache daftar voice. Di Chrome, getVoices() sering KOSONG saat pertama
+// dipanggil sehingga voice default "Google" (remote) terpilih & MENGABAIKAN
+// `rate`. Kita muat lebih dulu + dengarkan `voiceschanged`.
+let cachedVoices: SpeechSynthesisVoice[] = []
+function refreshVoices() {
+  if (isBrowser && 'speechSynthesis' in window) cachedVoices = window.speechSynthesis.getVoices()
+}
+if (isBrowser && 'speechSynthesis' in window) {
+  refreshVoices()
+  window.speechSynthesis.addEventListener('voiceschanged', refreshVoices)
+}
+
+// Utamakan voice LOKAL (localService) — voice remote sering abaikan `rate`.
 function pickEnglishVoice(): SpeechSynthesisVoice | undefined {
-  const voices = window.speechSynthesis.getVoices()
+  const voices = cachedVoices.length ? cachedVoices : window.speechSynthesis.getVoices()
   const en = voices.filter((v) => /^en/i.test(v.lang))
   return (
     en.find((v) => v.localService && /en[-_]US/i.test(v.lang)) ||
@@ -118,16 +129,29 @@ export const audioService = {
     synth.cancel() // hentikan ucapan sebelumnya
     if (speakTimer) window.clearTimeout(speakTimer)
 
-    const utter = new SpeechSynthesisUtterance(text)
-    utter.lang = lang
-    utter.rate = getSpeechRate() // dari pengaturan (default pelan)
-    utter.pitch = 1.1
-    const voice = pickEnglishVoice()
-    if (voice) utter.voice = voice
+    let done = false
+    const run = () => {
+      if (done) return
+      done = true
+      const utter = new SpeechSynthesisUtterance(text)
+      utter.lang = lang
+      utter.rate = getSpeechRate() // dari pengaturan (default pelan)
+      utter.pitch = 1.1
+      const voice = pickEnglishVoice()
+      if (voice) utter.voice = voice // WAJIB voice lokal agar rate dihormati
+      // Jeda kecil: workaround bug Chrome (cancel+speak sinkron abaikan rate).
+      speakTimer = window.setTimeout(() => synth.speak(utter), 60)
+    }
 
-    // Workaround bug Chrome: cancel() lalu speak() sinkron sering membuat
-    // `rate` diabaikan (suara jadi kecepatan normal). Beri jeda kecil.
-    speakTimer = window.setTimeout(() => synth.speak(utter), 70)
+    // Pastikan daftar voice sudah dimuat dulu (Chrome memuatnya async),
+    // supaya voice LOKAL terpilih — bukan voice remote yang abaikan rate.
+    refreshVoices()
+    if (cachedVoices.length) {
+      run()
+    } else {
+      synth.addEventListener('voiceschanged', run, { once: true })
+      window.setTimeout(run, 250) // fallback bila voiceschanged tak fire
+    }
   },
 
   /**
