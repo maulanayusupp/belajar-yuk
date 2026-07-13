@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Ganti domain di bawah sesuai produksi (lihat SITE_URL di nuxt.config.ts)
-# Sitemap: https://belajar-yuk.example.com/sitemap.xml
+Sitemap: https://belajar-yuk-kappa.vercel.app/sitemap.xml

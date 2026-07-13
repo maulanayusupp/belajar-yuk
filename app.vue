@@ -39,6 +39,20 @@ useHead(() => ({
   link: [{ rel: 'canonical', href: canonicalUrl.value }],
   meta: [{ property: 'og:url', content: canonicalUrl.value }],
 }))
+
+// Data terstruktur (JSON-LD) untuk hasil pencarian yang lebih kaya.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'EducationalOrganization',
+  name: 'Belajar Yuk!',
+  url: site.siteUrl,
+  logo: `${site.siteUrl}/icon-512.png`,
+  description: DESCRIPTION,
+  audience: { '@type': 'EducationalAudience', educationalRole: 'student' },
+}
+useHead({
+  script: [{ type: 'application/ld+json', innerHTML: JSON.stringify(jsonLd) }],
+})
 </script>
 
 <template>

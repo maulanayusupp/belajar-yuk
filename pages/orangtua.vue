@@ -19,6 +19,7 @@ function tryUnlock() {
 }
 
 const { muted, toggleMute, speechRate, setSpeechRate } = useAudio()
+const { enabled: musicOn, toggle: toggleMusic } = useMusic()
 const { profile } = useProfile()
 const { resetAll } = useProgress()
 const { reset: resetStreak } = useStreak()
@@ -63,6 +64,12 @@ useHead({ title: 'Area Orang Tua' })
           <span>Suara &amp; musik</span>
           <BaseButton variant="ghost" @click="toggleMute">
             {{ muted ? '🔇 Nyalakan' : '🔊 Matikan' }}
+          </BaseButton>
+        </div>
+        <div class="panel__row">
+          <span>Musik latar</span>
+          <BaseButton variant="ghost" @click="toggleMusic">
+            {{ musicOn ? '🎵 Matikan' : '🎵 Nyalakan' }}
           </BaseButton>
         </div>
         <div class="panel__row">

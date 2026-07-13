@@ -21,6 +21,9 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       siteUrl: SITE_URL,
+      // Analitik privasi (tanpa cookie) — set domain via env
+      // NUXT_PUBLIC_PLAUSIBLE_DOMAIN untuk mengaktifkan. Kosong = nonaktif.
+      plausibleDomain: process.env.NUXT_PUBLIC_PLAUSIBLE_DOMAIN || '',
     },
   },
 

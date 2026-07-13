@@ -1,16 +1,26 @@
 <script setup lang="ts">
-import { AVATARS } from '~/services/profileService'
+import { AVATARS, isAvatarUnlocked, type AvatarOption } from '~/services/profileService'
 
-// Modal pembuatan profil anak (nama + avatar). Muncul sekali di beranda
-// bila belum ada profil; bisa dilewati.
+// Modal pembuatan profil anak (nama + avatar). Avatar tertentu terbuka
+// setelah anak mengumpulkan bintang — jadi ada yang dinanti-nanti.
 const emit = defineEmits<{ close: [] }>()
 const { profile, save } = useProfile()
 const { play } = useAudio()
+const { progress } = useProgress()
+
+const totalStars = computed(() =>
+  Object.values(progress.value).reduce((sum, e) => sum + (e.stars ?? 0), 0),
+)
 
 const name = ref(profile.value?.name ?? '')
-const avatar = ref(profile.value?.avatar ?? AVATARS[0])
+const avatar = ref(profile.value?.avatar ?? AVATARS[0].emoji)
 
 const canSave = computed(() => name.value.trim().length > 0)
+
+function pick(a: AvatarOption) {
+  if (!isAvatarUnlocked(a, totalStars.value)) return
+  avatar.value = a.emoji
+}
 
 function submit() {
   if (!canSave.value) return
@@ -40,14 +50,25 @@ function submit() {
       <div class="setup__avatars">
         <button
           v-for="a in AVATARS"
-          :key="a"
+          :key="a.emoji"
           class="setup__avatar"
-          :class="{ 'setup__avatar--active': a === avatar }"
+          :class="{
+            'setup__avatar--active': a.emoji === avatar,
+            'setup__avatar--locked': !isAvatarUnlocked(a, totalStars),
+          }"
           type="button"
-          :aria-label="`Avatar ${a}`"
-          @click="avatar = a"
+          :disabled="!isAvatarUnlocked(a, totalStars)"
+          :aria-label="
+            isAvatarUnlocked(a, totalStars)
+              ? `Avatar ${a.emoji}`
+              : `Terkunci, butuh ${a.stars} bintang`
+          "
+          @click="pick(a)"
         >
-          {{ a }}
+          <template v-if="isAvatarUnlocked(a, totalStars)">{{ a.emoji }}</template>
+          <span v-else class="setup__lock"
+            >🔒<small>⭐{{ a.stars }}</small></span
+          >
         </button>
       </div>
 
@@ -132,6 +153,23 @@ function submit() {
     &--active {
       border-color: $color-primary;
       background: rgba($color-primary, 0.12);
+    }
+
+    &--locked {
+      cursor: not-allowed;
+      opacity: 0.75;
+    }
+  }
+
+  &__lock {
+    @include flex(column, center, center);
+    line-height: 1;
+    font-size: font-size('md');
+
+    small {
+      font-size: 0.6rem;
+      font-weight: $font-weight-bold;
+      color: $color-text-muted;
     }
   }
 

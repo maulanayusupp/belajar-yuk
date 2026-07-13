@@ -11,6 +11,11 @@ node_modules
 # Baris ini membatalkan ignore dari gitignore global (~/.gitignore_global).
 !package-lock.json
 
+# Playwright
+test-results
+playwright-report
+.playwright
+
 # Logs
 *.log
 

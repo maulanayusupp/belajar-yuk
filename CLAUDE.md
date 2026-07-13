@@ -20,6 +20,7 @@ npm run preview   # pratinjau hasil build (uji PWA/offline di sini)
 npm run lint      # ESLint (WAJIB bersih)
 npm run format    # Prettier (rapikan) · format:check untuk cek
 npm run test      # Vitest unit test (WAJIB lolos)
+npm run test:e2e  # Playwright E2E (perlu `npx playwright install chromium` sekali)
 npm run assets    # regenerasi favicon & OG image dari SVG
 ```
 
@@ -38,20 +39,23 @@ data/ (konten)  →  services/ (logika)  →  composables/ (reaktif)  →  compo
                         ↑ utils/ (helper murni)   ↑ types/ (kontrak data)
 ```
 
-| Folder             | Isi                                                                                                   | Aturan                                                  |
-| ------------------ | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
-| `data/`            | Konten pelajaran (**1 materi = 1 folder** + `index.ts` agregat)                                       | Data murni, tanpa logika. Lihat `data/README.md`        |
-| `services/`        | `lessonService`, `progressService`, `audioService`, `profileService`, `streakService`, `badgeService` | Logika bisnis. Komponen akses data HANYA lewat sini     |
-| `composables/`     | `useAudio`, `useProgress`, `useConfetti`, `useProfile`, `useStreak`, `useShareCard`                   | Pembungkus reaktif Vue untuk services                   |
-| `utils/`           | `array`, `math`, `storage`                                                                            | Fungsi murni, tanpa efek samping (kecuali `storage`)    |
-| `types/`           | Semua `interface`/`type`                                                                              | Sumber tunggal bentuk data                              |
-| `components/`      | UI                                                                                                    | Lihat konvensi di bawah                                 |
-| `pages/[subject]/` | Routing dinamis: `/english`, `/math`, `/:subject/:id`                                                 | Validasi subject; `createError` 404 bila tidak ada      |
-| `pages/kemajuan`   | Dashboard: sapaan, streak, target harian, lencana, kartu share, rekomendasi, peta jalur               | `badgeService.all(stats)`, `useShareCard`, `DAILY_GOAL` |
-| `pages/orangtua`   | Area Orang Tua: gerbang (7×8) → suara, profil, reset                                                  | Reset via `resetAll` + `streak.reset`                   |
-| `error.vue`        | Halaman error/404 global ramah-anak                                                                   | Pakai `clearError({ redirect: '/' })`                   |
-| `tests/`           | Unit test Vitest (`*.test.ts`)                                                                        | Tes util & service (murni). Composable butuh env Nuxt   |
-| `scripts/`         | `generate-assets.mjs` + SVG sumber (favicon, OG)                                                      | Jalankan via `npm run assets`                           |
+| Folder             | Isi                                                                                                                   | Aturan                                                  |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| `data/`            | Konten pelajaran (**1 materi = 1 folder** + `index.ts` agregat)                                                       | Data murni, tanpa logika. Lihat `data/README.md`        |
+| `services/`        | `lessonService`, `progressService`, `audioService`, `profileService`, `streakService`, `badgeService`, `musicService` | Logika bisnis. Komponen akses data HANYA lewat sini     |
+| `composables/`     | `useAudio`, `useProgress`, `useConfetti`, `useProfile`, `useStreak`, `useShareCard`, `useMusic`                       | Pembungkus reaktif Vue untuk services                   |
+| `server/`          | Route Nitro: `sitemap.xml` (dari daftar pelajaran)                                                                    | SSR/endpoint; boleh impor `~/services`                  |
+| `e2e/`             | Playwright (`*.spec.ts`) — smoke + cek anti-overflow                                                                  | `npm run test:e2e`; browser via `playwright install`    |
+| `utils/`           | `array`, `math`, `storage`                                                                                            | Fungsi murni, tanpa efek samping (kecuali `storage`)    |
+| `types/`           | Semua `interface`/`type`                                                                                              | Sumber tunggal bentuk data                              |
+| `components/`      | UI                                                                                                                    | Lihat konvensi di bawah                                 |
+| `pages/[subject]/` | Routing dinamis: `/english`, `/math`, `/:subject/:id`                                                                 | Validasi subject; `createError` 404 bila tidak ada      |
+| `pages/kemajuan`   | Dashboard: sapaan, streak, target harian, lencana, kartu share, rekomendasi, peta jalur                               | `badgeService.all(stats)`, `useShareCard`, `DAILY_GOAL` |
+| `pages/orangtua`   | Area Orang Tua: gerbang (7×8) → suara, profil, reset                                                                  | Reset via `resetAll` + `streak.reset`                   |
+| `error.vue`        | Halaman error/404 global ramah-anak                                                                                   | Pakai `clearError({ redirect: '/' })`                   |
+| `tests/`           | Unit test Vitest (`*.test.ts`)                                                                                        | Tes util & service (murni). Composable butuh env Nuxt   |
+| `scripts/`         | `generate-assets.mjs` + SVG sumber (favicon, OG)                                                                      | Jalankan via `npm run assets`                           |
+| `plugins/`         | `reveal` (scroll-reveal), `analytics.client` (Plausible, opsional), `pwa-dev-cleanup.client`                          | Client-only; hormati env & mode dev                     |
 
 ## Konvensi Kode
 
@@ -161,6 +165,9 @@ plus aset opsional pelajaran itu). Detail & contoh: `data/README.md`.
   produksi — wajib absolut agar preview WhatsApp/Twitter muncul.
 - Aset di `public/`: `favicon.svg/.ico`, `apple-touch-icon.png`, `icon-192/512.png`,
   `og-image.png` (1200×630). Sumber SVG di `scripts/`; regenerasi: `npm run assets`.
+- **sitemap.xml** dibuat dinamis oleh `server/routes/sitemap.xml.ts`; `robots.txt` menunjuk ke sana.
+- **JSON-LD** (EducationalOrganization) di `app.vue`.
+- **Analitik** privasi (Plausible) opsional: set env `NUXT_PUBLIC_PLAUSIBLE_DOMAIN` (lihat `plugins/analytics.client.ts`).
 
 ## PWA
 
@@ -175,6 +182,11 @@ plus aset opsional pelajaran itu). Detail & contoh: `data/README.md`.
   `vitest.config.ts`. Uji **util & service** (murni) — jangan composable (butuh env Nuxt).
 - Tambah materi/metode → tambah/junguat tes terkait bila relevan (mis. invariant di
   `tests/lessonService.test.ts` sudah cek `id` unik & konsistensi jawaban soal).
+- **Audit kontras (WCAG AA)**: `tests/contrast.test.ts` + util `utils/color.ts`. Pasangan
+  teks/latar inti wajib ≥ 4.5 (normal) / ≥ 3 (besar). Nilai hex HARUS sinkron dengan token SCSS.
+- **Integritas data**: `tests/data-integrity.test.ts` (field wajib, id unik, jawaban konsisten).
+- **E2E Playwright** di `e2e/*.spec.ts` (`playwright.config.ts`) — smoke + cek anti-overflow.
+  `npm run test:e2e` (butuh `npx playwright install chromium` sekali; CI menginstal otomatis).
 - ESLint (`eslint.config.mjs`, basis `@nuxt/eslint`) + Prettier (`.prettierrc`).
   Formatting = Prettier; kualitas = ESLint. Jalankan `npm run lint` & `npm run format`.
 

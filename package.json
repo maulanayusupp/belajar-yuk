@@ -16,10 +16,12 @@
     "format:check": "prettier --check .",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:e2e": "playwright test",
     "assets": "node scripts/generate-assets.mjs"
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.16.0",
+    "@playwright/test": "^1.61.1",
     "@resvg/resvg-js": "^2.6.2",
     "@vite-pwa/nuxt": "^1.1.1",
     "eslint": "^10.6.0",
