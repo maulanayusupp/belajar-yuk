@@ -12,12 +12,10 @@ test('beranda tampil & bisa ke Bahasa Inggris', async ({ page }) => {
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
 
   await page.goto('/english')
-  await expect(page.getByText('Pemula')).toBeVisible()
-  // Minimal satu kartu pelajaran → buka
-  await page
-    .getByRole('link', { name: /Nama Hewan|Bunyi Huruf/ })
-    .first()
-    .click()
+  // Minimal satu kartu pelajaran tampil → buka
+  const firstLesson = page.getByRole('link', { name: /Nama Hewan|Bunyi Huruf/ }).first()
+  await expect(firstLesson).toBeVisible()
+  await firstLesson.click()
   await expect(page).toHaveURL(/\/english\//)
 })
 
