@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { EnglishLesson } from '~/types'
 import { shuffle, clamp } from '~/utils/array'
+import { mistakeService } from '~/services/mistakeService'
 
 // Pelajaran Phonics: fase Belajar (bunyi huruf lewat kata contoh) →
 // Kuis (pilih huruf awal dari sebuah kata) → Perayaan.
@@ -65,8 +66,10 @@ function choose(letter: string) {
   if (letter === currentQ.value.item.word) {
     correct.value++
     play('correct')
+    mistakeService.remove(props.lesson.id, currentQ.value.item.id)
   } else {
     play('wrong')
+    mistakeService.add(props.lesson.id, currentQ.value.item.id)
   }
 }
 

@@ -11,6 +11,20 @@ import { allLessons, subjects } from '~/data'
 import { mathMethodMeta, type MathMethodMeta } from '~/data/math/methods'
 import { englishActivityMeta, type EnglishActivityMeta } from '~/data/english/methods'
 import { levels, type LevelMeta } from '~/data/levels'
+import { generateNumberOptions } from '~/utils/math'
+import { shuffle } from '~/utils/array'
+
+/** Soal untuk mode "Ulang Kesalahan" — MCQ ternormalisasi. */
+export interface ReviewQuestion {
+  lessonId: string
+  itemId: string
+  emoji: string // dikosongkan untuk soal aritmetika
+  repeat: number // berapa kali emoji ditampilkan (mis. counting)
+  prompt: string
+  speak?: string // kata Inggris untuk diucapkan saat dijawab
+  correct: string
+  options: string[]
+}
 
 // Sumber data pelajaran terpusat. Komponen TIDAK mengakses file
 // data langsung — selalu lewat service ini. Nanti mudah diganti
@@ -108,6 +122,66 @@ export const lessonService = {
   getUpcomingLevels(subject: SubjectId): LevelMeta[] {
     const filled = new Set(this.getLessonsGrouped(subject).map((g) => g.meta.id))
     return levels.filter((l) => !filled.has(l.id))
+  },
+
+  /**
+   * Ubah daftar kesalahan (dari mistakeService) menjadi soal MCQ untuk diulang.
+   * Soal yang tak bisa dirender mandiri (mis. garis bilangan) dilewati.
+   */
+  getReviewQuestions(mistakes: Array<{ lessonId: string; itemId: string }>): ReviewQuestion[] {
+    const out: ReviewQuestion[] = []
+    for (const { lessonId, itemId } of mistakes) {
+      const lesson = this.getLesson(lessonId)
+      if (!lesson) continue
+
+      if (lesson.subject === 'english') {
+        const item = lesson.items.find((i) => i.id === itemId)
+        if (!item) continue
+        const distractors = shuffle(lesson.items.filter((i) => i.id !== item.id))
+          .slice(0, 3)
+          .map((i) => i.word)
+        out.push({
+          lessonId,
+          itemId,
+          emoji: item.emoji,
+          repeat: 1,
+          prompt:
+            lesson.type === 'phonics'
+              ? 'Diawali huruf apa?'
+              : `Apa Bahasa Inggris dari "${item.translation}"?`,
+          speak: item.word,
+          correct: item.word,
+          options: shuffle([item.word, ...distractors]),
+        })
+      } else {
+        const p = lesson.problems.find((i) => i.id === itemId)
+        if (!p) continue
+        const options = generateNumberOptions(p.answer).map(String)
+        if (lesson.method === 'counting' && p.emoji) {
+          out.push({
+            lessonId,
+            itemId,
+            emoji: p.emoji,
+            repeat: p.operandA,
+            prompt: 'Ada berapa?',
+            correct: String(p.answer),
+            options,
+          })
+        } else if (p.operandB > 0 || p.operator === '-') {
+          out.push({
+            lessonId,
+            itemId,
+            emoji: '',
+            repeat: 0,
+            prompt: `${p.operandA} ${p.operator} ${p.operandB} = ?`,
+            correct: String(p.answer),
+            options,
+          })
+        }
+        // metode number-line/ten-frame tanpa emoji: dilewati (butuh visual).
+      }
+    }
+    return out
   },
 
   /** Label + ikon "tag" metode/aktivitas sebuah pelajaran (untuk kartu). */

@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import type { VocabularyItem } from '~/types'
 import { shuffle } from '~/utils/array'
+import { mistakeService } from '~/services/mistakeService'
 
 // Kuis kosakata: tampilkan gambar + arti Indonesia, anak memilih
 // kata Bahasa Inggris yang benar dari 4 pilihan.
-const props = defineProps<{ items: VocabularyItem[] }>()
+const props = defineProps<{ items: VocabularyItem[]; lessonId: string }>()
 const emit = defineEmits<{ complete: [payload: { correct: number; total: number }] }>()
 
 const { pronounce, play } = useAudio()
@@ -37,8 +38,10 @@ function choose(option: VocabularyItem) {
   if (option.id === current.value.item.id) {
     correct.value++
     play('correct')
+    mistakeService.remove(props.lessonId, current.value.item.id) // dikuasai
   } else {
     play('wrong')
+    mistakeService.add(props.lessonId, current.value.item.id) // perlu diulang
   }
 }
 

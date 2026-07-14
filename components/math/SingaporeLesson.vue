@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { MathLesson } from '~/types'
 import { lessonService } from '~/services/lessonService'
+import { mistakeService } from '~/services/mistakeService'
 import { generateNumberOptions } from '~/utils/math'
 import { clamp, range } from '~/utils/array'
 
@@ -47,8 +48,10 @@ function choose(value: number) {
     correct.value++
     play('correct')
     speak(String(value))
+    mistakeService.remove(props.lesson.id, problem.value.id) // dikuasai
   } else {
     play('wrong')
+    mistakeService.add(props.lesson.id, problem.value.id) // perlu diulang
   }
 }
 

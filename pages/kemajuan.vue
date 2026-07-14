@@ -8,6 +8,7 @@ import { DAILY_GOAL } from '~/services/progressService'
 const { profile, greetingName } = useProfile()
 const { current, best } = useStreak()
 const { progress, isCompleted } = useProgress()
+const { count: mistakeCount } = useMistakes()
 
 const subjects = lessonService.getSubjects()
 const allLessons = lessonService.getLessons()
@@ -87,6 +88,14 @@ useHead({ title: 'Kemajuan Belajar' })
         <span class="resume__title">{{ nextLesson.emoji }} {{ nextLesson.title }}</span>
       </div>
       <span class="resume__cta">Main →</span>
+    </NuxtLink>
+
+    <!-- Ulang kesalahan (muncul bila ada) -->
+    <NuxtLink v-if="mistakeCount > 0" to="/ulangi" class="review-cta">
+      <span class="review-cta__text">
+        🔁 Ada <strong>{{ mistakeCount }}</strong> yang perlu diulang
+      </span>
+      <span class="review-cta__go">Latih lagi →</span>
     </NuxtLink>
 
     <!-- Kartu pencapaian (share ke WhatsApp) -->
@@ -251,5 +260,21 @@ useHead({ title: 'Kemajuan Belajar' })
 .badges-section {
   @include flex(column, flex-start, stretch, spacing('lg'));
   min-width: 0; // cegah anak (jalur scroll) melebarkan halaman
+}
+
+.review-cta {
+  @include flex(row, space-between, center, spacing('md'));
+  flex-wrap: wrap;
+  padding: spacing('md') spacing('lg');
+  border-radius: $radius-lg;
+  background: rgba($color-warning, 0.18);
+  border: 2px solid rgba($color-warning, 0.5);
+  color: $color-ink;
+  font-weight: $font-weight-semibold;
+
+  &__go {
+    font-weight: $font-weight-bold;
+    color: #c2410c;
+  }
 }
 </style>

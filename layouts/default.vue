@@ -2,7 +2,9 @@
 // Layout utama: header lengket + area konten + latar dekoratif.
 const footerNav = [
   { to: '/', label: 'Beranda' },
+  { to: '/tes', label: 'Tes Penempatan' },
   { to: '/kemajuan', label: 'Kemajuan' },
+  { to: '/sertifikat', label: 'Sertifikat' },
   { to: '/orangtua', label: 'Orang Tua' },
   { to: '/changelog', label: 'Changelog' },
 ]

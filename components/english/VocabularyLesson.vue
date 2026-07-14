@@ -81,7 +81,7 @@ function goHome() {
         message="Sekarang giliranmu! Pilih kata Bahasa Inggris yang benar."
         message-en="Choose the correct word!"
       />
-      <EnglishQuiz :items="lesson.items" @complete="onQuizComplete" />
+      <EnglishQuiz :items="lesson.items" :lesson-id="lesson.id" @complete="onQuizComplete" />
     </template>
 
     <!-- ---------- Fase Selesai ---------- -->

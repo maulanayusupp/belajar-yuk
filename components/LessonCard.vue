@@ -14,6 +14,7 @@ const levelMeta = computed(() => lessonService.getLevelMeta(props.lesson.level))
 
 const stars = computed(() => getStars(props.lesson.id))
 const done = computed(() => isCompleted(props.lesson.id))
+const mastered = computed(() => stars.value >= 3) // 3★ = dikuasai (ala Kumon)
 </script>
 
 <template>
@@ -27,7 +28,13 @@ const done = computed(() => isCompleted(props.lesson.id))
     <div class="lesson-card__info">
       <div class="lesson-card__heading">
         <h3 class="lesson-card__title">{{ lesson.title }}</h3>
-        <span v-if="done" class="lesson-card__badge" aria-label="Selesai">✓</span>
+        <span
+          v-if="done"
+          class="lesson-card__badge"
+          :class="{ 'lesson-card__badge--master': mastered }"
+          :aria-label="mastered ? 'Dikuasai' : 'Selesai'"
+          >{{ mastered ? '👑' : '✓' }}</span
+        >
       </div>
 
       <!-- Tag metode/aktivitas + tingkat -->
@@ -124,6 +131,10 @@ const done = computed(() => isCompleted(props.lesson.id))
     font-weight: $font-weight-bold;
     flex-shrink: 0;
     box-shadow: $shadow-sm;
+
+    &--master {
+      background: linear-gradient(135deg, #ffd75e, #ffb300); // emas = dikuasai
+    }
   }
 
   &__tags {

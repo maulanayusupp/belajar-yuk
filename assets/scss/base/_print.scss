@@ -1,0 +1,26 @@
+@use '../abstracts' as *;
+
+// Saat mencetak (Ctrl/Cmd+P): sembunyikan UI, tampilkan hanya sertifikat.
+@media print {
+  .app-header,
+  .layout__footer,
+  .layout__decor,
+  .no-print {
+    display: none !important;
+  }
+
+  body,
+  .layout,
+  .layout__main {
+    background: #fff !important;
+  }
+
+  .certificate {
+    box-shadow: none !important;
+    page-break-after: always;
+  }
+
+  .certificate__actions {
+    display: none !important;
+  }
+}
