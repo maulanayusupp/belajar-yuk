@@ -173,6 +173,10 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
           </BaseButton>
         </div>
 
+        <NuxtLink to="/tes" class="hero__placement">
+          🧭 Bingung mulai dari mana? <strong>Ikuti Tes Penempatan →</strong>
+        </NuxtLink>
+
         <ul class="hero__trust">
           <li v-for="item in trust" :key="item" class="hero__trust-item">{{ item }}</li>
         </ul>
@@ -181,9 +185,11 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
       <!-- Visual dekoratif mengambang -->
       <div class="hero__visual" aria-hidden="true">
         <div class="hero__glow" />
+        <div class="hero__ring" />
         <span class="hero__sparkle hero__sparkle--1">✨</span>
         <span class="hero__sparkle hero__sparkle--2">✨</span>
         <span class="hero__sparkle hero__sparkle--3">⭐</span>
+        <span class="hero__sparkle hero__sparkle--4">🌟</span>
         <div class="hero__mascot anim-float-slow">🦉</div>
 
         <div class="float-card float-card--1 anim-float">
@@ -481,6 +487,22 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
     }
   }
 
+  &__placement {
+    @include flex(row, center, center, spacing('xs'));
+    padding: spacing('xs') spacing('md');
+    font-size: font-size('sm');
+    color: $color-primary-dark;
+    background: rgba($color-primary, 0.1);
+    border: 1px dashed rgba($color-primary, 0.4);
+    border-radius: $radius-pill;
+    transition: all $transition-base;
+
+    &:hover {
+      background: rgba($color-primary, 0.16);
+      transform: translateY(-2px);
+    }
+  }
+
   &__trust {
     @include flex(row, center, center, spacing('sm'));
     flex-wrap: wrap;
@@ -547,6 +569,23 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
       left: 24%;
       animation-delay: 1.5s;
     }
+    &--4 {
+      top: 22%;
+      right: 30%;
+      animation-delay: 2s;
+    }
+  }
+
+  // Cincin garis putus-putus yang berputar pelan di belakang maskot.
+  &__ring {
+    position: absolute;
+    top: 30%;
+    left: 34%;
+    width: 190px;
+    height: 190px;
+    border: 4px dashed rgba($color-primary, 0.3);
+    border-radius: 50%;
+    animation: spin 22s linear infinite;
   }
 }
 
@@ -557,6 +596,16 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
   padding: spacing('md') spacing('lg');
   border-radius: $radius-lg;
   box-shadow: $shadow-lg;
+  transition:
+    transform $transition-base,
+    box-shadow $transition-base;
+
+  // Miring & membesar sedikit saat disentuh (jeda animasi mengambang).
+  &:hover {
+    animation-play-state: paused;
+    transform: scale(1.06) rotate(-2deg);
+    box-shadow: $shadow-xl;
+  }
 
   &__emoji {
     font-size: font-size('xl');
@@ -658,6 +707,10 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
   @include flex(column, flex-start, flex-start, spacing('sm'));
   border: 1px solid $color-border;
 
+  &:hover &__icon {
+    animation: wiggle 0.5s ease;
+  }
+
   &__icon {
     @include flex-center;
     width: 56px;
@@ -711,6 +764,10 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
   padding: spacing('xl') spacing('lg') spacing('lg');
   border-radius: $radius-lg;
   box-shadow: $shadow-sm;
+
+  &:hover &__icon {
+    animation: wiggle 0.5s ease;
+  }
 
   &__num {
     @include flex-center;

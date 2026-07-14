@@ -35,6 +35,10 @@ withDefaults(
     box-shadow: $shadow-lg;
   }
 
+  &:hover &__icon {
+    animation: wiggle 0.5s ease;
+  }
+
   &__icon {
     @include flex-center;
     width: 64px;
