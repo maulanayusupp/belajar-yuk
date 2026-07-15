@@ -140,10 +140,11 @@ plus aset opsional pelajaran itu). Detail & contoh: `data/README.md`.
      Metode saat ini: `counting` (`problem.emoji`), `ten-frame` (`MathTenFrame`),
      `number-line` (`MathNumberLine`, jawaban = `operandA`), `number-bond`,
      `block-addition`, `block-subtraction` (prop `taken`), `missing-number`
-     (jawaban = `operandB`; SingaporeLesson pakai computed `correctValue`).
-- **Aktivitas Bahasa Inggris baru** (`vocabulary`/`phonics`/`listening`): tambah nilai di
-  `EnglishActivity` (`types/`), entri di `data/english/methods.ts`, buat komponen runner
-  (mis. `EnglishListeningLesson`), lalu cabang di `pages/[subject]/[id].vue` berdasarkan `lesson.type`.
+     (jawaban = `operandB`; SingaporeLesson pakai computed `correctValue`), `compare`
+     (operator `'compare'`, runner khusus `MathCompareLesson` — bukan SingaporeLesson).
+- **Aktivitas Bahasa Inggris baru** (`vocabulary`/`phonics`/`listening`/`spelling`): tambah nilai
+  di `EnglishActivity` (`types/`), entri di `data/english/methods.ts`, buat komponen runner
+  (mis. `EnglishListeningLesson`, `EnglishSpellingLesson`), lalu cabang di `pages/[subject]/[id].vue` per `lesson.type`.
 - **Tingkat (Pemula/Menengah/Mahir)**: set `level` pada tiap pelajaran. Metadata kategori
   di `data/levels.ts`. Halaman pelajaran mengelompokkan via `lessonService.getLessonsGrouped`;
   kartu menampilkan tag metode + badge tingkat via `lessonService.getLessonTag` & `getLevelMeta`.

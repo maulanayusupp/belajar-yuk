@@ -94,4 +94,13 @@ export const mathMethodMeta: Record<MathMethod, MathMethodMeta> = {
     usualWay:
       'Anak hanya terlatih menjumlah dari kiri ke kanan, bingung bila yang ditanya di tengah.',
   },
+  compare: {
+    icon: '⚖️',
+    label: 'Membandingkan',
+    description: 'Menentukan mana lebih besar, lebih kecil, atau sama (>, <, =).',
+    instruction: 'Mana yang benar: lebih besar, lebih kecil, atau sama?',
+    singaporeWay:
+      'Anak membandingkan kuantitas nyata (mis. dua kelompok benda) sebelum memakai simbol >, <, =.',
+    usualWay: 'Anak menghafal arah simbol tanpa memahami makna "lebih banyak / lebih sedikit".',
+  },
 }

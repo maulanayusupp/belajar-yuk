@@ -156,6 +156,19 @@ export const lessonService = {
       } else {
         const p = lesson.problems.find((i) => i.id === itemId)
         if (!p) continue
+        if (lesson.method === 'compare') {
+          const sym = p.operandA > p.operandB ? '>' : p.operandA < p.operandB ? '<' : '='
+          out.push({
+            lessonId,
+            itemId,
+            emoji: '',
+            repeat: 0,
+            prompt: `${p.operandA} ⬜ ${p.operandB}`,
+            correct: sym,
+            options: ['<', '=', '>'],
+          })
+          continue
+        }
         const options = generateNumberOptions(p.answer).map(String)
         if (lesson.method === 'counting' && p.emoji) {
           out.push({

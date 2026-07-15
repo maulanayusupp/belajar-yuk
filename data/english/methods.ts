@@ -24,4 +24,9 @@ export const englishActivityMeta: Record<EnglishActivity, EnglishActivityMeta> =
     label: 'Menyimak',
     description: 'Dengar kata lalu pilih gambar yang tepat — tanpa teks.',
   },
+  spelling: {
+    icon: '✍️',
+    label: 'Eja Kata',
+    description: 'Susun huruf menjadi kata yang benar — melatih menulis & membaca.',
+  },
 }

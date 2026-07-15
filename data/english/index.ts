@@ -26,6 +26,8 @@ import { clothes } from './clothes'
 import { nature } from './nature'
 import { listenAnimals } from './listen-animals'
 import { listenFood } from './listen-food'
+import { spellCvc } from './spell-cvc'
+import { spellColors } from './spell-colors'
 
 // Daftar & URUTAN pelajaran Bahasa Inggris (pemula → mahir).
 //
@@ -63,4 +65,7 @@ export const englishLessons: EnglishLesson[] = [
   // Menengah: menyimak (dengar → pilih gambar)
   listenAnimals,
   listenFood,
+  // Mahir: eja / susun kata
+  spellCvc,
+  spellColors,
 ]

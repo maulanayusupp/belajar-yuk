@@ -38,11 +38,13 @@ useHead(() => ({ title: `${lesson.value?.title} — Belajar Yuk!` }))
     <template v-if="lesson.subject === 'english'">
       <EnglishPhonicsLesson v-if="lesson.type === 'phonics'" :lesson="lesson" />
       <EnglishListeningLesson v-else-if="lesson.type === 'listening'" :lesson="lesson" />
+      <EnglishSpellingLesson v-else-if="lesson.type === 'spelling'" :lesson="lesson" />
       <EnglishVocabularyLesson v-else :lesson="lesson" />
     </template>
     <template v-else>
       <MathMethodInfo :method="lesson.method" />
-      <MathSingaporeLesson :lesson="lesson" />
+      <MathCompareLesson v-if="lesson.method === 'compare'" :lesson="lesson" />
+      <MathSingaporeLesson v-else :lesson="lesson" />
     </template>
   </div>
 </template>

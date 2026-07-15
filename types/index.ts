@@ -50,13 +50,14 @@ export type MathMethod =
   | 'ten-frame' // Sepuluh Kotak (ten frame)
   | 'number-line' // Garis Bilangan (kenali angka pada garis)
   | 'missing-number' // Cari bilangan hilang (mis. 7 + ▢ = 12)
+  | 'compare' // Membandingkan dua bilangan (>, <, =)
 
 /** Satu soal Matematika. */
 export interface MathProblem {
   id: string
   operandA: number
   operandB: number
-  operator: '+' | '-'
+  operator: '+' | '-' | 'compare'
   answer: number
   /** Emoji benda untuk metode 'counting' (mis. '🍎'). */
   emoji?: string
@@ -80,7 +81,7 @@ interface LessonBase {
 }
 
 /** Jenis aktivitas pelajaran Bahasa Inggris. */
-export type EnglishActivity = 'vocabulary' | 'phonics' | 'listening'
+export type EnglishActivity = 'vocabulary' | 'phonics' | 'listening' | 'spelling'
 
 export interface EnglishLesson extends LessonBase {
   subject: 'english'

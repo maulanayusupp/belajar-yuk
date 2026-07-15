@@ -46,6 +46,7 @@ describe('integritas data pelajaran', () => {
       'block-addition',
       'block-subtraction',
       'missing-number',
+      'compare',
     ])
     for (const l of lessons) {
       if (l.subject !== 'math') continue
