@@ -49,6 +49,7 @@ export type MathMethod =
   | 'counting' // Menghitung banyak benda
   | 'ten-frame' // Sepuluh Kotak (ten frame)
   | 'number-line' // Garis Bilangan (kenali angka pada garis)
+  | 'missing-number' // Cari bilangan hilang (mis. 7 + ▢ = 12)
 
 /** Satu soal Matematika. */
 export interface MathProblem {
@@ -79,7 +80,7 @@ interface LessonBase {
 }
 
 /** Jenis aktivitas pelajaran Bahasa Inggris. */
-export type EnglishActivity = 'vocabulary' | 'phonics'
+export type EnglishActivity = 'vocabulary' | 'phonics' | 'listening'
 
 export interface EnglishLesson extends LessonBase {
   subject: 'english'

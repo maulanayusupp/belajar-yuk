@@ -45,6 +45,7 @@ describe('integritas data pelajaran', () => {
       'number-bond',
       'block-addition',
       'block-subtraction',
+      'missing-number',
     ])
     for (const l of lessons) {
       if (l.subject !== 'math') continue

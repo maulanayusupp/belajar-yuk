@@ -30,21 +30,26 @@ const problem = computed(() => props.lesson.problems[index.value])
 const lineMax = computed(() =>
   Math.max(...props.lesson.problems.map((p) => p.answer)) > 10 ? 20 : 10,
 )
+// Nilai yang harus dipilih: untuk "cari bilangan hilang" = operandB (bagian
+// yang hilang, mis. 7 + ▢ = 12 → ▢ = 5); selain itu = answer.
+const correctValue = computed(() =>
+  props.lesson.method === 'missing-number' ? problem.value.operandB : problem.value.answer,
+)
 const answered = computed(() => selected.value !== null)
-const isCorrect = computed(() => selected.value === problem.value.answer)
+const isCorrect = computed(() => selected.value === correctValue.value)
 const isLast = computed(() => index.value === props.lesson.problems.length - 1)
 
 // Opsi jawaban dibuat sekali per soal (di-cache pada perubahan index).
-const options = ref<number[]>(generateNumberOptions(problem.value.answer))
+const options = ref<number[]>(generateNumberOptions(correctValue.value))
 watch(index, () => {
-  options.value = generateNumberOptions(problem.value.answer)
+  options.value = generateNumberOptions(correctValue.value)
 })
 
 function choose(value: number) {
   // Kunci hanya setelah jawaban BENAR. Jika salah, anak boleh mencoba lagi.
   if (isCorrect.value) return
   selected.value = value
-  if (value === problem.value.answer) {
+  if (value === correctValue.value) {
     correct.value++
     play('correct')
     speak(String(value))
@@ -79,7 +84,7 @@ function restart() {
   correct.value = 0
   selected.value = null
   done.value = false
-  options.value = generateNumberOptions(props.lesson.problems[0].answer)
+  options.value = generateNumberOptions(correctValue.value)
 }
 
 function goHome() {
@@ -88,7 +93,7 @@ function goHome() {
 
 function optionState(value: number): 'default' | 'correct' | 'wrong' {
   if (!answered.value) return 'default'
-  if (value === problem.value.answer) return 'correct'
+  if (value === correctValue.value) return 'correct'
   if (value === selected.value) return 'wrong'
   return 'default'
 }
@@ -144,6 +149,20 @@ function optionState(value: number): 'default' | 'correct' | 'wrong' {
             :max="lineMax"
           />
 
+          <!-- Metode: Missing Number (cari bilangan hilang) -->
+          <p v-else-if="lesson.method === 'missing-number'" class="mlesson__missing">
+            <span>{{ problem.operandA }}</span>
+            <span class="mlesson__op">{{ problem.operator }}</span>
+            <span
+              class="mlesson__blank"
+              :class="{ 'mlesson__blank--filled': answered && isCorrect }"
+            >
+              {{ answered && isCorrect ? problem.operandB : '▢' }}
+            </span>
+            <span class="mlesson__op">=</span>
+            <span>{{ problem.answer }}</span>
+          </p>
+
           <!-- Metode: Block Subtraction (ambil sebagian) -->
           <div v-else-if="lesson.method === 'block-subtraction'" class="mlesson__blocks">
             <MathBlockGroup
@@ -171,6 +190,9 @@ function optionState(value: number): 'default' | 'correct' | 'wrong' {
           </p>
           <p v-else-if="lesson.method === 'number-line'" class="mlesson__equation">
             Ada di angka berapa?
+          </p>
+          <p v-else-if="lesson.method === 'missing-number'" class="mlesson__equation">
+            Berapa bilangan yang hilang?
           </p>
           <p v-else class="mlesson__equation">
             {{ problem.operandA }} {{ problem.operator }} {{ problem.operandB }} =
@@ -260,6 +282,35 @@ function optionState(value: number): 'default' | 'correct' | 'wrong' {
     color: $color-math;
 
     &--revealed {
+      animation: pop 0.4s ease;
+    }
+  }
+
+  // Persamaan "cari bilangan hilang": besar & jelas.
+  &__missing {
+    @include flex(row, center, center, spacing('sm'));
+    margin: 0;
+    font-family: $font-family-display;
+    font-weight: $font-weight-bold;
+    font-size: font-size('xxl');
+    color: $color-ink;
+  }
+
+  &__blank {
+    @include flex-center;
+    min-width: 64px;
+    height: 64px;
+    padding-inline: spacing('sm');
+    color: $color-math;
+    background: rgba($color-math, 0.1);
+    border: 3px dashed $color-math;
+    border-radius: $radius-md;
+
+    &--filled {
+      background: rgba($color-success, 0.15);
+      border-style: solid;
+      border-color: $color-success;
+      color: #05987a;
       animation: pop 0.4s ease;
     }
   }

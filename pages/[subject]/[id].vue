@@ -37,6 +37,7 @@ useHead(() => ({ title: `${lesson.value?.title} — Belajar Yuk!` }))
     <!-- Pilih komponen pelajaran sesuai mata pelajaran & jenis aktivitas -->
     <template v-if="lesson.subject === 'english'">
       <EnglishPhonicsLesson v-if="lesson.type === 'phonics'" :lesson="lesson" />
+      <EnglishListeningLesson v-else-if="lesson.type === 'listening'" :lesson="lesson" />
       <EnglishVocabularyLesson v-else :lesson="lesson" />
     </template>
     <template v-else>

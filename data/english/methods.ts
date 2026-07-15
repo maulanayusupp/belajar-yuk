@@ -19,4 +19,9 @@ export const englishActivityMeta: Record<EnglishActivity, EnglishActivityMeta> =
     label: 'Phonics',
     description: 'Mengenal bunyi huruf lewat kata contoh — fondasi membaca.',
   },
+  listening: {
+    icon: '🎧',
+    label: 'Menyimak',
+    description: 'Dengar kata lalu pilih gambar yang tepat — tanpa teks.',
+  },
 }

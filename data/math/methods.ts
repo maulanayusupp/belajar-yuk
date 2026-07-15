@@ -84,4 +84,14 @@ export const mathMethodMeta: Record<MathMethod, MathMethodMeta> = {
       'Anak melihat angka punya posisi & jarak, dasar untuk menambah/mengurang dengan "melompat" di garis.',
     usualWay: 'Anak menghafal urutan angka tanpa memahami jarak & hubungan antar-angka.',
   },
+  'missing-number': {
+    icon: '❓',
+    label: 'Cari Bilangan Hilang',
+    description: 'Menemukan bagian yang hilang (mis. 7 + ▢ = 12) — berpikir mundur.',
+    instruction: 'Berapa bilangan yang hilang agar benar?',
+    singaporeWay:
+      'Anak memahami hubungan bagian–keseluruhan sehingga bisa mencari bagian yang hilang, bukan hanya menjumlah maju.',
+    usualWay:
+      'Anak hanya terlatih menjumlah dari kiri ke kanan, bingung bila yang ditanya di tengah.',
+  },
 }

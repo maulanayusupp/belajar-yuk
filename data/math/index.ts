@@ -16,6 +16,7 @@ import { subtraction } from './subtraction'
 import { subtractionTo20 } from './subtraction-to-20'
 import { numberLine10 } from './number-line-10'
 import { numberLine20 } from './number-line-20'
+import { missingNumber } from './missing-number'
 
 // Daftar & URUTAN pelajaran Matematika (mudah → menantang, semua Pemula).
 //
@@ -47,4 +48,6 @@ export const mathLessons: MathLesson[] = [
   // Garis bilangan
   numberLine10,
   numberLine20,
+  // Menengah: cari bilangan hilang
+  missingNumber,
 ]
