@@ -3,7 +3,11 @@ import { clamp } from '~/utils/array'
 
 // Bar progres pelajaran (langkah ke-berapa dari total).
 const props = withDefaults(
-  defineProps<{ current: number; total: number; accent?: 'english' | 'math' | 'primary' }>(),
+  defineProps<{
+    current: number
+    total: number
+    accent?: 'english' | 'math' | 'science' | 'primary'
+  }>(),
   { accent: 'primary' },
 )
 
@@ -52,6 +56,9 @@ const percent = computed(() => {
     }
     &--math {
       background: $color-math;
+    }
+    &--science {
+      background: $color-science;
     }
   }
 }

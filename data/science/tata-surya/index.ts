@@ -1,0 +1,70 @@
+import type { ScienceLesson } from '~/types'
+
+// Pelajaran Sains: Tata Surya — mengenal Matahari, Bumi, Bulan, & planet.
+// Konsep lebih abstrak → tingkat Menengah.
+export const tataSurya: ScienceLesson = {
+  id: 'sci-tata-surya',
+  subject: 'science',
+  type: 'explore',
+  title: 'Tata Surya',
+  titleEn: 'The Solar System',
+  level: 'intermediate',
+  emoji: '🪐',
+  durationMin: 7,
+  facts: [
+    {
+      id: 'sun',
+      term: 'Sun',
+      name: 'Matahari',
+      emoji: '☀️',
+      fact: 'Matahari (sun) adalah bintang besar yang memberi kita cahaya dan panas.',
+      clue: 'Bintang yang memberi cahaya & panas ke Bumi?',
+      group: 'bintang',
+    },
+    {
+      id: 'earth',
+      term: 'Earth',
+      name: 'Bumi',
+      emoji: '🌍',
+      fact: 'Bumi (earth) adalah planet tempat kita tinggal, satu-satunya yang ada air & kehidupan.',
+      clue: 'Planet tempat kita tinggal?',
+      group: 'planet',
+    },
+    {
+      id: 'moon',
+      term: 'Moon',
+      name: 'Bulan',
+      emoji: '🌙',
+      fact: 'Bulan (moon) mengelilingi Bumi dan bersinar di langit malam.',
+      clue: 'Benda langit yang bersinar di malam hari & mengelilingi Bumi?',
+      group: 'satelit',
+    },
+    {
+      id: 'mars',
+      term: 'Mars',
+      name: 'Mars',
+      emoji: '🔴',
+      fact: 'Mars (mars) disebut planet merah karena tanahnya berwarna kemerahan.',
+      clue: 'Planet yang dijuluki "planet merah"?',
+      group: 'planet',
+    },
+    {
+      id: 'star',
+      term: 'Star',
+      name: 'Bintang',
+      emoji: '⭐',
+      fact: 'Bintang (star) adalah titik cahaya yang jumlahnya sangat banyak di langit malam.',
+      clue: 'Titik-titik cahaya yang banyak di langit malam?',
+      group: 'bintang',
+    },
+    {
+      id: 'rocket',
+      term: 'Rocket',
+      name: 'Roket',
+      emoji: '🚀',
+      fact: 'Roket (rocket) adalah kendaraan yang membawa astronaut pergi ke luar angkasa.',
+      clue: 'Kendaraan untuk pergi ke luar angkasa?',
+      group: 'kendaraan',
+    },
+  ],
+}

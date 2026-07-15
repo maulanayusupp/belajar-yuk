@@ -49,6 +49,10 @@ const lessonCount = computed(() => lessonService.getLessons(props.subject.id).le
     background: $gradient-math;
     box-shadow: $shadow-glow-math;
   }
+  &--science {
+    background: $gradient-science;
+    box-shadow: $shadow-glow-science;
+  }
 
   &:hover {
     box-shadow: $shadow-xl;

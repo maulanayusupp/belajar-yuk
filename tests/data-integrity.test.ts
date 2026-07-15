@@ -58,4 +58,21 @@ describe('integritas data pelajaran', () => {
       }
     }
   })
+
+  it('pelajaran Sains: setiap fakta lengkap & id unik', () => {
+    for (const l of lessons) {
+      if (l.subject !== 'science') continue
+      // butuh minimal 4 fakta agar kuis punya cukup pilihan (1 benar + 3 distraktor)
+      expect(l.facts.length, l.id).toBeGreaterThanOrEqual(4)
+      for (const f of l.facts) {
+        expect(f.term.trim(), `${l.id}/${f.id}`).not.toBe('')
+        expect(f.name.trim(), `${l.id}/${f.id}`).not.toBe('')
+        expect(f.emoji.trim(), `${l.id}/${f.id}`).not.toBe('')
+        expect(f.fact.trim(), `${l.id}/${f.id}`).not.toBe('')
+        expect(f.clue.trim(), `${l.id}/${f.id}`).not.toBe('')
+      }
+      const ids = l.facts.map((f) => f.id)
+      expect(new Set(ids).size, l.id).toBe(ids.length)
+    }
+  })
 })

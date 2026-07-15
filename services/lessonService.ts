@@ -5,11 +5,14 @@ import type {
   Level,
   MathLesson,
   MathMethod,
+  ScienceActivity,
+  ScienceLesson,
   SubjectId,
 } from '~/types'
 import { allLessons, subjects } from '~/data'
 import { mathMethodMeta, type MathMethodMeta } from '~/data/math/methods'
 import { englishActivityMeta, type EnglishActivityMeta } from '~/data/english/methods'
+import { scienceActivityMeta, type ScienceActivityMeta } from '~/data/science/methods'
 import { levels, type LevelMeta } from '~/data/levels'
 import { generateNumberOptions } from '~/utils/math'
 import { shuffle } from '~/utils/array'
@@ -70,6 +73,12 @@ export const lessonService = {
     return lesson && lesson.subject === 'math' ? lesson : null
   },
 
+  /** Ambil pelajaran Sains dengan tipe yang sudah dipersempit. */
+  getScienceLesson(id: string): ScienceLesson | null {
+    const lesson = this.getLesson(id)
+    return lesson && lesson.subject === 'science' ? lesson : null
+  },
+
   /** Metadata (ikon/label/instruksi) sebuah metode Matematika. */
   getMathMethodMeta(method: MathMethod): MathMethodMeta {
     return mathMethodMeta[method]
@@ -96,6 +105,20 @@ export const lessonService = {
       if (lesson.subject === 'english') used.add(lesson.type)
     }
     return [...used].map((activity) => ({ activity, ...englishActivityMeta[activity] }))
+  },
+
+  /** Metadata (ikon/label) sebuah jenis aktivitas Sains. */
+  getScienceActivityMeta(activity: ScienceActivity): ScienceActivityMeta {
+    return scienceActivityMeta[activity]
+  },
+
+  /** Daftar jenis aktivitas Sains yang dipakai pelajaran. */
+  getUsedScienceActivities(): Array<{ activity: ScienceActivity } & ScienceActivityMeta> {
+    const used = new Set<ScienceActivity>()
+    for (const lesson of allLessons) {
+      if (lesson.subject === 'science') used.add(lesson.type)
+    }
+    return [...used].map((activity) => ({ activity, ...scienceActivityMeta[activity] }))
   },
 
   /** Metadata tingkat (Pemula/Menengah/Mahir). */
@@ -153,6 +176,22 @@ export const lessonService = {
           correct: item.word,
           options: shuffle([item.word, ...distractors]),
         })
+      } else if (lesson.subject === 'science') {
+        const fact = lesson.facts.find((f) => f.id === itemId)
+        if (!fact) continue
+        const distractors = shuffle(lesson.facts.filter((f) => f.id !== fact.id))
+          .slice(0, 3)
+          .map((f) => f.term)
+        out.push({
+          lessonId,
+          itemId,
+          emoji: '',
+          repeat: 0,
+          prompt: fact.clue,
+          speak: fact.term,
+          correct: fact.term,
+          options: shuffle([fact.term, ...distractors]),
+        })
       } else {
         const p = lesson.problems.find((i) => i.id === itemId)
         if (!p) continue
@@ -201,6 +240,10 @@ export const lessonService = {
   getLessonTag(lesson: Lesson): { icon: string; label: string } {
     if (lesson.subject === 'math') {
       const meta = mathMethodMeta[lesson.method]
+      return { icon: meta.icon, label: meta.label }
+    }
+    if (lesson.subject === 'science') {
+      const meta = scienceActivityMeta[lesson.type]
       return { icon: meta.icon, label: meta.label }
     }
     const meta = englishActivityMeta[lesson.type]

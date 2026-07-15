@@ -5,8 +5,8 @@ sebelum menulis kode agar gaya tetap konsisten.
 
 ## Tentang Proyek
 
-**Belajar Yuk!** — platform belajar **Bahasa Inggris** & **Matematika** untuk
-anak usia **6+**. Bilingual (instruksi Bahasa Indonesia, materi Bahasa Inggris),
+**Belajar Yuk!** — platform belajar **Bahasa Inggris**, **Matematika**, & **Sains**
+untuk anak usia **6+**. Bilingual (instruksi Bahasa Indonesia, materi Bahasa Inggris),
 penuh animasi & suara. Tampilan bergaya **premium**.
 
 **Stack:** Nuxt 3 (SSR) · Vue 3 `<script setup>` · TypeScript · SCSS.
@@ -49,7 +49,7 @@ data/ (konten)  →  services/ (logika)  →  composables/ (reaktif)  →  compo
 | `utils/`           | `array`, `math`, `storage`                                                                                                                               | Fungsi murni, tanpa efek samping (kecuali `storage`)    |
 | `types/`           | Semua `interface`/`type`                                                                                                                                 | Sumber tunggal bentuk data                              |
 | `components/`      | UI                                                                                                                                                       | Lihat konvensi di bawah                                 |
-| `pages/[subject]/` | Routing dinamis: `/english`, `/math`, `/:subject/:id`                                                                                                    | Validasi subject; `createError` 404 bila tidak ada      |
+| `pages/[subject]/` | Routing dinamis: `/english`, `/math`, `/science`, `/:subject/:id`                                                                                        | Validasi subject; `createError` 404 bila tidak ada      |
 | `pages/kemajuan`   | Dashboard: sapaan, streak, target harian, lencana, kartu share, rekomendasi, peta jalur                                                                  | `badgeService.all(stats)`, `useShareCard`, `DAILY_GOAL` |
 | `pages/orangtua`   | Area Orang Tua: gerbang (7×8) → suara, profil, reset                                                                                                     | Reset via `resetAll` + `streak.reset`                   |
 | `pages/tes`        | Tes penempatan (kuis singkat → rekomendasi mulai)                                                                                                        | Self-contained; skor → lesson rekomendasi               |
@@ -130,6 +130,11 @@ plus aset opsional pelajaran itu). Detail & contoh: `data/README.md`.
   (export `EnglishLesson`), lalu daftarkan di `data/english/index.ts`.
 - **Pelajaran Matematika** → buat folder baru di `data/math/<nama>/index.ts`
   (export `MathLesson`), lalu daftarkan di `data/math/index.ts`.
+- **Pelajaran Sains** → buat folder baru di `data/science/<nama>/index.ts`
+  (export `ScienceLesson` berisi `facts: ScienceFact[]`), lalu daftarkan di
+  `data/science/index.ts`. Runner: `components/science/ExploreLesson.vue`
+  (Kenali fakta → Kuis). Tiap `ScienceFact` = `{ term, name, emoji, fact, clue, group? }`;
+  `clue` dipakai sebagai pertanyaan kuis, `group` untuk distraktor/pengelompokan.
 - **Metode Matematika baru** (mesin materi dinamis, 3 langkah):
   1. Tambah nilai di `MathMethod` (`types/index.ts`).
   2. Tambah entri metadata (ikon, label, deskripsi, instruksi, `singaporeWay`,

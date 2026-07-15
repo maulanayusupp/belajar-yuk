@@ -53,14 +53,18 @@ const features = [
 
 const trust = ['🎯 Metode Terbukti', '📈 Belajar Bertahap', '🧠 Bangun Fondasi', '👶 Usia 6+']
 
-// Metode belajar (dinamis dari registry) — Matematika + Bahasa Inggris.
+// Metode belajar (dinamis dari registry) — Matematika + Bahasa Inggris + Sains.
 const mathMethods = lessonService.getUsedMathMethods()
 const englishMethods = lessonService.getUsedEnglishActivities()
+const scienceMethods = lessonService.getUsedScienceActivities()
 
 // Statistik dinamis — otomatis ikut bertambah saat materi/metode ditambah.
 const stats = [
   { value: lessonService.getLessons().length, label: 'Pelajaran seru' },
-  { value: mathMethods.length + englishMethods.length, label: 'Metode belajar' },
+  {
+    value: mathMethods.length + englishMethods.length + scienceMethods.length,
+    label: 'Metode belajar',
+  },
   { value: subjects.length, label: 'Mata pelajaran' },
   { value: '6+', label: 'Cocok usia' },
 ]
@@ -317,6 +321,19 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
             {{ m.icon }}
           </span>
           <span class="method-card__tag method-card__tag--english">Bahasa Inggris</span>
+          <h3 class="method-card__title">{{ m.label }}</h3>
+          <p>{{ m.description }}</p>
+        </div>
+        <div
+          v-for="(m, i) in scienceMethods"
+          :key="m.activity"
+          v-reveal="(mathMethods.length + englishMethods.length + i) * 70"
+          class="method-card"
+        >
+          <span class="method-card__icon method-card__icon--science" aria-hidden="true">
+            {{ m.icon }}
+          </span>
+          <span class="method-card__tag method-card__tag--science">Sains</span>
           <h3 class="method-card__title">{{ m.label }}</h3>
           <p>{{ m.description }}</p>
         </div>
@@ -722,6 +739,10 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
     &--english {
       background: rgba($color-english, 0.15);
     }
+
+    &--science {
+      background: rgba($color-science, 0.15);
+    }
   }
 
   &__title {
@@ -741,6 +762,11 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
     &--english {
       color: $color-english-dark;
       background: rgba($color-english, 0.15);
+    }
+
+    &--science {
+      color: $color-science-dark;
+      background: rgba($color-science, 0.15);
     }
   }
 }

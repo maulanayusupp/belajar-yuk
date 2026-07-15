@@ -4,7 +4,7 @@ import { lessonService } from '~/services/lessonService'
 export default defineEventHandler((event) => {
   const base = (useRuntimeConfig(event).public.siteUrl as string).replace(/\/$/, '')
 
-  const paths = ['/', '/english', '/math', '/kemajuan', '/changelog']
+  const paths = ['/', '/english', '/math', '/science', '/kemajuan', '/changelog']
   for (const lesson of lessonService.getLessons()) {
     paths.push(`/${lesson.subject}/${lesson.id}`)
   }

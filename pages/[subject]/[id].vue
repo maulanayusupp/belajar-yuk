@@ -28,6 +28,13 @@ useHead(() => ({ title: `${lesson.value?.title} — Belajar Yuk!` }))
         <span aria-hidden="true">{{ lessonService.getMathMethodMeta(lesson.method).icon }}</span>
         {{ lesson.methodLabel }}
       </p>
+      <p
+        v-else-if="lesson.subject === 'science'"
+        class="lesson-page__method lesson-page__method--science"
+      >
+        <span aria-hidden="true">{{ lessonService.getScienceActivityMeta(lesson.type).icon }}</span>
+        {{ lessonService.getScienceActivityMeta(lesson.type).label }}
+      </p>
       <p v-else class="lesson-page__method lesson-page__method--english">
         <span aria-hidden="true">{{ lessonService.getEnglishActivityMeta(lesson.type).icon }}</span>
         {{ lessonService.getEnglishActivityMeta(lesson.type).label }}
@@ -40,6 +47,9 @@ useHead(() => ({ title: `${lesson.value?.title} — Belajar Yuk!` }))
       <EnglishListeningLesson v-else-if="lesson.type === 'listening'" :lesson="lesson" />
       <EnglishSpellingLesson v-else-if="lesson.type === 'spelling'" :lesson="lesson" />
       <EnglishVocabularyLesson v-else :lesson="lesson" />
+    </template>
+    <template v-else-if="lesson.subject === 'science'">
+      <ScienceExploreLesson :lesson="lesson" />
     </template>
     <template v-else>
       <MathMethodInfo :method="lesson.method" />
@@ -76,6 +86,11 @@ useHead(() => ({ title: `${lesson.value?.title} — Belajar Yuk!` }))
     &--english {
       color: $color-english-dark;
       background: rgba($color-english, 0.15);
+    }
+
+    &--science {
+      color: $color-science-dark;
+      background: rgba($color-science, 0.15);
     }
   }
 }

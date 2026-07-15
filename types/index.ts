@@ -3,7 +3,7 @@
 //  dan data. Satu tempat untuk mendefinisikan bentuk data.
 // =============================================================
 
-export type SubjectId = 'english' | 'math'
+export type SubjectId = 'english' | 'math' | 'science'
 
 export type Level = 'beginner' | 'intermediate' | 'advanced'
 
@@ -15,7 +15,7 @@ export interface Subject {
   /** Judul Bahasa Inggris. */
   titleEn: string
   emoji: string
-  /** Nama warna tema: 'english' | 'math' (dipetakan di SCSS). */
+  /** Nama warna tema: 'english' | 'math' | 'science' (dipetakan di SCSS). */
   theme: SubjectId
   description: string
 }
@@ -99,7 +99,35 @@ export interface MathLesson extends LessonBase {
   problems: MathProblem[]
 }
 
-export type Lesson = EnglishLesson | MathLesson
+/** Jenis aktivitas pelajaran Sains (mudah ditambah). */
+export type ScienceActivity = 'explore' // kenali fakta → kuis
+
+/** Satu fakta/konsep Sains yang dipelajari (mis. Matahari, Mata, Ikan). */
+export interface ScienceFact {
+  id: string
+  /** Istilah Bahasa Inggris (mis. "Sun"). */
+  term: string
+  /** Nama Bahasa Indonesia (mis. "Matahari"). */
+  name: string
+  emoji: string
+  /** Kalimat fakta (Bahasa Indonesia) — ditampilkan & bisa dibacakan. */
+  fact: string
+  /** Pertanyaan kuis (Bahasa Indonesia) untuk fakta ini. */
+  clue: string
+  /**
+   * Kelompok (opsional) untuk distraktor pintar / pengelompokan —
+   * mis. habitat: 'laut' | 'darat' | 'udara'.
+   */
+  group?: string
+}
+
+export interface ScienceLesson extends LessonBase {
+  subject: 'science'
+  type: ScienceActivity
+  facts: ScienceFact[]
+}
+
+export type Lesson = EnglishLesson | MathLesson | ScienceLesson
 
 /** Progres belajar per pelajaran (disimpan di localStorage). */
 export interface LessonProgress {

@@ -1,5 +1,27 @@
 [
   {
+    "date": "2026-07-15",
+    "version": "0.11.0",
+    "tag": "Konten",
+    "title": "Mata Pelajaran Baru: Sains",
+    "changes": [
+      "Tambah mata pelajaran Sains dengan 3 pelajaran: Panca Indra, Hewan & Habitat, dan Tata Surya.",
+      "Format baru \"Kenali & Jawab\": amati fakta bergambar, dengar istilah Inggrisnya, lalu uji lewat kuis.",
+      "Jawaban salah otomatis masuk ke \"Ulang Kesalahan\" agar bisa dikuasai."
+    ]
+  },
+  {
+    "date": "2026-07-06",
+    "version": "0.10.0",
+    "tag": "Fitur",
+    "title": "Cadangan Progres & Teks Besar",
+    "changes": [
+      "Ekspor progres ke file untuk dipindahkan ke perangkat lain — tanpa akun & tanpa internet.",
+      "Impor kembali progres dari file cadangan kapan saja.",
+      "Mode Teks Besar untuk kenyamanan membaca, diatur di Area Orang Tua."
+    ]
+  },
+  {
     "date": "2026-07-06",
     "version": "0.9.1",
     "tag": "Perbaikan",
