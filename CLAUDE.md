@@ -39,26 +39,26 @@ data/ (konten)  →  services/ (logika)  →  composables/ (reaktif)  →  compo
                         ↑ utils/ (helper murni)   ↑ types/ (kontrak data)
 ```
 
-| Folder             | Isi                                                                                                                                     | Aturan                                                  |
-| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
-| `data/`            | Konten pelajaran (**1 materi = 1 folder** + `index.ts` agregat)                                                                         | Data murni, tanpa logika. Lihat `data/README.md`        |
-| `services/`        | `lessonService`, `progressService`, `audioService`, `profileService`, `streakService`, `badgeService`, `musicService`, `mistakeService` | Logika bisnis. Komponen akses data HANYA lewat sini     |
-| `composables/`     | `useAudio`, `useProgress`, `useConfetti`, `useProfile`, `useStreak`, `useShareCard`, `useMusic`, `useMistakes`, `useCertificate`        | Pembungkus reaktif Vue untuk services                   |
-| `server/`          | Route Nitro: `sitemap.xml` (dari daftar pelajaran)                                                                                      | SSR/endpoint; boleh impor `~/services`                  |
-| `e2e/`             | Playwright (`*.spec.ts`) — smoke + cek anti-overflow                                                                                    | `npm run test:e2e`; browser via `playwright install`    |
-| `utils/`           | `array`, `math`, `storage`                                                                                                              | Fungsi murni, tanpa efek samping (kecuali `storage`)    |
-| `types/`           | Semua `interface`/`type`                                                                                                                | Sumber tunggal bentuk data                              |
-| `components/`      | UI                                                                                                                                      | Lihat konvensi di bawah                                 |
-| `pages/[subject]/` | Routing dinamis: `/english`, `/math`, `/:subject/:id`                                                                                   | Validasi subject; `createError` 404 bila tidak ada      |
-| `pages/kemajuan`   | Dashboard: sapaan, streak, target harian, lencana, kartu share, rekomendasi, peta jalur                                                 | `badgeService.all(stats)`, `useShareCard`, `DAILY_GOAL` |
-| `pages/orangtua`   | Area Orang Tua: gerbang (7×8) → suara, profil, reset                                                                                    | Reset via `resetAll` + `streak.reset`                   |
-| `pages/tes`        | Tes penempatan (kuis singkat → rekomendasi mulai)                                                                                       | Self-contained; skor → lesson rekomendasi               |
-| `pages/ulangi`     | Ulang Kesalahan (mistakeService → ReviewQuiz)                                                                                           | Benar = dihapus (dikuasai). Ala Kumon                   |
-| `pages/sertifikat` | Sertifikat per mapel (terbit saat semua lesson tuntas) + cetak/bagikan                                                                  | `Certificate` + `useCertificate` + print CSS            |
-| `error.vue`        | Halaman error/404 global ramah-anak                                                                                                     | Pakai `clearError({ redirect: '/' })`                   |
-| `tests/`           | Unit test Vitest (`*.test.ts`)                                                                                                          | Tes util & service (murni). Composable butuh env Nuxt   |
-| `scripts/`         | `generate-assets.mjs` + SVG sumber (favicon, OG)                                                                                        | Jalankan via `npm run assets`                           |
-| `plugins/`         | `reveal` (scroll-reveal), `analytics.client` (Plausible, opsional), `pwa-dev-cleanup.client`                                            | Client-only; hormati env & mode dev                     |
+| Folder             | Isi                                                                                                                                                      | Aturan                                                  |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| `data/`            | Konten pelajaran (**1 materi = 1 folder** + `index.ts` agregat)                                                                                          | Data murni, tanpa logika. Lihat `data/README.md`        |
+| `services/`        | `lessonService`, `progressService`, `audioService`, `profileService`, `streakService`, `badgeService`, `musicService`, `mistakeService`, `backupService` | Logika bisnis. Komponen akses data HANYA lewat sini     |
+| `composables/`     | `useAudio`, `useProgress`, `useConfetti`, `useProfile`, `useStreak`, `useShareCard`, `useMusic`, `useMistakes`, `useCertificate`, `useTextSize`          | Pembungkus reaktif Vue untuk services                   |
+| `server/`          | Route Nitro: `sitemap.xml` (dari daftar pelajaran)                                                                                                       | SSR/endpoint; boleh impor `~/services`                  |
+| `e2e/`             | Playwright (`*.spec.ts`) — smoke + cek anti-overflow                                                                                                     | `npm run test:e2e`; browser via `playwright install`    |
+| `utils/`           | `array`, `math`, `storage`                                                                                                                               | Fungsi murni, tanpa efek samping (kecuali `storage`)    |
+| `types/`           | Semua `interface`/`type`                                                                                                                                 | Sumber tunggal bentuk data                              |
+| `components/`      | UI                                                                                                                                                       | Lihat konvensi di bawah                                 |
+| `pages/[subject]/` | Routing dinamis: `/english`, `/math`, `/:subject/:id`                                                                                                    | Validasi subject; `createError` 404 bila tidak ada      |
+| `pages/kemajuan`   | Dashboard: sapaan, streak, target harian, lencana, kartu share, rekomendasi, peta jalur                                                                  | `badgeService.all(stats)`, `useShareCard`, `DAILY_GOAL` |
+| `pages/orangtua`   | Area Orang Tua: gerbang (7×8) → suara, profil, reset                                                                                                     | Reset via `resetAll` + `streak.reset`                   |
+| `pages/tes`        | Tes penempatan (kuis singkat → rekomendasi mulai)                                                                                                        | Self-contained; skor → lesson rekomendasi               |
+| `pages/ulangi`     | Ulang Kesalahan (mistakeService → ReviewQuiz)                                                                                                            | Benar = dihapus (dikuasai). Ala Kumon                   |
+| `pages/sertifikat` | Sertifikat per mapel (terbit saat semua lesson tuntas) + cetak/bagikan                                                                                   | `Certificate` + `useCertificate` + print CSS            |
+| `error.vue`        | Halaman error/404 global ramah-anak                                                                                                                      | Pakai `clearError({ redirect: '/' })`                   |
+| `tests/`           | Unit test Vitest (`*.test.ts`)                                                                                                                           | Tes util & service (murni). Composable butuh env Nuxt   |
+| `scripts/`         | `generate-assets.mjs` + SVG sumber (favicon, OG)                                                                                                         | Jalankan via `npm run assets`                           |
+| `plugins/`         | `reveal`, `analytics.client`, `pwa-dev-cleanup.client`, `prefs.client` (teks besar)                                                                      | Client-only; hormati env & mode dev                     |
 
 ## Konvensi Kode
 

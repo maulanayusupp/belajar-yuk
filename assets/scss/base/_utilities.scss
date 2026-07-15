@@ -15,6 +15,11 @@
   text-align: center;
 }
 
+// Mode "Teks Besar" — memperbesar font dasar (semua ukuran rem ikut).
+html.text-lg {
+  font-size: 20px;
+}
+
 .sr-only {
   @include visually-hidden;
 }

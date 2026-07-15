@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { SPEECH_RATE_OPTIONS } from '~/services/audioService'
+import { backupService } from '~/services/backupService'
 
 // Area Orang Tua: dilindungi "gerbang" sederhana (soal untuk dewasa)
 // agar anak tak sengaja masuk. Berisi pengaturan suara, profil, & reset.
@@ -20,6 +21,7 @@ function tryUnlock() {
 
 const { muted, toggleMute, speechRate, setSpeechRate } = useAudio()
 const { enabled: musicOn, toggle: toggleMusic } = useMusic()
+const { big: bigText, toggle: toggleBigText } = useTextSize()
 const { profile } = useProfile()
 const { resetAll } = useProgress()
 const { reset: resetStreak } = useStreak()
@@ -31,6 +33,22 @@ function doReset() {
   resetAll()
   resetStreak()
   confirmReset.value = false
+}
+
+// --- Cadangan data (ekspor/impor) ---
+const importInput = ref<HTMLInputElement | null>(null)
+const importInfo = ref('')
+
+async function onImportFile(e: Event) {
+  const file = (e.target as HTMLInputElement).files?.[0]
+  if (!file) return
+  const result = backupService.import(await file.text())
+  if (result.ok) {
+    importInfo.value = `Berhasil memulihkan ${result.count} data. Memuat ulang…`
+    setTimeout(() => window.location.reload(), 900)
+  } else {
+    importInfo.value = `Gagal: ${result.error}`
+  }
 }
 
 useHead({ title: 'Area Orang Tua' })
@@ -96,6 +114,34 @@ useHead({ title: 'Area Orang Tua' })
           <span v-else>Belum ada profil</span>
           <BaseButton variant="ghost" @click="editing = true">Ubah</BaseButton>
         </div>
+      </section>
+
+      <section class="panel">
+        <h2 class="panel__title">💾 Data &amp; Tampilan</h2>
+        <div class="panel__row">
+          <span>Teks besar (ramah mata)</span>
+          <BaseButton variant="ghost" @click="toggleBigText">
+            {{ bigText ? '🔎 Normal' : '🔎 Besarkan' }}
+          </BaseButton>
+        </div>
+        <div class="panel__row">
+          <span>Cadangan progres</span>
+          <div class="panel__btns">
+            <BaseButton variant="ghost" @click="backupService.download()">⬇️ Ekspor</BaseButton>
+            <BaseButton variant="ghost" @click="importInput?.click()">⬆️ Impor</BaseButton>
+          </div>
+        </div>
+        <p class="panel__desc">
+          Ekspor untuk menyimpan/memindahkan progres ke perangkat lain (tanpa internet/akun).
+        </p>
+        <p v-if="importInfo" class="panel__info">{{ importInfo }}</p>
+        <input
+          ref="importInput"
+          type="file"
+          accept="application/json,.json"
+          class="sr-only"
+          @change="onImportFile"
+        />
       </section>
 
       <section class="panel panel--danger">
@@ -199,6 +245,17 @@ useHead({ title: 'Area Orang Tua' })
   &__row {
     @include flex(row, space-between, center, spacing('md'));
     flex-wrap: wrap;
+  }
+
+  &__btns {
+    @include flex(row, flex-end, center, spacing('sm'));
+    flex-wrap: wrap;
+  }
+
+  &__info {
+    margin: 0;
+    font-weight: $font-weight-bold;
+    color: $color-primary-dark;
   }
 }
 
