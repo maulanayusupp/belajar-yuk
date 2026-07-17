@@ -31,6 +31,13 @@ export const drillModes: DrillModeMeta[] = [
 ]
 
 const KEY_PREFIX = 'belajar-yuk:drillBest:'
+const PLAYED_KEY = 'belajar-yuk:drillPlayed'
+
+// Local date key (YYYY-M-D), matching streakService's convention.
+function dayKey(): string {
+  const d = new Date()
+  return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`
+}
 
 function makeId(a: number, b: number, op: string): string {
   return `${a}${op}${b}`
@@ -77,6 +84,16 @@ export const drillService = {
 
   getBest(mode: DrillMode): DrillBest | null {
     return storage.get<DrillBest | null>(KEY_PREFIX + mode, null)
+  },
+
+  /** Record that a drill was played today (for the daily task list). */
+  markPlayed(): void {
+    storage.set(PLAYED_KEY, dayKey())
+  },
+
+  /** Whether any drill has been played today. */
+  playedToday(): boolean {
+    return storage.get<string>(PLAYED_KEY, '') === dayKey()
   },
 
   /**

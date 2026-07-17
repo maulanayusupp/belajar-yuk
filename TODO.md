@@ -15,8 +15,10 @@ Legend: **P0** = highest impact, do next · **P1** = strong · **P2** = nice-to-
 The biggest pedagogical differentiator from school, and the original product intent
 ("focus on how kids learn"). Applies to every subject. No backend (localStorage only).
 
-- [ ] **Daily assignment** ("Tugas Hari Ini") — a small fixed daily set (~10 min) across
-      subjects, with a visible streak. Consistency over long sessions.
+- [x] **Daily assignment** ("Tugas Hari Ini") — daily checklist on the Progress page
+      (learn a lesson · speed drill · clear mistakes), derived from existing signals +
+      `drillService.playedToday`. `components/DailyTasks.vue`. Next: streak reward when
+      all tasks done; surface it on the home page too.
 - [ ] **Mastery gate = accuracy AND speed** — advance a lesson only when the child hits
       an accuracy bar _and_ beats a per-lesson target time (Standard Completion Time
       analog). Otherwise auto-serve a repeat. We already track stars → extend to mastery.

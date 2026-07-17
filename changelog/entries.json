@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-07-17",
+    "version": "0.14.0",
+    "tag": "Fitur",
+    "title": "Tugas Hari Ini (rutinitas belajar harian)",
+    "changes": [
+      "Daftar tugas harian di halaman Kemajuan: belajar, latihan kilat, & bereskan kesalahan.",
+      "Pantau kemajuan harian dengan tanda centang — bangun kebiasaan belajar tiap hari (ala Kumon).",
+      "Selesaikan semua tugas untuk menjaga rentetan harimu tetap menyala."
+    ]
+  },
+  {
+    "date": "2026-07-17",
     "version": "0.13.0",
     "tag": "Fitur",
     "title": "Latihan Kilat (latih kecepatan berhitung)",

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { lessonService } from '~/services/lessonService'
 import { badgeService } from '~/services/badgeService'
+import { drillService } from '~/services/drillService'
 import { DAILY_GOAL } from '~/services/progressService'
 
 // Progress page: greeting, streak, daily goal, badges, achievement
@@ -41,6 +42,44 @@ const doneToday = computed(() => {
   return Object.values(progress.value).filter((e) => e.updatedAt >= start.getTime()).length
 })
 
+// Daily assignment ("Tugas Hari Ini") — Kumon-style short daily practice.
+// Derived from existing signals; drillPlayed is read on the client only.
+const drillPlayed = ref(false)
+onMounted(() => {
+  drillPlayed.value = drillService.playedToday()
+})
+const dailyTasks = computed(() => [
+  {
+    id: 'belajar',
+    icon: '📚',
+    label: 'Belajar 1 pelajaran',
+    desc: nextLesson.value
+      ? `${nextLesson.value.emoji} ${nextLesson.value.title}`
+      : 'Semua selesai!',
+    done: doneToday.value > 0,
+    to: nextLesson.value ? `/${nextLesson.value.subject}/${nextLesson.value.id}` : '/',
+    cta: 'Mulai',
+  },
+  {
+    id: 'latihan',
+    icon: '⚡',
+    label: 'Latihan Kilat',
+    desc: 'Latih kecepatan berhitung 60 detik',
+    done: drillPlayed.value,
+    to: '/latihan',
+    cta: 'Latihan',
+  },
+  {
+    id: 'ulangi',
+    icon: '🔁',
+    label: 'Bereskan kesalahan',
+    desc: mistakeCount.value > 0 ? `${mistakeCount.value} perlu diulang` : 'Tidak ada — bagus!',
+    done: mistakeCount.value === 0,
+    to: '/ulangi',
+    cta: 'Ulangi',
+  },
+])
+
 useHead({ title: 'Kemajuan Belajar' })
 </script>
 
@@ -61,6 +100,9 @@ useHead({ title: 'Kemajuan Belajar' })
         <span class="hello__streak-label">hari beruntun</span>
       </div>
     </section>
+
+    <!-- Daily assignment checklist (Kumon-style) -->
+    <DailyTasks :tasks="dailyTasks" />
 
     <!-- Daily goal -->
     <DailyGoal :done="doneToday" :goal="goal" />

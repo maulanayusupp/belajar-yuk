@@ -73,6 +73,7 @@ function finish() {
   stopTimer()
   phase.value = 'done'
   play('win')
+  drillService.markPlayed()
   const res = drillService.saveScore(props.mode, score.value, accuracy.value, Date.now())
   isBest.value = res.isBest
   if (res.isBest && score.value > 0) celebrate()
