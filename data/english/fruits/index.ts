@@ -1,7 +1,7 @@
 import type { EnglishLesson } from '~/types'
 
-// Pelajaran kosakata: Nama Buah.
-// Aset khusus pelajaran ini boleh diletakkan di folder yang sama.
+// Vocabulary lesson: Fruit Names.
+// Assets specific to this lesson may be placed in the same folder.
 export const fruits: EnglishLesson = {
   id: 'en-fruits',
   subject: 'english',

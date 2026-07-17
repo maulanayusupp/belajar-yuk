@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// Tombol nyala/matikan suara. Terhubung ke status global useAudio.
+// Sound on/off toggle button. Wired to the global useAudio state.
 const { muted, toggleMute } = useAudio()
 </script>
 

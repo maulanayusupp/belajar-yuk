@@ -1,7 +1,7 @@
 import type { ScienceLesson } from '~/types'
 
-// Pelajaran Sains: Hewan & Habitat — mengenal di mana hewan tinggal.
-export const hewanHabitat: ScienceLesson = {
+// Science lesson: Animals & Habitats — getting to know where animals live.
+export const animalsHabitat: ScienceLesson = {
   id: 'sci-hewan-habitat',
   subject: 'science',
   type: 'explore',

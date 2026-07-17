@@ -1,7 +1,7 @@
 import type { EnglishLesson } from '~/types'
 
-// Angka 11–20 (Bahasa Inggris) — kelanjutan Angka 1–10.
-// `emoji` diisi numeral agar tampil besar sebagai gambar.
+// Numbers 11–20 (English) — a continuation of Numbers 1–10.
+// `emoji` is filled with the numeral so it shows up large as the image.
 export const numbers1120: EnglishLesson = {
   id: 'en-numbers-11-20',
   subject: 'english',

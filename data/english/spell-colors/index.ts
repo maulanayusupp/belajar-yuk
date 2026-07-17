@@ -1,6 +1,6 @@
 import type { EnglishLesson } from '~/types'
 
-// Eja nama warna — kata sedikit lebih panjang.
+// Spell color names — slightly longer words.
 export const spellColors: EnglishLesson = {
   id: 'en-spell-colors',
   subject: 'english',

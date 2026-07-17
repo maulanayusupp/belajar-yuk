@@ -3,14 +3,14 @@ import type { BahasaLesson, ReadingItem } from '~/types'
 import { shuffle, clamp } from '~/utils/array'
 import { mistakeService } from '~/services/mistakeService'
 
-// Mesin Membaca (huruf / suku-kata / kalimat):
-//   Kenali (lihat & dengar) → Kuis (dengar → pilih bacaan) → Perayaan.
+// Reading engine (letters / syllables / sentences):
+//   Recognize (see & hear) → Quiz (hear → pick the reading) → Celebration.
 const props = defineProps<{ lesson: BahasaLesson }>()
 
 const { saveResult } = useProgress()
 const { speak, play } = useAudio()
 
-// Ucapkan teks Bahasa Indonesia (bukan Inggris).
+// Speak the Indonesian text (not English).
 function say(item: ReadingItem) {
   play('pop')
   speak(item.text, 'id-ID')
@@ -19,7 +19,7 @@ function say(item: ReadingItem) {
 type Phase = 'learn' | 'quiz' | 'done'
 const phase = ref<Phase>('learn')
 
-// ---------- Fase Kenali ----------
+// ---------- Recognize Phase ----------
 const cardIndex = ref(0)
 const currentCard = computed(() => props.lesson.items[cardIndex.value])
 const isLastCard = computed(() => cardIndex.value === props.lesson.items.length - 1)
@@ -38,7 +38,7 @@ function prevCard() {
   if (cardIndex.value > 0) cardIndex.value--
 }
 
-// ---------- Fase Kuis (dengar → pilih bacaan) ----------
+// ---------- Quiz Phase (hear → pick the reading) ----------
 interface Question {
   item: ReadingItem
   options: ReadingItem[]
@@ -87,7 +87,7 @@ function optionState(option: ReadingItem): 'default' | 'correct' | 'wrong' {
   return 'default'
 }
 
-// ---------- Selesai ----------
+// ---------- Done ----------
 const stars = ref(0)
 const scoreText = ref('')
 
@@ -124,7 +124,7 @@ function goHome() {
 
 <template>
   <div class="baca">
-    <!-- ---------- Fase Kenali ---------- -->
+    <!-- ---------- Recognize Phase ---------- -->
     <template v-if="phase === 'learn'">
       <BaseMascot
         message="Ketuk kartunya untuk mendengar cara membacanya."
@@ -151,7 +151,7 @@ function goHome() {
       </div>
     </template>
 
-    <!-- ---------- Fase Kuis ---------- -->
+    <!-- ---------- Quiz Phase ---------- -->
     <template v-else-if="phase === 'quiz'">
       <BaseMascot
         message="Dengarkan, lalu pilih bacaan yang tepat."
@@ -183,7 +183,7 @@ function goHome() {
       </BaseButton>
     </template>
 
-    <!-- ---------- Selesai ---------- -->
+    <!-- ---------- Done ---------- -->
     <CelebrationOverlay
       v-else
       :stars="stars"

@@ -1,10 +1,10 @@
-// Cadangan data (tanpa server): ekspor semua data localStorage aplikasi
-// ke file JSON, lalu impor di perangkat lain. "Sinkron" manual & privat.
+// Data backup (no server): export all of the app's localStorage data
+// to a JSON file, then import it on another device. A manual, private "sync".
 const PREFIX = 'belajar-yuk:'
 const isBrowser = typeof window !== 'undefined'
 
 export const backupService = {
-  /** Kumpulkan semua data aplikasi menjadi string JSON. */
+  /** Collect all app data into a JSON string. */
   export(): string {
     const data: Record<string, string> = {}
     if (isBrowser) {
@@ -18,7 +18,7 @@ export const backupService = {
     return JSON.stringify({ app: 'belajar-yuk', version: 1, data }, null, 2)
   },
 
-  /** Unduh cadangan sebagai file .json. */
+  /** Download the backup as a .json file. */
   download(): void {
     if (!isBrowser) return
     const blob = new Blob([this.export()], { type: 'application/json' })
@@ -30,7 +30,7 @@ export const backupService = {
     URL.revokeObjectURL(url)
   },
 
-  /** Pulihkan data dari teks JSON hasil ekspor. */
+  /** Restore data from exported JSON text. */
   import(text: string): { ok: boolean; count: number; error?: string } {
     if (!isBrowser) return { ok: false, count: 0, error: 'Tidak di browser' }
     try {

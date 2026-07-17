@@ -1,6 +1,6 @@
 import type { EnglishLesson } from '~/types'
 
-// Kosakata: Lawan Kata / kata sifat (Mahir).
+// Vocabulary: Opposites / adjectives (Advanced).
 export const opposites: EnglishLesson = {
   id: 'en-opposites',
   subject: 'english',

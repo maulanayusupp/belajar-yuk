@@ -1,7 +1,7 @@
 <script setup lang="ts">
-// SEO global: Open Graph & Twitter Card memakai URL absolut (dari
-// runtimeConfig.public.siteUrl) — WAJIB absolut agar preview/thumbnail
-// muncul saat link dibagikan di WhatsApp, Twitter, Facebook, dll.
+// Global SEO: Open Graph & Twitter Card use absolute URLs (from
+// runtimeConfig.public.siteUrl) — they MUST be absolute so the preview/thumbnail
+// shows up when a link is shared on WhatsApp, Twitter, Facebook, etc.
 const site = useRuntimeConfig().public
 const route = useRoute()
 
@@ -33,14 +33,14 @@ useSeoMeta({
   twitterImage: ogImage,
 })
 
-// URL kanonik & og:url mengikuti halaman aktif.
+// Canonical URL & og:url follow the active page.
 const canonicalUrl = computed(() => `${site.siteUrl}${route.path}`)
 useHead(() => ({
   link: [{ rel: 'canonical', href: canonicalUrl.value }],
   meta: [{ property: 'og:url', content: canonicalUrl.value }],
 }))
 
-// Data terstruktur (JSON-LD) untuk hasil pencarian yang lebih kaya.
+// Structured data (JSON-LD) for richer search results.
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'EducationalOrganization',

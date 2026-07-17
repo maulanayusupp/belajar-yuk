@@ -1,7 +1,7 @@
 import type { EnglishLesson } from '~/types'
 
-// Sight Words — kata umum yang sering muncul (Dolch pre-primer),
-// fondasi membaca lancar di kurikulum negara maju.
+// Sight Words — common, frequently occurring words (Dolch pre-primer),
+// a foundation for reading fluency in developed-country curricula.
 export const sightWords: EnglishLesson = {
   id: 'en-sight-words',
   subject: 'english',

@@ -3,7 +3,7 @@ import type { EnglishLesson } from '~/types'
 import { shuffle, range, clamp } from '~/utils/array'
 import { mistakeService } from '~/services/mistakeService'
 
-// Eja: susun huruf acak menjadi kata yang benar (produksi, bukan pilihan).
+// Spelling: arrange scrambled letters into the correct word (production, not choice).
 const props = defineProps<{ lesson: EnglishLesson }>()
 
 const { saveResult } = useProgress()
@@ -26,7 +26,7 @@ interface Tile {
   used: boolean
 }
 const tiles = ref<Tile[]>([])
-const built = ref<number[]>([]) // urutan id tile yang dipilih
+const built = ref<number[]>([]) // order of selected tile ids
 const status = ref<'typing' | 'correct' | 'wrong'>('typing')
 
 const builtChars = computed(() =>
@@ -108,7 +108,7 @@ function goHome() {
         <span class="spell__emoji" aria-hidden="true">{{ current.emoji }}</span>
         <span class="spell__hint">{{ current.translation }}</span>
 
-        <!-- Kotak huruf tersusun -->
+        <!-- Assembled letter slots -->
         <div class="spell__slots" :class="`spell__slots--${status}`">
           <span v-for="i in range(word.length)" :key="i" class="spell__slot">
             {{ builtChars[i] ?? '' }}
@@ -116,7 +116,7 @@ function goHome() {
         </div>
       </div>
 
-      <!-- Huruf acak -->
+      <!-- Scrambled letters -->
       <div class="spell__tiles">
         <button
           v-for="tile in tiles"

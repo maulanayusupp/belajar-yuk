@@ -1,22 +1,22 @@
 import type { BahasaLesson } from '~/types'
-import { hurufVokal } from './huruf-vokal'
-import { sukuKataMa } from './suku-kata-ma'
-import { sukuKataBa } from './suku-kata-ba'
-import { merangkaiKata } from './merangkai-kata'
-import { kalimatSederhana } from './kalimat-sederhana'
+import { vowels } from './huruf-vokal'
+import { syllablesMa } from './suku-kata-ma'
+import { syllablesBa } from './suku-kata-ba'
+import { buildWords } from './merangkai-kata'
+import { simpleSentences } from './kalimat-sederhana'
 
-// Daftar & URUTAN pelajaran Membaca (Calistung): huruf → suku kata → kata → kalimat.
+// List and ORDER of Reading (Calistung) lessons: letters -> syllables -> words -> sentences.
 //
-// ➕ Menambah pelajaran baru:
-//   1. Buat FOLDER baru berisi `index.ts` yang meng-export BahasaLesson.
-//   2. Import di sini, lalu masukkan ke array (posisi = urutan tampil).
+// To add a new lesson:
+//   1. Create a new FOLDER with an `index.ts` that exports a BahasaLesson.
+//   2. Import it here, then add it to the array (position = display order).
 export const bahasaLessons: BahasaLesson[] = [
-  // Pemula: huruf & suku kata
-  hurufVokal,
-  sukuKataMa,
-  sukuKataBa,
-  // Menengah: merangkai kata
-  merangkaiKata,
-  // Mahir: membaca kalimat
-  kalimatSederhana,
+  // Beginner: letters & syllables
+  vowels,
+  syllablesMa,
+  syllablesBa,
+  // Intermediate: building words
+  buildWords,
+  // Advanced: reading sentences
+  simpleSentences,
 ]

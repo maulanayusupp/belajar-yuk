@@ -1,6 +1,6 @@
 import type { EnglishLesson } from '~/types'
 
-// Menyimak: dengar nama hewan → pilih gambarnya (tanpa teks).
+// Listening: hear the animal's name → pick its picture (no text).
 export const listenAnimals: EnglishLesson = {
   id: 'en-listen-animals',
   subject: 'english',

@@ -1,7 +1,7 @@
 import type { Profile } from '~/services/profileService'
 import { profileService } from '~/services/profileService'
 
-// Profil anak reaktif & global (nama + avatar).
+// Reactive & global child profile (name + avatar).
 export function useProfile() {
   const profile = useState<Profile | null>('profile', () => null)
 

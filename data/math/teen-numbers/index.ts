@@ -1,8 +1,8 @@
 import type { MathLesson } from '~/types'
 
-// Bilangan belasan (11–20) = sepuluh + satuan. Ditampilkan pada DUA
-// "Sepuluh Kotak" (satu penuh + sisanya) untuk membangun nilai tempat.
-// Common Core K.NBT.A.1. operandB tidak dipakai; jawaban = operandA.
+// Teen numbers (11–20) = ten + ones. Shown on TWO
+// "Ten Frames" (one full + the rest) to build place value.
+// Common Core K.NBT.A.1. operandB is unused; answer = operandA.
 export const teenNumbers: MathLesson = {
   id: 'mt-teen-numbers',
   subject: 'math',

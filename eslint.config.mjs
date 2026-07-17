@@ -1,10 +1,10 @@
-// Konfigurasi ESLint (flat config) berbasis aturan resmi Nuxt.
-// Formatting diserahkan ke Prettier — ESLint fokus ke kualitas kode.
+// ESLint configuration (flat config) based on the official Nuxt rules.
+// Formatting is left to Prettier — ESLint focuses on code quality.
 import withNuxt from './.nuxt/eslint.config.mjs'
 
-// Polyfill: `Object.groupBy` baru ada di Node 21+. Sebagian util config
-// ESLint memakainya, jadi kita sediakan agar tetap jalan di Node 20.
-// (Dijalankan saat modul dievaluasi, sebelum ESLint memproses config.)
+// Polyfill: `Object.groupBy` only exists in Node 21+. Some ESLint config
+// utils use it, so we provide it to keep things working on Node 20.
+// (Runs when the module is evaluated, before ESLint processes the config.)
 if (typeof Object.groupBy !== 'function') {
   Object.groupBy = (items, callback) => {
     const result = {}
@@ -19,11 +19,11 @@ if (typeof Object.groupBy !== 'function') {
 
 export default withNuxt({
   rules: {
-    // Izinkan komponen 1 kata bila memang disengaja (mis. halaman).
+    // Allow single-word components when intentional (e.g. pages).
     'vue/multi-word-component-names': 'off',
-    // Props opsional TS wajar bernilai undefined — tak perlu default eksplisit.
+    // Optional TS props are reasonably undefined — no explicit default needed.
     'vue/require-default-prop': 'off',
-    // Format self-closing diserahkan ke Prettier (hindari konflik void element).
+    // Self-closing formatting is left to Prettier (avoids void element conflicts).
     'vue/html-self-closing': 'off',
   },
 })

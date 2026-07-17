@@ -2,8 +2,8 @@ import { storage } from '~/utils/storage'
 
 const KEY = 'belajar-yuk:bigText'
 
-// Mode "Teks Besar" (aksesibilitas): memperbesar font dasar → seluruh
-// ukuran (berbasis rem) ikut membesar. Disimpan di localStorage.
+// "Large Text" mode (accessibility): enlarges the base font → all
+// (rem-based) sizes grow along with it. Stored in localStorage.
 export function useTextSize() {
   const big = useState<boolean>('big-text', () => false)
 

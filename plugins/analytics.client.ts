@@ -1,6 +1,6 @@
-// Analitik privasi (Plausible) — tanpa cookie, ringan.
-// Hanya aktif bila `NUXT_PUBLIC_PLAUSIBLE_DOMAIN` di-set (mis. domain produksi).
-// Nonaktif otomatis saat dev atau bila domain kosong.
+// Privacy analytics (Plausible) — cookie-free, lightweight.
+// Only active when `NUXT_PUBLIC_PLAUSIBLE_DOMAIN` is set (e.g. the production domain).
+// Automatically disabled during dev or when the domain is empty.
 export default defineNuxtPlugin(() => {
   if (import.meta.dev) return
   const domain = useRuntimeConfig().public.plausibleDomain as string

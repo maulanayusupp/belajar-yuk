@@ -1,7 +1,7 @@
 import type { EnglishLesson } from '~/types'
 
-// Pelajaran Phonics: mengenal bunyi huruf lewat kata contoh.
-// `word` = huruf, `translation` = kata contoh, `example` = kalimat pola.
+// Phonics lesson: learning letter sounds through example words.
+// `word` = letter, `translation` = example word, `example` = pattern sentence.
 export const phonics: EnglishLesson = {
   id: 'en-phonics',
   subject: 'english',

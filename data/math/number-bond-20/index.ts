@@ -1,6 +1,6 @@
 import type { MathLesson } from '~/types'
 
-// Ikatan Bilangan sampai 20 (lanjutan number-bond-10).
+// Number Bonds up to 20 (continuation of number-bond-10).
 export const numberBond20: MathLesson = {
   id: 'mt-number-bond-20',
   subject: 'math',

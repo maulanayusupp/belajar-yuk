@@ -1,8 +1,8 @@
 import type { MathLesson } from '~/types'
 
-// Metode "Number Bond" (Ikatan Bilangan): memvisualkan bahwa sebuah
-// angka "utuh" terbentuk dari dua "bagian". Fondasi penjumlahan.
-// Aset khusus pelajaran ini boleh diletakkan di folder yang sama.
+// "Number Bond" method: visualizing that a "whole" number is
+// made up of two "parts". The foundation of addition.
+// Assets specific to this lesson may be placed in the same folder.
 export const numberBond10: MathLesson = {
   id: 'mt-number-bond-10',
   subject: 'math',

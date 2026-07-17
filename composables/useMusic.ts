@@ -1,14 +1,14 @@
 import { musicService } from '~/services/musicService'
 
-// Musik latar reaktif (mati secara default). Bila diaktifkan namun butuh
-// interaksi (kebijakan autoplay), musik mulai pada sentuhan pertama.
+// Reactive background music (off by default). If enabled but interaction
+// is required (autoplay policy), the music starts on the first touch.
 export function useMusic() {
   const enabled = useState<boolean>('music-enabled', () => false)
 
   onMounted(() => {
     enabled.value = musicService.isEnabled()
     if (enabled.value) {
-      // Autoplay sering diblokir sampai ada interaksi → mulai saat sentuhan pertama.
+      // Autoplay is often blocked until an interaction → start on the first touch.
       const go = () => {
         musicService.start()
         window.removeEventListener('pointerdown', go)
@@ -19,7 +19,7 @@ export function useMusic() {
 
   function toggle() {
     enabled.value = !enabled.value
-    musicService.setEnabled(enabled.value) // dipicu klik = boleh langsung mulai
+    musicService.setEnabled(enabled.value) // triggered by a click = OK to start immediately
   }
 
   return { enabled, toggle }

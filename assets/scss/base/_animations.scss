@@ -1,8 +1,8 @@
 @use '../abstracts' as *;
 
 // =============================================================
-//  Pustaka animasi reusable. Pakai lewat kelas util (.anim-*)
-//  atau panggil nama keyframes-nya dari komponen.
+//  Reusable animation library. Use via utility classes (.anim-*)
+//  or call the keyframes by name from a component.
 // =============================================================
 
 @keyframes float {
@@ -194,7 +194,7 @@
   }
 }
 
-// -------- Kelas util animasi --------------------------------
+// -------- Animation utility classes -------------------------
 .anim-rise {
   animation: rise-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
@@ -205,7 +205,7 @@
   animation: pulse-ring 2s ease-out infinite;
 }
 
-// Scroll-reveal (dipakai directive v-reveal)
+// Scroll-reveal (used by the v-reveal directive)
 .reveal {
   opacity: 0;
   transform: translateY(32px);
@@ -235,7 +235,7 @@
   animation: fade-up 0.5s ease both;
 }
 
-// Transisi halaman (dipakai oleh Nuxt pageTransition "page")
+// Page transition (used by Nuxt pageTransition "page")
 .page-enter-active,
 .page-leave-active {
   transition:

@@ -3,7 +3,7 @@ import type { EnglishLesson, VocabularyItem } from '~/types'
 import { shuffle, clamp } from '~/utils/array'
 import { mistakeService } from '~/services/mistakeService'
 
-// Menyimak: dengar kata (tanpa teks) → pilih gambar yang tepat.
+// Listening: hear the word (no text) → pick the correct picture.
 const props = defineProps<{ lesson: EnglishLesson }>()
 
 const { saveResult } = useProgress()
@@ -36,7 +36,7 @@ function hear() {
   pronounce(current.value.item.word, current.value.item.audioUrl)
 }
 
-// Otomatis ucapkan kata tiap soal muncul.
+// Automatically speak the word each time a question appears.
 onMounted(() => pronounce(current.value.item.word, current.value.item.audioUrl))
 watch(index, () => pronounce(current.value.item.word, current.value.item.audioUrl))
 
@@ -99,13 +99,13 @@ function goHome() {
       />
       <BaseProgressBar :current="index + 1" :total="questions.length" accent="english" />
 
-      <!-- Tombol dengar besar -->
+      <!-- Large listen button -->
       <button class="listen__play anim-bounce-in" type="button" @click="hear">
         <span class="listen__play-icon" aria-hidden="true">🔊</span>
         <span class="listen__play-label">Ketuk untuk dengar lagi</span>
       </button>
 
-      <!-- Pilihan gambar -->
+      <!-- Picture choices -->
       <div class="listen__options">
         <button
           v-for="option in current.options"

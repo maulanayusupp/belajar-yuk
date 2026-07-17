@@ -1,6 +1,6 @@
 import type { EnglishLesson } from '~/types'
 
-// Pelajaran kosakata: Anggota Tubuh.
+// Vocabulary lesson: Body Parts.
 export const body: EnglishLesson = {
   id: 'en-body',
   subject: 'english',

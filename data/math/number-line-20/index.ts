@@ -1,6 +1,6 @@
 import type { MathLesson } from '~/types'
 
-// Garis Bilangan 0–20: kenali angka pada penanda (angka lebih besar).
+// Number Line 0–20: recognize the number at the marker (larger numbers).
 export const numberLine20: MathLesson = {
   id: 'mt-number-line-20',
   subject: 'math',

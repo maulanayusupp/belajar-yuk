@@ -3,15 +3,15 @@ import { lessonService } from '~/services/lessonService'
 import { profileService } from '~/services/profileService'
 import { storage } from '~/utils/storage'
 
-// Halaman utama (landing premium).
+// Home page (premium landing).
 const subjects = lessonService.getSubjects()
 
-// Profil, progres, & rekomendasi (klien).
+// Profile, progress, & recommendation (client-side).
 const { hasProfile, greetingName, profile } = useProfile()
 const { isCompleted } = useProgress()
 const nextLesson = computed(() => lessonService.getNextLesson(isCompleted))
 
-// Onboarding profil: tampil sekali untuk pengunjung baru.
+// Profile onboarding: shown once for new visitors.
 const ONBOARD_KEY = 'belajar-yuk:onboarded'
 const mounted = ref(false)
 const showSetup = ref(false)
@@ -53,13 +53,13 @@ const features = [
 
 const trust = ['🎯 Metode Terbukti', '📈 Belajar Bertahap', '🧠 Bangun Fondasi', '👶 Usia 6+']
 
-// Metode belajar (dinamis dari registry) — Matematika + Bahasa Inggris + Sains.
+// Learning methods (dynamic from the registry) — Math + English + Science.
 const mathMethods = lessonService.getUsedMathMethods()
 const englishMethods = lessonService.getUsedEnglishActivities()
 const scienceMethods = lessonService.getUsedScienceActivities()
 const bahasaMethods = lessonService.getUsedBahasaActivities()
 
-// Statistik dinamis — otomatis ikut bertambah saat materi/metode ditambah.
+// Dynamic stats — automatically grow as lessons/methods are added.
 const stats = [
   { value: lessonService.getLessons().length, label: 'Pelajaran seru' },
   {
@@ -71,10 +71,10 @@ const stats = [
   { value: '6+', label: 'Cocok usia' },
 ]
 
-// Emoji untuk pita berjalan (marquee) — digandakan agar mulus.
+// Emoji for the running ribbon (marquee) — duplicated for a seamless loop.
 const marquee = ['🐶', '🍎', '🔢', '🌈', '✋', '⭐', '🐱', '🍌', '🔤', '🧱', '🦁', '🍓', '🔟', '🎈']
 
-// Cara kerja (3 langkah).
+// How it works (3 steps).
 const steps = [
   {
     icon: '👆',
@@ -93,7 +93,7 @@ const steps = [
   },
 ]
 
-// Keterampilan yang dipelajari (selaras kerangka literasi & numerasi).
+// Skills learned (aligned with literacy & numeracy frameworks).
 const skills = [
   {
     icon: '🔤',
@@ -138,7 +138,7 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
 
 <template>
   <div class="home">
-    <!-- Sapaan kembali untuk anak yang sudah punya profil -->
+    <!-- Welcome-back for a child who already has a profile -->
     <NuxtLink
       v-if="mounted && hasProfile && nextLesson"
       :to="`/${nextLesson.subject}/${nextLesson.id}`"
@@ -188,7 +188,7 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
         </ul>
       </div>
 
-      <!-- Visual dekoratif mengambang -->
+      <!-- Floating decorative visual -->
       <div class="hero__visual" aria-hidden="true">
         <div class="hero__glow" />
         <div class="hero__ring" />
@@ -216,7 +216,7 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
       </div>
     </section>
 
-    <!-- ============ PITA EMOJI ============ -->
+    <!-- ============ EMOJI RIBBON ============ -->
     <div class="marquee" aria-hidden="true">
       <div class="marquee__track">
         <span v-for="(e, i) in [...marquee, ...marquee]" :key="i" class="marquee__item">{{
@@ -225,7 +225,7 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
       </div>
     </div>
 
-    <!-- ============ FITUR ============ -->
+    <!-- ============ FEATURES ============ -->
     <section class="section">
       <HomeSectionHeader
         v-reveal
@@ -246,7 +246,7 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
       </div>
     </section>
 
-    <!-- ============ CARA KERJA ============ -->
+    <!-- ============ HOW IT WORKS ============ -->
     <section class="section">
       <HomeSectionHeader v-reveal eyebrow="Cara Kerja" title="Belajar dalam 3 langkah mudah" />
       <div class="steps">
@@ -259,7 +259,7 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
       </div>
     </section>
 
-    <!-- ============ PILIH PELAJARAN ============ -->
+    <!-- ============ CHOOSE A SUBJECT ============ -->
     <section id="subjects" class="section">
       <HomeSectionHeader
         v-reveal
@@ -277,7 +277,7 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
       </div>
     </section>
 
-    <!-- ============ YANG DIPELAJARI ============ -->
+    <!-- ============ WHAT YOU LEARN ============ -->
     <section class="section">
       <HomeSectionHeader
         v-reveal
@@ -298,7 +298,7 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
       </div>
     </section>
 
-    <!-- ============ METODE (dinamis) ============ -->
+    <!-- ============ METHODS (dynamic) ============ -->
     <section class="section">
       <HomeSectionHeader
         v-reveal
@@ -355,14 +355,14 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
       </div>
     </section>
 
-    <!-- ============ STATISTIK ============ -->
+    <!-- ============ STATS ============ -->
     <section class="section">
       <div v-reveal class="stats">
         <HomeStat v-for="s in stats" :key="s.label" :value="s.value" :label="s.label" />
       </div>
     </section>
 
-    <!-- ============ UNTUK ORANG TUA ============ -->
+    <!-- ============ FOR PARENTS ============ -->
     <section class="section">
       <div v-reveal class="parents">
         <div class="parents__text">
@@ -398,13 +398,13 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
       </div>
     </section>
 
-    <!-- Onboarding profil (sekali untuk pengunjung baru) -->
+    <!-- Profile onboarding (once for new visitors) -->
     <ProfileSetup v-if="mounted && showSetup" @close="closeSetup" />
   </div>
 </template>
 
 <style scoped lang="scss">
-// Ritme vertikal SERAGAM: satu sumber jarak antar-section di `.home`.
+// UNIFORM vertical rhythm: a single source of spacing between sections in `.home`.
 .home {
   display: flex;
   flex-direction: column;
@@ -415,7 +415,7 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
   }
 }
 
-// Section = kolom konten; jarak antar-section diatur oleh `.home` (tanpa padding dobel).
+// Section = content column; spacing between sections is handled by `.home` (no double padding).
 .section {
   @include flex(column, flex-start, stretch, spacing('xl'));
 }
@@ -554,7 +554,7 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
     box-shadow: $shadow-sm;
   }
 
-  // ---- Visual mengambang ----
+  // ---- Floating visual ----
   &__visual {
     position: relative;
     min-height: 360px;
@@ -608,7 +608,7 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
     }
   }
 
-  // Cincin garis putus-putus yang berputar pelan di belakang maskot.
+  // Dashed ring that slowly rotates behind the mascot.
   &__ring {
     position: absolute;
     top: 30%;
@@ -632,7 +632,7 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
     transform $transition-base,
     box-shadow $transition-base;
 
-  // Miring & membesar sedikit saat disentuh (jeda animasi mengambang).
+  // Tilt & scale up slightly on hover (pause the floating animation).
   &:hover {
     animation-play-state: paused;
     transform: scale(1.06) rotate(-2deg);
@@ -679,7 +679,7 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
   }
 }
 
-// ---------------- PITA EMOJI ----------------
+// ---------------- EMOJI RIBBON ----------------
 .marquee {
   overflow: hidden;
   padding-block: spacing('md');
@@ -722,7 +722,7 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
   }
 }
 
-// ---------------- METODE ----------------
+// ---------------- METHODS ----------------
 .method-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -795,7 +795,7 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
   }
 }
 
-// ---------------- CARA KERJA ----------------
+// ---------------- HOW IT WORKS ----------------
 .steps {
   display: grid;
   grid-template-columns: 1fr;
@@ -848,7 +848,7 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
   }
 }
 
-// ---------------- UNTUK ORANG TUA ----------------
+// ---------------- FOR PARENTS ----------------
 .parents {
   @include flex(row, space-between, center, spacing('xl'));
   flex-wrap: wrap;
@@ -893,7 +893,7 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
   }
 }
 
-// ---------------- STATISTIK ----------------
+// ---------------- STATS ----------------
 .stats {
   @include glass($glass-bg-strong);
   display: grid;

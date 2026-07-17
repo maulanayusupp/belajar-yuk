@@ -1,6 +1,6 @@
 <script setup lang="ts">
-// Kontainer kartu generik. `interactive` menambah efek hover/tekan
-// untuk kartu yang bisa diklik.
+// Generic card container. `interactive` adds hover/press effects
+// for clickable cards.
 withDefaults(
   defineProps<{
     interactive?: boolean
@@ -26,7 +26,7 @@ withDefaults(
     @include tappable;
   }
 
-  // Garis aksen warna di sisi atas kartu
+  // Colored accent line along the top edge of the card
   &--english::before,
   &--math::before,
   &--primary::before {

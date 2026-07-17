@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { lessonService } from '~/services/lessonService'
 
-// Sertifikat per mata pelajaran: terbit saat SEMUA pelajarannya tuntas.
+// Per-subject certificate: issued when ALL of its lessons are completed.
 const { greetingName } = useProfile()
 const { progress, isCompleted, getStars } = useProgress()
 const subjects = lessonService.getSubjects()

@@ -1,7 +1,7 @@
 import type { BahasaLesson } from '~/types'
 
-// Membaca: suku kata dengan huruf B (ba-bi-bu-be-bo).
-export const sukuKataBa: BahasaLesson = {
+// Reading: syllables with the letter B (ba-bi-bu-be-bo).
+export const syllablesBa: BahasaLesson = {
   id: 'bhs-suku-kata-ba',
   subject: 'bahasa',
   type: 'suku-kata',

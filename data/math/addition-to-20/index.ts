@@ -1,6 +1,6 @@
 import type { MathLesson } from '~/types'
 
-// Penjumlahan sampai 20 dengan blok (lanjutan).
+// Addition up to 20 with blocks (continuation).
 export const additionTo20: MathLesson = {
   id: 'mt-addition-to-20',
   subject: 'math',

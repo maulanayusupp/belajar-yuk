@@ -2,8 +2,8 @@
 import type { ReviewQuestion } from '~/services/lessonService'
 import { range } from '~/utils/array'
 
-// Kuis "ulang kesalahan". Jawaban BENAR = dikuasai → dihapus dari daftar
-// (emit resolve). Jawaban salah boleh dicoba lagi (ala Kumon: kuasai dulu).
+// "Redo mistakes" quiz. A CORRECT answer = mastered → removed from the list
+// (emit resolve). A wrong answer can be retried (Kumon-style: master it first).
 const props = defineProps<{ questions: ReviewQuestion[] }>()
 const emit = defineEmits<{ resolve: [q: ReviewQuestion]; done: [] }>()
 
@@ -16,7 +16,7 @@ const isCorrect = computed(() => selected.value === current.value.correct)
 const isLast = computed(() => index.value === props.questions.length - 1)
 
 function choose(value: string) {
-  if (isCorrect.value) return // sudah benar → kunci
+  if (isCorrect.value) return // already correct → lock
   selected.value = value
   if (value === current.value.correct) {
     play('correct')

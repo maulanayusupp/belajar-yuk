@@ -3,14 +3,14 @@ import type { VocabularyItem } from '~/types'
 import { shuffle } from '~/utils/array'
 import { mistakeService } from '~/services/mistakeService'
 
-// Kuis kosakata: tampilkan gambar + arti Indonesia, anak memilih
-// kata Bahasa Inggris yang benar dari 4 pilihan.
+// Vocabulary quiz: show the picture + Indonesian meaning, the child picks
+// the correct English word from 4 choices.
 const props = defineProps<{ items: VocabularyItem[]; lessonId: string }>()
 const emit = defineEmits<{ complete: [payload: { correct: number; total: number }] }>()
 
 const { pronounce, play } = useAudio()
 
-// Susun daftar soal (urutan diacak) beserta 4 opsi jawaban.
+// Build the list of questions (shuffled order) with 4 answer options each.
 interface Question {
   item: VocabularyItem
   options: VocabularyItem[]
@@ -38,10 +38,10 @@ function choose(option: VocabularyItem) {
   if (option.id === current.value.item.id) {
     correct.value++
     play('correct')
-    mistakeService.remove(props.lessonId, current.value.item.id) // dikuasai
+    mistakeService.remove(props.lessonId, current.value.item.id) // mastered
   } else {
     play('wrong')
-    mistakeService.add(props.lessonId, current.value.item.id) // perlu diulang
+    mistakeService.add(props.lessonId, current.value.item.id) // needs review
   }
 }
 

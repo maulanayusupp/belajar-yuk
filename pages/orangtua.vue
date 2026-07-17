@@ -2,8 +2,8 @@
 import { SPEECH_RATE_OPTIONS } from '~/services/audioService'
 import { backupService } from '~/services/backupService'
 
-// Area Orang Tua: dilindungi "gerbang" sederhana (soal untuk dewasa)
-// agar anak tak sengaja masuk. Berisi pengaturan suara, profil, & reset.
+// Parents' Area: protected by a simple "gate" (a question for adults)
+// so children don't stumble in. Contains sound settings, profile, & reset.
 const GATE_ANSWER = 56 // 7 × 8
 
 const unlocked = ref(false)
@@ -35,7 +35,7 @@ function doReset() {
   confirmReset.value = false
 }
 
-// --- Cadangan data (ekspor/impor) ---
+// --- Data backup (export/import) ---
 const importInput = ref<HTMLInputElement | null>(null)
 const importInfo = ref('')
 
@@ -59,7 +59,7 @@ useHead({ title: 'Area Orang Tua' })
     <NuxtLink to="/" class="parent__back">← Beranda</NuxtLink>
     <h1 class="parent__heading">👨‍👩‍👧 Area Orang Tua</h1>
 
-    <!-- Gerbang -->
+    <!-- Gate -->
     <section v-if="!unlocked" class="gate">
       <p class="gate__q">Untuk masuk, jawab dulu: <strong>7 × 8 = ?</strong></p>
       <input
@@ -74,7 +74,7 @@ useHead({ title: 'Area Orang Tua' })
       <p v-if="gateError" class="gate__error">Jawaban belum tepat, coba lagi.</p>
     </section>
 
-    <!-- Panel pengaturan -->
+    <!-- Settings panel -->
     <template v-else>
       <section class="panel">
         <h2 class="panel__title">🔊 Suara</h2>

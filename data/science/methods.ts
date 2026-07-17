@@ -1,7 +1,7 @@
 import type { ScienceActivity } from '~/types'
 
-// Registry metadata JENIS aktivitas Sains (mesin materi dinamis).
-// Menambah aktivitas baru = tambah nilai di `ScienceActivity` (types) + entri di sini.
+// Registry metadata for TYPES of Science activities (dynamic content engine).
+// Adding a new activity = add a value to `ScienceActivity` (types) + an entry here.
 export interface ScienceActivityMeta {
   icon: string
   label: string

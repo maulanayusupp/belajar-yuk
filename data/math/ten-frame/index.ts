@@ -1,8 +1,8 @@
 import type { MathLesson } from '~/types'
 
-// Metode "Ten Frame" (Sepuluh Kotak) — kerangka 2×5 yang diisi titik.
-// Membangun "rasa angka" (subitizing) & pemahaman terhadap 10.
-// operandB tidak dipakai (0); jawaban = operandA (jumlah titik).
+// "Ten Frame" method — a 2×5 grid filled with dots.
+// Builds "number sense" (subitizing) & an understanding of 10.
+// operandB is unused (0); answer = operandA (the number of dots).
 export const tenFrame: MathLesson = {
   id: 'mt-ten-frame',
   subject: 'math',

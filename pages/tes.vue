@@ -3,7 +3,7 @@ import type { Lesson } from '~/types'
 import { range } from '~/utils/array'
 import { lessonService } from '~/services/lessonService'
 
-// Tes penempatan singkat (ala EF): ukur kemampuan → rekomendasi mulai dari mana.
+// Short placement test (EF-style): measure ability → recommend where to start.
 interface PQuestion {
   emoji: string
   repeat: number
@@ -74,7 +74,7 @@ function restart() {
   done.value = false
 }
 
-// Rekomendasi berdasarkan skor.
+// Recommendation based on the score.
 const result = computed(() => {
   const s = score.value
   if (s <= 2) {
@@ -153,7 +153,7 @@ useHead({ title: 'Tes Penempatan' })
       </BaseButton>
     </template>
 
-    <!-- Hasil -->
+    <!-- Result -->
     <div v-else class="hasil">
       <h1 class="hasil__title">{{ result.title }}</h1>
       <p class="hasil__score">Skor kamu: {{ score }} / {{ questions.length }}</p>

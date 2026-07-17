@@ -1,47 +1,47 @@
 // =============================================================
-//  DESIGN TOKENS — sumber tunggal untuk seluruh gaya visual.
-//  Ubah di sini, seluruh aplikasi ikut berubah. Jangan pakai
-//  nilai warna/ukuran "hardcoded" di komponen — pakai token ini.
+//  DESIGN TOKENS — single source of truth for the entire visual style.
+//  Change it here and the whole app follows. Don't use "hardcoded"
+//  color/size values in components — use these tokens.
 // =============================================================
 
-// ---- Warna Merek (Brand) -----------------------------------
-$color-primary: #6c5ce7; // ungu premium
+// ---- Brand Colors ------------------------------------------
+$color-primary: #6c5ce7; // premium purple
 $color-primary-dark: #4834d4;
 $color-primary-light: #a29bfe;
 
-$color-secondary: #00cec9; // toska
+$color-secondary: #00cec9; // teal
 $color-secondary-dark: #00a8a3;
-$color-accent: #ff6b9d; // pink hangat
-$color-accent-2: #feca57; // kuning madu
+$color-accent: #ff6b9d; // warm pink
+$color-accent-2: #feca57; // honey yellow
 
-// ---- Warna per Mata Pelajaran ------------------------------
-$color-english: #ff9f43; // oranye
+// ---- Colors per Subject ------------------------------------
+$color-english: #ff9f43; // orange
 $color-english-dark: #ee7752;
-$color-math: #4b7bec; // biru
+$color-math: #4b7bec; // blue
 $color-math-dark: #3867d6;
-$color-science: #16c79a; // teal (segar, alami)
+$color-science: #16c79a; // teal (fresh, natural)
 $color-science-dark: #0fa07b;
-$color-bahasa: #e8567c; // merah muda (hangat, ramah membaca)
+$color-bahasa: #e8567c; // pink (warm, easy on the eyes for reading)
 $color-bahasa-dark: #c73862;
 
-// ---- Warna Status ------------------------------------------
+// ---- Status Colors -----------------------------------------
 $color-success: #05c46b;
 $color-warning: #ffc048;
 $color-error: #ff5e57;
 $color-star: #ffc312;
 
-// ---- Warna Netral (nada premium: navy, bukan abu polos) ----
+// ---- Neutral Colors (premium tone: navy, not plain gray) ----
 $color-white: #ffffff;
-$color-ink: #1a1035; // teks utama gelap keunguan
+$color-ink: #1a1035; // primary dark purplish text
 $color-ink-soft: #4a4066;
-$color-bg: #f4f3ff; // latar lembut keunguan
+$color-bg: #f4f3ff; // soft purplish background
 $color-bg-alt: #ffffff;
 $color-surface: #ffffff;
 $color-text: $color-ink;
-$color-text-muted: #6d6681; // digelapkan agar lolos kontras WCAG AA
+$color-text-muted: #6d6681; // darkened to pass WCAG AA contrast
 $color-border: #ebe9f7;
 
-// ---- Gradien (kunci tampilan premium) ----------------------
+// ---- Gradients (key to the premium look) -------------------
 $gradient-primary: linear-gradient(135deg, #7f5bff 0%, #6c5ce7 45%, #4834d4 100%);
 $gradient-aurora: linear-gradient(135deg, #6c5ce7 0%, #a18cd1 40%, #00cec9 100%);
 $gradient-english: linear-gradient(135deg, #ffb347 0%, #ff9f43 45%, #ff6b6b 100%);
@@ -59,9 +59,9 @@ $gradient-hero: radial-gradient(
   #eefcff 100%
 );
 
-// ---- Tipografi ---------------------------------------------
-$font-family-display: 'Baloo 2', 'Comic Sans MS', system-ui, sans-serif; // judul
-$font-family-base: 'Nunito', 'Segoe UI', system-ui, sans-serif; // teks isi
+// ---- Typography --------------------------------------------
+$font-family-display: 'Baloo 2', 'Comic Sans MS', system-ui, sans-serif; // headings
+$font-family-base: 'Nunito', 'Segoe UI', system-ui, sans-serif; // body text
 $font-size-base: 17px;
 $font-weight-regular: 400;
 $font-weight-medium: 600;
@@ -70,7 +70,7 @@ $font-weight-bold: 800;
 
 $line-height-base: 1.65;
 
-// Skala ukuran font (rem)
+// Font size scale (rem)
 $font-sizes: (
   'xs': 0.78rem,
   'sm': 0.92rem,
@@ -82,7 +82,7 @@ $font-sizes: (
   'giant': 5.5rem,
 );
 
-// ---- Spacing (kelipatan 4px) -------------------------------
+// ---- Spacing (multiples of 4px) ----------------------------
 $spacing: (
   'xs': 0.25rem,
   'sm': 0.5rem,
@@ -93,14 +93,14 @@ $spacing: (
   'section': 6rem,
 );
 
-// ---- Sudut / Radius ----------------------------------------
+// ---- Corners / Radius --------------------------------------
 $radius-sm: 10px;
 $radius-md: 18px;
 $radius-lg: 28px;
 $radius-xl: 40px;
 $radius-pill: 999px;
 
-// ---- Bayangan (shadow berlapis untuk kedalaman premium) ----
+// ---- Shadows (layered shadows for premium depth) -----------
 $shadow-sm: 0 2px 8px rgba(26, 16, 53, 0.06);
 $shadow-md: 0 10px 30px rgba(26, 16, 53, 0.1);
 $shadow-lg: 0 20px 50px rgba(26, 16, 53, 0.14);
@@ -117,7 +117,7 @@ $glass-bg-strong: rgba(255, 255, 255, 0.85);
 $glass-border: rgba(255, 255, 255, 0.6);
 $glass-blur: 16px;
 
-// ---- Transisi & Animasi ------------------------------------
+// ---- Transitions & Animations ------------------------------
 $transition-fast: 0.15s ease;
 $transition-base: 0.28s cubic-bezier(0.22, 1, 0.36, 1);
 $transition-bounce: 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
@@ -131,7 +131,7 @@ $breakpoints: (
   'xl': 1280px,
 );
 
-// ---- Layer (z-index) ---------------------------------------
+// ---- Layers (z-index) --------------------------------------
 $z-base: 1;
 $z-header: 100;
 $z-overlay: 900;

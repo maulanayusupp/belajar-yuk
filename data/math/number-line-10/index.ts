@@ -1,7 +1,7 @@
 import type { MathLesson } from '~/types'
 
-// Garis Bilangan 0–10: kenali angka yang ditunjuk penanda.
-// operandA = angka pada penanda = jawaban (operandB 0).
+// Number Line 0–10: recognize the number the marker points to.
+// operandA = the number at the marker = the answer (operandB 0).
 export const numberLine10: MathLesson = {
   id: 'mt-number-line-10',
   subject: 'math',

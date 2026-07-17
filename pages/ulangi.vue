@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { ReviewQuestion } from '~/services/lessonService'
 
-// Mode "Ulang Kesalahan": latih ulang soal/kata yang pernah salah.
+// "Review Mistakes" mode: re-practice questions/words that were answered wrong before.
 const { questions, resolve } = useMistakes()
 
 const mounted = ref(false)
@@ -10,7 +10,7 @@ const finished = ref(false)
 
 onMounted(() => {
   mounted.value = true
-  qs.value = questions() // ambil snapshot untuk sesi ini
+  qs.value = questions() // take a snapshot for this session
 })
 
 function onResolve(q: ReviewQuestion) {
@@ -32,7 +32,7 @@ useHead({ title: 'Ulang Kesalahan' })
     </header>
 
     <template v-if="mounted">
-      <!-- Selesai / tidak ada yang perlu diulang -->
+      <!-- Finished / nothing to review -->
       <div v-if="finished || qs.length === 0" class="empty">
         <span class="empty__emoji" aria-hidden="true">{{ qs.length === 0 ? '🎉' : '🌟' }}</span>
         <p class="empty__text">
@@ -48,7 +48,7 @@ useHead({ title: 'Ulang Kesalahan' })
         </div>
       </div>
 
-      <!-- Kuis ulang -->
+      <!-- Review quiz -->
       <BaseCard v-else accent="primary">
         <ReviewQuiz :questions="qs" @resolve="onResolve" @done="onDone" />
       </BaseCard>

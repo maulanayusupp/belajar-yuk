@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Badge } from '~/services/badgeService'
 
-// Kartu pencapaian yang bisa dibagikan ke WhatsApp (gambar dibuat via canvas).
+// Achievement card that can be shared to WhatsApp (image generated via canvas).
 const props = defineProps<{
   name: string
   avatar: string
@@ -88,7 +88,7 @@ async function onShare() {
     font-family: $font-family-display;
     font-weight: $font-weight-bold;
     font-size: font-size('lg');
-    color: $color-white; // override aturan global `p { color: muted }`
+    color: $color-white; // override the global `p { color: muted }` rule
   }
 
   &__stats {

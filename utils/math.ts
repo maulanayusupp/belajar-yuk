@@ -1,11 +1,11 @@
 import { shuffle, clamp } from './array'
 
-// Helper khusus pelajaran Matematika.
+// Helpers specific to Math lessons.
 
 /**
- * Buat pilihan jawaban (pilihan ganda) di sekitar jawaban benar.
- * Selalu menyertakan jawaban benar, sisanya "pengecoh" terdekat,
- * lalu diacak. Tidak pernah bernilai negatif.
+ * Build answer options (multiple choice) around the correct answer.
+ * Always includes the correct answer, with the rest as the nearest
+ * "distractors", then shuffled. Never negative.
  */
 export function generateNumberOptions(answer: number, count = 4): number[] {
   const options = new Set<number>([answer])

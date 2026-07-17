@@ -1,7 +1,7 @@
 import type { BahasaLesson } from '~/types'
 
-// Membaca: kalimat pendek sederhana (subjek + predikat + objek).
-export const kalimatSederhana: BahasaLesson = {
+// Reading: short simple sentences (subject + predicate + object).
+export const simpleSentences: BahasaLesson = {
   id: 'bhs-kalimat-sederhana',
   subject: 'bahasa',
   type: 'kalimat',

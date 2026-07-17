@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { range, clamp } from '~/utils/array'
 
-// Ten Frame (Sepuluh Kotak): kerangka 2×5. Untuk bilangan > 10 (belasan),
-// otomatis menampilkan beberapa kerangka (10 penuh + sisanya) — sekaligus
-// memperkenalkan nilai tempat "sepuluh + satuan".
+// Ten Frame: a 2×5 grid. For numbers > 10 (the teens),
+// automatically shows several frames (a full 10 + the remainder) — which also
+// introduces the "tens + ones" place value.
 const props = defineProps<{ count: number }>()
 
-// Jumlah kerangka & berapa titik terisi di tiap kerangka.
+// Number of frames & how many dots are filled in each frame.
 const frames = computed(() => {
   const total = Math.max(1, Math.ceil(props.count / 10))
   return range(total).map((f) => clamp(props.count - f * 10, 0, 10))

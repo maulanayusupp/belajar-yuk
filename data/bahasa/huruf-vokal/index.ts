@@ -1,7 +1,7 @@
 import type { BahasaLesson } from '~/types'
 
-// Membaca: mengenal huruf vokal A-I-U-E-O (fondasi pertama).
-export const hurufVokal: BahasaLesson = {
+// Reading: getting to know the vowels A-I-U-E-O (the first foundation).
+export const vowels: BahasaLesson = {
   id: 'bhs-huruf-vokal',
   subject: 'bahasa',
   type: 'huruf',

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { NuxtError } from '#app'
 
-// Halaman error global (dipakai Nuxt untuk 404 & error lain).
+// Global error page (used by Nuxt for 404 & other errors).
 const props = defineProps<{ error: NuxtError }>()
 
 const is404 = computed(() => props.error?.statusCode === 404)
@@ -12,7 +12,7 @@ const message = computed(() =>
     : 'Jangan khawatir, ayo coba lagi dari beranda.',
 )
 
-// Bersihkan error lalu arahkan ke beranda.
+// Clear the error and redirect to the home page.
 function goHome() {
   clearError({ redirect: '/' })
 }

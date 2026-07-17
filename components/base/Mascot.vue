@@ -1,7 +1,7 @@
 <script setup lang="ts">
-// Maskot pemandu (default: burung hantu 🦉) dengan balon pesan.
-// Menampilkan instruksi Bahasa Indonesia; opsional teks Inggris
-// yang bisa diklik untuk didengar pengucapannya.
+// Guide mascot (default: owl 🦉) with a message bubble.
+// Displays Indonesian instructions; optional English text
+// that can be clicked to hear its pronunciation.
 const props = withDefaults(
   defineProps<{
     emoji?: string
@@ -45,7 +45,7 @@ function speakEnglish() {
     border: 3px solid $color-primary-light;
     border-radius: $radius-lg;
 
-    // Ekor balon percakapan
+    // Speech bubble tail
     &::before {
       content: '';
       position: absolute;

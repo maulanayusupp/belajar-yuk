@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { AVATARS, isAvatarUnlocked, type AvatarOption } from '~/services/profileService'
 
-// Modal pembuatan profil anak (nama + avatar). Avatar tertentu terbuka
-// setelah anak mengumpulkan bintang — jadi ada yang dinanti-nanti.
+// Child profile creation modal (name + avatar). Certain avatars unlock
+// after the child collects stars — so there's something to look forward to.
 const emit = defineEmits<{ close: [] }>()
 const { profile, save } = useProfile()
 const { play } = useAudio()

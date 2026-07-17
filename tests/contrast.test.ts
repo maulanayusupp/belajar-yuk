@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { contrastRatio } from '~/utils/color'
 
-// Nilai HARUS sinkron dengan assets/scss/abstracts/_variables.scss.
+// Values MUST stay in sync with assets/scss/abstracts/_variables.scss.
 const C = {
   white: '#ffffff',
   ink: '#1a1035',
@@ -16,23 +16,23 @@ const C = {
 const AA_NORMAL = 4.5
 const AA_LARGE = 3
 
-describe('audit kontras (WCAG AA)', () => {
-  // Teks isi normal — wajib >= 4.5
+describe('contrast audit (WCAG AA)', () => {
+  // Normal body text — must be >= 4.5
   const normal: Array<[string, string, string]> = [
-    ['ink / putih', C.ink, C.white],
+    ['ink / white', C.ink, C.white],
     ['ink / bg', C.ink, C.bg],
-    ['ink-soft / putih', C.inkSoft, C.white],
-    ['muted / putih', C.muted, C.white],
-    ['primary-dark / putih', C.primaryDark, C.white],
-    ['math-dark / putih', C.mathDark, C.white],
+    ['ink-soft / white', C.inkSoft, C.white],
+    ['muted / white', C.muted, C.white],
+    ['primary-dark / white', C.primaryDark, C.white],
+    ['math-dark / white', C.mathDark, C.white],
   ]
-  it.each(normal)('%s memenuhi AA teks normal', (_label, fg, bg) => {
+  it.each(normal)('%s meets AA normal text', (_label, fg, bg) => {
     expect(contrastRatio(fg, bg)).toBeGreaterThanOrEqual(AA_NORMAL)
   })
 
-  // Teks besar / elemen UI — wajib >= 3
-  const large: Array<[string, string, string]> = [['putih / primary (tombol)', C.white, C.primary]]
-  it.each(large)('%s memenuhi AA teks besar', (_label, fg, bg) => {
+  // Large text / UI elements — must be >= 3
+  const large: Array<[string, string, string]> = [['white / primary (button)', C.white, C.primary]]
+  it.each(large)('%s meets AA large text', (_label, fg, bg) => {
     expect(contrastRatio(fg, bg)).toBeGreaterThanOrEqual(AA_LARGE)
   })
 })

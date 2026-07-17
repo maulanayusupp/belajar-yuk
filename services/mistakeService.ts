@@ -1,7 +1,7 @@
 import { storage } from '~/utils/storage'
 
-// Kumpulan "kesalahan" untuk diulang (spaced repetition ala Kumon).
-// Kunci = `${lessonId}::${itemId}` (itemId = id kata atau id soal).
+// Collection of "mistakes" to review (Kumon-style spaced repetition).
+// Key = `${lessonId}::${itemId}` (itemId = word id or problem id).
 const KEY = 'belajar-yuk:mistakes'
 
 function makeKey(lessonId: string, itemId: string): string {
@@ -13,14 +13,14 @@ export const mistakeService = {
     return storage.get<string[]>(KEY, [])
   },
 
-  /** Catat kesalahan (dipanggil saat jawaban salah). */
+  /** Record a mistake (called on a wrong answer). */
   add(lessonId: string, itemId: string): void {
     const set = new Set(this.all())
     set.add(makeKey(lessonId, itemId))
     storage.set(KEY, [...set])
   },
 
-  /** Hapus (dipanggil saat item dijawab benar → dianggap dikuasai). */
+  /** Remove (called when an item is answered correctly → considered mastered). */
   remove(lessonId: string, itemId: string): void {
     const key = makeKey(lessonId, itemId)
     storage.set(
@@ -29,7 +29,7 @@ export const mistakeService = {
     )
   },
 
-  /** Daftar {lessonId, itemId} yang perlu diulang. */
+  /** List of {lessonId, itemId} that need to be reviewed. */
   list(): Array<{ lessonId: string; itemId: string }> {
     return this.all().map((k) => {
       const [lessonId, itemId] = k.split('::')

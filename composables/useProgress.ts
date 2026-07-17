@@ -2,13 +2,13 @@ import type { LessonProgress } from '~/types'
 import { progressService } from '~/services/progressService'
 import { streakService } from '~/services/streakService'
 
-// Composable progres reaktif. Membungkus progressService agar
-// perubahan otomatis memperbarui tampilan (peta pelajaran, bintang).
+// Reactive progress composable. Wraps progressService so that
+// changes automatically update the view (lesson map, stars).
 export function useProgress() {
-  // Map progres global & reaktif; diisi di klien.
+  // Global & reactive progress map; populated on the client.
   const progress = useState<Record<string, LessonProgress>>('lesson-progress', () => ({}))
 
-  // Muat dari localStorage sekali di sisi klien.
+  // Load from localStorage once on the client side.
   onMounted(() => {
     if (Object.keys(progress.value).length === 0) {
       progress.value = progressService.getAll()
@@ -18,7 +18,7 @@ export function useProgress() {
   function saveResult(lessonId: string, stars: number) {
     const entry = progressService.save(lessonId, stars)
     progress.value = { ...progress.value, [lessonId]: entry }
-    streakService.record() // catat rentetan hari belajar
+    streakService.record() // record the study-day streak
     return entry
   }
 

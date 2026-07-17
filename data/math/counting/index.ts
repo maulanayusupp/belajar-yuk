@@ -1,8 +1,8 @@
 import type { MathLesson } from '~/types'
 
-// Metode "Counting" — menghitung banyak benda. Anak menghitung emoji
-// yang ditampilkan lalu memilih jumlah yang benar.
-// operandB tidak dipakai (0); `emoji` menentukan benda yang dihitung.
+// "Counting" method — counting how many objects there are. The child counts
+// the emojis shown and then picks the correct total.
+// operandB is unused (0); `emoji` determines the object being counted.
 export const counting: MathLesson = {
   id: 'mt-counting',
   subject: 'math',

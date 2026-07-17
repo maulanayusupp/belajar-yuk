@@ -1,6 +1,6 @@
 import type { EnglishLesson } from '~/types'
 
-// Phonics G–L (kelanjutan A–F) — cakupan alfabet lebih lengkap.
+// Phonics G–L (continuation of A–F) — more complete alphabet coverage.
 export const phonicsGL: EnglishLesson = {
   id: 'en-phonics-g-l',
   subject: 'english',

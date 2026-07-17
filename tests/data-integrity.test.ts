@@ -3,16 +3,16 @@ import { lessonService } from '~/services/lessonService'
 
 const LEVELS = ['beginner', 'intermediate', 'advanced']
 
-describe('integritas data pelajaran', () => {
+describe('lesson data integrity', () => {
   const lessons = lessonService.getLessons()
 
-  it('ada pelajaran & id unik', () => {
+  it('there are lessons & ids are unique', () => {
     expect(lessons.length).toBeGreaterThan(0)
     const ids = lessons.map((l) => l.id)
     expect(new Set(ids).size).toBe(ids.length)
   })
 
-  it('setiap pelajaran punya field wajib yang valid', () => {
+  it('every lesson has valid required fields', () => {
     for (const l of lessons) {
       expect(l.title.trim(), l.id).not.toBe('')
       expect(l.titleEn.trim(), l.id).not.toBe('')
@@ -22,7 +22,7 @@ describe('integritas data pelajaran', () => {
     }
   })
 
-  it('pelajaran Inggris: setiap item lengkap', () => {
+  it('English lessons: every item is complete', () => {
     for (const l of lessons) {
       if (l.subject !== 'english') continue
       expect(l.items.length, l.id).toBeGreaterThan(0)
@@ -31,13 +31,13 @@ describe('integritas data pelajaran', () => {
         expect(it.translation.trim(), `${l.id}/${it.id}`).not.toBe('')
         expect(it.emoji.trim(), `${l.id}/${it.id}`).not.toBe('')
       }
-      // id item unik dalam satu pelajaran
+      // item ids are unique within a single lesson
       const ids = l.items.map((i) => i.id)
       expect(new Set(ids).size, l.id).toBe(ids.length)
     }
   })
 
-  it('pelajaran Matematika: soal konsisten & metode dikenal', () => {
+  it('Math lessons: problems consistent & method recognized', () => {
     const methods = new Set([
       'counting',
       'ten-frame',
@@ -59,10 +59,10 @@ describe('integritas data pelajaran', () => {
     }
   })
 
-  it('pelajaran Sains: setiap fakta lengkap & id unik', () => {
+  it('Science lessons: every fact complete & ids unique', () => {
     for (const l of lessons) {
       if (l.subject !== 'science') continue
-      // butuh minimal 4 fakta agar kuis punya cukup pilihan (1 benar + 3 distraktor)
+      // needs at least 4 facts so the quiz has enough options (1 correct + 3 distractors)
       expect(l.facts.length, l.id).toBeGreaterThanOrEqual(4)
       for (const f of l.facts) {
         expect(f.term.trim(), `${l.id}/${f.id}`).not.toBe('')
@@ -76,14 +76,14 @@ describe('integritas data pelajaran', () => {
     }
   })
 
-  it('pelajaran Membaca: item lengkap, id unik, & suku kata konsisten', () => {
+  it('Reading lessons: items complete, ids unique, & syllables consistent', () => {
     for (const l of lessons) {
       if (l.subject !== 'bahasa') continue
-      // butuh minimal 4 item agar kuis punya cukup pilihan
+      // needs at least 4 items so the quiz has enough options
       expect(l.items.length, l.id).toBeGreaterThanOrEqual(4)
       for (const it of l.items) {
         expect(it.text.trim(), `${l.id}/${it.id}`).not.toBe('')
-        // aktivitas 'kata' wajib punya pecahan suku kata yang menyusun text
+        // the 'kata' activity must have syllable segments that make up the text
         if (l.type === 'kata') {
           expect(it.syllables?.length, `${l.id}/${it.id}`).toBeGreaterThanOrEqual(2)
           expect(it.syllables?.join(''), `${l.id}/${it.id}`).toBe(it.text)

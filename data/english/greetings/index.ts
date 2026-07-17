@@ -1,6 +1,6 @@
 import type { EnglishLesson } from '~/types'
 
-// Ungkapan sehari-hari / sapaan (Mahir) — kosakata berupa frasa.
+// Everyday expressions / greetings (Advanced) — phrase-based vocabulary.
 export const greetings: EnglishLesson = {
   id: 'en-greetings',
   subject: 'english',

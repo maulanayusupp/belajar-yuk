@@ -1,7 +1,7 @@
 // =============================================================
-//  Entry point stylesheet global (dimuat sekali via nuxt.config).
-//  Hanya file yang MENGHASILKAN CSS yang di-@use di sini.
-//  Design tokens (variabel/mixin/fungsi) sudah auto-inject.
+//  Global stylesheet entry point (loaded once via nuxt.config).
+//  Only files that PRODUCE CSS are @use'd here.
+//  Design tokens (variables/mixins/functions) are already auto-injected.
 // =============================================================
 @use 'base/reset';
 @use 'base/typography';

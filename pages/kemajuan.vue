@@ -3,8 +3,8 @@ import { lessonService } from '~/services/lessonService'
 import { badgeService } from '~/services/badgeService'
 import { DAILY_GOAL } from '~/services/progressService'
 
-// Halaman kemajuan: sapaan, streak, target harian, lencana, kartu
-// pencapaian (share), rekomendasi, & peta jalur belajar.
+// Progress page: greeting, streak, daily goal, badges, achievement
+// card (share), recommendation, & learning path map.
 const { profile, greetingName } = useProfile()
 const { current, best } = useStreak()
 const { progress, isCompleted } = useProgress()
@@ -15,7 +15,7 @@ const allLessons = lessonService.getLessons()
 const maxStars = computed(() => allLessons.length * 3)
 const nextLesson = computed(() => lessonService.getNextLesson(isCompleted))
 
-// Ringkasan progres (reaktif dari map progres).
+// Progress summary (reactive from the progress map).
 const stats = computed(() => {
   const entries = Object.values(progress.value).filter((e) => e.completed)
   const bySubject = (s: string) =>
@@ -33,7 +33,7 @@ const stats = computed(() => {
 const badges = computed(() => badgeService.all(stats.value))
 const earnedBadges = computed(() => badges.value.filter((b) => b.earned).length)
 
-// Target harian (jumlah pelajaran hari ini).
+// Daily goal (number of lessons today).
 const goal = DAILY_GOAL
 const doneToday = computed(() => {
   const start = new Date()
@@ -48,7 +48,7 @@ useHead({ title: 'Kemajuan Belajar' })
   <div class="progress-page">
     <NuxtLink to="/" class="progress-page__back">← Beranda</NuxtLink>
 
-    <!-- Sapaan + streak -->
+    <!-- Greeting + streak -->
     <section class="hello">
       <span class="hello__avatar" aria-hidden="true">{{ profile?.avatar ?? '🦉' }}</span>
       <div class="hello__text">
@@ -62,10 +62,10 @@ useHead({ title: 'Kemajuan Belajar' })
       </div>
     </section>
 
-    <!-- Target harian -->
+    <!-- Daily goal -->
     <DailyGoal :done="doneToday" :goal="goal" />
 
-    <!-- Ringkasan -->
+    <!-- Summary -->
     <section class="tiles">
       <div class="tile">
         <span class="tile__value">⭐ {{ stats.totalStars }}</span>
@@ -81,7 +81,7 @@ useHead({ title: 'Kemajuan Belajar' })
       </div>
     </section>
 
-    <!-- Rekomendasi -->
+    <!-- Recommendation -->
     <NuxtLink v-if="nextLesson" :to="`/${nextLesson.subject}/${nextLesson.id}`" class="resume">
       <div class="resume__text">
         <span class="resume__eyebrow">Lanjutkan belajar</span>
@@ -90,7 +90,7 @@ useHead({ title: 'Kemajuan Belajar' })
       <span class="resume__cta">Main →</span>
     </NuxtLink>
 
-    <!-- Ulang kesalahan (muncul bila ada) -->
+    <!-- Review mistakes (shown when there are any) -->
     <NuxtLink v-if="mistakeCount > 0" to="/ulangi" class="review-cta">
       <span class="review-cta__text">
         🔁 Ada <strong>{{ mistakeCount }}</strong> yang perlu diulang
@@ -98,7 +98,7 @@ useHead({ title: 'Kemajuan Belajar' })
       <span class="review-cta__go">Latih lagi →</span>
     </NuxtLink>
 
-    <!-- Kartu pencapaian (share ke WhatsApp) -->
+    <!-- Achievement card (share to WhatsApp) -->
     <AchievementCard
       :name="greetingName"
       :avatar="profile?.avatar ?? '🦉'"
@@ -108,7 +108,7 @@ useHead({ title: 'Kemajuan Belajar' })
       :badges="badges"
     />
 
-    <!-- Lencana -->
+    <!-- Badges -->
     <section class="badges-section">
       <HomeSectionHeader
         align="left"
@@ -118,7 +118,7 @@ useHead({ title: 'Kemajuan Belajar' })
       <BadgeShelf :badges="badges" />
     </section>
 
-    <!-- Peta jalur belajar -->
+    <!-- Learning path map -->
     <section class="paths">
       <HomeSectionHeader align="left" eyebrow="Peta Jalur" title="Perjalanan belajarmu" />
       <JourneyPath v-for="s in subjects" :key="s.id" :subject="s.id" />
@@ -259,7 +259,7 @@ useHead({ title: 'Kemajuan Belajar' })
 .paths,
 .badges-section {
   @include flex(column, flex-start, stretch, spacing('lg'));
-  min-width: 0; // cegah anak (jalur scroll) melebarkan halaman
+  min-width: 0; // prevent children (scrolling path) from widening the page
 }
 
 .review-cta {

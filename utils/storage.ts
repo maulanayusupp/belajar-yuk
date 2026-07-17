@@ -1,5 +1,5 @@
-// Pembungkus localStorage yang aman: tidak error saat SSR
-// (tidak ada window) atau saat storage penuh/diblokir.
+// A safe localStorage wrapper: doesn't throw during SSR
+// (no window) or when storage is full/blocked.
 
 const isBrowser = typeof window !== 'undefined' && !!window.localStorage
 
@@ -19,7 +19,7 @@ export const storage = {
     try {
       window.localStorage.setItem(key, JSON.stringify(value))
     } catch {
-      /* storage penuh atau diblokir — abaikan dengan aman */
+      /* storage full or blocked — safely ignore */
     }
   },
 
@@ -28,7 +28,7 @@ export const storage = {
     try {
       window.localStorage.removeItem(key)
     } catch {
-      /* abaikan */
+      /* ignore */
     }
   },
 }

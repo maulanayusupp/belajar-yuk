@@ -1,8 +1,8 @@
 import type { ScienceLesson } from '~/types'
 
-// Pelajaran Sains: Tata Surya — mengenal Matahari, Bumi, Bulan, & planet.
-// Konsep lebih abstrak → tingkat Menengah.
-export const tataSurya: ScienceLesson = {
+// Science lesson: The Solar System — getting to know the Sun, Earth, Moon, & planets.
+// A more abstract concept → Intermediate level.
+export const solarSystem: ScienceLesson = {
   id: 'sci-tata-surya',
   subject: 'science',
   type: 'explore',

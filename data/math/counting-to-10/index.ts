@@ -1,6 +1,6 @@
 import type { MathLesson } from '~/types'
 
-// Menghitung benda sampai 10 (lanjutan berhitung dasar).
+// Counting objects up to 10 (continuation of basic counting).
 export const countingTo10: MathLesson = {
   id: 'mt-counting-to-10',
   subject: 'math',

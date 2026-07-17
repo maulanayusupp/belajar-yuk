@@ -1,6 +1,6 @@
-// Saat mode DEV: unregister service worker & bersihkan cache PWA.
-// Mencegah service worker sisa dari build produksi (mis. `npm run preview`
-// atau menjalankan .output di localhost) menyajikan bundle lama saat dev.
+// In DEV mode: unregister the service worker & clear the PWA cache.
+// Prevents a leftover service worker from a production build (e.g. `npm run preview`
+// or running .output on localhost) from serving a stale bundle during dev.
 export default defineNuxtPlugin(() => {
   if (!import.meta.dev) return
   if (typeof navigator === 'undefined') return

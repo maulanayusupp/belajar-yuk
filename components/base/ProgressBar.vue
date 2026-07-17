@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { clamp } from '~/utils/array'
 
-// Bar progres pelajaran (langkah ke-berapa dari total).
+// Lesson progress bar (which step out of the total).
 const props = withDefaults(
   defineProps<{
     current: number
@@ -25,7 +25,7 @@ const percent = computed(() => {
     :aria-valuemin="0"
     :aria-valuemax="total"
   >
-    <!-- CSS variable --percent men-drive lebar bar; styling di SCSS -->
+    <!-- CSS variable --percent drives the bar width; styling in SCSS -->
     <div
       class="progress__fill"
       :class="`progress__fill--${accent}`"

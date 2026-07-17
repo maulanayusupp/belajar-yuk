@@ -1,9 +1,9 @@
-// Membuat gambar sertifikat (canvas landscape) lalu membagikannya
-// (Web Share bila didukung; jika tidak, unduh + buka WhatsApp).
+// Builds a certificate image (landscape canvas) and then shares it
+// (Web Share if supported; otherwise download + open WhatsApp).
 
 export interface CertificateData {
   name: string
-  subject: string // mis. "Bahasa Inggris"
+  subject: string // e.g. "Bahasa Inggris"
   emoji: string
   dateText: string
   stars: number
@@ -18,7 +18,7 @@ function drawCertificate(data: CertificateData): HTMLCanvasElement {
   canvas.height = H
   const ctx = canvas.getContext('2d')!
 
-  // Latar krem lembut + bingkai
+  // Soft cream background + border
   ctx.fillStyle = '#fffdf7'
   ctx.fillRect(0, 0, W, H)
   ctx.strokeStyle = '#6c5ce7'
@@ -82,7 +82,7 @@ export function useCertificate() {
         await navigator.share({ files: [file], title: 'Sertifikat Belajar Yuk!', text })
         return
       } catch {
-        /* dibatalkan → fallback */
+        /* cancelled → fallback */
       }
     }
     const url = URL.createObjectURL(blob)

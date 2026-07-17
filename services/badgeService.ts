@@ -1,9 +1,9 @@
-// Lencana pencapaian. Dinilai dari ringkasan progres (BadgeStats).
+// Achievement badges. Evaluated from a progress summary (BadgeStats).
 export interface BadgeStats {
   completed: number
   mathCompleted: number
   englishCompleted: number
-  perfect: number // pelajaran dengan 3 bintang
+  perfect: number // lessons with 3 stars
   totalStars: number
   streakBest: number
 }
@@ -20,7 +20,7 @@ interface BadgeDef extends Omit<Badge, 'earned'> {
   test: (s: BadgeStats) => boolean
 }
 
-// Urutan = urutan tampil.
+// Order = display order.
 const DEFS: BadgeDef[] = [
   {
     id: 'first',

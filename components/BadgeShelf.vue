@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Badge } from '~/services/badgeService'
 
-// Rak lencana: yang diraih tampil cerah, yang belum tampil redup.
+// Badge shelf: earned badges appear bright, unearned ones appear dimmed.
 defineProps<{ badges: Badge[] }>()
 </script>
 

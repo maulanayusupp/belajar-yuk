@@ -1,8 +1,8 @@
 import type { EnglishLesson } from '~/types'
 
-// Pelajaran kosakata: Nama Hewan.
-// Semua aset khusus pelajaran ini (gambar/audio/dll) boleh diletakkan
-// di folder yang sama agar tetap terpusat per-materi.
+// Vocabulary lesson: Animal Names.
+// Any assets specific to this lesson (images/audio/etc.) may be placed
+// in the same folder to keep everything centralized per topic.
 export const animals: EnglishLesson = {
   id: 'en-animals',
   subject: 'english',

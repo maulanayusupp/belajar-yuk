@@ -1,7 +1,7 @@
 import type { EnglishActivity } from '~/types'
 
-// Registry metadata JENIS aktivitas Bahasa Inggris (mesin materi dinamis).
-// Menambah aktivitas baru = tambah nilai di `EnglishActivity` (types) + entri di sini.
+// Metadata registry for English activity TYPES (dynamic content engine).
+// Adding a new activity = add a value in `EnglishActivity` (types) + an entry here.
 export interface EnglishActivityMeta {
   icon: string
   label: string

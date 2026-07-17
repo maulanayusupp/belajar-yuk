@@ -1,6 +1,6 @@
 import type { EnglishLesson } from '~/types'
 
-// Kosakata: Kendaraan (Pemula).
+// Vocabulary: Vehicles (Beginner).
 export const transport: EnglishLesson = {
   id: 'en-transport',
   subject: 'english',

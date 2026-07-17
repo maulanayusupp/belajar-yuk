@@ -1,6 +1,6 @@
 import { lessonService } from '~/services/lessonService'
 
-// Sitemap dinamis: beranda, mata pelajaran, tiap pelajaran, + halaman utilitas.
+// Dynamic sitemap: home, subjects, each lesson, + utility pages.
 export default defineEventHandler((event) => {
   const base = (useRuntimeConfig(event).public.siteUrl as string).replace(/\/$/, '')
 

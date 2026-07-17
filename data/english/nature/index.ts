@@ -1,6 +1,6 @@
 import type { EnglishLesson } from '~/types'
 
-// Kosakata: Alam (Pemula).
+// Vocabulary: Nature (Beginner).
 export const nature: EnglishLesson = {
   id: 'en-nature',
   subject: 'english',

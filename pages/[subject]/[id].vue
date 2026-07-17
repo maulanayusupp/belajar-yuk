@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { lessonService } from '~/services/lessonService'
 
-// Halaman menjalankan satu pelajaran. Route: /english/en-animals dst.
-// Memilih komponen pelajaran sesuai jenis mata pelajaran.
+// Page that runs a single lesson. Route: /english/en-animals, etc.
+// Selects the lesson component based on the subject type.
 const route = useRoute()
 const lessonId = computed(() => String(route.params.id))
 const subjectParam = computed(() => String(route.params.subject))
 
 const lesson = computed(() => lessonService.getLesson(lessonId.value))
 
-// 404 bila pelajaran tidak ada atau tidak cocok dengan mata pelajaran di URL.
+// 404 if the lesson doesn't exist or doesn't match the subject in the URL.
 if (!lesson.value || lesson.value.subject !== subjectParam.value) {
   throw createError({ statusCode: 404, statusMessage: 'Pelajaran tidak ditemukan' })
 }
@@ -48,7 +48,7 @@ useHead(() => ({ title: `${lesson.value?.title} — Belajar Yuk!` }))
       </p>
     </header>
 
-    <!-- Pilih komponen pelajaran sesuai mata pelajaran & jenis aktivitas -->
+    <!-- Pick the lesson component based on subject & activity type -->
     <template v-if="lesson.subject === 'english'">
       <EnglishPhonicsLesson v-if="lesson.type === 'phonics'" :lesson="lesson" />
       <EnglishListeningLesson v-else-if="lesson.type === 'listening'" :lesson="lesson" />

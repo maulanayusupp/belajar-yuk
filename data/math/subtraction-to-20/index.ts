@@ -1,6 +1,6 @@
 import type { MathLesson } from '~/types'
 
-// Pengurangan sampai 20 dengan blok (ambil/coret).
+// Subtraction up to 20 with blocks (take away/cross out).
 export const subtractionTo20: MathLesson = {
   id: 'mt-subtraction-to-20',
   subject: 'math',

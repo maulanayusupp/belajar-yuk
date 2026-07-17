@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// Overlay perayaan akhir pelajaran: bintang, confetti, dan suara.
+// End-of-lesson celebration overlay: stars, confetti, and sound.
 const props = defineProps<{ stars: number; scoreText?: string }>()
 const emit = defineEmits<{ replay: []; home: [] }>()
 

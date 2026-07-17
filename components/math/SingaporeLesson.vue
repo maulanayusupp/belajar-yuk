@@ -5,12 +5,12 @@ import { mistakeService } from '~/services/mistakeService'
 import { generateNumberOptions } from '~/utils/math'
 import { clamp, range } from '~/utils/array'
 
-// Menjalankan satu pelajaran Matematika. Memvisualkan tiap soal sesuai
-// metode (Number Bond / Block Addition / Block Subtraction / Counting),
-// lalu anak memilih jawaban. Diakhiri layar perayaan + simpan progres.
+// Runs a single Math lesson. Visualizes each problem according to its
+// method (Number Bond / Block Addition / Block Subtraction / Counting),
+// then the child picks an answer. Ends with a celebration screen + saves progress.
 const props = defineProps<{ lesson: MathLesson }>()
 
-// Metadata metode (ikon + instruksi) diambil dari registry terpusat.
+// Method metadata (icon + instruction) comes from a central registry.
 const methodMeta = computed(() => lessonService.getMathMethodMeta(props.lesson.method))
 const instruction = computed(() => methodMeta.value.instruction)
 
@@ -26,12 +26,12 @@ const scoreText = ref('')
 
 const problem = computed(() => props.lesson.problems[index.value])
 
-// Skala garis bilangan (0..10 atau 0..20) sesuai jawaban terbesar.
+// Number-line scale (0..10 or 0..20) based on the largest answer.
 const lineMax = computed(() =>
   Math.max(...props.lesson.problems.map((p) => p.answer)) > 10 ? 20 : 10,
 )
-// Nilai yang harus dipilih: untuk "cari bilangan hilang" = operandB (bagian
-// yang hilang, mis. 7 + ▢ = 12 → ▢ = 5); selain itu = answer.
+// The value to pick: for "missing number" = operandB (the missing
+// part, e.g. 7 + ▢ = 12 → ▢ = 5); otherwise = answer.
 const correctValue = computed(() =>
   props.lesson.method === 'missing-number' ? problem.value.operandB : problem.value.answer,
 )
@@ -39,24 +39,24 @@ const answered = computed(() => selected.value !== null)
 const isCorrect = computed(() => selected.value === correctValue.value)
 const isLast = computed(() => index.value === props.lesson.problems.length - 1)
 
-// Opsi jawaban dibuat sekali per soal (di-cache pada perubahan index).
+// Answer options are built once per problem (cached on index change).
 const options = ref<number[]>(generateNumberOptions(correctValue.value))
 watch(index, () => {
   options.value = generateNumberOptions(correctValue.value)
 })
 
 function choose(value: number) {
-  // Kunci hanya setelah jawaban BENAR. Jika salah, anak boleh mencoba lagi.
+  // Lock only after a CORRECT answer. If wrong, the child may try again.
   if (isCorrect.value) return
   selected.value = value
   if (value === correctValue.value) {
     correct.value++
     play('correct')
     speak(String(value))
-    mistakeService.remove(props.lesson.id, problem.value.id) // dikuasai
+    mistakeService.remove(props.lesson.id, problem.value.id) // mastered
   } else {
     play('wrong')
-    mistakeService.add(props.lesson.id, problem.value.id) // perlu diulang
+    mistakeService.add(props.lesson.id, problem.value.id) // needs review
   }
 }
 
@@ -108,7 +108,7 @@ function optionState(value: number): 'default' | 'correct' | 'wrong' {
 
       <BaseCard accent="math">
         <div class="mlesson__stage">
-          <!-- Metode: Number Bond -->
+          <!-- Method: Number Bond -->
           <MathNumberBond
             v-if="lesson.method === 'number-bond'"
             :key="`nb-${problem.id}-${answered}`"
@@ -117,7 +117,7 @@ function optionState(value: number): 'default' | 'correct' | 'wrong' {
             :part-b="problem.operandB"
           />
 
-          <!-- Metode: Counting (hitung benda) -->
+          <!-- Method: Counting (count objects) -->
           <div
             v-else-if="lesson.method === 'counting'"
             :key="`ct-${problem.id}`"
@@ -134,14 +134,14 @@ function optionState(value: number): 'default' | 'correct' | 'wrong' {
             </span>
           </div>
 
-          <!-- Metode: Ten Frame (sepuluh kotak) -->
+          <!-- Method: Ten Frame -->
           <MathTenFrame
             v-else-if="lesson.method === 'ten-frame'"
             :key="`tf-${problem.id}`"
             :count="problem.operandA"
           />
 
-          <!-- Metode: Number Line (garis bilangan) -->
+          <!-- Method: Number Line -->
           <MathNumberLine
             v-else-if="lesson.method === 'number-line'"
             :key="`nl-${problem.id}`"
@@ -149,7 +149,7 @@ function optionState(value: number): 'default' | 'correct' | 'wrong' {
             :max="lineMax"
           />
 
-          <!-- Metode: Missing Number (cari bilangan hilang) -->
+          <!-- Method: Missing Number -->
           <p v-else-if="lesson.method === 'missing-number'" class="mlesson__missing">
             <span>{{ problem.operandA }}</span>
             <span class="mlesson__op">{{ problem.operator }}</span>
@@ -163,7 +163,7 @@ function optionState(value: number): 'default' | 'correct' | 'wrong' {
             <span>{{ problem.answer }}</span>
           </p>
 
-          <!-- Metode: Block Subtraction (ambil sebagian) -->
+          <!-- Method: Block Subtraction (take some away) -->
           <div v-else-if="lesson.method === 'block-subtraction'" class="mlesson__blocks">
             <MathBlockGroup
               :key="`sb-${problem.id}`"
@@ -174,14 +174,14 @@ function optionState(value: number): 'default' | 'correct' | 'wrong' {
             />
           </div>
 
-          <!-- Metode: Block Addition (Concrete–Pictorial–Abstract) -->
+          <!-- Method: Block Addition (Concrete–Pictorial–Abstract) -->
           <div v-else class="mlesson__blocks">
             <MathBlockGroup :count="problem.operandA" color="a" :label="String(problem.operandA)" />
             <span class="mlesson__op">+</span>
             <MathBlockGroup :count="problem.operandB" color="b" :label="String(problem.operandB)" />
           </div>
 
-          <!-- Pertanyaan abstrak -->
+          <!-- Abstract question -->
           <p
             v-if="lesson.method === 'counting' || lesson.method === 'ten-frame'"
             class="mlesson__equation"
@@ -286,7 +286,7 @@ function optionState(value: number): 'default' | 'correct' | 'wrong' {
     }
   }
 
-  // Persamaan "cari bilangan hilang": besar & jelas.
+  // "Missing number" equation: big & clear.
   &__missing {
     @include flex(row, center, center, spacing('sm'));
     margin: 0;

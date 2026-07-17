@@ -3,13 +3,13 @@ import type { BahasaLesson, ReadingItem } from '~/types'
 import { shuffle, range, clamp } from '~/utils/array'
 import { mistakeService } from '~/services/mistakeService'
 
-// Merangkai: susun suku kata acak menjadi kata yang benar (bu + ku = buku).
+// Building words: arrange scrambled syllables into the correct word (bu + ku = buku).
 const props = defineProps<{ lesson: BahasaLesson }>()
 
 const { saveResult } = useProgress()
 const { play, speak } = useAudio()
 
-// Hanya item yang punya pecahan suku kata yang bisa dirangkai.
+// Only items that have a syllable breakdown can be built.
 const questions = computed(() =>
   shuffle(props.lesson.items.filter((i) => (i.syllables?.length ?? 0) >= 2)),
 )
@@ -29,7 +29,7 @@ interface Tile {
   used: boolean
 }
 const tiles = ref<Tile[]>([])
-const built = ref<number[]>([]) // urutan id tile yang dipilih
+const built = ref<number[]>([]) // order of selected tile ids
 const status = ref<'typing' | 'correct' | 'wrong'>('typing')
 
 const builtSyllables = computed(() =>
@@ -112,7 +112,7 @@ function goHome() {
         <span class="rangkai__emoji" aria-hidden="true">{{ current.emoji }}</span>
         <span v-if="current.hint" class="rangkai__hint">{{ current.hint }}</span>
 
-        <!-- Kotak suku kata tersusun -->
+        <!-- Assembled syllable slots -->
         <div class="rangkai__slots" :class="`rangkai__slots--${status}`">
           <span v-for="i in range(syllables.length)" :key="i" class="rangkai__slot">
             {{ builtSyllables[i] ?? '' }}
@@ -120,7 +120,7 @@ function goHome() {
         </div>
       </div>
 
-      <!-- Suku kata acak -->
+      <!-- Scrambled syllables -->
       <div class="rangkai__tiles">
         <button
           v-for="tile in tiles"

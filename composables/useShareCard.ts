@@ -1,6 +1,6 @@
-// Membuat gambar "Kartu Pencapaian" (canvas) lalu membagikannya.
-// Pakai Web Share API (bisa langsung ke WhatsApp di HP); bila tak
-// didukung, gambar diunduh + membuka WhatsApp Web dengan teks.
+// Builds an "Achievement Card" image (canvas) and then shares it.
+// Uses the Web Share API (can go straight to WhatsApp on mobile); if not
+// supported, the image is downloaded + WhatsApp Web opens with the text.
 
 export interface ShareData {
   name: string
@@ -8,7 +8,7 @@ export interface ShareData {
   stars: number
   lessons: number
   streak: number
-  badges: string[] // ikon lencana yang diraih
+  badges: string[] // icons of the badges earned
 }
 
 const SIZE = 1080
@@ -32,7 +32,7 @@ function drawCard(data: ShareData): HTMLCanvasElement {
   canvas.height = SIZE
   const ctx = canvas.getContext('2d')!
 
-  // Latar gradient
+  // Gradient background
   const bg = ctx.createLinearGradient(0, 0, SIZE, SIZE)
   bg.addColorStop(0, '#7F5BFF')
   bg.addColorStop(0.55, '#6C5CE7')
@@ -40,7 +40,7 @@ function drawCard(data: ShareData): HTMLCanvasElement {
   ctx.fillStyle = bg
   ctx.fillRect(0, 0, SIZE, SIZE)
 
-  // Lingkaran dekoratif
+  // Decorative circles
   ctx.fillStyle = 'rgba(255,255,255,0.08)'
   ctx.beginPath()
   ctx.arc(920, 140, 200, 0, Math.PI * 2)
@@ -51,7 +51,7 @@ function drawCard(data: ShareData): HTMLCanvasElement {
 
   ctx.textAlign = 'center'
 
-  // Merek
+  // Brand
   ctx.fillStyle = 'rgba(255,255,255,0.85)'
   ctx.font = '800 40px system-ui, sans-serif'
   ctx.fillText('🎈 BELAJAR YUK!', SIZE / 2, 110)
@@ -60,7 +60,7 @@ function drawCard(data: ShareData): HTMLCanvasElement {
   ctx.font = '200px system-ui, sans-serif'
   ctx.fillText(data.avatar || '🦉', SIZE / 2, 340)
 
-  // Nama
+  // Name
   ctx.fillStyle = '#FFFFFF'
   ctx.font = '800 76px system-ui, sans-serif'
   ctx.fillText(`Hebat, ${data.name}!`, SIZE / 2, 450)
@@ -69,7 +69,7 @@ function drawCard(data: ShareData): HTMLCanvasElement {
   ctx.font = '600 38px system-ui, sans-serif'
   ctx.fillText('Pencapaian belajarku', SIZE / 2, 510)
 
-  // Tiga statistik dalam pill
+  // Three stats in pills
   const stats = [
     { icon: '⭐', value: String(data.stars), label: 'Bintang' },
     { icon: '✅', value: String(data.lessons), label: 'Pelajaran' },
@@ -95,7 +95,7 @@ function drawCard(data: ShareData): HTMLCanvasElement {
     x += pillW + gap
   }
 
-  // Lencana
+  // Badges
   if (data.badges.length) {
     ctx.font = '76px system-ui, sans-serif'
     ctx.fillStyle = '#FFFFFF'
@@ -122,18 +122,18 @@ export function useShareCard() {
     if (!blob) return
     const file = new File([blob], 'pencapaian.png', { type: 'image/png' })
 
-    // Web Share API dengan file (ideal di HP → langsung ke WhatsApp)
+    // Web Share API with a file (ideal on mobile → straight to WhatsApp)
     const nav = navigator as Navigator & { canShare?: (d: ShareData) => boolean }
     if (nav.canShare?.({ files: [file] } as unknown as ShareData)) {
       try {
         await navigator.share({ files: [file], title: 'Belajar Yuk!', text })
         return
       } catch {
-        /* dibatalkan pengguna — lanjut ke fallback */
+        /* cancelled by the user — continue to the fallback */
       }
     }
 
-    // Fallback: unduh gambar + buka WhatsApp dengan teks
+    // Fallback: download the image + open WhatsApp with the text
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url

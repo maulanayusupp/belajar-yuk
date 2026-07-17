@@ -1,7 +1,7 @@
-// Barrel file: dipakai lewat `additionalData` di nuxt.config.ts
-// sehingga variabel, fungsi, & mixin OTOMATIS tersedia di setiap
-// komponen. HANYA forward hal yang TIDAK menghasilkan output CSS
-// (variabel/fungsi/mixin) supaya tidak ada duplikasi.
+// Barrel file: used via `additionalData` in nuxt.config.ts
+// so that variables, functions, & mixins are AUTOMATICALLY available in every
+// component. ONLY forward things that DO NOT produce CSS output
+// (variables/functions/mixins) to avoid duplication.
 @forward 'variables';
 @forward 'functions';
 @forward 'mixins';

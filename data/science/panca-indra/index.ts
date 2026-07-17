@@ -1,7 +1,7 @@
 import type { ScienceLesson } from '~/types'
 
-// Pelajaran Sains: Panca Indra & bagian tubuh — mengenal fungsi tiap indra.
-export const pancaIndra: ScienceLesson = {
+// Science lesson: The Five Senses & body parts — getting to know what each sense does.
+export const fiveSenses: ScienceLesson = {
   id: 'sci-panca-indra',
   subject: 'science',
   type: 'explore',

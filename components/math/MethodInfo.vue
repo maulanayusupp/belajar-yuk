@@ -2,8 +2,8 @@
 import type { MathMethod } from '~/types'
 import { lessonService } from '~/services/lessonService'
 
-// Panel penjelasan: apa bedanya metode Singapore dengan cara biasa.
-// Memakai <details> agar bisa dibuka/tutup tanpa JavaScript.
+// Explanation panel: how the Singapore method differs from the usual way.
+// Uses <details> so it can be opened/closed without JavaScript.
 const props = defineProps<{ method: MathMethod }>()
 const meta = computed(() => lessonService.getMathMethodMeta(props.method))
 </script>

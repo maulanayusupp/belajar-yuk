@@ -1,7 +1,7 @@
 import type { MathLesson } from '~/types'
 
-// Membandingkan dua bilangan (>, <, =). operator 'compare'; `answer`
-// tidak dipakai (simbol dihitung dari operandA vs operandB saat main).
+// Comparing two numbers (>, <, =). operator 'compare'; `answer`
+// is unused (the symbol is computed from operandA vs operandB at play time).
 export const compare: MathLesson = {
   id: 'mt-compare',
   subject: 'math',

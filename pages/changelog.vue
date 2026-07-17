@@ -2,13 +2,13 @@
 import type { ChangelogEntry } from '~/types'
 import entries from '~/changelog/entries.json'
 
-// Catatan perubahan — diurutkan dari tanggal terbaru.
-// Data ada di changelog/entries.json (tinggal tambah entri baru di atas).
+// Changelog — sorted from the most recent date.
+// Data lives in changelog/entries.json (just add new entries at the top).
 const items = computed<ChangelogEntry[]>(() =>
   [...(entries as ChangelogEntry[])].sort((a, b) => b.date.localeCompare(a.date)),
 )
 
-// Format tanggal deterministik (aman SSR, tanpa Intl/Date).
+// Deterministic date formatting (SSR-safe, no Intl/Date).
 const MONTHS = [
   'Januari',
   'Februari',
@@ -94,7 +94,7 @@ useHead({ title: 'Changelog' })
   position: relative;
   padding-left: spacing('lg');
 
-  // Garis vertikal timeline
+  // Vertical timeline line
   &::before {
     content: '';
     position: absolute;

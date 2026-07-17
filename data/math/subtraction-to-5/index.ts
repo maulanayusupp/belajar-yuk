@@ -1,6 +1,6 @@
 import type { MathLesson } from '~/types'
 
-// Pengurangan sampai 5 — langkah pertama mengurang.
+// Subtraction up to 5 — the first step in subtracting.
 export const subtractionTo5: MathLesson = {
   id: 'mt-subtraction-to-5',
   subject: 'math',

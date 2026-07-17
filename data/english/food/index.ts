@@ -1,6 +1,6 @@
 import type { EnglishLesson } from '~/types'
 
-// Kosakata: Makanan & Minuman (Menengah).
+// Vocabulary: Food & Drinks (Intermediate).
 export const food: EnglishLesson = {
   id: 'en-food',
   subject: 'english',

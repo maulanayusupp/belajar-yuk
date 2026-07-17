@@ -1,6 +1,6 @@
 import type { EnglishLesson } from '~/types'
 
-// Phonics S–Z (melengkapi alfabet A–Z).
+// Phonics S–Z (completing the A–Z alphabet).
 export const phonicsSZ: EnglishLesson = {
   id: 'en-phonics-s-z',
   subject: 'english',

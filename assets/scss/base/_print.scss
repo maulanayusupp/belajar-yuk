@@ -1,6 +1,6 @@
 @use '../abstracts' as *;
 
-// Saat mencetak (Ctrl/Cmd+P): sembunyikan UI, tampilkan hanya sertifikat.
+// When printing (Ctrl/Cmd+P): hide the UI, show only the certificate.
 @media print {
   .app-header,
   .layout__footer,

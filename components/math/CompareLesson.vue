@@ -3,7 +3,7 @@ import type { MathLesson } from '~/types'
 import { clamp } from '~/utils/array'
 import { mistakeService } from '~/services/mistakeService'
 
-// Membandingkan dua bilangan: pilih >, <, atau =.
+// Comparing two numbers: pick >, <, or =.
 const props = defineProps<{ lesson: MathLesson }>()
 
 const { saveResult } = useProgress()
@@ -28,7 +28,7 @@ const isCorrect = computed(() => selected.value === answer.value)
 const isLast = computed(() => index.value === props.lesson.problems.length - 1)
 
 function choose(sym: Sym) {
-  if (isCorrect.value) return // kunci setelah benar
+  if (isCorrect.value) return // lock once correct
   selected.value = sym
   if (sym === answer.value) {
     correct.value++

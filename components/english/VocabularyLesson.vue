@@ -2,8 +2,8 @@
 import type { EnglishLesson } from '~/types'
 import { clamp } from '~/utils/array'
 
-// Mengorkestrasi satu pelajaran kosakata:
-//   Belajar (flashcard) → Kuis → Perayaan.
+// Orchestrates a single vocabulary lesson:
+//   Learn (flashcards) → Quiz → Celebration.
 const props = defineProps<{ lesson: EnglishLesson }>()
 
 const { saveResult } = useProgress()
@@ -52,7 +52,7 @@ function goHome() {
 
 <template>
   <div class="vlesson">
-    <!-- ---------- Fase Belajar ---------- -->
+    <!-- ---------- Learn Phase ---------- -->
     <template v-if="phase === 'learn'">
       <BaseMascot
         message="Ketuk kartunya untuk mendengar cara membaca kata ini."
@@ -75,7 +75,7 @@ function goHome() {
       </div>
     </template>
 
-    <!-- ---------- Fase Kuis ---------- -->
+    <!-- ---------- Quiz Phase ---------- -->
     <template v-else-if="phase === 'quiz'">
       <BaseMascot
         message="Sekarang giliranmu! Pilih kata Bahasa Inggris yang benar."
@@ -84,7 +84,7 @@ function goHome() {
       <EnglishQuiz :items="lesson.items" :lesson-id="lesson.id" @complete="onQuizComplete" />
     </template>
 
-    <!-- ---------- Fase Selesai ---------- -->
+    <!-- ---------- Done Phase ---------- -->
     <CelebrationOverlay
       v-else
       :stars="stars"

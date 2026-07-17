@@ -1,7 +1,7 @@
 import { mistakeService } from '~/services/mistakeService'
 import { lessonService, type ReviewQuestion } from '~/services/lessonService'
 
-// Kesalahan yang perlu diulang (reaktif untuk badge & halaman Ulangi).
+// Mistakes that need reviewing (reactive for the badge & Review page).
 export function useMistakes() {
   const count = useState<number>('mistakes-count', () => 0)
 
@@ -13,12 +13,12 @@ export function useMistakes() {
     count.value = mistakeService.count()
   }
 
-  /** Soal MCQ hasil normalisasi dari kesalahan tersimpan. */
+  /** MCQ questions normalized from the stored mistakes. */
   function questions(): ReviewQuestion[] {
     return lessonService.getReviewQuestions(mistakeService.list())
   }
 
-  /** Tandai satu item sudah dikuasai (hapus dari daftar ulang). */
+  /** Mark one item as mastered (remove it from the review list). */
   function resolve(lessonId: string, itemId: string) {
     mistakeService.remove(lessonId, itemId)
     count.value = mistakeService.count()

@@ -19,38 +19,38 @@ import { numberLine20 } from './number-line-20'
 import { missingNumber } from './missing-number'
 import { compare } from './compare'
 
-// Daftar & URUTAN pelajaran Matematika (mudah → menantang, semua Pemula).
+// List & ORDER of Math lessons (easy → challenging, all Beginner).
 //
-// ➕ Menambah pelajaran baru:
-//   1. Buat FOLDER baru berisi `index.ts` yang meng-export MathLesson.
-//   2. Import di sini, lalu masukkan ke array (posisi = urutan tampil).
-//   Butuh metode baru? Tambah nilai di `MathMethod` (types), metadata di
-//   `math/methods.ts`, & cabang render di components/math/SingaporeLesson.vue.
+// ➕ Adding a new lesson:
+//   1. Create a new FOLDER with an `index.ts` that exports a MathLesson.
+//   2. Import it here, then add it to the array (position = display order).
+//   Need a new method? Add a value to `MathMethod` (types), metadata in
+//   `math/methods.ts`, & a render branch in components/math/SingaporeLesson.vue.
 export const mathLessons: MathLesson[] = [
-  // Berhitung
+  // Counting
   counting,
   countingTo10,
   countingTo20,
   tenFrame,
   teenNumbers,
-  // Ikatan bilangan
+  // Number bonds
   numberBond5,
   numberBond10,
   numberBond20,
-  // Penjumlahan
+  // Addition
   additionTo5,
   additionTo10,
   blockAddition,
   additionTo20,
-  // Pengurangan
+  // Subtraction
   subtractionTo5,
   subtraction,
   subtractionTo20,
-  // Garis bilangan
+  // Number line
   numberLine10,
   numberLine20,
-  // Menengah: cari bilangan hilang
+  // Intermediate: find the missing number
   missingNumber,
-  // Mahir: membandingkan bilangan
+  // Advanced: comparing numbers
   compare,
 ]

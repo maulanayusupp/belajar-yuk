@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { range, clamp } from '~/utils/array'
 
-// Target harian: berapa pelajaran diselesaikan hari ini dari target.
+// Daily goal: how many lessons completed today out of the target.
 const props = defineProps<{ done: number; goal: number }>()
 
 const reached = computed(() => props.done >= props.goal)

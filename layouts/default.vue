@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// Layout utama: header lengket + area konten + latar dekoratif.
+// Main layout: sticky header + content area + decorative background.
 const footerNav = [
   { to: '/', label: 'Beranda' },
   { to: '/tes', label: 'Tes Penempatan' },
@@ -86,7 +86,7 @@ const footerNav = [
     }
   }
 
-  // Latar dekoratif (lingkaran warna lembut yang mengambang)
+  // Decorative background (soft-colored floating circles)
   &__decor {
     position: fixed;
     inset: 0;

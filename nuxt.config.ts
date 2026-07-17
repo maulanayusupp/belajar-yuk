@@ -1,13 +1,13 @@
 import { fileURLToPath } from 'node:url'
 
-// Path absolut ke folder abstracts agar variabel & mixin SCSS
-// otomatis tersedia di SEMUA komponen tanpa perlu @use manual.
+// Absolute path to the abstracts folder so SCSS variables & mixins
+// are automatically available in ALL components without manual @use.
 const abstracts = fileURLToPath(new URL('./assets/scss/abstracts/index.scss', import.meta.url))
 
-// GANTI dengan domain produksi Anda. Dipakai untuk URL absolut og:image
-// & canonical (WAJIB absolut agar preview WhatsApp/Twitter/Facebook muncul).
-// Bisa juga di-override lewat env: NUXT_PUBLIC_SITE_URL.
-// Tanpa trailing slash (og:url & canonical menambahkan path halaman sendiri).
+// REPLACE with your production domain. Used for absolute og:image
+// & canonical URLs (MUST be absolute so WhatsApp/Twitter/Facebook previews show).
+// Can also be overridden via env: NUXT_PUBLIC_SITE_URL.
+// No trailing slash (og:url & canonical append the page's own path).
 const SITE_URL = process.env.NUXT_PUBLIC_SITE_URL || 'https://belajar-yuk-kappa.vercel.app'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -21,14 +21,14 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       siteUrl: SITE_URL,
-      // Analitik privasi (tanpa cookie) — set domain via env
-      // NUXT_PUBLIC_PLAUSIBLE_DOMAIN untuk mengaktifkan. Kosong = nonaktif.
+      // Privacy analytics (cookieless) — set the domain via env
+      // NUXT_PUBLIC_PLAUSIBLE_DOMAIN to enable. Empty = disabled.
       plausibleDomain: process.env.NUXT_PUBLIC_PLAUSIBLE_DOMAIN || '',
     },
   },
 
-  // Progressive Web App: bisa di-install & dipakai offline.
-  // Service worker hanya aktif di build produksi (bukan dev).
+  // Progressive Web App: can be installed & used offline.
+  // The service worker is only active in production builds (not dev).
   pwa: {
     registerType: 'autoUpdate',
     manifest: {
@@ -55,7 +55,7 @@ export default defineNuxtConfig({
     devOptions: { enabled: false },
   },
 
-  // Stylesheet global (reset, tipografi, animasi, utilities)
+  // Global stylesheet (reset, typography, animations, utilities)
   css: ['~/assets/scss/main.scss'],
 
   vite: {
@@ -63,7 +63,7 @@ export default defineNuxtConfig({
       preprocessorOptions: {
         scss: {
           api: 'modern',
-          // Inject design-tokens (variabel/mixin/fungsi) ke setiap file .scss
+          // Inject design tokens (variables/mixins/functions) into every .scss file
           additionalData: `@use "${abstracts}" as *;`,
         },
       },
@@ -73,7 +73,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: { lang: 'id' },
-      // Judul default + template: judul halaman otomatis diberi akhiran merek.
+      // Default title + template: page titles automatically get a brand suffix.
       title: 'Kuasai Bahasa Inggris & Matematika Sejak Dini',
       titleTemplate: (title) =>
         title?.includes('Belajar Yuk') ? title : `${title ?? ''} · Belajar Yuk!`.trim(),
@@ -88,17 +88,17 @@ export default defineNuxtConfig({
           content:
             'belajar bahasa inggris anak, belajar matematika anak, singapore math, number bond, ten frame, phonics anak, fondasi matematika anak, kosakata bahasa inggris, belajar terstruktur, calistung, persiapan sekolah, edukasi anak usia dini',
         },
-        // Warna & nama aplikasi saat "Add to Home Screen"
+        // App color & name for "Add to Home Screen"
         { name: 'apple-mobile-web-app-title', content: 'Belajar Yuk!' },
         { name: 'apple-mobile-web-app-capable', content: 'yes' },
       ],
       link: [
-        // Favicon & ikon
+        // Favicon & icons
         { rel: 'icon', href: '/favicon.ico', sizes: 'any' },
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
-        // manifest.webmanifest di-inject otomatis oleh modul @vite-pwa/nuxt
-        // Font
+        // manifest.webmanifest is injected automatically by the @vite-pwa/nuxt module
+        // Fonts
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         {

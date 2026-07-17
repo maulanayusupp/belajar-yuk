@@ -1,6 +1,6 @@
 import type { EnglishLesson } from '~/types'
 
-// Kosakata: Hari dalam Seminggu (Menengah).
+// Vocabulary: Days of the Week (Intermediate).
 export const days: EnglishLesson = {
   id: 'en-days',
   subject: 'english',

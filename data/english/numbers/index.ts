@@ -1,6 +1,6 @@
 import type { EnglishLesson } from '~/types'
 
-// Pelajaran kosakata: Angka 1–10 (Bahasa Inggris).
+// Vocabulary lesson: Numbers 1–10 (English).
 export const numbers: EnglishLesson = {
   id: 'en-numbers',
   subject: 'english',

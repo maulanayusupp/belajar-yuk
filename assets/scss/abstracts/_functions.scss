@@ -1,26 +1,26 @@
 @use 'sass:map';
 @use 'variables' as v;
 
-// Ambil nilai spacing dari peta. Contoh: padding: spacing('md');
+// Get a spacing value from the map. Example: padding: spacing('md');
 @function spacing($key) {
   @if not map.has-key(v.$spacing, $key) {
-    @error "Spacing '#{$key}' tidak ada. Pilihan: #{map.keys(v.$spacing)}.";
+    @error "Spacing '#{$key}' does not exist. Options: #{map.keys(v.$spacing)}.";
   }
   @return map.get(v.$spacing, $key);
 }
 
-// Ambil ukuran font dari peta. Contoh: font-size: font-size('lg');
+// Get a font size from the map. Example: font-size: font-size('lg');
 @function font-size($key) {
   @if not map.has-key(v.$font-sizes, $key) {
-    @error "Font-size '#{$key}' tidak ada. Pilihan: #{map.keys(v.$font-sizes)}.";
+    @error "Font-size '#{$key}' does not exist. Options: #{map.keys(v.$font-sizes)}.";
   }
   @return map.get(v.$font-sizes, $key);
 }
 
-// Ambil nilai breakpoint. Contoh: breakpoint('md') -> 768px
+// Get a breakpoint value. Example: breakpoint('md') -> 768px
 @function breakpoint($key) {
   @if not map.has-key(v.$breakpoints, $key) {
-    @error "Breakpoint '#{$key}' tidak ada. Pilihan: #{map.keys(v.$breakpoints)}.";
+    @error "Breakpoint '#{$key}' does not exist. Options: #{map.keys(v.$breakpoints)}.";
   }
   @return map.get(v.$breakpoints, $key);
 }

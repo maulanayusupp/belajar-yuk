@@ -1,8 +1,8 @@
 import type { MathLesson } from '~/types'
 
-// Metode "Block Addition" — pendekatan Concrete–Pictorial–Abstract (CPA):
-// anak menghitung blok nyata sebelum melihat angka.
-// Aset khusus pelajaran ini boleh diletakkan di folder yang sama.
+// "Block Addition" method — the Concrete–Pictorial–Abstract (CPA) approach:
+// the child counts real blocks before seeing the numbers.
+// Assets specific to this lesson may be placed in the same folder.
 export const blockAddition: MathLesson = {
   id: 'mt-block-addition',
   subject: 'math',

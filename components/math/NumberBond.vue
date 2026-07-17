@@ -1,13 +1,13 @@
 <script setup lang="ts">
-// Diagram "Number Bond" (Ikatan Bilangan) khas Singapore Math:
-// satu bilangan UTUH terhubung ke dua BAGIAN. Bila `whole` null,
-// tampilkan "?" (anak mencari hasilnya).
+// "Number Bond" diagram, characteristic of Singapore Math:
+// one WHOLE number connected to two PARTS. When `whole` is null,
+// show "?" (the child works out the result).
 defineProps<{ whole: number | null; partA: number; partB: number }>()
 </script>
 
 <template>
   <div class="bond">
-    <!-- Garis penghubung digambar dengan SVG (markup, bukan CSS) -->
+    <!-- Connecting lines drawn with SVG (markup, not CSS) -->
     <svg class="bond__links" viewBox="0 0 280 180" aria-hidden="true">
       <line x1="140" y1="32" x2="52" y2="138" />
       <line x1="140" y1="32" x2="228" y2="138" />

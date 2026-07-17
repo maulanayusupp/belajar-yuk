@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// Kartu fitur/keunggulan dengan ikon emoji, judul, dan deskripsi.
+// Feature/highlight card with an emoji icon, title, and description.
 withDefaults(
   defineProps<{
     icon: string

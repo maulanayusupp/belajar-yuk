@@ -1,12 +1,12 @@
-// Directive `v-reveal`: elemen muncul dengan animasi saat masuk viewport
-// (scroll-reveal). Pemakaian:
-//   <div v-reveal>...</div>            // reveal biasa
-//   <div v-reveal="150">...</div>      // dengan jeda 150ms (untuk stagger)
+// Directive `v-reveal`: element appears with an animation when it enters the
+// viewport (scroll-reveal). Usage:
+//   <div v-reveal>...</div>            // normal reveal
+//   <div v-reveal="150">...</div>      // with a 150ms delay (for staggering)
 //
-// Menghormati prefers-reduced-motion (tidak menyembunyikan apa pun).
-// Directive didaftarkan universal (server + klien) agar SSR bisa me-resolve
-// `v-reveal`; namun hook `mounted` hanya berjalan di klien, sehingga konten
-// tetap terlihat di SSR / tanpa JS (tak ada class 'reveal' saat SSR).
+// Respects prefers-reduced-motion (doesn't hide anything).
+// The directive is registered universally (server + client) so SSR can resolve
+// `v-reveal`; however the `mounted` hook only runs on the client, so content
+// stays visible during SSR / without JS (no 'reveal' class during SSR).
 const observers = new WeakMap<HTMLElement, IntersectionObserver>()
 
 export default defineNuxtPlugin((nuxtApp) => {

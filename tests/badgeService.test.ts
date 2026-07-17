@@ -11,18 +11,18 @@ const empty: BadgeStats = {
 }
 
 describe('badgeService', () => {
-  it('tanpa progres: tak ada lencana diraih', () => {
+  it('no progress: no badges earned', () => {
     expect(badgeService.earnedCount(empty)).toBe(0)
     expect(badgeService.all(empty).every((b) => !b.earned)).toBe(true)
   })
 
-  it('lencana "Langkah Pertama" diraih setelah 1 pelajaran', () => {
+  it('the "Langkah Pertama" badge is earned after 1 lesson', () => {
     const badges = badgeService.all({ ...empty, completed: 1 })
     expect(badges.find((b) => b.id === 'first')?.earned).toBe(true)
     expect(badges.find((b) => b.id === 'five')?.earned).toBe(false)
   })
 
-  it('kondisi ambang bekerja (streak & bintang)', () => {
+  it('threshold conditions work (streak & stars)', () => {
     const s: BadgeStats = { ...empty, completed: 10, streakBest: 7, totalStars: 25, perfect: 1 }
     const earned = new Set(
       badgeService
@@ -36,7 +36,7 @@ describe('badgeService', () => {
     expect(earned.has('perfect')).toBe(true)
   })
 
-  it('total lencana konsisten', () => {
+  it('total badge count is consistent', () => {
     expect(badgeService.total()).toBe(badgeService.all(empty).length)
   })
 })

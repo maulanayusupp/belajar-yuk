@@ -3,7 +3,7 @@ import type { ScienceFact, ScienceLesson } from '~/types'
 import { shuffle, clamp } from '~/utils/array'
 import { mistakeService } from '~/services/mistakeService'
 
-// Mesin pelajaran Sains: Kenali fakta (kartu) → Kuis (pilih jawaban) → Perayaan.
+// Science lesson engine: Learn facts (cards) → Quiz (pick answer) → Celebration.
 const props = defineProps<{ lesson: ScienceLesson }>()
 
 const { saveResult } = useProgress()
@@ -12,14 +12,14 @@ const { pronounce, speak, play } = useAudio()
 type Phase = 'learn' | 'quiz' | 'done'
 const phase = ref<Phase>('learn')
 
-// ---------- Fase Belajar ----------
+// ---------- Learn Phase ----------
 const cardIndex = ref(0)
 const currentFact = computed(() => props.lesson.facts[cardIndex.value])
 const isLastCard = computed(() => cardIndex.value === props.lesson.facts.length - 1)
 
 function sayFact(fact: ScienceFact) {
   play('pop')
-  // Ucapkan istilah Bahasa Inggris (fokus kosakata sains).
+  // Speak the English term (focus on science vocabulary).
   pronounce(fact.term)
 }
 
@@ -37,7 +37,7 @@ function prevCard() {
   if (cardIndex.value > 0) cardIndex.value--
 }
 
-// ---------- Fase Kuis ----------
+// ---------- Quiz Phase ----------
 interface Question {
   fact: ScienceFact
   options: ScienceFact[]
@@ -78,7 +78,7 @@ function optionState(option: ScienceFact): 'default' | 'correct' | 'wrong' {
   return 'default'
 }
 
-// ---------- Selesai ----------
+// ---------- Done ----------
 const stars = ref(0)
 const scoreText = ref('')
 
@@ -115,7 +115,7 @@ function goHome() {
 
 <template>
   <div class="sci">
-    <!-- ---------- Fase Belajar ---------- -->
+    <!-- ---------- Learn Phase ---------- -->
     <template v-if="phase === 'learn'">
       <BaseMascot
         message="Amati fakta seru ini. Ketuk kartu untuk mendengar kata Inggrisnya."
@@ -141,7 +141,7 @@ function goHome() {
       </div>
     </template>
 
-    <!-- ---------- Fase Kuis ---------- -->
+    <!-- ---------- Quiz Phase ---------- -->
     <template v-else-if="phase === 'quiz'">
       <BaseMascot
         message="Sekarang giliranmu! Pilih jawaban yang benar."
@@ -171,7 +171,7 @@ function goHome() {
       </BaseButton>
     </template>
 
-    <!-- ---------- Selesai ---------- -->
+    <!-- ---------- Done ---------- -->
     <CelebrationOverlay
       v-else
       :stars="stars"

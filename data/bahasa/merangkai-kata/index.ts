@@ -1,8 +1,8 @@
 import type { BahasaLesson } from '~/types'
 
-// Membaca: merangkai dua suku kata menjadi kata (bu + ku = buku).
-// Aktivitas 'kata' memakai field `syllables` untuk mode menyusun.
-export const merangkaiKata: BahasaLesson = {
+// Reading: combining two syllables into a word (bu + ku = buku).
+// The 'kata' activity uses the `syllables` field for its assembly mode.
+export const buildWords: BahasaLesson = {
   id: 'bhs-merangkai-kata',
   subject: 'bahasa',
   type: 'kata',

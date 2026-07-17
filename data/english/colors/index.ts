@@ -1,6 +1,6 @@
 import type { EnglishLesson } from '~/types'
 
-// Pelajaran kosakata: Warna.
+// Vocabulary lesson: Colors.
 export const colors: EnglishLesson = {
   id: 'en-colors',
   subject: 'english',

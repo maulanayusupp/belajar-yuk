@@ -1,7 +1,7 @@
 import type { Level } from '~/types'
 
-// Kategori tingkat kesulitan (dipakai untuk mengelompokkan pelajaran
-// agar pengguna awam tahu mana untuk pemula, menengah, atau mahir).
+// Difficulty level categories (used to group lessons so that
+// non-expert users know which are for beginner, intermediate, or advanced).
 export interface LevelMeta {
   id: Level
   label: string
@@ -9,7 +9,7 @@ export interface LevelMeta {
   description: string
 }
 
-// Urutan array = urutan tampil (pemula → mahir).
+// Array order = display order (beginner → advanced).
 export const levels: LevelMeta[] = [
   {
     id: 'beginner',

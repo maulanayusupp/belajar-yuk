@@ -1,7 +1,7 @@
 import type { Streak } from '~/services/streakService'
 import { streakService } from '~/services/streakService'
 
-// Streak reaktif untuk ditampilkan (dashboard, sapaan).
+// Reactive streak for display (dashboard, greeting).
 export function useStreak() {
   const streak = useState<Streak>('streak', () => ({ count: 0, best: 0, lastDate: '' }))
 

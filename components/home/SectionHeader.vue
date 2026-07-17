@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// Kepala section yang konsisten: label kecil (eyebrow) + judul + subjudul.
+// Consistent section header: small label (eyebrow) + title + subtitle.
 withDefaults(
   defineProps<{
     eyebrow?: string

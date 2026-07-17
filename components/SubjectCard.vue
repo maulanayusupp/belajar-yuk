@@ -2,7 +2,7 @@
 import type { Subject } from '~/types'
 import { lessonService } from '~/services/lessonService'
 
-// Kartu besar pemilihan mata pelajaran (tampilan premium).
+// Large subject-selection card (premium look).
 const props = defineProps<{ subject: Subject }>()
 
 const lessonCount = computed(() => lessonService.getLessons(props.subject.id).length)
@@ -66,7 +66,7 @@ const lessonCount = computed(() => lessonService.getLessons(props.subject.id).le
     }
   }
 
-  // Pola lingkaran dekoratif di latar
+  // Decorative circle pattern in the background
   &__pattern {
     position: absolute;
     inset: 0;

@@ -3,8 +3,8 @@ import type { EnglishLesson } from '~/types'
 import { shuffle, clamp } from '~/utils/array'
 import { mistakeService } from '~/services/mistakeService'
 
-// Pelajaran Phonics: fase Belajar (bunyi huruf lewat kata contoh) →
-// Kuis (pilih huruf awal dari sebuah kata) → Perayaan.
+// Phonics lesson: Learn phase (letter sounds via example words) →
+// Quiz (pick the first letter of a word) → Celebration.
 const props = defineProps<{ lesson: EnglishLesson }>()
 
 const { saveResult } = useProgress()
@@ -25,7 +25,7 @@ function hear(text: string, audioUrl?: string) {
   pronounce(text, audioUrl)
 }
 
-// Ucapkan kalimat contoh otomatis tiap ganti kartu.
+// Automatically speak the example sentence whenever the card changes.
 watch(cardIndex, () => pronounce(currentCard.value.example ?? currentCard.value.word), {
   immediate: false,
 })
@@ -39,7 +39,7 @@ function prevCard() {
   if (cardIndex.value > 0) cardIndex.value--
 }
 
-// ---- Kuis: pilih huruf awal ----
+// ---- Quiz: pick the first letter ----
 interface Question {
   item: (typeof items.value)[number]
   options: string[]
@@ -114,7 +114,7 @@ function goHome() {
 
 <template>
   <div class="phonics">
-    <!-- ---------- Belajar ---------- -->
+    <!-- ---------- Learn ---------- -->
     <template v-if="phase === 'learn'">
       <BaseMascot
         message="Ketuk kartunya untuk mendengar bunyi huruf & kata contohnya."
@@ -145,7 +145,7 @@ function goHome() {
       </div>
     </template>
 
-    <!-- ---------- Kuis ---------- -->
+    <!-- ---------- Quiz ---------- -->
     <template v-else-if="phase === 'quiz'">
       <BaseMascot
         message="Kata ini diawali huruf apa? Pilih yang benar!"
@@ -180,7 +180,7 @@ function goHome() {
       </div>
     </template>
 
-    <!-- ---------- Selesai ---------- -->
+    <!-- ---------- Done ---------- -->
     <CelebrationOverlay
       v-else
       :stars="stars"

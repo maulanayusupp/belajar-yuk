@@ -20,25 +20,25 @@ import { levels, type LevelMeta } from '~/data/levels'
 import { generateNumberOptions } from '~/utils/math'
 import { shuffle } from '~/utils/array'
 
-/** Soal untuk mode "Ulang Kesalahan" — MCQ ternormalisasi. */
+/** Question for the "Review Mistakes" mode — a normalized MCQ. */
 export interface ReviewQuestion {
   lessonId: string
   itemId: string
-  emoji: string // dikosongkan untuk soal aritmetika
-  repeat: number // berapa kali emoji ditampilkan (mis. counting)
+  emoji: string // left empty for arithmetic questions
+  repeat: number // how many times the emoji is shown (e.g. counting)
   prompt: string
-  speak?: string // kata untuk diucapkan saat dijawab benar
-  lang?: string // bahasa untuk `speak` (default 'en-US'); 'id-ID' untuk Membaca
+  speak?: string // word to speak when answered correctly
+  lang?: string // language for `speak` (default 'en-US'); 'id-ID' for Reading
   correct: string
   options: string[]
 }
 
-// Sumber data pelajaran terpusat. Komponen TIDAK mengakses file
-// data langsung — selalu lewat service ini. Nanti mudah diganti
-// ke API/CMS tanpa mengubah komponen.
+// Centralized lesson data source. Components do NOT access the data
+// files directly — always go through this service. Easy to swap later
+// to an API/CMS without changing components.
 
 export const lessonService = {
-  /** Semua mata pelajaran (untuk halaman utama). */
+  /** All subjects (for the home page). */
   getSubjects() {
     return subjects
   },
@@ -47,7 +47,7 @@ export const lessonService = {
     return subjects.find((s) => s.id === id) ?? null
   },
 
-  /** Semua pelajaran, opsional difilter per mata pelajaran. */
+  /** All lessons, optionally filtered by subject. */
   getLessons(subject?: SubjectId): Lesson[] {
     return subject ? allLessons.filter((l) => l.subject === subject) : allLessons
   },
@@ -57,44 +57,44 @@ export const lessonService = {
   },
 
   /**
-   * Rekomendasi pelajaran berikutnya: yang pertama belum selesai
-   * (opsional difilter per mata pelajaran). `isCompleted` dari useProgress.
+   * Recommends the next lesson: the first one not yet completed
+   * (optionally filtered by subject). `isCompleted` comes from useProgress.
    */
   getNextLesson(isCompleted: (id: string) => boolean, subject?: SubjectId): Lesson | null {
     const list = this.getLessons(subject)
     return list.find((l) => !isCompleted(l.id)) ?? list[0] ?? null
   },
 
-  /** Ambil pelajaran Bahasa Inggris dengan tipe yang sudah dipersempit. */
+  /** Get an English lesson with the type narrowed. */
   getEnglishLesson(id: string): EnglishLesson | null {
     const lesson = this.getLesson(id)
     return lesson && lesson.subject === 'english' ? lesson : null
   },
 
-  /** Ambil pelajaran Matematika dengan tipe yang sudah dipersempit. */
+  /** Get a Math lesson with the type narrowed. */
   getMathLesson(id: string): MathLesson | null {
     const lesson = this.getLesson(id)
     return lesson && lesson.subject === 'math' ? lesson : null
   },
 
-  /** Ambil pelajaran Sains dengan tipe yang sudah dipersempit. */
+  /** Get a Science lesson with the type narrowed. */
   getScienceLesson(id: string): ScienceLesson | null {
     const lesson = this.getLesson(id)
     return lesson && lesson.subject === 'science' ? lesson : null
   },
 
-  /** Ambil pelajaran Membaca (Bahasa Indonesia) dengan tipe dipersempit. */
+  /** Get a Reading (Indonesian) lesson with the type narrowed. */
   getBahasaLesson(id: string): BahasaLesson | null {
     const lesson = this.getLesson(id)
     return lesson && lesson.subject === 'bahasa' ? lesson : null
   },
 
-  /** Metadata (ikon/label/instruksi) sebuah metode Matematika. */
+  /** Metadata (icon/label/instructions) for a Math method. */
   getMathMethodMeta(method: MathMethod): MathMethodMeta {
     return mathMethodMeta[method]
   },
 
-  /** Daftar metode Matematika yang benar-benar dipakai oleh pelajaran. */
+  /** List of Math methods actually used by the lessons. */
   getUsedMathMethods(): Array<{ method: MathMethod } & MathMethodMeta> {
     const used = new Set<MathMethod>()
     for (const lesson of allLessons) {
@@ -103,12 +103,12 @@ export const lessonService = {
     return [...used].map((method) => ({ method, ...mathMethodMeta[method] }))
   },
 
-  /** Metadata (ikon/label) sebuah jenis aktivitas Bahasa Inggris. */
+  /** Metadata (icon/label) for an English activity type. */
   getEnglishActivityMeta(activity: EnglishActivity): EnglishActivityMeta {
     return englishActivityMeta[activity]
   },
 
-  /** Daftar jenis aktivitas Bahasa Inggris yang dipakai pelajaran. */
+  /** List of English activity types used by the lessons. */
   getUsedEnglishActivities(): Array<{ activity: EnglishActivity } & EnglishActivityMeta> {
     const used = new Set<EnglishActivity>()
     for (const lesson of allLessons) {
@@ -117,12 +117,12 @@ export const lessonService = {
     return [...used].map((activity) => ({ activity, ...englishActivityMeta[activity] }))
   },
 
-  /** Metadata (ikon/label) sebuah jenis aktivitas Sains. */
+  /** Metadata (icon/label) for a Science activity type. */
   getScienceActivityMeta(activity: ScienceActivity): ScienceActivityMeta {
     return scienceActivityMeta[activity]
   },
 
-  /** Daftar jenis aktivitas Sains yang dipakai pelajaran. */
+  /** List of Science activity types used by the lessons. */
   getUsedScienceActivities(): Array<{ activity: ScienceActivity } & ScienceActivityMeta> {
     const used = new Set<ScienceActivity>()
     for (const lesson of allLessons) {
@@ -131,12 +131,12 @@ export const lessonService = {
     return [...used].map((activity) => ({ activity, ...scienceActivityMeta[activity] }))
   },
 
-  /** Metadata (ikon/label) sebuah jenis aktivitas Membaca. */
+  /** Metadata (icon/label) for a Reading activity type. */
   getBahasaActivityMeta(activity: BahasaActivity): BahasaActivityMeta {
     return bahasaActivityMeta[activity]
   },
 
-  /** Daftar jenis aktivitas Membaca yang dipakai pelajaran. */
+  /** List of Reading activity types used by the lessons. */
   getUsedBahasaActivities(): Array<{ activity: BahasaActivity } & BahasaActivityMeta> {
     const used = new Set<BahasaActivity>()
     for (const lesson of allLessons) {
@@ -145,7 +145,7 @@ export const lessonService = {
     return [...used].map((activity) => ({ activity, ...bahasaActivityMeta[activity] }))
   },
 
-  /** Metadata tingkat (Pemula/Menengah/Mahir). */
+  /** Level metadata (Beginner/Intermediate/Advanced). */
   getLevels(): LevelMeta[] {
     return levels
   },
@@ -155,8 +155,8 @@ export const lessonService = {
   },
 
   /**
-   * Pelajaran satu mata pelajaran dikelompokkan per tingkat (untuk kategori
-   * di halaman pelajaran). Hanya tingkat yang berisi pelajaran yang dikembalikan.
+   * Lessons of one subject grouped by level (for the categories on the
+   * lesson page). Only levels that contain lessons are returned.
    */
   getLessonsGrouped(subject: SubjectId): Array<{ meta: LevelMeta; lessons: Lesson[] }> {
     const lessons = this.getLessons(subject)
@@ -165,15 +165,15 @@ export const lessonService = {
       .filter((group) => group.lessons.length > 0)
   },
 
-  /** Tingkat yang belum memiliki pelajaran (untuk teaser "segera hadir"). */
+  /** Levels that don't have lessons yet (for the "coming soon" teaser). */
   getUpcomingLevels(subject: SubjectId): LevelMeta[] {
     const filled = new Set(this.getLessonsGrouped(subject).map((g) => g.meta.id))
     return levels.filter((l) => !filled.has(l.id))
   },
 
   /**
-   * Ubah daftar kesalahan (dari mistakeService) menjadi soal MCQ untuk diulang.
-   * Soal yang tak bisa dirender mandiri (mis. garis bilangan) dilewati.
+   * Turn a list of mistakes (from mistakeService) into MCQ questions to review.
+   * Questions that can't be rendered standalone (e.g. number line) are skipped.
    */
   getReviewQuestions(mistakes: Array<{ lessonId: string; itemId: string }>): ReviewQuestion[] {
     const out: ReviewQuestion[] = []
@@ -217,8 +217,8 @@ export const lessonService = {
           options: shuffle([fact.term, ...distractors]),
         })
       } else if (lesson.subject === 'bahasa') {
-        // Ulang hanya untuk item yang punya gambar sbg petunjuk (kata/kalimat);
-        // huruf/suku-kata butuh audio dulu → dilewati (seperti garis bilangan).
+        // Only review items that have an image as a cue (word/sentence);
+        // letters/syllables need audio first → skipped (like the number line).
         const item = lesson.items.find((i) => i.id === itemId)
         if (!item || !item.emoji) continue
         const distractors = shuffle(lesson.items.filter((i) => i.id !== item.id && i.emoji))
@@ -274,13 +274,13 @@ export const lessonService = {
             options,
           })
         }
-        // metode number-line/ten-frame tanpa emoji: dilewati (butuh visual).
+        // number-line/ten-frame methods without an emoji: skipped (need a visual).
       }
     }
     return out
   },
 
-  /** Label + ikon "tag" metode/aktivitas sebuah pelajaran (untuk kartu). */
+  /** A lesson's method/activity "tag" label + icon (for cards). */
   getLessonTag(lesson: Lesson): { icon: string; label: string } {
     if (lesson.subject === 'math') {
       const meta = mathMethodMeta[lesson.method]

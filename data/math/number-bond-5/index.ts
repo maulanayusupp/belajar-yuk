@@ -1,6 +1,6 @@
 import type { MathLesson } from '~/types'
 
-// Ikatan Bilangan sampai 5 — versi paling mudah (untuk yang baru mulai).
+// Number Bonds up to 5 — the easiest version (for those just starting out).
 export const numberBond5: MathLesson = {
   id: 'mt-number-bond-5',
   subject: 'math',

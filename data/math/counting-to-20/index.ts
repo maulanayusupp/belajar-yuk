@@ -1,6 +1,6 @@
 import type { MathLesson } from '~/types'
 
-// Menghitung benda sampai 20.
+// Counting objects up to 20.
 export const countingTo20: MathLesson = {
   id: 'mt-counting-to-20',
   subject: 'math',

@@ -1,6 +1,6 @@
 import type { EnglishLesson } from '~/types'
 
-// Kosakata: Pekerjaan / Profesi (Mahir).
+// Vocabulary: Jobs / Professions (Advanced).
 export const jobs: EnglishLesson = {
   id: 'en-jobs',
   subject: 'english',

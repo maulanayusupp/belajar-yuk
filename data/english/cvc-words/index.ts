@@ -1,8 +1,8 @@
 import type { EnglishLesson } from '~/types'
 
-// Kata CVC (consonant–vowel–consonant) — kata 3 huruf yang bisa "dibunyikan"
-// (decodable). Langkah wajib setelah phonics dalam Science of Reading:
-// anak menggabungkan bunyi huruf menjadi kata utuh.
+// CVC words (consonant–vowel–consonant) — 3-letter words that can be "sounded out"
+// (decodable). An essential step after phonics in the Science of Reading:
+// children blend letter sounds into whole words.
 export const cvcWords: EnglishLesson = {
   id: 'en-cvc-words',
   subject: 'english',

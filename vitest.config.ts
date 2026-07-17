@@ -5,11 +5,11 @@ const resolvePath = (p: string) => fileURLToPath(new URL(p, import.meta.url))
 
 export default defineConfig({
   test: {
-    environment: 'happy-dom', // menyediakan window/localStorage untuk tes service
+    environment: 'happy-dom', // provides window/localStorage for service tests
     include: ['tests/**/*.test.ts'],
   },
   resolve: {
-    // Samakan alias dengan Nuxt agar impor '~/...' berfungsi di tes.
+    // Match aliases with Nuxt so '~/...' imports work in tests.
     alias: {
       '~': resolvePath('./'),
       '@': resolvePath('./'),

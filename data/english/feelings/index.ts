@@ -1,6 +1,6 @@
 import type { EnglishLesson } from '~/types'
 
-// Perasaan/Emosi — pembelajaran sosial-emosional (umum di EYFS/kurikulum awal).
+// Feelings/Emotions — social-emotional learning (common in EYFS/early curricula).
 export const feelings: EnglishLesson = {
   id: 'en-feelings',
   subject: 'english',

@@ -1,8 +1,8 @@
 import { storage } from '~/utils/storage'
 
-// Musik latar lembut yang dihasilkan langsung (Web Audio, tanpa file audio).
-// Arpeggio pentatonik pelan & bervolume sangat rendah — menenangkan, opsional,
-// dan MATI secara default agar tidak mengganggu.
+// Gentle background music generated directly (Web Audio, no audio files).
+// A slow pentatonic arpeggio at very low volume — calming, optional,
+// and OFF by default so it isn't distracting.
 const KEY = 'belajar-yuk:music'
 const isBrowser = typeof window !== 'undefined'
 
@@ -11,7 +11,7 @@ let master: GainNode | null = null
 let timer = 0
 let step = 0
 
-// C mayor pentatonik (nada lembut).
+// C major pentatonic (gentle notes).
 const NOTES = [523.25, 587.33, 659.25, 783.99, 880.0, 783.99, 659.25, 587.33]
 
 function ensureCtx(): AudioContext | null {
@@ -23,7 +23,7 @@ function ensureCtx(): AudioContext | null {
     if (!Ctx) return null
     ctx = new Ctx()
     master = ctx.createGain()
-    master.gain.value = 0.05 // sangat pelan
+    master.gain.value = 0.05 // very quiet
     master.connect(ctx.destination)
   }
   if (ctx.state === 'suspended') void ctx.resume()

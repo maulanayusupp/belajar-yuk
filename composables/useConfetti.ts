@@ -1,10 +1,10 @@
 import { range } from '~/utils/array'
 
-// Composable confetti perayaan. Membuat elemen di DOM lalu
-// menganimasikannya dengan kelas CSS `.confetti-piece` (didefinisikan
-// di SCSS). Nilai acak per-partikel (posisi, warna, jeda) dikirim
-// lewat CSS custom properties — satu-satunya cara bersih untuk nilai
-// dinamis; styling sesungguhnya tetap berada di file SCSS.
+// Celebration confetti composable. Creates elements in the DOM and
+// animates them with the CSS class `.confetti-piece` (defined in SCSS).
+// Per-particle random values (position, color, delay) are passed via
+// CSS custom properties — the only clean way to handle dynamic values;
+// the actual styling still lives in the SCSS file.
 const COLORS = ['#6c5ce7', '#00cec9', '#ff7675', '#ffc312', '#00b894', '#ff9f43']
 
 export function useConfetti() {

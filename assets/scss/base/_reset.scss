@@ -58,7 +58,7 @@ ol {
   list-style: none;
 }
 
-// Hormati preferensi pengguna yang sensitif terhadap gerakan
+// Respect the preferences of users sensitive to motion
 @include reduced-motion {
   *,
   *::before,

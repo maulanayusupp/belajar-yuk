@@ -2,21 +2,21 @@ import type { SoundEffect } from '~/types'
 import { storage } from '~/utils/storage'
 
 // =============================================================
-//  Layanan suara — tanpa file audio eksternal:
-//   1) Pengucapan kata memakai Web Speech API (SpeechSynthesis).
-//   2) Efek suara (klik, benar, salah, menang) dihasilkan langsung
-//      lewat Web Audio API (oscillator) sehingga ringan & gratis.
-//  Semua aman dipanggil di SSR (otomatis no-op bila bukan browser).
+//  Audio service — no external audio files:
+//   1) Word pronunciation uses the Web Speech API (SpeechSynthesis).
+//   2) Sound effects (click, correct, wrong, win) are generated directly
+//      via the Web Audio API (oscillator), so they're lightweight & free.
+//  All safe to call during SSR (automatic no-op when not in a browser).
 // =============================================================
 
 const isBrowser = typeof window !== 'undefined'
 
-// Kecepatan bicara — bisa diatur orang tua (disimpan di localStorage).
-// Default sengaja pelan agar anak mudah menyimak.
-// v2: buang nilai lama yang mungkin "nyangkut" (mis. pernah di-set Cepat).
+// Speech rate — configurable by parents (stored in localStorage).
+// The default is deliberately slow so children can follow along easily.
+// v2: discard any old value that may be "stuck" (e.g. previously set to Fast).
 const RATE_KEY = 'belajar-yuk:speechRate:v2'
-export const DEFAULT_SPEECH_RATE = 0.55 // "Pelan" — mudah disimak anak
-// Pilihan preset untuk UI pengaturan.
+export const DEFAULT_SPEECH_RATE = 0.55 // "Slow" — easy for children to follow
+// Preset options for the settings UI.
 export const SPEECH_RATE_OPTIONS = [
   { value: 0.55, label: 'Pelan' },
   { value: 0.7, label: 'Sedang' },
@@ -25,10 +25,10 @@ export const SPEECH_RATE_OPTIONS = [
 
 function getSpeechRate(): number {
   const r = storage.get<number>(RATE_KEY, DEFAULT_SPEECH_RATE)
-  return Math.min(Math.max(r, 0.3), 1) // jaga di rentang aman
+  return Math.min(Math.max(r, 0.3), 1) // keep within a safe range
 }
 
-// -------- Efek suara (Web Audio API) ------------------------
+// -------- Sound effects (Web Audio API) ---------------------
 let audioCtx: AudioContext | null = null
 
 function getCtx(): AudioContext | null {
@@ -40,12 +40,12 @@ function getCtx(): AudioContext | null {
     if (!Ctx) return null
     audioCtx = new Ctx()
   }
-  // Browser sering men-"suspend" audio sampai ada interaksi user.
+  // Browsers often "suspend" audio until there's a user interaction.
   if (audioCtx.state === 'suspended') void audioCtx.resume()
   return audioCtx
 }
 
-/** Mainkan satu nada singkat. */
+/** Play a single short tone. */
 function tone(
   ctx: AudioContext,
   freq: number,
@@ -69,7 +69,7 @@ function tone(
   osc.stop(t0 + duration + 0.02)
 }
 
-// Resep nada untuk tiap efek (deret [frekuensi, mulai, durasi]).
+// Tone recipe for each effect (sequence of [frequency, start, duration]).
 const RECIPES: Record<SoundEffect, Array<[number, number, number]>> = {
   click: [[440, 0, 0.08]],
   pop: [[660, 0, 0.1]],
@@ -90,10 +90,10 @@ const RECIPES: Record<SoundEffect, Array<[number, number, number]>> = {
   ],
 }
 
-// -------- Pengucapan (SpeechSynthesis) ----------------------
-// Cache daftar voice. Di Chrome, getVoices() sering KOSONG saat pertama
-// dipanggil sehingga voice default "Google" (remote) terpilih & MENGABAIKAN
-// `rate`. Kita muat lebih dulu + dengarkan `voiceschanged`.
+// -------- Pronunciation (SpeechSynthesis) -------------------
+// Cache the voice list. In Chrome, getVoices() is often EMPTY on the first
+// call, so the default "Google" (remote) voice gets picked and IGNORES
+// `rate`. We preload it + listen for `voiceschanged`.
 let cachedVoices: SpeechSynthesisVoice[] = []
 function refreshVoices() {
   if (isBrowser && 'speechSynthesis' in window) cachedVoices = window.speechSynthesis.getVoices()
@@ -103,10 +103,10 @@ if (isBrowser && 'speechSynthesis' in window) {
   window.speechSynthesis.addEventListener('voiceschanged', refreshVoices)
 }
 
-// Pilih voice sesuai bahasa. Utamakan voice LOKAL (localService) — voice
-// remote sering abaikan `rate`. Untuk bahasa tanpa voice cocok (mis. id-ID
-// belum terpasang), JANGAN paksa voice bahasa lain — biarkan `utter.lang`
-// yang menentukan (lebih baik daripada teks Indonesia dibaca voice Inggris).
+// Pick a voice matching the language. Prefer LOCAL voices (localService) —
+// remote voices often ignore `rate`. For a language with no matching voice
+// (e.g. id-ID not installed), do NOT force another language's voice — let
+// `utter.lang` decide (better than Indonesian text read by an English voice).
 function pickVoice(lang = 'en-US'): SpeechSynthesisVoice | undefined {
   const voices = cachedVoices.length ? cachedVoices : window.speechSynthesis.getVoices()
   const base = lang.slice(0, 2).toLowerCase() // 'en' | 'id'
@@ -121,17 +121,17 @@ function pickVoice(lang = 'en-US'): SpeechSynthesisVoice | undefined {
   )
 }
 
-// Simpan referensi audio file yang sedang diputar agar bisa dihentikan.
+// Keep a reference to the audio file currently playing so it can be stopped.
 let currentClip: HTMLAudioElement | null = null
-// Timer jeda cancel→speak (workaround bug Chrome).
+// Delay timer between cancel→speak (workaround for a Chrome bug).
 let speakTimer = 0
 
 export const audioService = {
-  /** Ucapkan teks Bahasa Inggris (default) atau bahasa lain (suara sintesis). */
+  /** Speak English text (default) or another language (synthesized voice). */
   speak(text: string, lang = 'en-US'): void {
     if (!isBrowser || !('speechSynthesis' in window)) return
     const synth = window.speechSynthesis
-    synth.cancel() // hentikan ucapan sebelumnya
+    synth.cancel() // stop any previous speech
     if (speakTimer) window.clearTimeout(speakTimer)
 
     let done = false
@@ -140,28 +140,28 @@ export const audioService = {
       done = true
       const utter = new SpeechSynthesisUtterance(text)
       utter.lang = lang
-      utter.rate = getSpeechRate() // dari pengaturan (default pelan)
+      utter.rate = getSpeechRate() // from settings (default slow)
       utter.pitch = 1.1
       const voice = pickVoice(lang)
-      if (voice) utter.voice = voice // voice lokal agar rate dihormati
-      // Jeda kecil: workaround bug Chrome (cancel+speak sinkron abaikan rate).
+      if (voice) utter.voice = voice // local voice so rate is respected
+      // Small delay: workaround for a Chrome bug (sync cancel+speak ignores rate).
       speakTimer = window.setTimeout(() => synth.speak(utter), 60)
     }
 
-    // Pastikan daftar voice sudah dimuat dulu (Chrome memuatnya async),
-    // supaya voice LOKAL terpilih — bukan voice remote yang abaikan rate.
+    // Make sure the voice list is loaded first (Chrome loads it async),
+    // so a LOCAL voice is picked — not a remote voice that ignores rate.
     refreshVoices()
     if (cachedVoices.length) {
       run()
     } else {
       synth.addEventListener('voiceschanged', run, { once: true })
-      window.setTimeout(run, 250) // fallback bila voiceschanged tak fire
+      window.setTimeout(run, 250) // fallback if voiceschanged never fires
     }
   },
 
   /**
-   * Mainkan file audio dari URL/path. Bila gagal (file tak ada/format
-   * tak didukung), otomatis fallback ke suara sintesis `fallbackText`.
+   * Play an audio file from a URL/path. If it fails (file missing/format
+   * unsupported), automatically falls back to synthesizing `fallbackText`.
    */
   playClip(url: string, fallbackText?: string, lang = 'en-US'): void {
     if (!isBrowser) return
@@ -179,20 +179,20 @@ export const audioService = {
   },
 
   /**
-   * Ucapkan sebuah kata: pakai file audio bila `audioUrl` ada, jika tidak
-   * pakai suara sintesis (default). Titik masuk tunggal untuk pengucapan.
+   * Speak a word: use the audio file if `audioUrl` is present, otherwise
+   * use the synthesized voice (default). Single entry point for pronunciation.
    */
   pronounce(text: string, audioUrl?: string, lang = 'en-US'): void {
     if (audioUrl) this.playClip(audioUrl, text, lang)
     else this.speak(text, lang)
   },
 
-  /** Kecepatan bicara saat ini (dari pengaturan). */
+  /** Current speech rate (from settings). */
   getRate(): number {
     return getSpeechRate()
   },
 
-  /** Simpan kecepatan bicara. */
+  /** Save the speech rate. */
   setRate(rate: number): void {
     storage.set(RATE_KEY, rate)
   },
@@ -204,7 +204,7 @@ export const audioService = {
     currentClip = null
   },
 
-  /** Mainkan efek suara pendek. */
+  /** Play a short sound effect. */
   play(effect: SoundEffect): void {
     const ctx = getCtx()
     if (!ctx) return

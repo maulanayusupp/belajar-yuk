@@ -1,8 +1,8 @@
 @use '../abstracts' as *;
 
-// Confetti dirender ke <body> oleh composable useConfetti, jadi
-// gayanya harus global (tidak scoped). Nilai acak per-partikel
-// masuk lewat CSS custom properties (--x, --color, dst).
+// Confetti is rendered into <body> by the useConfetti composable, so
+// its styles must be global (not scoped). Random per-particle values
+// come in via CSS custom properties (--x, --color, etc.).
 .confetti-container {
   position: fixed;
   inset: 0;

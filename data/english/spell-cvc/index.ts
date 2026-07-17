@@ -1,6 +1,6 @@
 import type { EnglishLesson } from '~/types'
 
-// Eja kata 3 huruf (CVC) — susun huruf jadi kata yang benar.
+// Spell 3-letter words (CVC) — arrange the letters into the correct word.
 export const spellCvc: EnglishLesson = {
   id: 'en-spell-cvc',
   subject: 'english',

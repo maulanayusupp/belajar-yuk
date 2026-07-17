@@ -2,7 +2,7 @@
 import type { SubjectId } from '~/types'
 import { lessonService } from '~/services/lessonService'
 
-// Halaman daftar pelajaran untuk satu mata pelajaran (/english, /math).
+// Lesson list page for a single subject (/english, /math).
 const route = useRoute()
 const subjectId = computed(() => route.params.subject as SubjectId)
 
@@ -14,9 +14,9 @@ definePageMeta({
 
 const subject = computed(() => lessonService.getSubject(subjectId.value))
 const lessons = computed(() => lessonService.getLessons(subjectId.value))
-// Kelompokkan per tingkat (Pemula/Menengah/Mahir) untuk kategori.
+// Group by level (Beginner/Intermediate/Advanced) into categories.
 const groups = computed(() => lessonService.getLessonsGrouped(subjectId.value))
-// Tingkat yang materinya belum ada → tampilkan sebagai "segera hadir".
+// Levels that don't have content yet → show as "coming soon".
 const upcoming = computed(() => lessonService.getUpcomingLevels(subjectId.value))
 
 if (!subject.value) {
@@ -30,7 +30,7 @@ useHead(() => ({ title: `${subject.value?.title} — Belajar Yuk!` }))
   <div v-if="subject" class="subject-page">
     <NuxtLink to="/" class="subject-page__back">← Beranda</NuxtLink>
 
-    <!-- Banner hero bertema pelajaran -->
+    <!-- Subject-themed hero banner -->
     <section class="banner" :class="`banner--${subject.theme}`">
       <div class="banner__pattern" aria-hidden="true" />
       <span class="banner__emoji anim-float" aria-hidden="true">{{ subject.emoji }}</span>
@@ -47,7 +47,7 @@ useHead(() => ({ title: `${subject.value?.title} — Belajar Yuk!` }))
       message-en="Pick a lesson to start!"
     />
 
-    <!-- Pelajaran dikelompokkan per tingkat -->
+    <!-- Lessons grouped by level -->
     <section
       v-for="group in groups"
       :key="group.meta.id"
@@ -66,7 +66,7 @@ useHead(() => ({ title: `${subject.value?.title} — Belajar Yuk!` }))
       </div>
     </section>
 
-    <!-- Teaser tingkat yang belum ada materinya -->
+    <!-- Teaser for levels that don't have content yet -->
     <section v-for="level in upcoming" :key="level.id" class="upcoming">
       <span class="upcoming__badge">{{ level.icon }} {{ level.label }} · Segera Hadir 🚧</span>
       <p class="upcoming__desc">{{ level.description }}</p>

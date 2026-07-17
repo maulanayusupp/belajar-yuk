@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { VocabularyItem } from '~/types'
 
-// Kartu kata untuk fase "Belajar". Menyentuh kartu = dengar
-// pengucapan. Otomatis mengucapkan kata saat pertama muncul.
+// Word card for the "Learn" phase. Tapping the card = hear the
+// pronunciation. Automatically speaks the word when first shown.
 const props = defineProps<{ item: VocabularyItem; autoSpeak?: boolean }>()
 
 const { pronounce, play } = useAudio()
@@ -16,7 +16,7 @@ onMounted(() => {
   if (props.autoSpeak) pronounce(props.item.word, props.item.audioUrl)
 })
 
-// Ucapkan otomatis setiap ganti kata.
+// Speak automatically whenever the word changes.
 watch(
   () => props.item.id,
   () => props.autoSpeak && pronounce(props.item.word, props.item.audioUrl),

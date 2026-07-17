@@ -1,7 +1,7 @@
 import type { MathLesson } from '~/types'
 
-// Cari bilangan hilang: `operandA + ▢ = answer`. Bagian yang hilang
-// (jawaban yang dipilih) = operandB. Melatih hubungan bagian–keseluruhan.
+// Find the missing number: `operandA + ▢ = answer`. The missing part
+// (the chosen answer) = operandB. Practices the part–whole relationship.
 export const missingNumber: MathLesson = {
   id: 'mt-missing-number',
   subject: 'math',

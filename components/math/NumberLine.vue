@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { range } from '~/utils/array'
 
-// Garis bilangan 0..max dengan penanda di posisi `value`. Anak
-// mengenali angka yang ditunjuk penanda.
+// Number line 0..max with a marker at position `value`. The child
+// identifies the number the marker points to.
 const props = withDefaults(defineProps<{ value: number; max?: number }>(), { max: 10 })
 
 const PAD = 24
@@ -19,16 +19,16 @@ const x = (i: number) => PAD + i * STEP
     :aria-label="`Garis bilangan, penanda di ${value}`"
     preserveAspectRatio="xMidYMid meet"
   >
-    <!-- Garis utama -->
+    <!-- Main line -->
     <line :x1="PAD" y1="60" :x2="width - PAD" y2="60" class="number-line__axis" />
 
-    <!-- Tik & label angka -->
+    <!-- Ticks & number labels -->
     <g v-for="i in ticks" :key="i">
       <line :x1="x(i)" y1="52" :x2="x(i)" y2="68" class="number-line__tick" />
       <text :x="x(i)" y="86" text-anchor="middle" class="number-line__label">{{ i }}</text>
     </g>
 
-    <!-- Penanda -->
+    <!-- Marker -->
     <g class="number-line__marker">
       <circle :cx="x(value)" cy="60" r="12" />
       <path :d="`M ${x(value) - 12} 28 L ${x(value) + 12} 28 L ${x(value)} 46 Z`" />

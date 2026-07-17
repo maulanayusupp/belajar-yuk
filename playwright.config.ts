@@ -1,7 +1,7 @@
 import { defineConfig, devices } from '@playwright/test'
 
-// E2E test. Browser di-install via `npx playwright install chromium`.
-// webServer otomatis build + preview aplikasi sebelum tes.
+// E2E test. The browser is installed via `npx playwright install chromium`.
+// webServer automatically builds + previews the app before the tests.
 export default defineConfig({
   testDir: './e2e',
   timeout: 30_000,

@@ -1,6 +1,6 @@
 import type { MathLesson } from '~/types'
 
-// Penjumlahan sampai 5 dengan blok — langkah pertama berhitung.
+// Addition up to 5 with blocks — the first step in counting.
 export const additionTo5: MathLesson = {
   id: 'mt-addition-to-5',
   subject: 'math',

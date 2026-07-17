@@ -1,29 +1,29 @@
 import type { MathMethod } from '~/types'
 
 // =============================================================
-//  Registry metadata METODE Matematika (mesin materi dinamis).
-//  Satu tempat untuk ikon, label, instruksi, & PENJELASAN beda
-//  metode Singapore vs cara biasa.
+//  Registry metadata for Math METHODS (dynamic content engine).
+//  A single place for the icon, label, instruction, & EXPLANATION of the
+//  difference between the Singapore method and the usual way.
 //
-//  ➕ Menambah metode baru:
-//    1. Tambah nilai di `MathMethod` (types/index.ts).
-//    2. Tambah entri di sini (icon + label + instruction + singaporeWay + usualWay).
-//    3. Tambah cabang render visual di components/math/SingaporeLesson.vue.
-//  UI (beranda, kartu, header, maskot, panel penjelasan) otomatis ikut.
+//  ➕ Adding a new method:
+//    1. Add a value to `MathMethod` (types/index.ts).
+//    2. Add an entry here (icon + label + instruction + singaporeWay + usualWay).
+//    3. Add a visual render branch in components/math/SingaporeLesson.vue.
+//  The UI (home, cards, header, mascot, explanation panel) follows automatically.
 // =============================================================
 
 export interface MathMethodMeta {
-  /** Ikon emoji untuk metode. */
+  /** Emoji icon for the method. */
   icon: string
-  /** Nama singkat metode. */
+  /** Short name of the method. */
   label: string
-  /** Deskripsi singkat (untuk beranda/section metode). */
+  /** Short description (for the home/methods section). */
   description: string
-  /** Instruksi maskot (Bahasa Indonesia). */
+  /** Mascot instruction (Indonesian). */
   instruction: string
-  /** Cara metode Singapore mengajarkannya (kelebihannya). */
+  /** How the Singapore method teaches it (its strengths). */
   singaporeWay: string
-  /** Cara biasa/tradisional mengajarkannya (keterbatasannya). */
+  /** How the usual/traditional way teaches it (its limitations). */
   usualWay: string
 }
 

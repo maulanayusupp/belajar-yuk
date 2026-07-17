@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { range } from '~/utils/array'
 
-// Menampilkan bintang penghargaan (mis. 2 dari 3). `animated`
-// membuat bintang muncul satu per satu dengan efek "burst".
+// Displays reward stars (e.g. 2 out of 3). `animated`
+// makes the stars appear one by one with a "burst" effect.
 withDefaults(
   defineProps<{
     value: number
@@ -48,7 +48,7 @@ withDefaults(
       filter: drop-shadow(0 2px 4px rgba($color-star, 0.5));
     }
 
-    // Nilai --i (indeks) dikirim untuk menjeda animasi tiap bintang.
+    // The --i (index) value is passed to stagger each star's animation.
     &--animated {
       animation: star-burst 0.5s $transition-bounce both;
       animation-delay: calc(var(--i) * 0.15s);

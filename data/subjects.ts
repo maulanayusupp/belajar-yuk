@@ -1,7 +1,7 @@
 import type { Subject } from '~/types'
 
-// Daftar mata pelajaran yang tampil di halaman utama.
-// Tambah pelajaran baru cukup dengan menambah entri di sini.
+// List of subjects shown on the home page.
+// To add a new subject, just add an entry here.
 export const subjects: Subject[] = [
   {
     id: 'english',

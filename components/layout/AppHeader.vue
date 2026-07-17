@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// Header global glass premium: logo + navigasi + tombol suara.
+// Global premium glass header: logo + navigation + sound button.
 const nav = [
   { to: '/english', label: 'Bahasa Inggris' },
   { to: '/math', label: 'Matematika' },

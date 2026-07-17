@@ -2,19 +2,19 @@
 import type { Lesson } from '~/types'
 import { lessonService } from '~/services/lessonService'
 
-// Kartu satu pelajaran (tampilan premium) dengan bintang progres,
-// tag metode/aktivitas, dan badge tingkat.
+// Single lesson card (premium look) with progress stars,
+// method/activity tags, and a level badge.
 const props = defineProps<{ lesson: Lesson }>()
 
 const { getStars, isCompleted } = useProgress()
 
-// Tag metode (mis. "Ikatan Bilangan", "Phonics") + tingkat dari service.
+// Method tags (e.g. "Ikatan Bilangan", "Phonics") + level from the service.
 const tag = computed(() => lessonService.getLessonTag(props.lesson))
 const levelMeta = computed(() => lessonService.getLevelMeta(props.lesson.level))
 
 const stars = computed(() => getStars(props.lesson.id))
 const done = computed(() => isCompleted(props.lesson.id))
-const mastered = computed(() => stars.value >= 3) // 3★ = dikuasai (ala Kumon)
+const mastered = computed(() => stars.value >= 3) // 3★ = mastered (Kumon-style)
 </script>
 
 <template>
@@ -37,7 +37,7 @@ const mastered = computed(() => stars.value >= 3) // 3★ = dikuasai (ala Kumon)
         >
       </div>
 
-      <!-- Tag metode/aktivitas + tingkat -->
+      <!-- Method/activity tags + level -->
       <div class="lesson-card__tags">
         <span class="lesson-card__tag" :class="`lesson-card__tag--${lesson.subject}`">
           <span aria-hidden="true">{{ tag.icon }}</span> {{ tag.label }}
@@ -67,7 +67,7 @@ const mastered = computed(() => stars.value >= 3) // 3★ = dikuasai (ala Kumon)
   border-radius: $radius-lg;
   box-shadow: $shadow-sm;
 
-  // Garis aksen di tepi kiri
+  // Accent line on the left edge
   &::before {
     content: '';
     position: absolute;
@@ -145,7 +145,7 @@ const mastered = computed(() => stars.value >= 3) // 3★ = dikuasai (ala Kumon)
     box-shadow: $shadow-sm;
 
     &--master {
-      background: linear-gradient(135deg, #ffd75e, #ffb300); // emas = dikuasai
+      background: linear-gradient(135deg, #ffd75e, #ffb300); // gold = mastered
     }
   }
 

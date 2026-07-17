@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-07-17",
+    "version": "0.12.1",
+    "tag": "Perbaikan",
+    "title": "Perapian kode & dokumentasi",
+    "changes": [
+      "Kode & komentar kini konsisten Bahasa Inggris (konten pelajaran tetap Bahasa Indonesia).",
+      "Tambah TODO.md (roadmap) & REFERENCE.md (sumber materi berbasis bukti).",
+      "Aturan alur kerja perubahan diperbarui di CLAUDE.md."
+    ]
+  },
+  {
+    "date": "2026-07-17",
     "version": "0.12.0",
     "tag": "Konten",
     "title": "Mata Pelajaran Baru: Membaca (Bahasa Indonesia)",

@@ -6,20 +6,20 @@ import { scienceLessons } from './science'
 import { bahasaLessons } from './bahasa'
 
 // =============================================================
-//  Titik masuk tunggal untuk SEMUA konten.
-//  Komponen & service cukup import dari '~/data'.
+//  Single entry point for ALL content.
+//  Components & services just import from '~/data'.
 //
-//  Struktur folder:
+//  Folder structure:
 //    data/
-//      subjects.ts          -> daftar mata pelajaran
-//      english/             -> 1 file per pelajaran + index.ts (urutan)
-//      math/                -> 1 file per pelajaran + index.ts (urutan)
-//      index.ts             -> file ini (agregat)
+//      subjects.ts          -> list of subjects
+//      english/             -> 1 file per lesson + index.ts (order)
+//      math/                -> 1 file per lesson + index.ts (order)
+//      index.ts             -> this file (aggregate)
 // =============================================================
 
 export { subjects, englishLessons, mathLessons, scienceLessons, bahasaLessons }
 
-// Gabungan semua pelajaran dari seluruh mata pelajaran.
+// Combination of all lessons from every subject.
 export const allLessons: Lesson[] = [
   ...englishLessons,
   ...mathLessons,

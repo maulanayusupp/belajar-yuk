@@ -1,6 +1,6 @@
 import { storage } from '~/utils/storage'
 
-// Profil anak (nama + avatar) disimpan di localStorage.
+// The child's profile (name + avatar) stored in localStorage.
 export interface Profile {
   name: string
   avatar: string
@@ -8,8 +8,8 @@ export interface Profile {
 
 const KEY = 'belajar-yuk:profile'
 
-// Pilihan avatar. `stars` = bintang yang dibutuhkan untuk membukanya
-// (0 = gratis sejak awal). Bintang jadi "hadiah" yang memotivasi.
+// Avatar options. `stars` = stars required to unlock it
+// (0 = free from the start). Stars become a motivating "reward".
 export interface AvatarOption {
   emoji: string
   stars: number
@@ -30,7 +30,7 @@ export const AVATARS: AvatarOption[] = [
   { emoji: '🐲', stars: 40 },
 ]
 
-/** Apakah avatar sudah terbuka berdasarkan total bintang. */
+/** Whether an avatar is unlocked based on the total stars. */
 export function isAvatarUnlocked(avatar: AvatarOption, totalStars: number): boolean {
   return totalStars >= avatar.stars
 }

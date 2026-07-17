@@ -1,10 +1,10 @@
 <script setup lang="ts">
-// Kartu statistik dengan animasi "count-up" saat masuk viewport.
-// Nilai non-angka (mis. '6+') ditampilkan apa adanya.
+// Statistic card with a "count-up" animation when it enters the viewport.
+// Non-numeric values (e.g. '6+') are shown as-is.
 const props = defineProps<{ value: number | string; label: string }>()
 
 const isNumeric = typeof props.value === 'number'
-// Nilai awal = nilai akhir → SSR & hidrasi cocok (tanpa mismatch).
+// Initial value = final value → SSR & hydration match (no mismatch).
 const display = ref<number | string>(props.value)
 const root = ref<HTMLElement | null>(null)
 

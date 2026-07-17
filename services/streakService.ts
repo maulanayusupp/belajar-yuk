@@ -1,16 +1,16 @@
 import { storage } from '~/utils/storage'
 
-// Rentetan hari belajar (streak) untuk mendorong anak belajar tiap hari.
+// Study-day streak to encourage the child to learn every day.
 export interface Streak {
-  count: number // rentetan berjalan
-  best: number // rekor terpanjang
-  lastDate: string // tanggal terakhir belajar (YYYY-M-D)
+  count: number // current streak
+  best: number // longest record
+  lastDate: string // last study date (YYYY-M-D)
 }
 
 const KEY = 'belajar-yuk:streak'
 const EMPTY: Streak = { count: 0, best: 0, lastDate: '' }
 
-// Kunci tanggal lokal (aman dipanggil di browser).
+// Local date key (safe to call in the browser).
 function dayKey(offset = 0): string {
   const d = new Date()
   d.setDate(d.getDate() - offset)
@@ -22,22 +22,22 @@ export const streakService = {
     return storage.get<Streak>(KEY, { ...EMPTY })
   },
 
-  /** Streak masih "hidup" bila terakhir belajar hari ini atau kemarin. */
+  /** The streak is still "alive" if the last study was today or yesterday. */
   isAlive(s: Streak): boolean {
     return s.lastDate === dayKey(0) || s.lastDate === dayKey(1)
   },
 
-  /** Rentetan berjalan aktual (0 bila sudah putus). */
+  /** The actual current streak (0 if it has been broken). */
   current(): number {
     const s = this.get()
     return this.isAlive(s) ? s.count : 0
   },
 
-  /** Catat aktivitas belajar hari ini. Dipanggil saat pelajaran selesai. */
+  /** Record study activity for today. Called when a lesson is completed. */
   record(): Streak {
     const s = this.get()
     const today = dayKey(0)
-    if (s.lastDate === today) return s // sudah tercatat hari ini
+    if (s.lastDate === today) return s // already recorded today
     s.count = s.lastDate === dayKey(1) ? s.count + 1 : 1
     s.lastDate = today
     s.best = Math.max(s.best, s.count)

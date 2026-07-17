@@ -4,13 +4,13 @@ import { clamp } from '~/utils/array'
 
 const STORAGE_KEY = 'belajar-yuk:progress'
 
-/** Target jumlah pelajaran per hari (untuk "Target Harian"). */
+/** Target number of lessons per day (for the "Daily Goal"). */
 export const DAILY_GOAL = 3
 
 type ProgressMap = Record<string, LessonProgress>
 
-// Menyimpan & membaca progres belajar dari localStorage.
-// Terpisah dari UI supaya mudah diganti (mis. ke backend) nanti.
+// Stores & reads learning progress from localStorage.
+// Kept separate from the UI so it's easy to swap (e.g. to a backend) later.
 export const progressService = {
   getAll(): ProgressMap {
     return storage.get<ProgressMap>(STORAGE_KEY, {})
@@ -21,8 +21,8 @@ export const progressService = {
   },
 
   /**
-   * Simpan hasil satu pelajaran. Bintang hanya naik, tidak turun,
-   * supaya anak tidak "kehilangan" bintang yang sudah didapat.
+   * Save the result of one lesson. Stars only go up, never down,
+   * so the child doesn't "lose" stars they've already earned.
    */
   save(lessonId: string, stars: number): LessonProgress {
     const all = this.getAll()
@@ -42,7 +42,7 @@ export const progressService = {
     return this.get(lessonId)?.completed ?? false
   },
 
-  /** Jumlah pelajaran yang dikerjakan hari ini (untuk target harian). */
+  /** Number of lessons done today (for the daily goal). */
   completedToday(): number {
     const start = new Date()
     start.setHours(0, 0, 0, 0)

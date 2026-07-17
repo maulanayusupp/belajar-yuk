@@ -1,6 +1,6 @@
 <script setup lang="ts">
-// Tombol serbaguna, ramah anak (besar, warna cerah, efek pantul).
-// Otomatis memainkan efek suara "click" kecuali diberi prop `silent`.
+// Versatile, child-friendly button (large, bright colors, bounce effect).
+// Automatically plays a "click" sound effect unless the `silent` prop is set.
 type Variant = 'primary' | 'secondary' | 'success' | 'english' | 'math' | 'ghost'
 type Size = 'sm' | 'md' | 'lg'
 
@@ -57,7 +57,7 @@ function onClick(event: MouseEvent) {
     transform: none;
   }
 
-  // ---- Ukuran ----
+  // ---- Size ----
   &--sm {
     padding: spacing('xs') spacing('md');
     font-size: font-size('sm');
@@ -75,7 +75,7 @@ function onClick(event: MouseEvent) {
     width: 100%;
   }
 
-  // ---- Varian warna (isian gradien premium) ----
+  // ---- Color variants (premium gradient fills) ----
   &--primary {
     background: $gradient-primary;
     box-shadow: $shadow-primary;
@@ -105,7 +105,7 @@ function onClick(event: MouseEvent) {
     }
   }
 
-  // Kilau melintas saat hover
+  // Shine sweeps across on hover
   &::after {
     content: '';
     position: absolute;

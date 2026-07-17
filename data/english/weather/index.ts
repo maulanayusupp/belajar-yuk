@@ -1,6 +1,6 @@
 import type { EnglishLesson } from '~/types'
 
-// Kosakata: Cuaca (Pemula).
+// Vocabulary: Weather (Beginner).
 export const weather: EnglishLesson = {
   id: 'en-weather',
   subject: 'english',

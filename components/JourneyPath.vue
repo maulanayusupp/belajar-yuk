@@ -2,8 +2,8 @@
 import type { SubjectId } from '~/types'
 import { lessonService } from '~/services/lessonService'
 
-// Peta jalur belajar satu mata pelajaran: rangkaian pelajaran dengan
-// status selesai ✓ / sedang di sini ⭐ / berikutnya.
+// Learning journey map for one subject: a sequence of lessons with
+// completed ✓ / you-are-here ⭐ / next status.
 const props = defineProps<{ subject: SubjectId }>()
 
 const { isCompleted, getStars } = useProgress()
@@ -50,7 +50,7 @@ function status(id: string): 'done' | 'current' | 'todo' {
 <style scoped lang="scss">
 .journey {
   @include flex(column, flex-start, stretch, spacing('md'));
-  min-width: 0; // izinkan menyusut agar area scroll tak melebarkan halaman
+  min-width: 0; // allow shrinking so the scroll area doesn't widen the page
 
   &__head {
     @include flex(row, flex-start, center, spacing('sm'));
@@ -81,7 +81,7 @@ function status(id: string): 'done' | 'current' | 'todo' {
     margin: 0;
   }
 
-  // Grid membungkus ke bawah — tidak ada yang terpotong di layar mana pun.
+  // Grid wraps downward — nothing gets cut off on any screen.
   &__track {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));

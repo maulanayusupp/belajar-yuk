@@ -1,7 +1,7 @@
 import type { MathLesson } from '~/types'
 
-// Metode "Block Subtraction" — pengurangan dengan blok: mulai dari
-// sejumlah blok, lalu "ambil" sebagian (blok memudar & dicoret).
+// "Block Subtraction" method — subtraction with blocks: start with
+// a number of blocks, then "take away" some (blocks fade & get crossed out).
 export const subtraction: MathLesson = {
   id: 'mt-subtraction',
   subject: 'math',

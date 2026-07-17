@@ -1,6 +1,6 @@
 import type { EnglishLesson } from '~/types'
 
-// Kosakata: Kata Kerja / Gerakan (Menengah).
+// Vocabulary: Verbs / Movements (Intermediate).
 export const verbs: EnglishLesson = {
   id: 'en-verbs',
   subject: 'english',

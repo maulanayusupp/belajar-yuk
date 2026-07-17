@@ -1,6 +1,6 @@
 import type { EnglishLesson } from '~/types'
 
-// Kosakata: Anggota Keluarga (Menengah).
+// Vocabulary: Family Members (Intermediate).
 export const family: EnglishLesson = {
   id: 'en-family',
   subject: 'english',

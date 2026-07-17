@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { range } from '~/utils/array'
 
-// Sekelompok blok (pendekatan "Concrete" pada Singapore Math).
-// `taken` = jumlah blok terakhir yang "diambil" (memudar & dicoret) —
-// dipakai untuk memvisualkan pengurangan.
+// A group of blocks (the "Concrete" approach in Singapore Math).
+// `taken` = the number of trailing blocks that are "taken away" (faded & crossed out) —
+// used to visualize subtraction.
 const props = withDefaults(
   defineProps<{ count: number; color?: 'a' | 'b' | 'sum'; label?: string; taken?: number }>(),
   { color: 'a', taken: 0 },
 )
 
-// Sebuah blok dianggap "diambil" bila indeksnya termasuk `taken` terakhir.
+// A block counts as "taken" if its index is among the last `taken` ones.
 function isTaken(i: number) {
   return i >= props.count - props.taken
 }
@@ -50,7 +50,7 @@ function isTaken(i: number) {
     height: 34px;
     border-radius: $radius-sm;
     box-shadow: $shadow-sm;
-    // --i (indeks) menjeda animasi kemunculan tiap blok
+    // --i (index) staggers each block's entrance animation
     animation: bounce-in 0.4s $transition-bounce both;
     animation-delay: calc(var(--i) * 0.05s);
 

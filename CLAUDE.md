@@ -30,6 +30,19 @@ npm run assets    # regenerasi favicon & OG image dari SVG
 > Catatan: ESLint memakai `Object.groupBy` (Node 21+); `eslint.config.mjs` sudah
 > memuat polyfill agar jalan di Node 20. CI memakai Node 22.
 
+## Alur Kerja Perubahan (WAJIB di setiap perubahan)
+
+Setiap kali menambah/mengubah sesuatu, perbarui dokumen berikut **di commit yang sama**:
+
+1. **`CLAUDE.md`** — bila mengubah arsitektur, konvensi, atau menambah pola/aturan baru.
+2. **`changelog/entries.json`** — tambah entri baru (paling atas) untuk setiap perubahan
+   yang terlihat pengguna. Format: `{ date, version, tag, title, changes[] }`
+   (`tag`: `Fitur` | `Perbaikan` | `Konten` | `Rilis`). Naikkan `version` (semver-ish).
+3. **`TODO.md`** — pindahkan item yang selesai & tambah ide fitur berikutnya. Ini
+   sumber tunggal backlog/roadmap.
+4. **`REFERENCE.md`** — bila menambah/mengubah materi pelajaran, catat sumber &
+   dasar kurikulum (tautan) di sini agar konten selalu berbasis bukti (evidence-based).
+
 ## Arsitektur & Lapisan
 
 Alur data satu arah — jangan dilompati:
@@ -61,6 +74,17 @@ data/ (konten)  →  services/ (logika)  →  composables/ (reaktif)  →  compo
 | `plugins/`         | `reveal`, `analytics.client`, `pwa-dev-cleanup.client`, `prefs.client` (teks besar)                                                                      | Client-only; hormati env & mode dev                     |
 
 ## Konvensi Kode
+
+### Bahasa kode (WAJIB)
+
+- **Semua kode & komentar HARUS Bahasa Inggris.** Jangan campur Bahasa Indonesia
+  di komentar, nama variabel/fungsi/tipe, nama file, atau pesan commit teknis.
+- **SATU-SATUNYA pengecualian: konten yang dilihat pengguna** — nilai string yang
+  tampil ke anak/orang tua (judul, instruksi, isi pelajaran) tetap Bahasa Indonesia
+  (materi Bahasa Inggris tetap Inggris). Ini konten, bukan kode.
+- Contoh boleh: `// speak the word in Indonesian`, `const currentCard = ...`,
+  `title: 'Huruf Vokal'` (konten). Contoh dilarang: `// ucapkan katanya`,
+  `const kartuSekarang = ...`.
 
 ### Vue / TypeScript
 

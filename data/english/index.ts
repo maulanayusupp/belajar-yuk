@@ -29,20 +29,20 @@ import { listenFood } from './listen-food'
 import { spellCvc } from './spell-cvc'
 import { spellColors } from './spell-colors'
 
-// Daftar & URUTAN pelajaran Bahasa Inggris (pemula → mahir).
+// List & ORDER of English lessons (beginner → advanced).
 //
-// ➕ Menambah pelajaran baru:
-//   1. Buat FOLDER baru berisi `index.ts` yang meng-export EnglishLesson.
-//   2. Import di sini, lalu masukkan ke array (posisi = urutan tampil).
+// ➕ Adding a new lesson:
+//   1. Create a new FOLDER containing `index.ts` that exports an EnglishLesson.
+//   2. Import it here, then add it to the array (position = display order).
 export const englishLessons: EnglishLesson[] = [
-  // Fondasi membaca (phonics A–Z + kata umum)
+  // Reading foundation (phonics A–Z + common words)
   phonics,
   phonicsGL,
   phonicsMR,
   phonicsSZ,
   cvcWords,
   sightWords,
-  // Kosakata bertema
+  // Themed vocabulary
   animals,
   fruits,
   colors,
@@ -62,10 +62,10 @@ export const englishLessons: EnglishLesson[] = [
   greetings,
   opposites,
   jobs,
-  // Menengah: menyimak (dengar → pilih gambar)
+  // Intermediate: listening (hear → pick the picture)
   listenAnimals,
   listenFood,
-  // Mahir: eja / susun kata
+  // Advanced: spell / build words
   spellCvc,
   spellColors,
 ]
