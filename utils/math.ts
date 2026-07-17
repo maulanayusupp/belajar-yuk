@@ -2,6 +2,11 @@ import { shuffle, clamp } from './array'
 
 // Helpers specific to Math lessons.
 
+/** Random integer in the inclusive range [min, max]. */
+export function randInt(min: number, max: number): number {
+  return Math.floor(Math.random() * (max - min + 1)) + min
+}
+
 /**
  * Build answer options (multiple choice) around the correct answer.
  * Always includes the correct answer, with the rest as the nearest

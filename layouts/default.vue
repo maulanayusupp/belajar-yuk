@@ -3,6 +3,7 @@
 const footerNav = [
   { to: '/', label: 'Beranda' },
   { to: '/tes', label: 'Tes Penempatan' },
+  { to: '/latihan', label: 'Latihan Kilat' },
   { to: '/kemajuan', label: 'Kemajuan' },
   { to: '/sertifikat', label: 'Sertifikat' },
   { to: '/orangtua', label: 'Orang Tua' },

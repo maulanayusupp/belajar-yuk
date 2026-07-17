@@ -157,6 +157,31 @@ export interface BahasaLesson extends LessonBase {
 
 export type Lesson = EnglishLesson | MathLesson | ScienceLesson | BahasaLesson
 
+/** Timed fluency drill mode (Kumon-style speed + accuracy practice). */
+export type DrillMode = 'add-10' | 'add-20' | 'sub-10' | 'bond-10' | 'mixed'
+
+/** A single drill question. */
+export interface DrillQuestion {
+  id: string
+  prompt: string // e.g. "3 + 4"
+  answer: number
+  options: number[]
+}
+
+/** Result of one drill session. */
+export interface DrillResult {
+  score: number // correct answers
+  attempts: number // total answered
+  accuracy: number // 0..100
+}
+
+/** Personal best per drill mode (stored in localStorage). */
+export interface DrillBest {
+  score: number
+  accuracy: number
+  updatedAt: number
+}
+
 /** Learning progress per lesson (stored in localStorage). */
 export interface LessonProgress {
   lessonId: string

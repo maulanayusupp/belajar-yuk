@@ -20,8 +20,10 @@ The biggest pedagogical differentiator from school, and the original product int
 - [ ] **Mastery gate = accuracy AND speed** — advance a lesson only when the child hits
       an accuracy bar _and_ beats a per-lesson target time (Standard Completion Time
       analog). Otherwise auto-serve a repeat. We already track stars → extend to mastery.
-- [ ] **Timed fluency drills** — number bonds, addition facts, sight words / syllables;
-      show a personal-best timer; reward fast + accurate.
+- [x] **Timed fluency drills** — "Latihan Kilat": 60s rapid arithmetic drills
+      (add/sub/number-bond/mixed) with a personal best per mode. `pages/latihan.vue`,
+      `services/drillService.ts`, `components/drill/SpeedDrill.vue`. Next: add
+      word/syllable drills for English & Reading.
 - [ ] **Self-correction step** — after submit, surface only the wrong items and let the
       child re-attempt before the set is "done".
 - [ ] **Placement below ability** — extend the existing `pages/tes.vue` placement test so

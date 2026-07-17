@@ -3,6 +3,7 @@
 const nav = [
   { to: '/english', label: 'Bahasa Inggris' },
   { to: '/math', label: 'Matematika' },
+  { to: '/latihan', label: 'Latihan Kilat' },
   { to: '/kemajuan', label: 'Kemajuan' },
 ]
 </script>

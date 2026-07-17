@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-07-17",
+    "version": "0.13.0",
+    "tag": "Fitur",
+    "title": "Latihan Kilat (latih kecepatan berhitung)",
+    "changes": [
+      "Mode latihan berwaktu 60 detik: jawab soal sebanyak-banyaknya (ala Kumon).",
+      "5 jenis: tambah s/d 10, tambah s/d 20, kurang s/d 10, pasangan 10, & campur.",
+      "Rekor pribadi tersimpan per jenis — pecahkan rekormu sendiri!"
+    ]
+  },
+  {
+    "date": "2026-07-17",
     "version": "0.12.1",
     "tag": "Perbaikan",
     "title": "Perapian kode & dokumentasi",
