@@ -27,4 +27,12 @@ export const subjects: Subject[] = [
     theme: 'science',
     description: 'Menjelajah tubuh, hewan, & luar angkasa lewat fakta seru.',
   },
+  {
+    id: 'bahasa',
+    title: 'Membaca',
+    titleEn: 'Bahasa Indonesia',
+    emoji: '📖',
+    theme: 'bahasa',
+    description: 'Belajar membaca dari huruf, suku kata, kata, hingga kalimat.',
+  },
 ]

@@ -1,4 +1,6 @@
 import type {
+  BahasaActivity,
+  BahasaLesson,
   EnglishActivity,
   EnglishLesson,
   Lesson,
@@ -13,6 +15,7 @@ import { allLessons, subjects } from '~/data'
 import { mathMethodMeta, type MathMethodMeta } from '~/data/math/methods'
 import { englishActivityMeta, type EnglishActivityMeta } from '~/data/english/methods'
 import { scienceActivityMeta, type ScienceActivityMeta } from '~/data/science/methods'
+import { bahasaActivityMeta, type BahasaActivityMeta } from '~/data/bahasa/methods'
 import { levels, type LevelMeta } from '~/data/levels'
 import { generateNumberOptions } from '~/utils/math'
 import { shuffle } from '~/utils/array'
@@ -24,7 +27,8 @@ export interface ReviewQuestion {
   emoji: string // dikosongkan untuk soal aritmetika
   repeat: number // berapa kali emoji ditampilkan (mis. counting)
   prompt: string
-  speak?: string // kata Inggris untuk diucapkan saat dijawab
+  speak?: string // kata untuk diucapkan saat dijawab benar
+  lang?: string // bahasa untuk `speak` (default 'en-US'); 'id-ID' untuk Membaca
   correct: string
   options: string[]
 }
@@ -79,6 +83,12 @@ export const lessonService = {
     return lesson && lesson.subject === 'science' ? lesson : null
   },
 
+  /** Ambil pelajaran Membaca (Bahasa Indonesia) dengan tipe dipersempit. */
+  getBahasaLesson(id: string): BahasaLesson | null {
+    const lesson = this.getLesson(id)
+    return lesson && lesson.subject === 'bahasa' ? lesson : null
+  },
+
   /** Metadata (ikon/label/instruksi) sebuah metode Matematika. */
   getMathMethodMeta(method: MathMethod): MathMethodMeta {
     return mathMethodMeta[method]
@@ -119,6 +129,20 @@ export const lessonService = {
       if (lesson.subject === 'science') used.add(lesson.type)
     }
     return [...used].map((activity) => ({ activity, ...scienceActivityMeta[activity] }))
+  },
+
+  /** Metadata (ikon/label) sebuah jenis aktivitas Membaca. */
+  getBahasaActivityMeta(activity: BahasaActivity): BahasaActivityMeta {
+    return bahasaActivityMeta[activity]
+  },
+
+  /** Daftar jenis aktivitas Membaca yang dipakai pelajaran. */
+  getUsedBahasaActivities(): Array<{ activity: BahasaActivity } & BahasaActivityMeta> {
+    const used = new Set<BahasaActivity>()
+    for (const lesson of allLessons) {
+      if (lesson.subject === 'bahasa') used.add(lesson.type)
+    }
+    return [...used].map((activity) => ({ activity, ...bahasaActivityMeta[activity] }))
   },
 
   /** Metadata tingkat (Pemula/Menengah/Mahir). */
@@ -192,6 +216,26 @@ export const lessonService = {
           correct: fact.term,
           options: shuffle([fact.term, ...distractors]),
         })
+      } else if (lesson.subject === 'bahasa') {
+        // Ulang hanya untuk item yang punya gambar sbg petunjuk (kata/kalimat);
+        // huruf/suku-kata butuh audio dulu → dilewati (seperti garis bilangan).
+        const item = lesson.items.find((i) => i.id === itemId)
+        if (!item || !item.emoji) continue
+        const distractors = shuffle(lesson.items.filter((i) => i.id !== item.id && i.emoji))
+          .slice(0, 3)
+          .map((i) => i.text)
+        if (distractors.length < 1) continue
+        out.push({
+          lessonId,
+          itemId,
+          emoji: item.emoji,
+          repeat: 0,
+          prompt: 'Pilih bacaan yang tepat',
+          speak: item.text,
+          lang: 'id-ID',
+          correct: item.text,
+          options: shuffle([item.text, ...distractors]),
+        })
       } else {
         const p = lesson.problems.find((i) => i.id === itemId)
         if (!p) continue
@@ -244,6 +288,10 @@ export const lessonService = {
     }
     if (lesson.subject === 'science') {
       const meta = scienceActivityMeta[lesson.type]
+      return { icon: meta.icon, label: meta.label }
+    }
+    if (lesson.subject === 'bahasa') {
+      const meta = bahasaActivityMeta[lesson.type]
       return { icon: meta.icon, label: meta.label }
     }
     const meta = englishActivityMeta[lesson.type]

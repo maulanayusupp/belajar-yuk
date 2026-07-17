@@ -72,6 +72,9 @@ function status(id: string): 'done' | 'current' | 'todo' {
     &--science {
       background: rgba($color-science, 0.15);
     }
+    &--bahasa {
+      background: rgba($color-bahasa, 0.15);
+    }
   }
 
   &__title {

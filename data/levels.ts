@@ -28,6 +28,6 @@ export const levels: LevelMeta[] = [
     label: 'Mahir',
     icon: '🏆',
     description:
-      'Tantangan lanjutan: menyimak tanpa teks, menyusun kata, & soal abstrak. Segera hadir! 🚧',
+      'Tantangan lanjutan: menyimak tanpa teks, menyusun kata & kalimat, membandingkan bilangan, & soal abstrak.',
   },
 ]

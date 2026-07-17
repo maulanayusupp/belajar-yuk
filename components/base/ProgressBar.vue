@@ -6,7 +6,7 @@ const props = withDefaults(
   defineProps<{
     current: number
     total: number
-    accent?: 'english' | 'math' | 'science' | 'primary'
+    accent?: 'english' | 'math' | 'science' | 'bahasa' | 'primary'
   }>(),
   { accent: 'primary' },
 )
@@ -59,6 +59,9 @@ const percent = computed(() => {
     }
     &--science {
       background: $color-science;
+    }
+    &--bahasa {
+      background: $color-bahasa;
     }
   }
 }

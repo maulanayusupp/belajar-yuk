@@ -3,6 +3,7 @@ import { subjects } from './subjects'
 import { englishLessons } from './english'
 import { mathLessons } from './math'
 import { scienceLessons } from './science'
+import { bahasaLessons } from './bahasa'
 
 // =============================================================
 //  Titik masuk tunggal untuk SEMUA konten.
@@ -16,7 +17,12 @@ import { scienceLessons } from './science'
 //      index.ts             -> file ini (agregat)
 // =============================================================
 
-export { subjects, englishLessons, mathLessons, scienceLessons }
+export { subjects, englishLessons, mathLessons, scienceLessons, bahasaLessons }
 
 // Gabungan semua pelajaran dari seluruh mata pelajaran.
-export const allLessons: Lesson[] = [...englishLessons, ...mathLessons, ...scienceLessons]
+export const allLessons: Lesson[] = [
+  ...englishLessons,
+  ...mathLessons,
+  ...scienceLessons,
+  ...bahasaLessons,
+]

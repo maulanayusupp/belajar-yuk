@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-07-17",
+    "version": "0.12.0",
+    "tag": "Konten",
+    "title": "Mata Pelajaran Baru: Membaca (Bahasa Indonesia)",
+    "changes": [
+      "Tambah mapel Membaca ala Calistung: huruf vokal, suku kata (ba-bi-bu), merangkai kata, & kalimat sederhana.",
+      "Mode 'Merangkai Kata': susun suku kata menjadi kata yang utuh (bu + ku = buku).",
+      "Suara kini mengucapkan Bahasa Indonesia dengan benar (bukan logat Inggris)."
+    ]
+  },
+  {
     "date": "2026-07-15",
     "version": "0.11.0",
     "tag": "Konten",

@@ -57,12 +57,14 @@ const trust = ['🎯 Metode Terbukti', '📈 Belajar Bertahap', '🧠 Bangun Fon
 const mathMethods = lessonService.getUsedMathMethods()
 const englishMethods = lessonService.getUsedEnglishActivities()
 const scienceMethods = lessonService.getUsedScienceActivities()
+const bahasaMethods = lessonService.getUsedBahasaActivities()
 
 // Statistik dinamis — otomatis ikut bertambah saat materi/metode ditambah.
 const stats = [
   { value: lessonService.getLessons().length, label: 'Pelajaran seru' },
   {
-    value: mathMethods.length + englishMethods.length + scienceMethods.length,
+    value:
+      mathMethods.length + englishMethods.length + scienceMethods.length + bahasaMethods.length,
     label: 'Metode belajar',
   },
   { value: subjects.length, label: 'Mata pelajaran' },
@@ -334,6 +336,19 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
             {{ m.icon }}
           </span>
           <span class="method-card__tag method-card__tag--science">Sains</span>
+          <h3 class="method-card__title">{{ m.label }}</h3>
+          <p>{{ m.description }}</p>
+        </div>
+        <div
+          v-for="(m, i) in bahasaMethods"
+          :key="m.activity"
+          v-reveal="(mathMethods.length + englishMethods.length + scienceMethods.length + i) * 70"
+          class="method-card"
+        >
+          <span class="method-card__icon method-card__icon--bahasa" aria-hidden="true">
+            {{ m.icon }}
+          </span>
+          <span class="method-card__tag method-card__tag--bahasa">Membaca</span>
           <h3 class="method-card__title">{{ m.label }}</h3>
           <p>{{ m.description }}</p>
         </div>
@@ -743,6 +758,10 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
     &--science {
       background: rgba($color-science, 0.15);
     }
+
+    &--bahasa {
+      background: rgba($color-bahasa, 0.15);
+    }
   }
 
   &__title {
@@ -767,6 +786,11 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
     &--science {
       color: $color-science-dark;
       background: rgba($color-science, 0.15);
+    }
+
+    &--bahasa {
+      color: $color-bahasa-dark;
+      background: rgba($color-bahasa, 0.15);
     }
   }
 }

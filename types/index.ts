@@ -3,7 +3,7 @@
 //  dan data. Satu tempat untuk mendefinisikan bentuk data.
 // =============================================================
 
-export type SubjectId = 'english' | 'math' | 'science'
+export type SubjectId = 'english' | 'math' | 'science' | 'bahasa'
 
 export type Level = 'beginner' | 'intermediate' | 'advanced'
 
@@ -127,7 +127,35 @@ export interface ScienceLesson extends LessonBase {
   facts: ScienceFact[]
 }
 
-export type Lesson = EnglishLesson | MathLesson | ScienceLesson
+/** Jenis aktivitas pelajaran Bahasa Indonesia / Membaca (Calistung). */
+export type BahasaActivity =
+  | 'huruf' // mengenal huruf (bunyi & bentuk)
+  | 'suku-kata' // membaca suku kata (ba-bi-bu-be-bo)
+  | 'kata' // merangkai suku kata menjadi kata
+  | 'kalimat' // membaca kalimat sederhana
+
+/** Satu bahan bacaan (huruf / suku kata / kata / kalimat). */
+export interface ReadingItem {
+  id: string
+  /** Teks yang dibaca (mis. "A", "ba", "buku", "Ini bola."). */
+  text: string
+  emoji?: string
+  /** Arti/petunjuk singkat (opsional, untuk kata). */
+  hint?: string
+  /**
+   * Pecahan suku kata untuk mode "merangkai" (mis. ['bu','ku'] untuk "buku").
+   * Wajib untuk aktivitas 'kata'.
+   */
+  syllables?: string[]
+}
+
+export interface BahasaLesson extends LessonBase {
+  subject: 'bahasa'
+  type: BahasaActivity
+  items: ReadingItem[]
+}
+
+export type Lesson = EnglishLesson | MathLesson | ScienceLesson | BahasaLesson
 
 /** Progres belajar per pelajaran (disimpan di localStorage). */
 export interface LessonProgress {

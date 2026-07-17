@@ -75,4 +75,22 @@ describe('integritas data pelajaran', () => {
       expect(new Set(ids).size, l.id).toBe(ids.length)
     }
   })
+
+  it('pelajaran Membaca: item lengkap, id unik, & suku kata konsisten', () => {
+    for (const l of lessons) {
+      if (l.subject !== 'bahasa') continue
+      // butuh minimal 4 item agar kuis punya cukup pilihan
+      expect(l.items.length, l.id).toBeGreaterThanOrEqual(4)
+      for (const it of l.items) {
+        expect(it.text.trim(), `${l.id}/${it.id}`).not.toBe('')
+        // aktivitas 'kata' wajib punya pecahan suku kata yang menyusun text
+        if (l.type === 'kata') {
+          expect(it.syllables?.length, `${l.id}/${it.id}`).toBeGreaterThanOrEqual(2)
+          expect(it.syllables?.join(''), `${l.id}/${it.id}`).toBe(it.text)
+        }
+      }
+      const ids = l.items.map((i) => i.id)
+      expect(new Set(ids).size, l.id).toBe(ids.length)
+    }
+  })
 })

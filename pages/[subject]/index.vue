@@ -8,7 +8,7 @@ const subjectId = computed(() => route.params.subject as SubjectId)
 
 definePageMeta({
   validate(route) {
-    return ['english', 'math', 'science'].includes(String(route.params.subject))
+    return ['english', 'math', 'science', 'bahasa'].includes(String(route.params.subject))
   },
 })
 
@@ -176,6 +176,10 @@ useHead(() => ({ title: `${subject.value?.title} — Belajar Yuk!` }))
   &--science {
     background: $gradient-science;
     box-shadow: $shadow-glow-science;
+  }
+  &--bahasa {
+    background: $gradient-bahasa;
+    box-shadow: $shadow-glow-bahasa;
   }
 
   &__pattern {

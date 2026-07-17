@@ -20,7 +20,7 @@ function choose(value: string) {
   selected.value = value
   if (value === current.value.correct) {
     play('correct')
-    if (current.value.speak) pronounce(current.value.speak)
+    if (current.value.speak) pronounce(current.value.speak, undefined, current.value.lang)
     emit('resolve', current.value)
   } else {
     play('wrong')

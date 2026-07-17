@@ -85,6 +85,9 @@ const mastered = computed(() => stars.value >= 3) // 3★ = dikuasai (ala Kumon)
   &--science::before {
     background: $gradient-science;
   }
+  &--bahasa::before {
+    background: $gradient-bahasa;
+  }
 
   &:hover {
     box-shadow: $shadow-lg;
@@ -111,6 +114,9 @@ const mastered = computed(() => stars.value >= 3) // 3★ = dikuasai (ala Kumon)
   }
   &--science &__icon {
     background: rgba($color-science, 0.15);
+  }
+  &--bahasa &__icon {
+    background: rgba($color-bahasa, 0.15);
   }
 
   &__info {
@@ -166,6 +172,10 @@ const mastered = computed(() => stars.value >= 3) // 3★ = dikuasai (ala Kumon)
     &--science {
       color: $color-science-dark;
       background: rgba($color-science, 0.15);
+    }
+    &--bahasa {
+      color: $color-bahasa-dark;
+      background: rgba($color-bahasa, 0.15);
     }
   }
 

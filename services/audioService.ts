@@ -103,16 +103,21 @@ if (isBrowser && 'speechSynthesis' in window) {
   window.speechSynthesis.addEventListener('voiceschanged', refreshVoices)
 }
 
-// Utamakan voice LOKAL (localService) — voice remote sering abaikan `rate`.
-function pickEnglishVoice(): SpeechSynthesisVoice | undefined {
+// Pilih voice sesuai bahasa. Utamakan voice LOKAL (localService) — voice
+// remote sering abaikan `rate`. Untuk bahasa tanpa voice cocok (mis. id-ID
+// belum terpasang), JANGAN paksa voice bahasa lain — biarkan `utter.lang`
+// yang menentukan (lebih baik daripada teks Indonesia dibaca voice Inggris).
+function pickVoice(lang = 'en-US'): SpeechSynthesisVoice | undefined {
   const voices = cachedVoices.length ? cachedVoices : window.speechSynthesis.getVoices()
-  const en = voices.filter((v) => /^en/i.test(v.lang))
+  const base = lang.slice(0, 2).toLowerCase() // 'en' | 'id'
+  const norm = (l: string) => l.replace('_', '-').toLowerCase()
+  const matching = voices.filter((v) => norm(v.lang).startsWith(base))
   return (
-    en.find((v) => v.localService && /en[-_]US/i.test(v.lang)) ||
-    en.find((v) => v.localService) ||
-    en.find((v) => /en[-_]US/i.test(v.lang)) ||
-    en[0] ||
-    voices[0]
+    matching.find((v) => v.localService && norm(v.lang) === norm(lang)) ||
+    matching.find((v) => v.localService) ||
+    matching.find((v) => norm(v.lang) === norm(lang)) ||
+    matching[0] ||
+    (base === 'en' ? voices[0] : undefined)
   )
 }
 
@@ -137,8 +142,8 @@ export const audioService = {
       utter.lang = lang
       utter.rate = getSpeechRate() // dari pengaturan (default pelan)
       utter.pitch = 1.1
-      const voice = pickEnglishVoice()
-      if (voice) utter.voice = voice // WAJIB voice lokal agar rate dihormati
+      const voice = pickVoice(lang)
+      if (voice) utter.voice = voice // voice lokal agar rate dihormati
       // Jeda kecil: workaround bug Chrome (cancel+speak sinkron abaikan rate).
       speakTimer = window.setTimeout(() => synth.speak(utter), 60)
     }

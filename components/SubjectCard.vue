@@ -53,6 +53,10 @@ const lessonCount = computed(() => lessonService.getLessons(props.subject.id).le
     background: $gradient-science;
     box-shadow: $shadow-glow-science;
   }
+  &--bahasa {
+    background: $gradient-bahasa;
+    box-shadow: $shadow-glow-bahasa;
+  }
 
   &:hover {
     box-shadow: $shadow-xl;
