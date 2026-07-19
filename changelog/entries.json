@@ -1,6 +1,16 @@
 [
   {
     "date": "2026-07-19",
+    "version": "0.21.0",
+    "tag": "Perbaikan",
+    "title": "Nama kategori lebih unik: Tunas, Penjelajah, Juara",
+    "changes": [
+      "Kategori usia diganti dari Junior/Medium/Senior menjadi Tunas 🌱, Penjelajah 🚀, & Juara 🏆.",
+      "Nama yang lebih seru & khas untuk menemani perjalanan belajar anak."
+    ]
+  },
+  {
+    "date": "2026-07-19",
     "version": "0.20.0",
     "tag": "Perbaikan",
     "title": "Header baru yang lebih modern",

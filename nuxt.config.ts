@@ -35,7 +35,7 @@ export default defineNuxtConfig({
       name: 'Belajar Yuk! — Inggris, Matematika, Sains, Membaca & Coding',
       short_name: 'Belajar Yuk!',
       description:
-        'Aplikasi belajar untuk anak 6+: Bahasa Inggris, Matematika, Sains, Membaca, & Coding. Materi terstruktur per kategori usia (Junior/Medium/Senior) membangun fondasi kuat sejak dini.',
+        'Aplikasi belajar untuk anak 6+: Bahasa Inggris, Matematika, Sains, Membaca, & Coding. Materi terstruktur per kategori usia (Tunas/Penjelajah/Juara) membangun fondasi kuat sejak dini.',
       lang: 'id',
       theme_color: '#6C5CE7',
       background_color: '#f4f3ff',

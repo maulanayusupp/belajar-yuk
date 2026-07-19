@@ -7,7 +7,7 @@ const route = useRoute()
 
 const DESCRIPTION =
   'Satu aplikasi belajar untuk anak usia 6+: Bahasa Inggris, Matematika, Sains, Membaca, ' +
-  'hingga Coding. Materi terstruktur per kategori usia (Junior, Medium, Senior) dengan metode ' +
+  'hingga Coding. Materi terstruktur per kategori usia (Tunas, Penjelajah, Juara) dengan metode ' +
   'terbukti — membangun fondasi kuat & rasa percaya diri sejak dini.'
 const SHARE_TITLE = 'Belajar Yuk! — Inggris, Matematika, Sains, Membaca & Coding untuk Anak'
 const ogImage = `${site.siteUrl}/og-image.png`

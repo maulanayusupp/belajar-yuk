@@ -225,7 +225,7 @@ export interface CodingWorld {
   title: string
   icon: string
   concept: CodingConcept
-  /** Age/skill category (Junior/Medium/Senior) — reuses the lesson Level tiers. */
+  /** Age/skill category (Tunas/Penjelajah/Juara) — reuses the lesson Level tiers. */
   level: Level
   description: string
   levels: CodingLevel[]

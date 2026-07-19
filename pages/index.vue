@@ -41,7 +41,7 @@ const features = [
   {
     icon: '🎚️',
     title: 'Sesuai Usia',
-    text: 'Kategori Junior, Medium, & Senior menyesuaikan tingkat dengan usia anak.',
+    text: 'Kategori Tunas, Penjelajah, & Juara menyesuaikan tingkat dengan usia anak.',
     tint: 'english' as const,
   },
   {

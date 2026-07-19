@@ -97,7 +97,7 @@ data/ (konten)  →  services/ (logika)  →  composables/ (reaktif)  →  compo
   buat komponen khusus untuknya. Tidak apa-apa (malah lebih baik) tiap materi punya
   komponen/mekanik sendiri yang berbeda daripada memaksa satu runner generik. Materi
   baru harus terasa unik — jangan ada yang sama.
-- **Kategori/tingkat** di setiap materi bernama **Junior / Medium / Senior** (dari
+- **Kategori/tingkat** di setiap materi bernama **Tunas / Penjelajah / Juara** (dari
   `data/levels.ts`, satu sumber). Kartu, halaman mapel, & peta Coding membacanya dari sana.
 - **Siap backend.** Semua masih `localStorage`, tapi backend bisa menggantikannya nanti.
   Jaga persistensi tetap di balik `services/` agar bisa ganti ke API async tanpa mengubah
