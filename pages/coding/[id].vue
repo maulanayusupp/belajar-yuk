@@ -11,6 +11,15 @@ if (!level.value) {
   throw createError({ statusCode: 404, statusMessage: 'Level tidak ditemukan' })
 }
 
+// Which game component to render (levels can be different game kinds).
+const gameKind = computed(() => {
+  const l = level.value
+  if (!l) return 'grid'
+  if (l.kind === 'order') return 'order'
+  return l.concept === 'loop' ? 'loop' : 'grid'
+})
+const titleIcon = computed(() => (level.value?.kind === 'order' ? level.value.goalEmoji : '🤖'))
+
 useHead(() => ({ title: `${level.value?.title} — Coding` }))
 </script>
 
@@ -18,11 +27,19 @@ useHead(() => ({ title: `${level.value?.title} — Coding` }))
   <div v-if="level" class="level-page">
     <header class="level-page__head">
       <NuxtLink to="/coding" class="level-page__back">← Peta</NuxtLink>
-      <h1 class="level-page__title"><span aria-hidden="true">🤖</span> {{ level.title }}</h1>
+      <h1 class="level-page__title">
+        <span aria-hidden="true">{{ titleIcon }}</span> {{ level.title }}
+      </h1>
     </header>
 
+    <CodingOrderRunner
+      v-if="gameKind === 'order'"
+      :key="level.id"
+      :level="level"
+      :next-id="nextId"
+    />
     <CodingLoopRunner
-      v-if="level.concept === 'loop'"
+      v-else-if="gameKind === 'loop'"
       :key="level.id"
       :level="level"
       :next-id="nextId"

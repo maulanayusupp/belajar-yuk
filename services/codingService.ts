@@ -1,9 +1,10 @@
-import type { CodingLevel, CodingWorld } from '~/types'
+import type { AnyCodingLevel, CodingWorld } from '~/types'
 import { codingWorlds, codingLevels } from '~/data/coding'
 import { storage } from '~/utils/storage'
 
 // Coding is a SEPARATE module from the subjects/lessons. It keeps its own
 // progress store (stars per level) so it never mixes with lesson progress.
+// Levels can be different game kinds (grid puzzle, order-the-steps, …).
 
 const STARS_KEY = 'belajar-yuk:coding:stars'
 
@@ -14,16 +15,16 @@ export const codingService = {
     return codingWorlds
   },
 
-  getLevels(): CodingLevel[] {
+  getLevels(): AnyCodingLevel[] {
     return codingLevels
   },
 
-  getLevel(id: string): CodingLevel | null {
+  getLevel(id: string): AnyCodingLevel | null {
     return codingLevels.find((l) => l.id === id) ?? null
   },
 
   /** The level after the given id (for the "next level" button). */
-  getNextLevel(id: string): CodingLevel | null {
+  getNextLevel(id: string): AnyCodingLevel | null {
     const i = codingLevels.findIndex((l) => l.id === id)
     return i >= 0 ? (codingLevels[i + 1] ?? null) : null
   },

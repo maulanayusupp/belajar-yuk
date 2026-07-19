@@ -43,6 +43,17 @@ test('coding level shows the robot grid and can be solved', async ({ page }) => 
   await expect(page.getByText('Berhasil!')).toBeVisible({ timeout: 6000 })
 })
 
+test('coding "order the steps" game can be solved', async ({ page }) => {
+  await page.goto('/coding/order-plant')
+  await dismissOnboarding(page)
+  // Tap the step cards in the correct order (labels are unique, so this works
+  // regardless of the shuffled layout).
+  for (const label of ['Gali tanah', 'Tanam biji', 'Siram air', 'Bunga mekar']) {
+    await page.getByRole('button', { name: label }).click()
+  }
+  await expect(page.getByText('Urutan Benar!')).toBeVisible({ timeout: 6000 })
+})
+
 test('the Progress page does not overflow horizontally', async ({ page }) => {
   await page.goto('/kemajuan')
   await dismissOnboarding(page)

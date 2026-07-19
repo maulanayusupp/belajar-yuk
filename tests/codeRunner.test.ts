@@ -121,6 +121,20 @@ describe('codeRunner', () => {
     expect(frames.at(-1)).toMatchObject({ x: 0, y: 0, facing: 'north' })
   })
 
+  it('every "order the steps" level has distinct step cards & unique ids', () => {
+    const orderLevels = codingService.getLevels().filter((l) => l.kind === 'order')
+    expect(orderLevels.length).toBeGreaterThan(0)
+    for (const l of orderLevels) {
+      if (l.kind !== 'order') continue
+      expect(l.steps.length, l.id).toBeGreaterThanOrEqual(3)
+      const ids = l.steps.map((s) => s.id)
+      expect(new Set(ids).size, `${l.id}: duplicate step id`).toBe(ids.length)
+      // cards must be visually distinct (icon+label) so ordering is unambiguous
+      const cards = l.steps.map((s) => `${s.icon}|${s.label}`)
+      expect(new Set(cards).size, `${l.id}: ambiguous (identical) cards`).toBe(cards.length)
+    }
+  })
+
   it('starsForSolution rewards efficiency', () => {
     expect(starsForSolution(3, 3)).toBe(3)
     expect(starsForSolution(4, 3)).toBe(2)

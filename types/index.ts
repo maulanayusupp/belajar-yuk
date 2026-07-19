@@ -203,10 +203,12 @@ export type CodingStep =
 export type Facing = 'north' | 'east' | 'south' | 'west'
 
 /**
- * One coding puzzle level. The grid is an array of equal-length strings where
- * each char is a cell: '.' walkable path · '#' wall/void · 'G' goal.
+ * A grid puzzle level (program-the-robot). The grid is an array of equal-length
+ * strings where each char is a cell: '.' path · '#' wall · 'G' goal · 'C' gem.
  */
 export interface CodingLevel {
+  /** Game kind — grid puzzle (default). */
+  kind?: 'grid'
   id: string
   title: string
   concept: CodingConcept
@@ -219,7 +221,33 @@ export interface CodingLevel {
   hint?: string
 }
 
-/** A world groups levels by concept (shown as a section on the map). */
+/** One step card in an "order the steps" level. */
+export interface OrderStep {
+  id: string
+  icon: string
+  label: string
+}
+
+/**
+ * An "order the steps" level — a DIFFERENT game: no grid/robot. The child
+ * arranges scrambled step cards into the correct order (everyday algorithms).
+ */
+export interface CodingOrderLevel {
+  kind: 'order'
+  id: string
+  title: string
+  /** What is being sequenced, e.g. "Menanam Bunga". */
+  goal: string
+  goalEmoji: string
+  /** Steps in the CORRECT order (the runner shuffles them for the child). */
+  steps: OrderStep[]
+  hint?: string
+}
+
+/** Any coding level (different game kinds share a map & progress). */
+export type AnyCodingLevel = CodingLevel | CodingOrderLevel
+
+/** A world groups levels (shown as a section on the map). */
 export interface CodingWorld {
   id: string
   title: string
@@ -228,7 +256,7 @@ export interface CodingWorld {
   /** Age/skill category (Tunas/Penjelajah/Juara) — reuses the lesson Level tiers. */
   level: Level
   description: string
-  levels: CodingLevel[]
+  levels: AnyCodingLevel[]
 }
 
 /** Learning progress per lesson (stored in localStorage). */

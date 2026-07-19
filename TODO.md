@@ -73,8 +73,12 @@ Lightbot/Code.org-style grid command-puzzles. Client-only, evidence-based (see
       "Function A" procedure slot, tighter `maxBlocks` to force decomposition.
 - [ ] **More level content** — keep growing each world (aim ~8-10 levels/world) and
       combine mechanics (loops + gems).
-- [ ] **Unplugged interstitials** — order-the-steps, predict-the-output, spot-the-bug
-      cards (cheap, great for the youngest; no engine needed).
+- [x] **Order-the-steps game** ("Urutkan Langkah") — a DIFFERENT game format (not a
+      grid reskin): arrange scrambled step cards. `CodingOrderLevel` (kind: 'order') +
+      `CodingOrderRunner`. Levels can now have distinct game kinds via `level.kind`.
+- [ ] **More distinct game formats** (each its own component, NOT grid reskins):
+      predict-the-output (where does the robot end?), spot-the-bug (tap the wrong step),
+      pattern-complete. Consider reworking "Berburu Permata" into something more novel.
 - [ ] **Phase 3** — unlockable free-play sandbox as a reward; variables.
 
 ### P2 — Differentiators & polish

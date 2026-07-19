@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-07-19",
+    "version": "0.25.0",
+    "tag": "Fitur",
+    "title": "Coding: game baru 'Urutkan Langkah' (bentuk berbeda)",
+    "changes": [
+      "Jenis permainan baru yang beda total dari puzzle robot: susun kartu langkah ke urutan benar.",
+      "5 aktivitas sehari-hari: menanam bunga, gosok gigi, buat roti isi, berangkat sekolah, robot menyapu.",
+      "Sekarang tiap dunia Coding bisa punya bentuk permainan sendiri, bukan sekadar grid yang sama."
+    ]
+  },
+  {
+    "date": "2026-07-19",
     "version": "0.24.0",
     "tag": "Konten",
     "title": "Banyak materi baru: Sains, Bahasa Inggris, & Membaca",
