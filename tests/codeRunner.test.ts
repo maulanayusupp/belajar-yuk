@@ -33,6 +33,15 @@ const LOOP_SOLUTIONS: Record<string, CodingStep[]> = {
   'code-loop-5': [rep(4, F, R, F, L)],
 }
 
+// Loops + gems combined: collect every gem using repeat blocks, then goal.
+const LOOP_GEM_SOLUTIONS: Record<string, CodingStep[]> = {
+  'code-lg-1': [rep(5, F)],
+  'code-lg-2': [rep(3, F, R, F, L)],
+  'code-lg-3': [rep(3, F), cmd(R), rep(3, F)],
+  'code-lg-4': [rep(4, F, R, F, L)],
+  'code-lg-5': [rep(4, F), cmd(R), rep(3, F)],
+}
+
 // Gem worlds: must collect every gem and finish on the goal.
 const GEM_SOLUTIONS: Record<string, CodingCommand[]> = {
   'code-gem-1': [F, F, F],
@@ -62,6 +71,20 @@ describe('codeRunner', () => {
       const blocks = countBlocks(program)
       expect(blocks, `${id} optimal mismatch`).toBe(level.optimalBlocks)
       expect(starsForSolution(blocks, level.optimalBlocks)).toBe(3)
+    }
+  })
+
+  it('every loops+gems level is solvable with repeats, collecting all gems, at optimal', () => {
+    for (const [id, program] of Object.entries(LOOP_GEM_SOLUTIONS)) {
+      const level = codingService.getLevel(id)!
+      const { success, frames } = runProgram(level, program)
+      expect(success, `${id} not solved`).toBe(true)
+      const totalGems = level.grid
+        .join('')
+        .split('')
+        .filter((c) => c === 'C').length
+      expect(frames.at(-1)!.collected.length, `${id} missed gems`).toBe(totalGems)
+      expect(countBlocks(program), `${id} optimal mismatch`).toBe(level.optimalBlocks)
     }
   })
 

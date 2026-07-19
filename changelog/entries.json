@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-07-19",
+    "version": "0.23.0",
+    "tag": "Konten",
+    "title": "Coding: dunia 'Perulangan Permata' (tantangan Juara)",
+    "changes": [
+      "Dunia baru menggabungkan blok Ulangi + berburu permata — tantangan tersulit.",
+      "5 level unik untuk kategori Juara.",
+      "Total Coding kini 4 dunia & 22 level."
+    ]
+  },
+  {
+    "date": "2026-07-19",
     "version": "0.22.0",
     "tag": "Konten",
     "title": "Coding: dunia baru 'Berburu Permata'",
