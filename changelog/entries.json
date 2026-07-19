@@ -1,6 +1,16 @@
 [
   {
     "date": "2026-07-19",
+    "version": "0.21.3",
+    "tag": "Perbaikan",
+    "title": "Update aplikasi kini langsung terlihat",
+    "changes": [
+      "Perbaikan cache: pembaruan konten kini muncul segera tanpa perlu memuat ulang berkali-kali.",
+      "Halaman selalu ditampilkan versi terbaru dari server."
+    ]
+  },
+  {
+    "date": "2026-07-19",
     "version": "0.21.2",
     "tag": "Perbaikan",
     "title": "Perbaikan: papan & animasi robot Coding kini muncul",

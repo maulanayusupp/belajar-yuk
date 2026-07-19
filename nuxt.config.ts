@@ -49,8 +49,15 @@ export default defineNuxtConfig({
       ],
     },
     workbox: {
-      globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
-      navigateFallback: '/',
+      // Precache STATIC assets only — NOT html. This is an SSR app, so each
+      // route's HTML is rendered fresh by the server; precaching a single app
+      // shell (navigateFallback) would serve stale content after a deploy.
+      globPatterns: ['**/*.{js,css,png,svg,ico}'],
+      // Take control immediately on update & drop old caches so new deploys
+      // apply right away (no lingering stale bundle).
+      cleanupOutdatedCaches: true,
+      clientsClaim: true,
+      skipWaiting: true,
     },
     devOptions: { enabled: false },
   },
