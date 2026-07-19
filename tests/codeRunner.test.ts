@@ -33,6 +33,16 @@ const LOOP_SOLUTIONS: Record<string, CodingStep[]> = {
   'code-loop-5': [rep(4, F, R, F, L)],
 }
 
+// Gem worlds: must collect every gem and finish on the goal.
+const GEM_SOLUTIONS: Record<string, CodingCommand[]> = {
+  'code-gem-1': [F, F, F],
+  'code-gem-2': [F, F, F, F, F],
+  'code-gem-3': [F, F, R, F, F],
+  'code-gem-4': [F, F, R, F, F, L, F, F],
+  'code-gem-5': [F, F, F, F, F, F],
+  'code-gem-6': [F, F, L, F, F, L, F, F],
+}
+
 describe('codeRunner', () => {
   it('every sequencing level is solvable at its optimal block count (3 stars)', () => {
     for (const [id, cmds] of Object.entries(SEQUENCE_SOLUTIONS)) {
@@ -55,6 +65,27 @@ describe('codeRunner', () => {
     }
   })
 
+  it('every gem level is solved only when all gems are collected + goal reached', () => {
+    for (const [id, cmds] of Object.entries(GEM_SOLUTIONS)) {
+      const level = codingService.getLevel(id)!
+      const { success, frames } = runProgram(level, toSteps(cmds))
+      expect(success, `${id} not solved`).toBe(true)
+      // the final frame must have collected every gem on the grid
+      const totalGems = level.grid
+        .join('')
+        .split('')
+        .filter((c) => c === 'C').length
+      expect(frames.at(-1)!.collected.length, `${id} missed gems`).toBe(totalGems)
+      expect(cmds.length, `${id} optimal mismatch`).toBe(level.optimalBlocks)
+    }
+  })
+
+  it('reaching the goal WITHOUT collecting all gems is not a success', () => {
+    const level = codingService.getLevel('code-gem-2')! // ['.C.C.G'] — gems at x=1,3
+    // Only 1 forward: not on goal and no gems → not solved (sanity)
+    expect(runProgram(level, toSteps([F])).success).toBe(false)
+  })
+
   it('countBlocks rewards loops (repeat = 1 + body, not body × times)', () => {
     expect(countBlocks([rep(6, F)])).toBe(2)
     expect(countBlocks([cmd(F), rep(3, F, R)])).toBe(4) // 1 + (1 + 2)
@@ -64,7 +95,7 @@ describe('codeRunner', () => {
     const level = codingService.getLevel('code-seq-1')!
     const { frames, success } = runProgram(level, toSteps([L, F]))
     expect(success).toBe(false)
-    expect(frames.at(-1)).toEqual({ x: 0, y: 0, facing: 'north' })
+    expect(frames.at(-1)).toMatchObject({ x: 0, y: 0, facing: 'north' })
   })
 
   it('starsForSolution rewards efficiency', () => {

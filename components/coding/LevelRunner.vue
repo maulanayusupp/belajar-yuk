@@ -18,6 +18,7 @@ const BLOCK: Record<CodingCommand, { icon: string; label: string }> = {
 
 const program = ref<CodingCommand[]>([])
 const robot = ref<RobotState>({ ...props.level.start })
+const collected = ref<string[]>([])
 const running = ref(false)
 const solved = ref(false)
 const earnedStars = ref(0)
@@ -28,6 +29,7 @@ onBeforeUnmount(() => (cancelled = true))
 
 function resetRobot() {
   robot.value = { ...props.level.start }
+  collected.value = []
   failMsg.value = ''
 }
 
@@ -64,7 +66,9 @@ async function run() {
   for (let i = 1; i < frames.length; i++) {
     await delay(340)
     if (cancelled) return
-    robot.value = frames[i]
+    const f = frames[i]
+    robot.value = { x: f.x, y: f.y, facing: f.facing }
+    collected.value = f.collected
     play('pop')
   }
   await delay(320)
@@ -88,7 +92,7 @@ async function run() {
 
 <template>
   <div class="runner">
-    <CodingPuzzleGrid :level="level" :robot="robot" />
+    <CodingPuzzleGrid :level="level" :robot="robot" :collected="collected" />
 
     <p v-if="level.hint && !solved" class="runner__hint">💡 {{ level.hint }}</p>
     <p v-if="failMsg" class="runner__fail">{{ failMsg }}</p>

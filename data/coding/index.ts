@@ -1,12 +1,14 @@
 import type { CodingWorld } from '~/types'
 import { sequenceWorld } from './sequence'
+import { gemsWorld } from './gems'
 import { loopsWorld } from './loops'
 
-// All coding worlds, in order. A "world" groups levels by concept.
+// All coding worlds, in order (easiest first). A "world" groups levels by
+// concept. The array order also drives the level unlock chain.
 //
 // To add a world: create data/coding/<world>/index.ts exporting a CodingWorld,
-// import it here, and append to the array.
-export const codingWorlds: CodingWorld[] = [sequenceWorld, loopsWorld]
+// import it here, and insert it at the right difficulty position.
+export const codingWorlds: CodingWorld[] = [sequenceWorld, gemsWorld, loopsWorld]
 
 // Flat list of every level, in play order (used for unlock logic).
 export const codingLevels = codingWorlds.flatMap((w) => w.levels)

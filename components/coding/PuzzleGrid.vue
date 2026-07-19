@@ -6,16 +6,20 @@ import type { RobotState } from '~/utils/codeRunner'
 // bound DIRECTLY to `transform` (not via CSS custom properties): Safari does
 // not animate a `transition: transform` when the value changes through a
 // var(), so a direct pixel value is required for the walking animation to play.
-const props = defineProps<{ level: CodingLevel; robot: RobotState }>()
+const props = withDefaults(
+  defineProps<{ level: CodingLevel; robot: RobotState; collected?: string[] }>(),
+  { collected: () => [] },
+)
 
 const GAP = 4
 
 const cols = computed(() => props.level.grid[0]?.length ?? 1)
 const cells = computed(() =>
   props.level.grid.flatMap((row, y) =>
-    row.split('').map((char, x) => ({ key: `${x}-${y}`, char })),
+    row.split('').map((char, x) => ({ key: `${x}-${y}`, char, pos: `${x},${y}` })),
   ),
 )
+const collectedSet = computed(() => new Set(props.collected))
 
 // Responsive cell size. Same default on server & first client render (no
 // hydration mismatch); refined on mount and on resize.
@@ -60,9 +64,16 @@ const faceStyle = computed(() => ({ transform: `rotate(${-ANGLE[props.robot.faci
         :class="{
           'grid__cell--wall': c.char === '#',
           'grid__cell--goal': c.char === 'G',
+          'grid__cell--gem': c.char === 'C',
         }"
       >
         <span v-if="c.char === 'G'" aria-hidden="true">⭐</span>
+        <span
+          v-else-if="c.char === 'C' && !collectedSet.has(c.pos)"
+          class="grid__gem"
+          aria-hidden="true"
+          >💎</span
+        >
       </span>
 
       <!-- Robot overlays the board and animates between cells -->
@@ -105,6 +116,14 @@ const faceStyle = computed(() => ({ transform: `rotate(${-ANGLE[props.robot.faci
       background: rgba($color-star, 0.18);
       border: 2px dashed $color-star;
     }
+
+    &--gem {
+      background: rgba($color-secondary, 0.12);
+    }
+  }
+
+  &__gem {
+    animation: pulse-glow 1.6s ease-in-out infinite;
   }
 
   // Robot position is set from JS (translate in px) so the transition animates

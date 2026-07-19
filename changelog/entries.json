@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-07-19",
+    "version": "0.22.0",
+    "tag": "Konten",
+    "title": "Coding: dunia baru 'Berburu Permata'",
+    "changes": [
+      "Dunia baru dengan mekanik berbeda: kumpulkan SEMUA permata 💎 dulu, baru ke bintang tujuan.",
+      "6 level baru dengan tingkat kesulitan menanjak.",
+      "Level yang sudah kamu kuasai tidak akan terkunci lagi meski ada materi baru."
+    ]
+  },
+  {
+    "date": "2026-07-19",
     "version": "0.21.4",
     "tag": "Perbaikan",
     "title": "Robot Coding kini berjalan dengan animasi mulus",

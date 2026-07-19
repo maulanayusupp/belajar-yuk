@@ -66,8 +66,13 @@ Lightbot/Code.org-style grid command-puzzles. Client-only, evidence-based (see
       `CodingLoopRunner` (insertion-mode `Ulangi ×N` block, no nesting). Interpreter is
       now a step tree (`CodingStep`); `countBlocks` rewards loops. Runner chosen by
       `level.concept` in `pages/coding/[id].vue`. Next: nested loops + more levels.
+- [x] **Collectibles world "Berburu Permata"** — new win condition (collect all
+      gems 'C' then reach goal); interpreter tracks collected per-frame, PuzzleGrid
+      renders/animates gems. 6 levels. Reuses the sequencing runner.
 - [ ] **Phase 2 — Conditionals & functions (ages 9-12)** — `if`/`if-else`, a single
       "Function A" procedure slot, tighter `maxBlocks` to force decomposition.
+- [ ] **More level content** — keep growing each world (aim ~8-10 levels/world) and
+      combine mechanics (loops + gems).
 - [ ] **Unplugged interstitials** — order-the-steps, predict-the-output, spot-the-bug
       cards (cheap, great for the youngest; no engine needed).
 - [ ] **Phase 3** — unlockable free-play sandbox as a reward; variables.

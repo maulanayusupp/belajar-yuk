@@ -24,6 +24,7 @@ const TIMES_MAX = 8
 const program = ref<CodingStep[]>([])
 const openLoop = ref<number | null>(null) // index of the repeat block accepting commands
 const robot = ref<RobotState>({ ...props.level.start })
+const collected = ref<string[]>([])
 const running = ref(false)
 const solved = ref(false)
 const earnedStars = ref(0)
@@ -36,6 +37,7 @@ const blockCount = computed(() => countBlocks(program.value))
 
 function resetRobot() {
   robot.value = { ...props.level.start }
+  collected.value = []
   failMsg.value = ''
 }
 
@@ -111,7 +113,9 @@ async function run() {
   for (let i = 1; i < frames.length; i++) {
     await delay(320)
     if (cancelled) return
-    robot.value = frames[i]
+    const f = frames[i]
+    robot.value = { x: f.x, y: f.y, facing: f.facing }
+    collected.value = f.collected
     play('pop')
   }
   await delay(320)
@@ -135,7 +139,7 @@ async function run() {
 
 <template>
   <div class="loop">
-    <CodingPuzzleGrid :level="level" :robot="robot" />
+    <CodingPuzzleGrid :level="level" :robot="robot" :collected="collected" />
 
     <p v-if="level.hint && !solved" class="loop__hint">💡 {{ level.hint }}</p>
     <p v-if="failMsg" class="loop__fail">{{ failMsg }}</p>

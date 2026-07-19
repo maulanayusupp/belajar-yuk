@@ -30,23 +30,38 @@ export function cellAt(grid: string[], x: number, y: number): string {
   return grid[y]?.[x] ?? '#'
 }
 
-/** A cell the robot can stand on. */
+/** A cell the robot can stand on ('.' path, 'G' goal, 'C' collectible gem). */
 export function isWalkable(grid: string[], x: number, y: number): boolean {
   const c = cellAt(grid, x, y)
-  return c === '.' || c === 'G'
+  return c === '.' || c === 'G' || c === 'C'
+}
+
+/** Total gems ('C' cells) on a level. */
+export function totalGems(grid: string[]): number {
+  return grid.reduce((n, row) => n + row.split('').filter((c) => c === 'C').length, 0)
+}
+
+/** One animation frame: robot state + which gems have been collected so far. */
+export interface Frame extends RobotState {
+  collected: string[]
 }
 
 export interface RunResult {
-  /** Robot state after each step, starting with the initial position. */
-  frames: RobotState[]
-  /** True when the robot ends on the goal cell. */
+  /** Robot state + collected gems after each step, starting at the initial pose. */
+  frames: Frame[]
+  /** True when the robot ends on the goal AND every gem has been collected. */
   success: boolean
 }
 
 /** Run a program (tree of steps) on a level; returns animation frames + success. */
 export function runProgram(level: CodingLevel, program: CodingStep[]): RunResult {
   let state: RobotState = { ...level.start }
-  const frames: RobotState[] = [{ ...state }]
+  const collected = new Set<string>()
+  const collectHere = () => {
+    if (cellAt(level.grid, state.x, state.y) === 'C') collected.add(`${state.x},${state.y}`)
+  }
+  collectHere() // the start cell could (rarely) hold a gem
+  const frames: Frame[] = [{ ...state, collected: [...collected] }]
 
   const step = (cmd: CodingCommand) => {
     if (cmd === 'left') {
@@ -59,7 +74,8 @@ export function runProgram(level: CodingLevel, program: CodingStep[]): RunResult
       const ny = state.y + DY[state.facing]
       if (isWalkable(level.grid, nx, ny)) state = { ...state, x: nx, y: ny }
     }
-    frames.push({ ...state })
+    collectHere()
+    frames.push({ ...state, collected: [...collected] })
   }
 
   const walk = (steps: CodingStep[]) => {
@@ -73,7 +89,8 @@ export function runProgram(level: CodingLevel, program: CodingStep[]): RunResult
   }
   walk(program)
 
-  const success = cellAt(level.grid, state.x, state.y) === 'G'
+  const onGoal = cellAt(level.grid, state.x, state.y) === 'G'
+  const success = onGoal && collected.size === totalGems(level.grid)
   return { frames, success }
 }
 
