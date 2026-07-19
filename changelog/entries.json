@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-07-19",
+    "version": "0.18.0",
+    "tag": "Fitur",
+    "title": "Coding Dunia 2: Perulangan (loops)",
+    "changes": [
+      "Dunia baru 'Perulangan' — pakai blok 🔁 Ulangi agar tak perlu perintah berulang.",
+      "5 level unik: Lorong Panjang, Belok lalu Lari, Keliling Taman, Naik Tangga, Menara Berputar.",
+      "Nama level dibuat lebih seru & unik di semua dunia Coding."
+    ]
+  },
+  {
+    "date": "2026-07-19",
     "version": "0.17.0",
     "tag": "Perbaikan",
     "title": "Halaman utama diperbarui & SEO",

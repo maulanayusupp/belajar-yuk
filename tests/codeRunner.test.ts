@@ -1,14 +1,21 @@
 import { describe, it, expect } from 'vitest'
-import type { CodingCommand } from '~/types'
-import { runProgram, starsForSolution } from '~/utils/codeRunner'
+import type { CodingCommand, CodingStep } from '~/types'
+import { runProgram, starsForSolution, toSteps, countBlocks } from '~/utils/codeRunner'
 import { codingService } from '~/services/codingService'
 
 const F: CodingCommand = 'forward'
 const L: CodingCommand = 'left'
 const R: CodingCommand = 'right'
 
+const cmd = (c: CodingCommand): CodingStep => ({ type: 'cmd', cmd: c })
+const rep = (times: number, ...body: CodingCommand[]): CodingStep => ({
+  type: 'repeat',
+  times,
+  body: body.map((c) => ({ type: 'cmd' as const, cmd: c })),
+})
+
 // Intended optimal solution per authored level — validates the grids too.
-const SOLUTIONS: Record<string, CodingCommand[]> = {
+const SEQUENCE_SOLUTIONS: Record<string, CodingCommand[]> = {
   'code-seq-1': [F, F, F],
   'code-seq-2': [F, F, R, F, F],
   'code-seq-3': [F, F, L, F, F],
@@ -17,22 +24,45 @@ const SOLUTIONS: Record<string, CodingCommand[]> = {
   'code-seq-6': [F, L, F, F, R, F],
 }
 
+// Loop worlds: the efficient solution uses repeat blocks.
+const LOOP_SOLUTIONS: Record<string, CodingStep[]> = {
+  'code-loop-1': [rep(6, F)],
+  'code-loop-2': [cmd(F), cmd(R), rep(5, F)],
+  'code-loop-3': [rep(3, F), cmd(R), rep(3, F)],
+  'code-loop-4': [rep(3, F, R, F, L)],
+  'code-loop-5': [rep(4, F, R, F, L)],
+}
+
 describe('codeRunner', () => {
-  it('every authored level is solvable at its optimal block count (3 stars)', () => {
-    for (const level of codingService.getLevels()) {
-      const solution = SOLUTIONS[level.id]
-      expect(solution, `missing solution for ${level.id}`).toBeDefined()
-      const { success } = runProgram(level, solution)
-      expect(success, `${level.id} not solved by its solution`).toBe(true)
-      expect(solution.length, `${level.id} optimal mismatch`).toBe(level.optimalBlocks)
-      expect(starsForSolution(solution.length, level.optimalBlocks)).toBe(3)
+  it('every sequencing level is solvable at its optimal block count (3 stars)', () => {
+    for (const [id, cmds] of Object.entries(SEQUENCE_SOLUTIONS)) {
+      const level = codingService.getLevel(id)!
+      const { success } = runProgram(level, toSteps(cmds))
+      expect(success, `${id} not solved`).toBe(true)
+      expect(cmds.length, `${id} optimal mismatch`).toBe(level.optimalBlocks)
+      expect(starsForSolution(cmds.length, level.optimalBlocks)).toBe(3)
     }
+  })
+
+  it('every loop level is solvable with a repeat block at optimal count (3 stars)', () => {
+    for (const [id, program] of Object.entries(LOOP_SOLUTIONS)) {
+      const level = codingService.getLevel(id)!
+      const { success } = runProgram(level, program)
+      expect(success, `${id} not solved`).toBe(true)
+      const blocks = countBlocks(program)
+      expect(blocks, `${id} optimal mismatch`).toBe(level.optimalBlocks)
+      expect(starsForSolution(blocks, level.optimalBlocks)).toBe(3)
+    }
+  })
+
+  it('countBlocks rewards loops (repeat = 1 + body, not body × times)', () => {
+    expect(countBlocks([rep(6, F)])).toBe(2)
+    expect(countBlocks([cmd(F), rep(3, F, R)])).toBe(4) // 1 + (1 + 2)
   })
 
   it('a forward into a wall / off-grid keeps the robot in place', () => {
     const level = codingService.getLevel('code-seq-1')!
-    // face north (off-grid) then move forward → stays at start, not solved
-    const { frames, success } = runProgram(level, [L, F])
+    const { frames, success } = runProgram(level, toSteps([L, F]))
     expect(success).toBe(false)
     expect(frames.at(-1)).toEqual({ x: 0, y: 0, facing: 'north' })
   })

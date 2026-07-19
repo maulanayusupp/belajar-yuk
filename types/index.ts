@@ -187,8 +187,17 @@ export interface DrillBest {
 /** Concept a coding level teaches. */
 export type CodingConcept = 'sequence' | 'loop' | 'conditional'
 
-/** A command block the child can place in the program (MVP: sequencing). */
+/** A primitive command block the child can place in the program. */
 export type CodingCommand = 'forward' | 'left' | 'right'
+
+/**
+ * A step in a coding program. Either a primitive command, or a `repeat` block
+ * (loop) whose body holds primitive commands. Loops teach repetition/efficiency.
+ * Body is primitives only (no nested loops) — enough for the loops world.
+ */
+export type CodingStep =
+  | { type: 'cmd'; cmd: CodingCommand }
+  | { type: 'repeat'; times: number; body: Array<{ type: 'cmd'; cmd: CodingCommand }> }
 
 /** Direction the robot faces. */
 export type Facing = 'north' | 'east' | 'south' | 'west'

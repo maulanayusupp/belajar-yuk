@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { CodingCommand, CodingLevel } from '~/types'
-import { runProgram, starsForSolution, type RobotState } from '~/utils/codeRunner'
+import { runProgram, starsForSolution, toSteps, type RobotState } from '~/utils/codeRunner'
 import { codingService } from '~/services/codingService'
 
 // The playable coding puzzle: build a program from command blocks, run it,
@@ -59,7 +59,7 @@ async function run() {
   if (running.value || solved.value || program.value.length === 0) return
   running.value = true
   failMsg.value = ''
-  const { frames, success } = runProgram(props.level, program.value)
+  const { frames, success } = runProgram(props.level, toSteps(program.value))
 
   for (let i = 1; i < frames.length; i++) {
     await delay(340)

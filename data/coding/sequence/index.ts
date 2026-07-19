@@ -13,7 +13,7 @@ export const sequenceWorld: CodingWorld = {
   levels: [
     {
       id: 'code-seq-1',
-      title: 'Jalan Lurus',
+      title: 'Robo Melangkah',
       concept: 'sequence',
       grid: ['...G'],
       start: { x: 0, y: 0, facing: 'east' },
@@ -23,7 +23,7 @@ export const sequenceWorld: CodingWorld = {
     },
     {
       id: 'code-seq-2',
-      title: 'Belok Kanan',
+      title: 'Tikungan Perdana',
       concept: 'sequence',
       grid: ['...', '##.', '##G'],
       start: { x: 0, y: 0, facing: 'east' },
@@ -33,7 +33,7 @@ export const sequenceWorld: CodingWorld = {
     },
     {
       id: 'code-seq-3',
-      title: 'Belok Kiri',
+      title: 'Putar ke Kiri',
       concept: 'sequence',
       grid: ['##G', '##.', '...'],
       start: { x: 0, y: 2, facing: 'east' },
@@ -43,7 +43,7 @@ export const sequenceWorld: CodingWorld = {
     },
     {
       id: 'code-seq-4',
-      title: 'Tikungan',
+      title: 'Sudut Tersembunyi',
       concept: 'sequence',
       grid: ['..##', '#.##', '#..G'],
       start: { x: 0, y: 0, facing: 'east' },
@@ -53,7 +53,7 @@ export const sequenceWorld: CodingWorld = {
     },
     {
       id: 'code-seq-5',
-      title: 'Zig-Zag',
+      title: 'Jejak Berkelok',
       concept: 'sequence',
       grid: ['...##', '##.##', '##..G'],
       start: { x: 0, y: 0, facing: 'east' },
@@ -63,7 +63,7 @@ export const sequenceWorld: CodingWorld = {
     },
     {
       id: 'code-seq-6',
-      title: 'Teka-Teki',
+      title: 'Misi Labirin',
       concept: 'sequence',
       grid: ['#.G', '#.#', '...'],
       start: { x: 0, y: 2, facing: 'east' },

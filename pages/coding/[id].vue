@@ -21,7 +21,13 @@ useHead(() => ({ title: `${level.value?.title} — Coding` }))
       <h1 class="level-page__title"><span aria-hidden="true">🤖</span> {{ level.title }}</h1>
     </header>
 
-    <CodingLevelRunner :key="level.id" :level="level" :next-id="nextId" />
+    <CodingLoopRunner
+      v-if="level.concept === 'loop'"
+      :key="level.id"
+      :level="level"
+      :next-id="nextId"
+    />
+    <CodingLevelRunner v-else :key="level.id" :level="level" :next-id="nextId" />
   </div>
 </template>
 

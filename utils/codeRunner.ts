@@ -1,4 +1,4 @@
-import type { CodingCommand, CodingLevel, Facing } from '~/types'
+import type { CodingCommand, CodingLevel, CodingStep, Facing } from '~/types'
 
 // Pure, deterministic interpreter for the coding puzzles. No side effects,
 // so it is easy to unit-test. The runner turns a program (list of commands)
@@ -43,12 +43,12 @@ export interface RunResult {
   success: boolean
 }
 
-/** Run a program on a level and return the animation frames + success. */
-export function runProgram(level: CodingLevel, program: CodingCommand[]): RunResult {
+/** Run a program (tree of steps) on a level; returns animation frames + success. */
+export function runProgram(level: CodingLevel, program: CodingStep[]): RunResult {
   let state: RobotState = { ...level.start }
   const frames: RobotState[] = [{ ...state }]
 
-  for (const cmd of program) {
+  const step = (cmd: CodingCommand) => {
     if (cmd === 'left') {
       state = { ...state, facing: LEFT[state.facing] }
     } else if (cmd === 'right') {
@@ -62,8 +62,29 @@ export function runProgram(level: CodingLevel, program: CodingCommand[]): RunRes
     frames.push({ ...state })
   }
 
+  const walk = (steps: CodingStep[]) => {
+    for (const s of steps) {
+      if (s.type === 'repeat') {
+        for (let i = 0; i < s.times; i++) walk(s.body)
+      } else {
+        step(s.cmd)
+      }
+    }
+  }
+  walk(program)
+
   const success = cellAt(level.grid, state.x, state.y) === 'G'
   return { frames, success }
+}
+
+/** Convert a flat command list to program steps (for the sequencing world). */
+export function toSteps(cmds: CodingCommand[]): CodingStep[] {
+  return cmds.map((cmd) => ({ type: 'cmd', cmd }))
+}
+
+/** Number of blocks placed — a repeat block counts as 1 + its body (loops win). */
+export function countBlocks(program: CodingStep[]): number {
+  return program.reduce((n, s) => n + (s.type === 'repeat' ? 1 + s.body.length : 1), 0)
 }
 
 /**

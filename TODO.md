@@ -62,9 +62,10 @@ Lightbot/Code.org-style grid command-puzzles. Client-only, evidence-based (see
       `CodingPuzzleGrid`, `CodingLevelRunner`), `services/codingService.ts` (own
       progress store + unlock), `pages/coding/` map + play, 6 levels, star ratings by
       efficiency, landing band. World "Urutan Perintah".
-- [ ] **Phase 1b — Loops** — add a `repeat(n){…}` block with a nested drop zone;
-      new world "Perulangan" (~6-8 levels). Requires nested-program UI + interpreter
-      expansion of loop bodies.
+- [x] **Phase 1b — Loops** — world "Perulangan" (5 levels) with a custom
+      `CodingLoopRunner` (insertion-mode `Ulangi ×N` block, no nesting). Interpreter is
+      now a step tree (`CodingStep`); `countBlocks` rewards loops. Runner chosen by
+      `level.concept` in `pages/coding/[id].vue`. Next: nested loops + more levels.
 - [ ] **Phase 2 — Conditionals & functions (ages 9-12)** — `if`/`if-else`, a single
       "Function A" procedure slot, tighter `maxBlocks` to force decomposition.
 - [ ] **Unplugged interstitials** — order-the-steps, predict-the-output, spot-the-bug
