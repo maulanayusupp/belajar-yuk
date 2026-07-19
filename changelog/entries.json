@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-07-19",
+    "version": "0.15.0",
+    "tag": "Fitur",
+    "title": "Coding — belajar logika sambil bermain",
+    "changes": [
+      "Modul baru Coding: pandu robot ke tujuan dengan menyusun perintah (ala Lightbot/Code.org).",
+      "Dunia 1 'Urutan Perintah' — 6 level dengan tingkat kesulitan menanjak & bintang.",
+      "Bintang dinilai dari efisiensi: makin sedikit perintah, makin banyak bintang.",
+      "Dunia berikutnya (Perulangan & Kondisional) segera hadir."
+    ]
+  },
+  {
     "date": "2026-07-17",
     "version": "0.14.0",
     "tag": "Fitur",

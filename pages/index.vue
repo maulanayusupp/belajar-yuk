@@ -277,6 +277,23 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
       </div>
     </section>
 
+    <!-- ============ CODING (separate module) ============ -->
+    <section class="section">
+      <NuxtLink v-reveal to="/coding" class="coding-band">
+        <div class="coding-band__pattern" aria-hidden="true" />
+        <span class="coding-band__emoji anim-float" aria-hidden="true">🤖</span>
+        <div class="coding-band__text">
+          <span class="coding-band__eyebrow">Baru · Coding</span>
+          <h2 class="coding-band__title">Belajar Koding sambil bermain</h2>
+          <p class="coding-band__desc">
+            Susun perintah untuk memandu robot ke tujuan — melatih logika & cara berpikir
+            programmer, langkah demi langkah.
+          </p>
+          <span class="coding-band__cta">Mulai Coding →</span>
+        </div>
+      </NuxtLink>
+    </section>
+
     <!-- ============ WHAT YOU LEARN ============ -->
     <section class="section">
       <HomeSectionHeader
@@ -719,6 +736,73 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
 
   @include respond-to('md') {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+// ---------------- CODING BAND ----------------
+.coding-band {
+  @include hover-lift(-6px);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: spacing('lg');
+  text-align: center;
+  padding: spacing('xl');
+  border-radius: $radius-xl;
+  background: $gradient-primary;
+  box-shadow: $shadow-primary;
+  color: $color-white;
+
+  @include respond-to('md') {
+    flex-direction: row;
+    text-align: left;
+  }
+
+  &__pattern {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 88% 12%, rgba($color-white, 0.22) 0, transparent 30%),
+      radial-gradient(circle at 10% 95%, rgba($color-white, 0.15) 0, transparent 35%);
+  }
+
+  &__emoji {
+    position: relative;
+    font-size: font-size('giant');
+    filter: drop-shadow(0 12px 24px rgba(26, 16, 53, 0.3));
+  }
+
+  &__text {
+    position: relative;
+  }
+
+  &__eyebrow {
+    font-weight: $font-weight-bold;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: font-size('sm');
+    color: rgba($color-white, 0.85);
+  }
+
+  &__title {
+    color: $color-white;
+    margin: spacing('xs') 0;
+  }
+
+  &__desc {
+    margin: 0 0 spacing('md');
+    color: rgba($color-white, 0.92);
+    max-width: 52ch;
+  }
+
+  &__cta {
+    @include glass(rgba(255, 255, 255, 0.22));
+    display: inline-block;
+    padding: spacing('sm') spacing('lg');
+    border-radius: $radius-pill;
+    font-weight: $font-weight-bold;
   }
 }
 

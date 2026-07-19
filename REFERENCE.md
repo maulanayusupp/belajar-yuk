@@ -79,6 +79,25 @@ Applied in: `data/science/**`.
 
 ---
 
+## Coding (separate module — `/coding`)
+
+Grid command-puzzle engine (Lightbot × Code.org Maze): the child sequences command
+blocks to guide a robot to the goal. Chosen because it's self-teaching (unambiguous
+pass/fail with no teacher), client-only/offline, and forces the target CS concepts.
+Concept order follows the K-12 CS Framework: sequencing → loops → events →
+conditionals → functions → variables.
+
+- K-12 CS Framework, grade-band statements (concept progression by age): https://k12cs.org/framework-statements-by-grade-band/
+- Code.org CS Fundamentals (Courses A-F structure): https://code.org/en-US/curriculum/computer-science-fundamentals
+- Lightbot — how the puzzle teaches sequencing/loops/procedures/conditionals: https://lightbot.com/Lightbot_HowDoesLightbotTeachProgramming.pdf
+- Blockly Games (open-source, offline-capable puzzle progression): https://blockly.games/about
+- Kodable curriculum ladder (Sequence → Conditions → Loops → Functions → Variables): https://www.kodable.com/learn/curriculum-live
+- CS Unplugged — Kidbots (unplugged sequencing/debugging for the youngest): https://www.csunplugged.org/en/topics/kidbots/whats-it-all-about/
+- Gamification that works for solo young learners (badges/flow vs. leaderboards): https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2024.1429452/full
+
+Applied in: `data/coding/**`, `utils/codeRunner.ts`, `services/codingService.ts`,
+`components/coding/**`. Phase plan in `TODO.md`.
+
 ## Parent motivation & positioning (marketing)
 
 Why parents enroll kids in bimbel — informs copy and feature priorities.

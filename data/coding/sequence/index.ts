@@ -1,0 +1,74 @@
+import type { CodingWorld } from '~/types'
+
+// World 1 — Sequencing. The child arranges Move/Left/Right blocks so the
+// robot reaches the goal (G). Grids: '.' path · '#' wall/void · 'G' goal.
+// Every level is verified solvable within `optimalBlocks` (see tests).
+export const sequenceWorld: CodingWorld = {
+  id: 'sequence',
+  title: 'Urutan Perintah',
+  icon: '🧭',
+  concept: 'sequence',
+  description: 'Susun perintah berurutan agar robot sampai ke tujuan.',
+  levels: [
+    {
+      id: 'code-seq-1',
+      title: 'Jalan Lurus',
+      concept: 'sequence',
+      grid: ['...G'],
+      start: { x: 0, y: 0, facing: 'east' },
+      allowed: ['forward'],
+      optimalBlocks: 3,
+      hint: 'Tekan Maju sampai robot sampai ke bintang tujuan.',
+    },
+    {
+      id: 'code-seq-2',
+      title: 'Belok Kanan',
+      concept: 'sequence',
+      grid: ['...', '##.', '##G'],
+      start: { x: 0, y: 0, facing: 'east' },
+      allowed: ['forward', 'left', 'right'],
+      optimalBlocks: 5,
+      hint: 'Maju dulu, lalu belok kanan untuk turun ke bawah.',
+    },
+    {
+      id: 'code-seq-3',
+      title: 'Belok Kiri',
+      concept: 'sequence',
+      grid: ['##G', '##.', '...'],
+      start: { x: 0, y: 2, facing: 'east' },
+      allowed: ['forward', 'left', 'right'],
+      optimalBlocks: 5,
+      hint: 'Maju dulu, lalu belok kiri untuk naik ke atas.',
+    },
+    {
+      id: 'code-seq-4',
+      title: 'Tikungan',
+      concept: 'sequence',
+      grid: ['..##', '#.##', '#..G'],
+      start: { x: 0, y: 0, facing: 'east' },
+      allowed: ['forward', 'left', 'right'],
+      optimalBlocks: 7,
+      hint: 'Perhatikan arah robot setiap kali belok.',
+    },
+    {
+      id: 'code-seq-5',
+      title: 'Zig-Zag',
+      concept: 'sequence',
+      grid: ['...##', '##.##', '##..G'],
+      start: { x: 0, y: 0, facing: 'east' },
+      allowed: ['forward', 'left', 'right'],
+      optimalBlocks: 8,
+      hint: 'Turun dulu, lalu belok lagi ke kanan menuju tujuan.',
+    },
+    {
+      id: 'code-seq-6',
+      title: 'Teka-Teki',
+      concept: 'sequence',
+      grid: ['#.G', '#.#', '...'],
+      start: { x: 0, y: 2, facing: 'east' },
+      allowed: ['forward', 'left', 'right'],
+      optimalBlocks: 6,
+      hint: 'Cari jalan naik ke atas, lalu belok ke bintang.',
+    },
+  ],
+}

@@ -53,6 +53,24 @@ We only cover arithmetic ≤20. National curriculum expects more.
 - [ ] Patterns, skip-counting
 - [ ] Numbers to 100 & place value; simple word problems
 
+### P1 — Coding module (separate area, `/coding`)
+
+Lightbot/Code.org-style grid command-puzzles. Client-only, evidence-based (see
+`REFERENCE.md`). Phase 1 shipped; expand per the K-12 CS concept order.
+
+- [x] **Phase 1 — Sequencing** — engine (`utils/codeRunner.ts` interpreter,
+      `CodingPuzzleGrid`, `CodingLevelRunner`), `services/codingService.ts` (own
+      progress store + unlock), `pages/coding/` map + play, 6 levels, star ratings by
+      efficiency, landing band. World "Urutan Perintah".
+- [ ] **Phase 1b — Loops** — add a `repeat(n){…}` block with a nested drop zone;
+      new world "Perulangan" (~6-8 levels). Requires nested-program UI + interpreter
+      expansion of loop bodies.
+- [ ] **Phase 2 — Conditionals & functions (ages 9-12)** — `if`/`if-else`, a single
+      "Function A" procedure slot, tighter `maxBlocks` to force decomposition.
+- [ ] **Unplugged interstitials** — order-the-steps, predict-the-output, spot-the-bug
+      cards (cheap, great for the youngest; no engine needed).
+- [ ] **Phase 3** — unlockable free-play sandbox as a reward; variables.
+
 ### P2 — Differentiators & polish
 
 - [ ] **Sempoa / mental arithmetic mode** — animate abacus beads → hide → answer.

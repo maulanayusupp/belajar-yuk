@@ -182,6 +182,44 @@ export interface DrillBest {
   updatedAt: number
 }
 
+// ---- Coding (separate module: grid command-puzzles, Lightbot-style) --------
+
+/** Concept a coding level teaches. */
+export type CodingConcept = 'sequence' | 'loop' | 'conditional'
+
+/** A command block the child can place in the program (MVP: sequencing). */
+export type CodingCommand = 'forward' | 'left' | 'right'
+
+/** Direction the robot faces. */
+export type Facing = 'north' | 'east' | 'south' | 'west'
+
+/**
+ * One coding puzzle level. The grid is an array of equal-length strings where
+ * each char is a cell: '.' walkable path · '#' wall/void · 'G' goal.
+ */
+export interface CodingLevel {
+  id: string
+  title: string
+  concept: CodingConcept
+  grid: string[]
+  start: { x: number; y: number; facing: Facing }
+  /** Commands available for this level (gates the palette → teaches one idea). */
+  allowed: CodingCommand[]
+  /** Block count for a 3-star solution. */
+  optimalBlocks: number
+  hint?: string
+}
+
+/** A world groups levels by concept (shown as a section on the map). */
+export interface CodingWorld {
+  id: string
+  title: string
+  icon: string
+  concept: CodingConcept
+  description: string
+  levels: CodingLevel[]
+}
+
 /** Learning progress per lesson (stored in localStorage). */
 export interface LessonProgress {
   lessonId: string
