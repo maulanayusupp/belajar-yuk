@@ -20,6 +20,9 @@ import { verbs } from './verbs'
 import { greetings } from './greetings'
 import { opposites } from './opposites'
 import { jobs } from './jobs'
+import { school } from './school'
+import { home } from './home'
+import { vegetables } from './vegetables'
 import { transport } from './transport'
 import { weather } from './weather'
 import { clothes } from './clothes'
@@ -62,6 +65,9 @@ export const englishLessons: EnglishLesson[] = [
   greetings,
   opposites,
   jobs,
+  school,
+  home,
+  vegetables,
   // Intermediate: listening (hear → pick the picture)
   listenAnimals,
   listenFood,

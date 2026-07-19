@@ -1,7 +1,10 @@
 import type { ScienceLesson } from '~/types'
 import { fiveSenses } from './panca-indra'
 import { animalsHabitat } from './hewan-habitat'
+import { plants } from './plants'
+import { weather } from './weather'
 import { solarSystem } from './tata-surya'
+import { statesOfMatter } from './states-of-matter'
 
 // List and ORDER of Science lessons (beginner -> advanced).
 //
@@ -12,6 +15,9 @@ export const scienceLessons: ScienceLesson[] = [
   // Beginner: the world around us
   fiveSenses,
   animalsHabitat,
+  plants,
+  weather,
   // Intermediate: more abstract concepts
   solarSystem,
+  statesOfMatter,
 ]

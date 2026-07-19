@@ -87,8 +87,9 @@ Lightbot/Code.org-style grid command-puzzles. Client-only, evidence-based (see
       (many `rgba($token, a)` usages cannot take CSS vars in Sass). Large; deferred.
 - [ ] **Multi-profile** — several children per device (per-profile localStorage
       namespacing + profile switcher).
-- [ ] **More content** — additional Science topics (plants, weather, states of matter);
-      more Bahasa Indonesia consonant families (na/pa/ta/sa…), longer words & stories.
+- [x] **More content (round 1)** — Science: plants, weather, states of matter · English:
+      school, home, vegetables · Reading: syllables SA/TA + more words. Keep going:
+      more consonant families (na/pa/da/ka…), longer words & short stories, more themes.
 
 ---
 

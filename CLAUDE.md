@@ -24,8 +24,10 @@ npm run test:e2e  # Playwright E2E (perlu `npx playwright install chromium` seka
 npm run assets    # regenerasi favicon & OG image dari SVG
 ```
 
-> **Sebelum menyelesaikan tugas: `npm run lint`, `npm run test`, dan `npm run build`
-> harus lolos.** Bila ada dev server yang masih jalan, hentikan dulu (atau `NUXT_IGNORE_LOCK=1`).
+> **Sebelum menyelesaikan tugas, jalankan SEMUA cek CI lokal & harus lolos:**
+> `npm run lint`, `npm run format:check`, `npm run test`, `npm run build`, **dan**
+> `npm run test:e2e` (CI punya job e2e terpisah — jangan dilewati; `npx playwright install
+chromium` sekali bila perlu). Hentikan dev server yang jalan dulu (atau `NUXT_IGNORE_LOCK=1`).
 >
 > Catatan: ESLint memakai `Object.groupBy` (Node 21+); `eslint.config.mjs` sudah
 > memuat polyfill agar jalan di Node 20. CI memakai Node 22.

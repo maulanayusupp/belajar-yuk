@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-07-19",
+    "version": "0.24.0",
+    "tag": "Konten",
+    "title": "Banyak materi baru: Sains, Bahasa Inggris, & Membaca",
+    "changes": [
+      "Sains: Bagian Tumbuhan 🌱, Cuaca ⛅, & Wujud Benda 🧊.",
+      "Bahasa Inggris: Di Sekolah 🏫, Di Rumah 🏠, & Sayuran 🥕.",
+      "Membaca: suku kata SA & TA, plus latihan merangkai kata baru (mata, sapi, dll)."
+    ]
+  },
+  {
+    "date": "2026-07-19",
     "version": "0.23.0",
     "tag": "Konten",
     "title": "Coding: dunia 'Perulangan Permata' (tantangan Juara)",
