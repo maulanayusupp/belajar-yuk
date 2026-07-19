@@ -27,6 +27,21 @@ test('completing a counting lesson adds stars', async ({ page }) => {
   await expect(page.getByText(/Lanjut|Selesai/)).toBeVisible()
 })
 
+test('coding level shows the robot grid and can be solved', async ({ page }) => {
+  await page.goto('/coding/code-seq-1')
+  await dismissOnboarding(page)
+  // The grid + robot MUST render (regression: an unresolved component once left
+  // the level as buttons only, with no grid/robot).
+  await expect(page.getByLabel('Robot')).toBeVisible()
+  // Solve "Robo Melangkah": Maju × 3, then Jalankan → success.
+  const maju = page.getByRole('button', { name: 'Maju' })
+  await maju.click()
+  await maju.click()
+  await maju.click()
+  await page.getByRole('button', { name: /Jalankan/ }).click()
+  await expect(page.getByText('Berhasil!')).toBeVisible({ timeout: 6000 })
+})
+
 test('the Progress page does not overflow horizontally', async ({ page }) => {
   await page.goto('/kemajuan')
   await dismissOnboarding(page)

@@ -135,7 +135,7 @@ async function run() {
 
 <template>
   <div class="loop">
-    <PuzzleGrid :level="level" :robot="robot" />
+    <CodingPuzzleGrid :level="level" :robot="robot" />
 
     <p v-if="level.hint && !solved" class="loop__hint">💡 {{ level.hint }}</p>
     <p v-if="failMsg" class="loop__fail">{{ failMsg }}</p>

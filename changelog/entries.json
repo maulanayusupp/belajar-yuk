@@ -1,6 +1,16 @@
 [
   {
     "date": "2026-07-19",
+    "version": "0.21.2",
+    "tag": "Perbaikan",
+    "title": "Perbaikan: papan & animasi robot Coding kini muncul",
+    "changes": [
+      "Papan grid dan robot yang berjalan kini tampil di setiap level Coding (sebelumnya hanya tombol).",
+      "Robot beranimasi melangkah mengikuti perintah yang kamu susun."
+    ]
+  },
+  {
+    "date": "2026-07-19",
     "version": "0.21.1",
     "tag": "Perbaikan",
     "title": "Perbaikan: level Coding kini bisa dibuka",
