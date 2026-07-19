@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-07-19",
+    "version": "0.20.0",
+    "tag": "Perbaikan",
+    "title": "Header baru yang lebih modern",
+    "changes": [
+      "Menu 'Pelajaran' kini berupa dropdown rapi berisi semua mapel (termasuk Sains & Membaca).",
+      "Tampilan lebih modern: logo baru, indikator halaman aktif, & bayangan halus saat digulir.",
+      "Menu mobile (hamburger) baru agar navigasi nyaman di ponsel."
+    ]
+  },
+  {
+    "date": "2026-07-19",
     "version": "0.19.0",
     "tag": "Fitur",
     "title": "Ceritakan Caramu — melatih anak percaya diri",
