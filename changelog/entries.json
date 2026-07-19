@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-07-19",
+    "version": "0.19.0",
+    "tag": "Fitur",
+    "title": "Ceritakan Caramu — melatih anak percaya diri",
+    "changes": [
+      "Setelah menyelesaikan materi, anak diajak menceritakan cara ia menyelesaikannya.",
+      "Ada kalimat pemandu yang bisa diketuk & dibacakan agar anak lancar bercerita.",
+      "Menjelaskan cara berpikir memperkuat pemahaman & rasa percaya diri (metakognisi)."
+    ]
+  },
+  {
+    "date": "2026-07-19",
     "version": "0.18.0",
     "tag": "Fitur",
     "title": "Coding Dunia 2: Perulangan (loops)",

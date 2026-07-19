@@ -258,6 +258,7 @@ async function run() {
       <p class="loop__result-title">Berhasil!</p>
       <BaseStarRating :value="earnedStars" size="lg" />
       <p class="loop__result-blocks">Kamu memakai {{ blockCount }} blok.</p>
+      <BaseReflectPrompt question="Ceritakan: kenapa memakai blok Ulangi lebih hemat?" />
       <div class="loop__result-actions">
         <NuxtLink to="/coding" class="loop__link">🗺 Peta</NuxtLink>
         <NuxtLink v-if="nextId" :to="`/coding/${nextId}`" class="loop__link loop__link--primary">

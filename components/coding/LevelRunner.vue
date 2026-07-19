@@ -144,6 +144,7 @@ async function run() {
       <p class="runner__result-title">Berhasil!</p>
       <BaseStarRating :value="earnedStars" size="lg" />
       <p class="runner__result-blocks">Kamu memakai {{ program.length }} perintah.</p>
+      <BaseReflectPrompt question="Ceritakan: bagaimana caramu memandu robot ke bintang?" />
       <div class="runner__result-actions">
         <NuxtLink to="/coding" class="runner__link">🗺 Peta</NuxtLink>
         <NuxtLink

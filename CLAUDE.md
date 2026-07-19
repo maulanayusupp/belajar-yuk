@@ -103,6 +103,14 @@ data/ (konten)  →  services/ (logika)  →  composables/ (reaktif)  →  compo
   Jaga persistensi tetap di balik `services/` agar bisa ganti ke API async tanpa mengubah
   komponen. Rencana lengkap: bagian "Backend migration" di `TODO.md`.
 
+### Refleksi "Ceritakan Caramu"
+
+- `BaseReflectPrompt` = langkah refleksi metakognisi setelah menyelesaikan materi
+  (anak menceritakan CARA ia menyelesaikan → menguatkan pemahaman & percaya diri).
+  Dipakai di `CelebrationOverlay` (semua mapel) + runner Coding. Lisan (bukan ketik),
+  ada kalimat pemandu yang dibacakan (`speak(..., 'id-ID')`). Materi baru yang punya
+  layar selesai sendiri sebaiknya menyertakan `<BaseReflectPrompt>` juga.
+
 ### Vue / TypeScript
 
 - Selalu `<script setup lang="ts">`.

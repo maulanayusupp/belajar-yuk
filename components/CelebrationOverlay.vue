@@ -26,6 +26,7 @@ onMounted(() => {
       <BaseStarRating :value="stars" size="lg" animated />
       <p v-if="scoreText" class="celebration__score">{{ scoreText }}</p>
       <p class="celebration__message">{{ messages[stars] }}</p>
+      <BaseReflectPrompt v-if="stars > 0" />
       <div class="celebration__actions">
         <BaseButton variant="ghost" @click="emit('home')">🏠 Beranda</BaseButton>
         <BaseButton variant="primary" @click="emit('replay')">🔁 Ulangi</BaseButton>
