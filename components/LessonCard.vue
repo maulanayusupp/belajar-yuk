@@ -43,7 +43,7 @@ const mastered = computed(() => stars.value >= 3) // 3★ = mastered (Kumon-styl
           <span aria-hidden="true">{{ tag.icon }}</span> {{ tag.label }}
         </span>
         <span class="lesson-card__level" :class="`lesson-card__level--${lesson.level}`">
-          {{ levelMeta.icon }} {{ levelMeta.label }}
+          {{ levelMeta.icon }} {{ levelMeta.label }} · {{ levelMeta.age }}
         </span>
       </div>
 

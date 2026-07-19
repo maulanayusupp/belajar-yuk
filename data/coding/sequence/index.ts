@@ -8,6 +8,7 @@ export const sequenceWorld: CodingWorld = {
   title: 'Urutan Perintah',
   icon: '🧭',
   concept: 'sequence',
+  level: 'beginner',
   description: 'Susun perintah berurutan agar robot sampai ke tujuan.',
   levels: [
     {

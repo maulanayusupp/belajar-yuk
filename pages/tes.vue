@@ -93,7 +93,7 @@ const result = computed(() => {
   }
   return {
     title: 'Hebat! Kamu sudah siap 🏆',
-    text: 'Coba materi yang lebih menantang. Menengah & Mahir segera hadir!',
+    text: 'Coba materi yang lebih menantang. Kategori Medium & Senior segera hadir!',
     lessons: ['en-cvc-words', 'mt-addition-to-10'],
   }
 })

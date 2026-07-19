@@ -88,6 +88,21 @@ data/ (konten)  →  services/ (logika)  →  composables/ (reaktif)  →  compo
   `title: 'Huruf Vokal'` (konten). Contoh dilarang: `// ucapkan katanya`,
   `const kartuSekarang = ...`.
 
+### Prinsip inti (WAJIB diingat)
+
+- **Best practice, scalable, mudah dirawat, mudah kelola konten.** Konten di `data/`
+  (**1 materi = 1 folder**), diakses HANYA lewat `services/`. Komponen tak boleh
+  membaca `data/` atau `localStorage` langsung.
+- **Komponen kustom per materi = DIDORONG.** Bila sebuah materi butuh interaksi khas,
+  buat komponen khusus untuknya. Tidak apa-apa (malah lebih baik) tiap materi punya
+  komponen/mekanik sendiri yang berbeda daripada memaksa satu runner generik. Materi
+  baru harus terasa unik — jangan ada yang sama.
+- **Kategori/tingkat** di setiap materi bernama **Junior / Medium / Senior** (dari
+  `data/levels.ts`, satu sumber). Kartu, halaman mapel, & peta Coding membacanya dari sana.
+- **Siap backend.** Semua masih `localStorage`, tapi backend bisa menggantikannya nanti.
+  Jaga persistensi tetap di balik `services/` agar bisa ganti ke API async tanpa mengubah
+  komponen. Rencana lengkap: bagian "Backend migration" di `TODO.md`.
+
 ### Vue / TypeScript
 
 - Selalu `<script setup lang="ts">`.

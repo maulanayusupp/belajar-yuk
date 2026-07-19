@@ -1,6 +1,16 @@
 [
   {
     "date": "2026-07-19",
+    "version": "0.16.0",
+    "tag": "Perbaikan",
+    "title": "Kategori materi: Junior, Medium, Senior",
+    "changes": [
+      "Setiap materi kini punya kategori tingkat + rentang usia: Junior (6–7), Medium (8–9), Senior (10+).",
+      "Kategori tampil di kartu pelajaran & peta Coding agar mudah memilih sesuai usia anak."
+    ]
+  },
+  {
+    "date": "2026-07-19",
     "version": "0.15.0",
     "tag": "Fitur",
     "title": "Coding — belajar logika sambil bermain",

@@ -1,10 +1,16 @@
 <script setup lang="ts">
+import type { Level } from '~/types'
 import { codingService } from '~/services/codingService'
+import { levels as levelTiers } from '~/data/levels'
 
 // Coding level map: worlds → levels with stars & progressive unlock.
 // A separate module from the subjects (its own progress store).
 const worlds = codingService.getWorlds()
 const flat = codingService.getLevels()
+
+function tier(id: Level) {
+  return levelTiers.find((t) => t.id === id) ?? levelTiers[0]
+}
 
 // Read progress on the client only (avoids SSR/hydration mismatch).
 const stars = ref<Record<string, number>>({})
@@ -51,6 +57,9 @@ useHead({ title: 'Coding — Belajar Yuk!' })
       <header class="world__head">
         <h2 class="world__title">
           <span aria-hidden="true">{{ world.icon }}</span> {{ world.title }}
+          <span class="world__tier"
+            >{{ tier(world.level).icon }} {{ tier(world.level).label }}</span
+          >
         </h2>
         <p class="world__desc">{{ world.description }}</p>
       </header>
@@ -141,7 +150,18 @@ useHead({ title: 'Coding — Belajar Yuk!' })
     @include flex(column, flex-start, flex-start, spacing('xs'));
   }
   &__title {
+    @include flex(row, flex-start, center, spacing('sm'));
+    flex-wrap: wrap;
     margin: 0;
+  }
+  &__tier {
+    font-family: $font-family-base;
+    font-size: font-size('xs');
+    font-weight: $font-weight-bold;
+    color: $color-primary-dark;
+    background: rgba($color-primary, 0.12);
+    padding: 2px spacing('sm');
+    border-radius: $radius-pill;
   }
   &__desc {
     margin: 0;

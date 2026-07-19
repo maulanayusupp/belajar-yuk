@@ -86,6 +86,32 @@ Lightbot/Code.org-style grid command-puzzles. Client-only, evidence-based (see
 
 ---
 
+## Backend migration (future — currently 100% localStorage)
+
+**Yes, this is feasible without rewriting the UI.** The app was built so that all
+persistence is already behind the `services/` layer — components never touch
+`localStorage` directly. To move to a backend:
+
+1. **Introduce a persistence adapter (repository).** Add `services/persistence/` with
+   two implementations behind one interface: `LocalStorageAdapter` (today) and
+   `ApiAdapter` (fetch to backend). Services call the adapter, not `storage` directly.
+2. **Make the reads async-ready.** Progress/stars/streak/coding reads are sync today.
+   Wrap them in composables that already return refs (`useProgress`, etc.), so switching
+   to `await api.get()` + hydration only changes the composable/service internals.
+3. **Auth + profiles.** A backend enables real accounts → replaces the Export/Import
+   backup and unlocks true multi-device sync + multi-profile.
+4. **Keep offline-first.** Use the adapter to write-through to localStorage as a cache,
+   sync to the API when online (PWA already set up). No data loss offline.
+5. **Migration path.** On first login, push existing localStorage data to the backend
+   (reuse `backupService.export()` as the payload shape).
+
+Prep tasks to queue:
+
+- [ ] Extract a `PersistenceAdapter` interface; route `progressService`, `streakService`,
+      `mistakeService`, `drillService`, `codingService`, `profileService` through it.
+- [ ] Define the API contract (endpoints/DTOs) — mirror `backupService` JSON shape.
+- [ ] Add env-gated `ApiAdapter` (no-op until a backend URL is set).
+
 ## Done
 
 - [x] Subject: **Bahasa Indonesia / Reading (Calistung)** — letters → syllables →

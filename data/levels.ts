@@ -1,33 +1,41 @@
 import type { Level } from '~/types'
 
-// Difficulty level categories (used to group lessons so that
-// non-expert users know which are for beginner, intermediate, or advanced).
+// Difficulty/age tiers ("categories") used to group materials so parents & kids
+// know which is for whom. Named Junior / Medium / Senior with an age hint.
+// This is the SINGLE source of truth — cards, subject pages, and the coding
+// map all read their category label/age/icon from here.
 export interface LevelMeta {
   id: Level
+  /** Category name shown to users (Junior / Medium / Senior). */
   label: string
+  /** Age hint for the tier, e.g. '6–7 th'. */
+  age: string
   icon: string
   description: string
 }
 
-// Array order = display order (beginner → advanced).
+// Array order = display order (easiest → hardest).
 export const levels: LevelMeta[] = [
   {
     id: 'beginner',
-    label: 'Pemula',
+    label: 'Junior',
+    age: '6–7 th',
     icon: '🌱',
     description: 'Langkah pertama — mengenal huruf, kata, & angka sampai 10 dengan bantuan gambar.',
   },
   {
     id: 'intermediate',
-    label: 'Menengah',
+    label: 'Medium',
+    age: '8–9 th',
     icon: '🚀',
-    description: 'Selangkah lebih tinggi — berhitung dengan angka lebih besar (sampai 20).',
+    description: 'Selangkah lebih tinggi — angka lebih besar (sampai 20) & menyimak tanpa teks.',
   },
   {
     id: 'advanced',
-    label: 'Mahir',
+    label: 'Senior',
+    age: '10+ th',
     icon: '🏆',
     description:
-      'Tantangan lanjutan: menyimak tanpa teks, menyusun kata & kalimat, membandingkan bilangan, & soal abstrak.',
+      'Tantangan lanjutan: menyusun kata & kalimat, membandingkan bilangan, & soal abstrak.',
   },
 ]
