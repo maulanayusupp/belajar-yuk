@@ -32,10 +32,10 @@ export default defineNuxtConfig({
   pwa: {
     registerType: 'autoUpdate',
     manifest: {
-      name: 'Belajar Yuk! — Bahasa Inggris & Matematika untuk Anak',
+      name: 'Belajar Yuk! — Inggris, Matematika, Sains, Membaca & Coding',
       short_name: 'Belajar Yuk!',
       description:
-        'Bantu anak usia 6+ menguasai Bahasa Inggris & Matematika dengan metode Singapore Math yang terbukti. Belajar terstruktur membangun fondasi kuat sejak dini.',
+        'Aplikasi belajar untuk anak 6+: Bahasa Inggris, Matematika, Sains, Membaca, & Coding. Materi terstruktur per kategori usia (Junior/Medium/Senior) membangun fondasi kuat sejak dini.',
       lang: 'id',
       theme_color: '#6C5CE7',
       background_color: '#f4f3ff',
@@ -74,7 +74,7 @@ export default defineNuxtConfig({
     head: {
       htmlAttrs: { lang: 'id' },
       // Default title + template: page titles automatically get a brand suffix.
-      title: 'Kuasai Bahasa Inggris & Matematika Sejak Dini',
+      title: 'Belajar Inggris, Matematika, Sains, Membaca & Coding untuk Anak',
       titleTemplate: (title) =>
         title?.includes('Belajar Yuk') ? title : `${title ?? ''} · Belajar Yuk!`.trim(),
       meta: [
@@ -86,7 +86,7 @@ export default defineNuxtConfig({
         {
           name: 'keywords',
           content:
-            'belajar bahasa inggris anak, belajar matematika anak, singapore math, number bond, ten frame, phonics anak, fondasi matematika anak, kosakata bahasa inggris, belajar terstruktur, calistung, persiapan sekolah, edukasi anak usia dini',
+            'belajar bahasa inggris anak, belajar matematika anak, belajar sains anak, belajar membaca anak, calistung, coding untuk anak, koding anak, singapore math, number bond, ten frame, phonics anak, kosakata bahasa inggris, belajar terstruktur, persiapan sekolah, edukasi anak usia dini, aplikasi belajar anak',
         },
         // App color & name for "Add to Home Screen"
         { name: 'apple-mobile-web-app-title', content: 'Belajar Yuk!' },

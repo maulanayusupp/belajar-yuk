@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { lessonService } from '~/services/lessonService'
 import { profileService } from '~/services/profileService'
+import { levels as categories } from '~/data/levels'
 import { storage } from '~/utils/storage'
 
 // Home page (premium landing).
@@ -26,32 +27,32 @@ function closeSetup() {
 
 const features = [
   {
+    icon: '📚',
+    title: '4 Mata Pelajaran + Coding',
+    text: 'Bahasa Inggris, Matematika, Sains, Membaca, & Coding — satu tempat untuk semua.',
+    tint: 'primary' as const,
+  },
+  {
     icon: '🧠',
-    title: 'Metode Singapore Math',
-    text: 'Number Bond, Ten Frame & blok — anak paham konsep, bukan sekadar menghafal.',
+    title: 'Metode Terbukti',
+    text: 'Singapore Math, phonics, & puzzle logika — anak paham konsep, bukan menghafal.',
     tint: 'math' as const,
   },
   {
-    icon: '🔤',
-    title: 'Fondasi Membaca',
-    text: 'Phonics & kosakata bergambar membangun kemampuan berbahasa Inggris sejak dini.',
+    icon: '🎚️',
+    title: 'Sesuai Usia',
+    text: 'Kategori Junior, Medium, & Senior menyesuaikan tingkat dengan usia anak.',
     tint: 'english' as const,
-  },
-  {
-    icon: '📈',
-    title: 'Belajar Bertahap',
-    text: 'Materi tersusun dari mudah ke sulit agar anak maju selangkah demi selangkah.',
-    tint: 'primary' as const,
   },
   {
     icon: '💪',
     title: 'Tumbuh Percaya Diri',
-    text: 'Setiap pelajaran selesai menambah bintang & semangat anak untuk terus belajar.',
+    text: 'Bintang, lencana, & rentetan harian membuat anak semangat belajar tiap hari.',
     tint: 'warm' as const,
   },
 ]
 
-const trust = ['🎯 Metode Terbukti', '📈 Belajar Bertahap', '🧠 Bangun Fondasi', '👶 Usia 6+']
+const trust = ['🎯 Metode Terbukti', '🎚️ Sesuai Usia', '🤖 Ada Coding', '👶 Usia 6+']
 
 // Learning methods (dynamic from the registry) — Math + English + Science.
 const mathMethods = lessonService.getUsedMathMethods()
@@ -79,7 +80,7 @@ const steps = [
   {
     icon: '👆',
     title: 'Pilih pelajaran',
-    text: 'Pilih Bahasa Inggris atau Matematika sesuai tingkat.',
+    text: 'Pilih dari 4 mata pelajaran atau Coding, sesuai kategori usia.',
   },
   {
     icon: '🎮',
@@ -93,43 +94,43 @@ const steps = [
   },
 ]
 
-// Skills learned (aligned with literacy & numeracy frameworks).
+// Skills learned across all subjects + coding.
 const skills = [
   {
     icon: '🔤',
-    title: 'Membaca (Phonics)',
-    text: 'Bunyi huruf A–Z & kata CVC — fondasi membaca.',
+    title: 'Bahasa Inggris',
+    text: 'Phonics A–Z, kosakata bergambar, menyimak, & mengeja kata.',
     tint: 'english' as const,
   },
   {
-    icon: '📗',
-    title: 'Kosakata & Kata Umum',
-    text: 'Ratusan kata bergambar + sight words.',
-    tint: 'english' as const,
+    icon: '📖',
+    title: 'Membaca (Calistung)',
+    text: 'Huruf, suku kata, merangkai kata, hingga membaca kalimat.',
+    tint: 'warm' as const,
   },
   {
     icon: '🔢',
-    title: 'Berhitung 1–20',
-    text: 'Mengenal & menghitung angka dengan benda nyata.',
+    title: 'Matematika',
+    text: 'Berhitung, tambah–kurang, & Singapore Math (number bond, ten frame).',
     tint: 'math' as const,
   },
   {
-    icon: '➕',
-    title: 'Tambah & Kurang',
-    text: 'Operasi dasar dengan blok, ten frame, & garis bilangan.',
-    tint: 'math' as const,
+    icon: '🔬',
+    title: 'Sains',
+    text: 'Panca indra, hewan & habitat, hingga tata surya lewat fakta seru.',
+    tint: 'mint' as const,
   },
   {
-    icon: '🧠',
-    title: 'Singapore Math',
-    text: 'Number bond & pendekatan konkret–gambar–abstrak.',
+    icon: '🤖',
+    title: 'Coding & Logika',
+    text: 'Susun perintah untuk memandu robot — berpikir seperti programmer.',
     tint: 'primary' as const,
   },
   {
-    icon: '😊',
-    title: 'Sosial-Emosional',
-    text: 'Mengenal perasaan & sapaan sehari-hari.',
-    tint: 'warm' as const,
+    icon: '⚡',
+    title: 'Kecepatan & Ketepatan',
+    text: 'Latihan Kilat berwaktu melatih berhitung cepat & akurat.',
+    tint: 'primary' as const,
   },
 ]
 
@@ -155,14 +156,14 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
     <!-- ============ HERO ============ -->
     <section class="hero">
       <div class="hero__content anim-rise">
-        <span class="hero__badge">🎯 Fondasi Belajar yang Kuat Sejak Dini</span>
+        <span class="hero__badge">🎯 Satu Aplikasi, Semua Kebutuhan Belajar Anak</span>
         <h1 class="hero__title">
           Bikin Anak Jago
-          <span class="hero__title-grad">Inggris & Matematika</span>
+          <span class="hero__title-grad">Inggris, Matematika, Sains &amp; Koding</span>
         </h1>
         <p class="hero__subtitle">
-          Temani si kecil (usia 6+) menguasai Bahasa Inggris & Matematika langkah demi langkah
-          dengan metode Singapore Math yang terbukti — membangun fondasi kuat & percaya diri.
+          Temani si kecil (usia 6+) belajar Bahasa Inggris, Matematika, Sains, Membaca, hingga
+          Coding — langkah demi langkah, sesuai kategori usia, dengan metode yang terbukti.
         </p>
 
         <div class="hero__actions">
@@ -174,8 +175,8 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
           >
             🚀 Mulai Belajar
           </BaseButton>
-          <BaseButton variant="ghost" size="lg" @click="navigateTo('/math')">
-            🔢 Coba Matematika
+          <BaseButton variant="ghost" size="lg" @click="navigateTo('/coding')">
+            🤖 Coba Coding
           </BaseButton>
         </div>
 
@@ -274,6 +275,30 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
           v-reveal="i * 120"
           :subject="subject"
         />
+      </div>
+    </section>
+
+    <!-- ============ CATEGORIES (age tiers) ============ -->
+    <section class="section">
+      <HomeSectionHeader
+        v-reveal
+        eyebrow="Sesuai Usia"
+        title="Materi untuk setiap tingkat"
+        subtitle="Pilih kategori yang pas — anak belajar di level yang tepat, tidak terlalu mudah atau sulit."
+      />
+      <div class="cat-grid">
+        <div
+          v-for="(cat, i) in categories"
+          :key="cat.id"
+          v-reveal="i * 90"
+          class="cat-card"
+          :class="`cat-card--${cat.id}`"
+        >
+          <span class="cat-card__icon" aria-hidden="true">{{ cat.icon }}</span>
+          <span class="cat-card__label">{{ cat.label }}</span>
+          <span class="cat-card__age">{{ cat.age }}</span>
+          <p class="cat-card__desc">{{ cat.description }}</p>
+        </div>
       </div>
     </section>
 
@@ -736,6 +761,63 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
 
   @include respond-to('md') {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+// ---------------- CATEGORIES ----------------
+.cat-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: spacing('md');
+
+  @include respond-to('sm') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.cat-card {
+  @include glass($glass-bg-strong);
+  @include hover-lift(-6px);
+  @include flex(column, flex-start, flex-start, spacing('xs'));
+  padding: spacing('xl') spacing('lg');
+  border-radius: $radius-xl;
+  box-shadow: $shadow-sm;
+  border-top: 6px solid $color-primary;
+
+  &--beginner {
+    border-top-color: $color-success;
+  }
+  &--intermediate {
+    border-top-color: $color-primary;
+  }
+  &--advanced {
+    border-top-color: $color-accent-2;
+  }
+
+  &__icon {
+    font-size: font-size('xxl');
+  }
+
+  &__label {
+    font-family: $font-family-display;
+    font-weight: $font-weight-bold;
+    font-size: font-size('lg');
+    color: $color-ink;
+  }
+
+  &__age {
+    font-weight: $font-weight-bold;
+    color: $color-primary-dark;
+    background: rgba($color-primary, 0.12);
+    padding: 2px spacing('sm');
+    border-radius: $radius-pill;
+    font-size: font-size('sm');
+  }
+
+  &__desc {
+    margin: spacing('xs') 0 0;
+    color: $color-ink-soft;
+    font-size: font-size('sm');
   }
 }
 

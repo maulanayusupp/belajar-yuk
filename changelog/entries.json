@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-07-19",
+    "version": "0.17.0",
+    "tag": "Perbaikan",
+    "title": "Halaman utama diperbarui & SEO",
+    "changes": [
+      "Beranda kini menampilkan semua yang ditawarkan: Inggris, Matematika, Sains, Membaca, & Coding.",
+      "Bagian baru 'Sesuai Usia' menampilkan kategori Junior, Medium, & Senior.",
+      "Judul, deskripsi, & tag berbagi (WhatsApp/pencarian) diperbarui agar lebih relevan."
+    ]
+  },
+  {
+    "date": "2026-07-19",
     "version": "0.16.0",
     "tag": "Perbaikan",
     "title": "Kategori materi: Junior, Medium, Senior",

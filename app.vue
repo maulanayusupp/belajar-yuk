@@ -6,10 +6,10 @@ const site = useRuntimeConfig().public
 const route = useRoute()
 
 const DESCRIPTION =
-  'Bantu anak usia 6+ menguasai Bahasa Inggris & Matematika langkah demi langkah dengan ' +
-  'metode Singapore Math yang terbukti — Number Bond, Ten Frame, hingga Phonics. Belajar ' +
-  'terstruktur yang membangun fondasi kuat & rasa percaya diri sejak dini.'
-const SHARE_TITLE = 'Belajar Yuk! — Kuasai Bahasa Inggris & Matematika Sejak Dini'
+  'Satu aplikasi belajar untuk anak usia 6+: Bahasa Inggris, Matematika, Sains, Membaca, ' +
+  'hingga Coding. Materi terstruktur per kategori usia (Junior, Medium, Senior) dengan metode ' +
+  'terbukti — membangun fondasi kuat & rasa percaya diri sejak dini.'
+const SHARE_TITLE = 'Belajar Yuk! — Inggris, Matematika, Sains, Membaca & Coding untuk Anak'
 const ogImage = `${site.siteUrl}/og-image.png`
 
 useSeoMeta({
@@ -24,7 +24,7 @@ useSeoMeta({
   ogImageType: 'image/png',
   ogImageWidth: 1200,
   ogImageHeight: 630,
-  ogImageAlt: 'Belajar Yuk! — belajar Bahasa Inggris & Matematika untuk anak',
+  ogImageAlt: 'Belajar Yuk! — belajar Inggris, Matematika, Sains, Membaca & Coding untuk anak',
   ogLocale: 'id_ID',
   // Twitter
   twitterCard: 'summary_large_image',
