@@ -4,9 +4,12 @@ import { syllablesMa } from './suku-kata-ma'
 import { syllablesBa } from './suku-kata-ba'
 import { syllablesSa } from './suku-kata-sa'
 import { syllablesTa } from './suku-kata-ta'
+import { syllablesNa } from './suku-kata-na'
+import { syllablesPa } from './suku-kata-pa'
 import { buildWords } from './merangkai-kata'
 import { buildWords2 } from './merangkai-kata-2'
 import { simpleSentences } from './kalimat-sederhana'
+import { simpleSentences2 } from './kalimat-sederhana-2'
 
 // List and ORDER of Reading (Calistung) lessons: letters -> syllables -> words -> sentences.
 //
@@ -20,9 +23,12 @@ export const bahasaLessons: BahasaLesson[] = [
   syllablesBa,
   syllablesSa,
   syllablesTa,
+  syllablesNa,
+  syllablesPa,
   // Intermediate: building words
   buildWords,
   buildWords2,
   // Advanced: reading sentences
   simpleSentences,
+  simpleSentences2,
 ]

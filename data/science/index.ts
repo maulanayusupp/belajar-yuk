@@ -3,6 +3,7 @@ import { fiveSenses } from './panca-indra'
 import { animalsHabitat } from './hewan-habitat'
 import { plants } from './plants'
 import { weather } from './weather'
+import { insects } from './insects'
 import { solarSystem } from './tata-surya'
 import { statesOfMatter } from './states-of-matter'
 
@@ -17,6 +18,7 @@ export const scienceLessons: ScienceLesson[] = [
   animalsHabitat,
   plants,
   weather,
+  insects,
   // Intermediate: more abstract concepts
   solarSystem,
   statesOfMatter,

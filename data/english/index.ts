@@ -23,6 +23,8 @@ import { jobs } from './jobs'
 import { school } from './school'
 import { home } from './home'
 import { vegetables } from './vegetables'
+import { ocean } from './ocean'
+import { music } from './music'
 import { transport } from './transport'
 import { weather } from './weather'
 import { clothes } from './clothes'
@@ -68,6 +70,8 @@ export const englishLessons: EnglishLesson[] = [
   school,
   home,
   vegetables,
+  ocean,
+  music,
   // Intermediate: listening (hear → pick the picture)
   listenAnimals,
   listenFood,

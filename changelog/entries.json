@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-07-19",
+    "version": "0.26.0",
+    "tag": "Konten",
+    "title": "Materi baru lagi: Hewan Laut, Alat Musik, Serangga, & Membaca",
+    "changes": [
+      "Bahasa Inggris: Hewan Laut 🐙 & Alat Musik 🎸.",
+      "Sains: Serangga 🐛 (semut, lebah, kupu-kupu, kepik, belalang, ulat).",
+      "Membaca: suku kata NA & PA, plus kumpulan kalimat sederhana baru."
+    ]
+  },
+  {
+    "date": "2026-07-19",
     "version": "0.25.1",
     "tag": "Perbaikan",
     "title": "Setiap materi kini benar-benar unik",
