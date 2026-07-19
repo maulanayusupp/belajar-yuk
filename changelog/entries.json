@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-07-19",
+    "version": "0.25.1",
+    "tag": "Perbaikan",
+    "title": "Setiap materi kini benar-benar unik",
+    "changes": [
+      "Materi Menyimak & Eja kini memakai kata berbeda, tidak lagi mengulang lesson kosakata.",
+      "Menyimak Hewan (harimau, gajah, monyet…), Menyimak Makanan (kue, pizza, mie…), Eja CVC & Warna disegarkan.",
+      "Penjaga otomatis memastikan tidak ada dua materi yang sama ke depannya."
+    ]
+  },
+  {
+    "date": "2026-07-19",
     "version": "0.25.0",
     "tag": "Fitur",
     "title": "Coding: game baru 'Urutkan Langkah' (bentuk berbeda)",

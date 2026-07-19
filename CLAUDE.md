@@ -97,8 +97,11 @@ data/ (konten)  →  services/ (logika)  →  composables/ (reaktif)  →  compo
   membaca `data/` atau `localStorage` langsung.
 - **Komponen kustom per materi = DIDORONG.** Bila sebuah materi butuh interaksi khas,
   buat komponen khusus untuknya. Tidak apa-apa (malah lebih baik) tiap materi punya
-  komponen/mekanik sendiri yang berbeda daripada memaksa satu runner generik. Materi
-  baru harus terasa unik — jangan ada yang sama.
+  komponen/mekanik sendiri yang berbeda daripada memaksa satu runner generik.
+- **Setiap materi WAJIB unik — jangan ada yang sama** (id maupun ISI). Mis. lesson
+  Menyimak/Eja harus memakai kata BERBEDA dari lesson kosakata sumbernya, bukan
+  mengulang kata yang sama. Dijaga otomatis oleh `tests/uniqueness.test.ts` (id global
+  unik + tidak ada dua lesson/level berkonten identik). Cek ini sebelum menambah materi.
 - **Kategori/tingkat** di setiap materi bernama **Tunas / Penjelajah / Juara** (dari
   `data/levels.ts`, satu sumber). Kartu, halaman mapel, & peta Coding membacanya dari sana.
 - **Siap backend.** Semua masih `localStorage`, tapi backend bisa menggantikannya nanti.

@@ -1,6 +1,6 @@
 import type { EnglishLesson } from '~/types'
 
-// Spell color names — slightly longer words.
+// Spell color names — a DIFFERENT set from the "Colors" vocabulary lesson.
 export const spellColors: EnglishLesson = {
   id: 'en-spell-colors',
   subject: 'english',
@@ -11,9 +11,9 @@ export const spellColors: EnglishLesson = {
   emoji: '🎨',
   durationMin: 6,
   items: [
-    { id: 'red', word: 'red', translation: 'Merah', emoji: '🔴' },
-    { id: 'blue', word: 'blue', translation: 'Biru', emoji: '🔵' },
-    { id: 'pink', word: 'pink', translation: 'Merah muda', emoji: '🌸' },
-    { id: 'green', word: 'green', translation: 'Hijau', emoji: '🟢' },
+    { id: 'pink', word: 'pink', translation: 'Merah muda', emoji: '🩷' },
+    { id: 'black', word: 'black', translation: 'Hitam', emoji: '⚫' },
+    { id: 'white', word: 'white', translation: 'Putih', emoji: '⚪' },
+    { id: 'brown', word: 'brown', translation: 'Cokelat', emoji: '🟤' },
   ],
 }

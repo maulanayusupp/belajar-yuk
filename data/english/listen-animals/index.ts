@@ -1,6 +1,7 @@
 import type { EnglishLesson } from '~/types'
 
 // Listening: hear the animal's name → pick its picture (no text).
+// Uses a DIFFERENT set of animals from the "Animals" vocabulary lesson.
 export const listenAnimals: EnglishLesson = {
   id: 'en-listen-animals',
   subject: 'english',
@@ -11,11 +12,11 @@ export const listenAnimals: EnglishLesson = {
   emoji: '🎧',
   durationMin: 5,
   items: [
-    { id: 'cat', word: 'Cat', translation: 'Kucing', emoji: '🐱' },
-    { id: 'dog', word: 'Dog', translation: 'Anjing', emoji: '🐶' },
-    { id: 'fish', word: 'Fish', translation: 'Ikan', emoji: '🐟' },
-    { id: 'bird', word: 'Bird', translation: 'Burung', emoji: '🐦' },
-    { id: 'cow', word: 'Cow', translation: 'Sapi', emoji: '🐮' },
-    { id: 'lion', word: 'Lion', translation: 'Singa', emoji: '🦁' },
+    { id: 'tiger', word: 'Tiger', translation: 'Harimau', emoji: '🐯' },
+    { id: 'elephant', word: 'Elephant', translation: 'Gajah', emoji: '🐘' },
+    { id: 'monkey', word: 'Monkey', translation: 'Monyet', emoji: '🐵' },
+    { id: 'duck', word: 'Duck', translation: 'Bebek', emoji: '🦆' },
+    { id: 'frog', word: 'Frog', translation: 'Katak', emoji: '🐸' },
+    { id: 'bear', word: 'Bear', translation: 'Beruang', emoji: '🐻' },
   ],
 }

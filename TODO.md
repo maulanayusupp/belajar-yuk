@@ -123,6 +123,13 @@ Prep tasks to queue:
 - [ ] Define the API contract (endpoints/DTOs) — mirror `backupService` JSON shape.
 - [ ] Add env-gated `ApiAdapter` (no-op until a backend URL is set).
 
+## Guardrails (always green)
+
+- **Every material is unique** — `tests/uniqueness.test.ts` fails the build if any two
+  lessons/coding levels share an id OR identical content. When adding material, give it
+  genuinely new content (e.g. Listen/Spell lessons use DIFFERENT words than the vocab
+  lesson they relate to).
+
 ## Done
 
 - [x] Subject: **Bahasa Indonesia / Reading (Calistung)** — letters → syllables →
