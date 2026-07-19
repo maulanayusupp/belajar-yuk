@@ -30,11 +30,12 @@ test('completing a counting lesson adds stars', async ({ page }) => {
 test('coding level shows the robot grid and can be solved', async ({ page }) => {
   await page.goto('/coding/code-seq-1')
   await dismissOnboarding(page)
-  // The grid + robot MUST render (regression: an unresolved component once left
+  // The grid board MUST render (regression: an unresolved component once left
   // the level as buttons only, with no grid/robot).
-  await expect(page.getByLabel('Robot')).toBeVisible()
-  // Solve "Robo Melangkah": Maju × 3, then Jalankan → success.
-  const maju = page.getByRole('button', { name: 'Maju' })
+  await expect(page.locator('.grid__board')).toBeVisible()
+  // Solve "Robo Melangkah": Maju × 3, then Jalankan → success. `exact` avoids
+  // also matching the program chip's "Hapus Maju" aria-label.
+  const maju = page.getByRole('button', { name: 'Maju', exact: true })
   await maju.click()
   await maju.click()
   await maju.click()
