@@ -1,6 +1,16 @@
 [
   {
     "date": "2026-07-19",
+    "version": "0.21.4",
+    "tag": "Perbaikan",
+    "title": "Robot Coding kini berjalan dengan animasi mulus",
+    "changes": [
+      "Robot beranimasi melangkah & berputar saat perintah dijalankan (sebelumnya diam di Safari).",
+      "Ukuran papan menyesuaikan lebar layar secara otomatis."
+    ]
+  },
+  {
+    "date": "2026-07-19",
     "version": "0.21.3",
     "tag": "Perbaikan",
     "title": "Update aplikasi kini langsung terlihat",
