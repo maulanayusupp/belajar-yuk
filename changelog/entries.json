@@ -1,6 +1,16 @@
 [
   {
     "date": "2026-07-19",
+    "version": "0.21.1",
+    "tag": "Perbaikan",
+    "title": "Perbaikan: level Coding kini bisa dibuka",
+    "changes": [
+      "Kartu level pertama kini bisa diklik untuk mulai bermain (sebelumnya tidak merespons).",
+      "Level berikutnya tetap terbuka bertahap setiap kamu menyelesaikan level sebelumnya."
+    ]
+  },
+  {
+    "date": "2026-07-19",
     "version": "0.21.0",
     "tag": "Perbaikan",
     "title": "Nama kategori lebih unik: Tunas, Penjelajah, Juara",

@@ -12,12 +12,16 @@ function tier(id: Level) {
   return levelTiers.find((t) => t.id === id) ?? levelTiers[0]
 }
 
-// Read progress on the client only (avoids SSR/hydration mismatch).
+// Resolve NuxtLink so it can be used reliably in a dynamic `<component :is>`
+// (passing the string 'NuxtLink' is not resolved consistently).
+const LinkComp = resolveComponent('NuxtLink')
+
+// Progress starts empty (same on server & first client render → no hydration
+// mismatch). The first level is ALWAYS unlocked, so it renders as a real link
+// even before JS. Later levels unlock reactively once stars load on mount.
 const stars = ref<Record<string, number>>({})
-const ready = ref(false)
 onMounted(() => {
   stars.value = codingService.getStarMap()
-  ready.value = true
 })
 
 function levelStars(id: string): number {
@@ -66,18 +70,16 @@ useHead({ title: 'Coding — Belajar Yuk!' })
 
       <div class="world__grid">
         <component
-          :is="ready && isUnlocked(level.id) ? 'NuxtLink' : 'div'"
+          :is="isUnlocked(level.id) ? LinkComp : 'div'"
           v-for="(level, i) in world.levels"
           :key="level.id"
-          :to="ready && isUnlocked(level.id) ? `/coding/${level.id}` : undefined"
+          :to="isUnlocked(level.id) ? `/coding/${level.id}` : undefined"
           class="level"
-          :class="{ 'level--locked': ready && !isUnlocked(level.id) }"
+          :class="{ 'level--locked': !isUnlocked(level.id) }"
         >
           <span class="level__num">{{ i + 1 }}</span>
           <span class="level__name">{{ level.title }}</span>
-          <span v-if="ready && !isUnlocked(level.id)" class="level__lock" aria-hidden="true"
-            >🔒</span
-          >
+          <span v-if="!isUnlocked(level.id)" class="level__lock" aria-hidden="true">🔒</span>
           <BaseStarRating v-else :value="levelStars(level.id)" size="sm" />
         </component>
       </div>
