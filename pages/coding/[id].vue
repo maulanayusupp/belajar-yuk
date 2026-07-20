@@ -76,6 +76,11 @@ useHead(() => ({ title: `${level.value?.title} — Coding` }))
 
   &__title {
     margin: 0;
+    font-size: font-size('lg');
+
+    @include respond-to('md') {
+      font-size: font-size('xl');
+    }
   }
 }
 </style>

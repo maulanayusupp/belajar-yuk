@@ -11,15 +11,9 @@ h4 {
   color: $color-ink;
 }
 
+// Heading scale is kept moderate (page titles were previously oversized).
+// Kids' lesson CONTENT uses explicit font-size classes, not h1–h3, so it stays large.
 h1 {
-  font-size: font-size('xxl');
-
-  @include respond-to('md') {
-    font-size: font-size('display');
-  }
-}
-
-h2 {
   font-size: font-size('xl');
 
   @include respond-to('md') {
@@ -27,8 +21,20 @@ h2 {
   }
 }
 
-h3 {
+h2 {
   font-size: font-size('lg');
+
+  @include respond-to('md') {
+    font-size: font-size('xl');
+  }
+}
+
+h3 {
+  font-size: font-size('md');
+
+  @include respond-to('md') {
+    font-size: font-size('lg');
+  }
 }
 
 p {

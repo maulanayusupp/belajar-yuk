@@ -123,7 +123,7 @@ useHead({ title: 'Coding — Belajar Yuk!' })
   color: $color-white;
 
   &__emoji {
-    font-size: font-size('giant');
+    font-size: font-size('xxl');
   }
 
   &__eyebrow {
@@ -131,16 +131,22 @@ useHead({ title: 'Coding — Belajar Yuk!' })
     text-transform: uppercase;
     letter-spacing: 0.12em;
     font-weight: $font-weight-bold;
-    font-size: font-size('sm');
+    font-size: font-size('xs');
     opacity: 0.85;
   }
   &__title {
     color: $color-white;
     margin: spacing('xs') 0;
+    font-size: font-size('xl');
+
+    @include respond-to('md') {
+      font-size: font-size('xxl');
+    }
   }
   &__desc {
     margin: 0;
     max-width: 46ch;
+    font-size: font-size('sm');
     color: rgba($color-white, 0.92);
   }
 }
@@ -155,6 +161,7 @@ useHead({ title: 'Coding — Belajar Yuk!' })
     @include flex(row, flex-start, center, spacing('sm'));
     flex-wrap: wrap;
     margin: 0;
+    font-size: font-size('lg');
   }
   &__tier {
     font-family: $font-family-base;
