@@ -82,9 +82,12 @@ Lightbot/Code.org-style grid command-puzzles. Client-only, evidence-based (see
 - [x] **Predict-the-output game** ("Tebak Hasil") — read a program, tap the cell where the
       robot stops. `CodingPredictLevel` (kind: 'predict') + `CodingPredictRunner` +
       tappable `PuzzleGrid` markers. 5 levels.
+- [x] **Find-the-bug game** ("Cari Bug" 🐞) — an almost-correct program with ONE wrong
+      command; the child taps the bug then picks the right replacement. `CodingBugLevel`
+      (kind: 'bug') + `CodingBugRunner` + `data/coding/bug`. Invariant tested: buggy fails,
+      fix succeeds.
 - [ ] **More distinct game formats** (each its own component, NOT grid reskins):
-      spot-the-bug (tap the wrong step), pattern-complete, maze first-person.
-      Consider reworking "Berburu Permata" into something more novel.
+      pattern-complete, maze first-person. Consider reworking "Berburu Permata".
 - [ ] **Phase 3** — unlockable free-play sandbox as a reward; variables.
 
 ### P2 — Differentiators & polish

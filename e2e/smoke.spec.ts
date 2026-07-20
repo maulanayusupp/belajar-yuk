@@ -63,6 +63,18 @@ test('coding "order the steps" game can be solved', async ({ page }) => {
   await expect(page.getByText('Urutan Benar!')).toBeVisible({ timeout: 6000 })
 })
 
+test('coding "find the bug" game can be solved', async ({ page }) => {
+  await unlockCodingLevel(page, 'bug-1')
+  await page.goto('/coding/bug-1')
+  await dismissOnboarding(page)
+  await expect(page.locator('.grid__board')).toBeVisible()
+  // bug-1 program is Maju, Maju, Kiri — the last (Kiri) is the bug.
+  await page.getByRole('button', { name: 'Kiri', exact: true }).click()
+  // Replace it with Maju from the fix palette (scope avoids the program chips).
+  await page.locator('.bug__palette').getByRole('button', { name: 'Maju' }).click()
+  await expect(page.getByText('Bug Diperbaiki!')).toBeVisible({ timeout: 6000 })
+})
+
 test('coding "predict" game renders', async ({ page }) => {
   await unlockCodingLevel(page, 'predict-1')
   await page.goto('/coding/predict-1')

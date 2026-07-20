@@ -259,8 +259,27 @@ export interface CodingPredictLevel {
   hint?: string
 }
 
+/**
+ * A "find the bug" level — a DIFFERENT game: the child is shown an almost-correct
+ * program with exactly ONE wrong command. They tap the buggy command, then pick
+ * the right replacement so the robot reaches the goal (debugging / reading code).
+ */
+export interface CodingBugLevel {
+  kind: 'bug'
+  id: string
+  title: string
+  concept: CodingConcept
+  grid: string[]
+  start: { x: number; y: number; facing: Facing }
+  /** The program as shown — reaches the goal except for one wrong command. */
+  buggy: CodingCommand[]
+  /** The single wrong command: its index and the command that fixes it. */
+  fix: { index: number; cmd: CodingCommand }
+  hint?: string
+}
+
 /** Any coding level (different game kinds share a map & progress). */
-export type AnyCodingLevel = CodingLevel | CodingOrderLevel | CodingPredictLevel
+export type AnyCodingLevel = CodingLevel | CodingOrderLevel | CodingPredictLevel | CodingBugLevel
 
 /** A world groups levels (shown as a section on the map). */
 export interface CodingWorld {

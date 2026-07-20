@@ -3,6 +3,7 @@ import { orderWorld } from './order'
 import { sequenceWorld } from './sequence'
 import { gemsWorld } from './gems'
 import { predictWorld } from './predict'
+import { bugWorld } from './bug'
 import { loopsWorld } from './loops'
 import { loopsGemsWorld } from './loops-gems'
 
@@ -16,6 +17,7 @@ export const codingWorlds: CodingWorld[] = [
   sequenceWorld,
   gemsWorld,
   predictWorld,
+  bugWorld,
   loopsWorld,
   loopsGemsWorld,
 ]

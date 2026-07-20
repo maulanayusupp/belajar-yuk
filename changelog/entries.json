@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-07-20",
+    "version": "0.32.0",
+    "tag": "Fitur",
+    "title": "Coding: game baru 'Cari Bug' 🐞",
+    "changes": [
+      "Dunia Coding baru 'Cari Bug': program hampir benar dengan satu perintah salah — anak menemukan lalu memperbaikinya.",
+      "Melatih membaca kode & debugging, bukan sekadar menyusun program (5 level).",
+      "Bintang berdasarkan seberapa cepat bug ditemukan & diperbaiki."
+    ]
+  },
+  {
+    "date": "2026-07-20",
     "version": "0.31.0",
     "tag": "Fitur",
     "title": "Coding: jalan langkah-demi-langkah",

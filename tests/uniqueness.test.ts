@@ -60,6 +60,8 @@ describe('material uniqueness', () => {
       if (l.kind === 'order') sig = 'order|' + l.steps.map((s) => s.id).join(',')
       else if (l.kind === 'predict')
         sig = 'predict|' + JSON.stringify({ grid: l.grid, start: l.start, program: l.program })
+      else if (l.kind === 'bug')
+        sig = 'bug|' + JSON.stringify({ grid: l.grid, start: l.start, buggy: l.buggy })
       else sig = 'grid|' + JSON.stringify({ grid: l.grid, start: l.start })
       expect(seen.get(sig), `coding "${l.id}" duplicates "${seen.get(sig)}"`).toBeUndefined()
       seen.set(sig, l.id)

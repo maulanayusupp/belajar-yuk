@@ -23,12 +23,14 @@ const gameKind = computed(() => {
   if (!l) return 'grid'
   if (l.kind === 'order') return 'order'
   if (l.kind === 'predict') return 'predict'
+  if (l.kind === 'bug') return 'bug'
   return l.concept === 'loop' ? 'loop' : 'grid'
 })
 const titleIcon = computed(() => {
   const l = level.value
   if (l?.kind === 'order') return l.goalEmoji
   if (l?.kind === 'predict') return '🔮'
+  if (l?.kind === 'bug') return '🐞'
   return '🤖'
 })
 
@@ -52,6 +54,12 @@ useHead(() => ({ title: `${level.value?.title} — Coding` }))
     />
     <CodingPredictRunner
       v-else-if="gameKind === 'predict'"
+      :key="level.id"
+      :level="level"
+      :next-id="nextId"
+    />
+    <CodingBugRunner
+      v-else-if="gameKind === 'bug'"
       :key="level.id"
       :level="level"
       :next-id="nextId"

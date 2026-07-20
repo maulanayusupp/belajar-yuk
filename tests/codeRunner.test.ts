@@ -151,6 +151,24 @@ describe('codeRunner', () => {
     }
   })
 
+  it('every "find the bug" level: buggy program FAILS and the fix SUCCEEDS', () => {
+    const bugs = codingService.getLevels().filter((l) => l.kind === 'bug')
+    expect(bugs.length).toBeGreaterThan(0)
+    for (const l of bugs) {
+      if (l.kind !== 'bug') continue
+      // The shown (buggy) program must NOT reach the goal — otherwise there's
+      // nothing to fix.
+      expect(runProgram(l, toSteps(l.buggy)).success, `${l.id}: buggy already solves`).toBe(false)
+      // Applying the authored fix at its index must solve the level.
+      expect(l.fix.index, `${l.id}: fix index out of range`).toBeLessThan(l.buggy.length)
+      const fixed = l.buggy.slice()
+      fixed[l.fix.index] = l.fix.cmd
+      expect(runProgram(l, toSteps(fixed)).success, `${l.id}: fix does not solve`).toBe(true)
+      // The fix must actually change the command (a real bug).
+      expect(l.buggy[l.fix.index], `${l.id}: fix equals buggy command`).not.toBe(l.fix.cmd)
+    }
+  })
+
   it('starsForSolution rewards efficiency', () => {
     expect(starsForSolution(3, 3)).toBe(3)
     expect(starsForSolution(4, 3)).toBe(2)
