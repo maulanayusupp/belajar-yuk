@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-07-20",
+    "version": "0.29.0",
+    "tag": "Fitur",
+    "title": "Daftar Materi — peta semua pelajaran",
+    "changes": [
+      "Halaman baru 'Daftar Materi': daftar isi semua pelajaran & Coding, tersusun per kategori usia.",
+      "Tanda selesai/bintang di tiap materi + tombol 'Lanjutkan belajar' agar arah belajar jelas.",
+      "Bisa diakses dari menu (header & footer)."
+    ]
+  },
+  {
+    "date": "2026-07-20",
     "version": "0.28.1",
     "tag": "Perbaikan",
     "title": "Ukuran judul dirapikan di semua halaman",

@@ -7,6 +7,7 @@ import { lessonService } from '~/services/lessonService'
 const subjects = lessonService.getSubjects()
 const links = [
   { to: '/coding', label: 'Coding', emoji: '🤖' },
+  { to: '/materi', label: 'Daftar Materi', emoji: '📚' },
   { to: '/latihan', label: 'Latihan Kilat', emoji: '⚡' },
   { to: '/kemajuan', label: 'Kemajuan', emoji: '📊' },
 ]

@@ -12,6 +12,7 @@ export default defineEventHandler((event) => {
     '/science',
     '/bahasa',
     '/coding',
+    '/materi',
     '/latihan',
     '/kemajuan',
     '/changelog',

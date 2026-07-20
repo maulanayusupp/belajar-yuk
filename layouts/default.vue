@@ -2,6 +2,7 @@
 // Main layout: sticky header + content area + decorative background.
 const footerNav = [
   { to: '/', label: 'Beranda' },
+  { to: '/materi', label: 'Daftar Materi' },
   { to: '/tes', label: 'Tes Penempatan' },
   { to: '/coding', label: 'Coding' },
   { to: '/latihan', label: 'Latihan Kilat' },

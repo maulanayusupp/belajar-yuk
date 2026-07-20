@@ -61,6 +61,17 @@ test('coding "predict" game renders', async ({ page }) => {
   await expect(page.getByRole('button', { name: /Jalankan/ })).toBeVisible()
 })
 
+test('Daftar Materi lists lessons and links to one', async ({ page }) => {
+  await page.goto('/materi')
+  await dismissOnboarding(page)
+  await expect(page.getByRole('heading', { name: /Daftar Materi/ })).toBeVisible()
+  // a lesson row links into a subject
+  const lesson = page.getByRole('link', { name: /Nama Hewan/ }).first()
+  await expect(lesson).toBeVisible()
+  await lesson.click()
+  await expect(page).toHaveURL(/\/english\//)
+})
+
 test('the Progress page does not overflow horizontally', async ({ page }) => {
   await page.goto('/kemajuan')
   await dismissOnboarding(page)
