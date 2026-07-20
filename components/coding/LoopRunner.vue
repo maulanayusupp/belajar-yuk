@@ -25,10 +25,19 @@ const program = ref<CodingStep[]>([])
 const openLoop = ref<number | null>(null) // index of the repeat block accepting commands
 const robot = ref<RobotState>({ ...props.level.start })
 const collected = ref<string[]>([])
-const running = ref(false)
+// mode: 'edit' → building; 'step' → one command at a time; 'auto' → full playback.
+const mode = ref<'edit' | 'step' | 'auto'>('edit')
 const solved = ref(false)
 const earnedStars = ref(0)
 const failMsg = ref('')
+
+// Expanded run of the current (tree) program, filled the moment we start playing.
+let frames: ReturnType<typeof runProgram>['frames'] = []
+let runSuccess = false
+const stepIdx = ref(0)
+
+const busy = computed(() => mode.value === 'auto')
+const stepDone = computed(() => mode.value === 'step' && stepIdx.value >= frames.length - 1)
 
 let cancelled = false
 onBeforeUnmount(() => (cancelled = true))
@@ -41,8 +50,16 @@ function resetRobot() {
   failMsg.value = ''
 }
 
+// Return to editing: forget the computed run and reset the robot.
+function resetRun() {
+  mode.value = 'edit'
+  frames = []
+  stepIdx.value = 0
+  resetRobot()
+}
+
 function addCommand(cmd: CodingCommand) {
-  if (running.value || solved.value) return
+  if (mode.value !== 'edit' || solved.value) return
   play('click')
   const step: CodingStep = { type: 'cmd', cmd }
   const target = openLoop.value
@@ -56,7 +73,7 @@ function addCommand(cmd: CodingCommand) {
 }
 
 function addLoop() {
-  if (running.value || solved.value || openLoop.value !== null) return
+  if (mode.value !== 'edit' || solved.value || openLoop.value !== null) return
   play('click')
   program.value.push({ type: 'repeat', times: 2, body: [] })
   openLoop.value = program.value.length - 1
@@ -68,7 +85,7 @@ function closeLoop() {
 }
 
 function changeTimes(i: number, delta: number) {
-  if (running.value || solved.value) return
+  if (mode.value !== 'edit' || solved.value) return
   const loop = program.value[i]
   if (loop?.type === 'repeat') {
     loop.times = Math.min(TIMES_MAX, Math.max(TIMES_MIN, loop.times + delta))
@@ -77,7 +94,7 @@ function changeTimes(i: number, delta: number) {
 }
 
 function removeStep(i: number) {
-  if (running.value || solved.value) return
+  if (mode.value !== 'edit' || solved.value) return
   program.value.splice(i, 1)
   if (openLoop.value === i) openLoop.value = null
   else if (openLoop.value !== null && i < openLoop.value) openLoop.value--
@@ -85,43 +102,40 @@ function removeStep(i: number) {
 }
 
 function removeBodyStep(i: number, j: number) {
-  if (running.value || solved.value) return
+  if (mode.value !== 'edit' || solved.value) return
   const loop = program.value[i]
   if (loop?.type === 'repeat') loop.body.splice(j, 1)
   resetRobot()
 }
 
 function clearProgram() {
-  if (running.value) return
+  if (mode.value === 'auto') return
   program.value = []
   openLoop.value = null
   solved.value = false
-  resetRobot()
+  resetRun()
 }
 
 function delay(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
-async function run() {
-  if (running.value || solved.value || !program.value.length) return
-  running.value = true
-  openLoop.value = null
-  failMsg.value = ''
-  const { frames, success } = runProgram(props.level, program.value)
+// Compute the expanded frames for the current program once, lazily.
+function ensureFrames() {
+  if (frames.length) return
+  const result = runProgram(props.level, program.value)
+  frames = result.frames
+  runSuccess = result.success
+}
 
-  for (let i = 1; i < frames.length; i++) {
-    await delay(320)
-    if (cancelled) return
-    const f = frames[i]
-    robot.value = { x: f.x, y: f.y, facing: f.facing }
-    collected.value = f.collected
-    play('pop')
-  }
-  await delay(320)
-  if (cancelled) return
+function applyFrame(i: number) {
+  const f = frames[i]
+  robot.value = { x: f.x, y: f.y, facing: f.facing }
+  collected.value = f.collected
+}
 
-  if (success) {
+function finish() {
+  if (runSuccess) {
     earnedStars.value = starsForSolution(blockCount.value, props.level.optimalBlocks)
     codingService.saveStars(props.level.id, earnedStars.value)
     solved.value = true
@@ -130,10 +144,53 @@ async function run() {
   } else {
     play('wrong')
     failMsg.value = 'Robot belum sampai ke bintang. Coba susun ulang!'
-    await delay(600)
-    if (!cancelled) resetRobot()
   }
-  running.value = false
+}
+
+// Advance the robot by a single (expanded) command — the "Langkah" button.
+function stepOnce() {
+  if (solved.value || !program.value.length || mode.value === 'auto') return
+  if (mode.value === 'edit') {
+    openLoop.value = null
+    ensureFrames()
+    mode.value = 'step'
+    failMsg.value = ''
+  }
+  if (stepIdx.value < frames.length - 1) {
+    stepIdx.value++
+    applyFrame(stepIdx.value)
+    play('pop')
+  }
+  if (stepIdx.value >= frames.length - 1) finish()
+}
+
+// Play the remaining commands automatically — the "Jalankan" button.
+async function run() {
+  if (solved.value || !program.value.length || mode.value === 'auto') return
+  if (mode.value === 'edit') {
+    openLoop.value = null
+    ensureFrames()
+    failMsg.value = ''
+  }
+  mode.value = 'auto'
+
+  for (let i = stepIdx.value + 1; i < frames.length; i++) {
+    await delay(320)
+    if (cancelled) return
+    stepIdx.value = i
+    applyFrame(i)
+    play('pop')
+  }
+  await delay(320)
+  if (cancelled) return
+
+  if (runSuccess) {
+    finish()
+  } else {
+    finish()
+    await delay(600)
+    if (!cancelled) resetRun()
+  }
 }
 </script>
 
@@ -152,7 +209,7 @@ async function run() {
           v-if="step.type === 'cmd'"
           class="loop__chip"
           type="button"
-          :disabled="running || solved"
+          :disabled="mode !== 'edit' || solved"
           :aria-label="`Hapus ${BLOCK[step.cmd].label}`"
           @click="removeStep(i)"
         >
@@ -167,7 +224,7 @@ async function run() {
               <button
                 class="rep__step"
                 type="button"
-                :disabled="running || solved || step.times <= TIMES_MIN"
+                :disabled="mode !== 'edit' || solved || step.times <= TIMES_MIN"
                 @click="changeTimes(i, -1)"
               >
                 −
@@ -176,7 +233,7 @@ async function run() {
               <button
                 class="rep__step"
                 type="button"
-                :disabled="running || solved || step.times >= TIMES_MAX"
+                :disabled="mode !== 'edit' || solved || step.times >= TIMES_MAX"
                 @click="changeTimes(i, 1)"
               >
                 +
@@ -185,7 +242,7 @@ async function run() {
             <button
               class="rep__del"
               type="button"
-              :disabled="running || solved"
+              :disabled="mode !== 'edit' || solved"
               aria-label="Hapus blok Ulangi"
               @click="removeStep(i)"
             >
@@ -199,7 +256,7 @@ async function run() {
               :key="j"
               class="loop__chip loop__chip--inner"
               type="button"
-              :disabled="running || solved"
+              :disabled="mode !== 'edit' || solved"
               :aria-label="`Hapus ${BLOCK[b.cmd].label}`"
               @click="removeBodyStep(i, j)"
             >
@@ -226,7 +283,7 @@ async function run() {
         :key="cmd"
         class="loop__cmd"
         type="button"
-        :disabled="running || solved"
+        :disabled="mode !== 'edit' || solved"
         @click="addCommand(cmd)"
       >
         <span class="loop__cmd-icon" aria-hidden="true">{{ BLOCK[cmd].icon }}</span>
@@ -235,7 +292,7 @@ async function run() {
       <button
         class="loop__cmd loop__cmd--loop"
         type="button"
-        :disabled="running || solved || openLoop !== null"
+        :disabled="mode !== 'edit' || solved || openLoop !== null"
         @click="addLoop"
       >
         <span class="loop__cmd-icon" aria-hidden="true">🔁</span>
@@ -247,10 +304,23 @@ async function run() {
     <div v-if="!solved" class="loop__controls">
       <span class="loop__count">{{ blockCount }} blok</span>
       <div class="loop__buttons">
-        <BaseButton variant="ghost" :disabled="running || !program.length" @click="clearProgram">
+        <BaseButton
+          v-if="mode === 'edit'"
+          variant="ghost"
+          :disabled="busy || !program.length"
+          @click="clearProgram"
+        >
           🗑 Hapus
         </BaseButton>
-        <BaseButton variant="primary" size="lg" :disabled="running || !program.length" @click="run">
+        <BaseButton v-else variant="ghost" :disabled="busy" @click="resetRun"> ↺ Ulang </BaseButton>
+        <BaseButton
+          variant="secondary"
+          :disabled="busy || stepDone || !program.length"
+          @click="stepOnce"
+        >
+          👣 Langkah
+        </BaseButton>
+        <BaseButton variant="primary" size="lg" :disabled="busy || !program.length" @click="run">
           ▶ Jalankan
         </BaseButton>
       </div>

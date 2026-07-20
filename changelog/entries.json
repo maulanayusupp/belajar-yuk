@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-07-20",
+    "version": "0.31.0",
+    "tag": "Fitur",
+    "title": "Coding: jalan langkah-demi-langkah",
+    "changes": [
+      "Tombol baru 👣 Langkah di puzzle robot: jalankan program satu perintah demi satu untuk melihat tiap gerakan.",
+      "Perintah yang sedang dijalankan kini disorot agar anak paham perintah mana yang bekerja.",
+      "Tombol ↺ Ulang untuk kembali menyusun program setelah mencoba melangkah."
+    ]
+  },
+  {
+    "date": "2026-07-20",
     "version": "0.30.1",
     "tag": "Perbaikan",
     "title": "Daftar Materi: judul menempel & level terkunci tak bisa dibuka",

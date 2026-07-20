@@ -71,6 +71,9 @@ Lightbot/Code.org-style grid command-puzzles. Client-only, evidence-based (see
       renders/animates gems. 6 levels. Reuses the sequencing runner.
 - [ ] **Phase 2 — Conditionals & functions (ages 9-12)** — `if`/`if-else`, a single
       "Function A" procedure slot, tighter `maxBlocks` to force decomposition.
+- [x] **Step-through execution** ("Jalan Langkah-demi-Langkah") — 👣 Langkah button
+      runs the program one command at a time; the executing chip is highlighted in the
+      sequence runner. Mode `edit`/`step`/`auto` in `CodingLevelRunner` & `CodingLoopRunner`.
 - [ ] **More level content** — keep growing each world (aim ~8-10 levels/world) and
       combine mechanics (loops + gems).
 - [x] **Order-the-steps game** ("Urutkan Langkah") — a DIFFERENT game format (not a
