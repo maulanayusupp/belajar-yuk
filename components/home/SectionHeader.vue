@@ -49,10 +49,15 @@ withDefaults(
 
   &__title {
     margin: 0;
+    font-size: font-size('lg');
+
+    @include respond-to('md') {
+      font-size: font-size('xl');
+    }
   }
 
   &__subtitle {
-    font-size: font-size('md');
+    font-size: font-size('sm');
     color: $color-text-muted;
   }
 }

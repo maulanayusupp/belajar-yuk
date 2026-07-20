@@ -41,9 +41,9 @@ withDefaults(
 
   &__icon {
     @include flex-center;
-    width: 64px;
-    height: 64px;
-    font-size: font-size('xl');
+    width: 52px;
+    height: 52px;
+    font-size: font-size('lg');
     border-radius: $radius-md;
     box-shadow: $shadow-sm;
 
@@ -66,7 +66,7 @@ withDefaults(
 
   &__title {
     margin: 0;
-    font-size: font-size('lg');
+    font-size: font-size('md');
   }
 
   &__text {

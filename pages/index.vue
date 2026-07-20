@@ -450,16 +450,16 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
 .home {
   display: flex;
   flex-direction: column;
-  gap: spacing('xxl');
+  gap: spacing('xl');
 
   @include respond-to('md') {
-    gap: spacing('section');
+    gap: spacing('xxl');
   }
 }
 
 // Section = content column; spacing between sections is handled by `.home` (no double padding).
 .section {
-  @include flex(column, flex-start, stretch, spacing('xl'));
+  @include flex(column, flex-start, stretch, spacing('lg'));
 }
 
 .welcome {
@@ -531,11 +531,11 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
   }
 
   &__title {
-    font-size: font-size('xxl');
-    line-height: 1.05;
+    font-size: font-size('xl');
+    line-height: 1.1;
 
     @include respond-to('md') {
-      font-size: font-size('giant');
+      font-size: font-size('xxl');
     }
   }
 
@@ -547,9 +547,9 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
   }
 
   &__subtitle {
-    font-size: font-size('lg');
+    font-size: font-size('md');
     color: $color-text-muted;
-    max-width: 520px;
+    max-width: 480px;
   }
 
   &__actions {
@@ -618,10 +618,10 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
 
   &__mascot {
     position: absolute;
-    top: 34%;
-    left: 38%;
-    font-size: 8rem;
-    filter: drop-shadow(0 20px 30px rgba(26, 16, 53, 0.25));
+    top: 36%;
+    left: 40%;
+    font-size: 5rem;
+    filter: drop-shadow(0 16px 26px rgba(26, 16, 53, 0.25));
   }
 
   &__sparkle {
@@ -735,7 +735,7 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
   }
 
   &__item {
-    font-size: font-size('xl');
+    font-size: font-size('lg');
     opacity: 0.85;
   }
 }
@@ -779,10 +779,10 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
   @include glass($glass-bg-strong);
   @include hover-lift(-6px);
   @include flex(column, flex-start, flex-start, spacing('xs'));
-  padding: spacing('xl') spacing('lg');
-  border-radius: $radius-xl;
+  padding: spacing('lg');
+  border-radius: $radius-lg;
   box-shadow: $shadow-sm;
-  border-top: 6px solid $color-primary;
+  border-top: 5px solid $color-primary;
 
   &--beginner {
     border-top-color: $color-success;
@@ -795,13 +795,13 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
   }
 
   &__icon {
-    font-size: font-size('xxl');
+    font-size: font-size('xl');
   }
 
   &__label {
     font-family: $font-family-display;
     font-weight: $font-weight-bold;
-    font-size: font-size('lg');
+    font-size: font-size('md');
     color: $color-ink;
   }
 
@@ -852,7 +852,7 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
 
   &__emoji {
     position: relative;
-    font-size: font-size('giant');
+    font-size: font-size('xxl');
     filter: drop-shadow(0 12px 24px rgba(26, 16, 53, 0.3));
   }
 
@@ -864,13 +864,18 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
     font-weight: $font-weight-bold;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    font-size: font-size('sm');
+    font-size: font-size('xs');
     color: rgba($color-white, 0.85);
   }
 
   &__title {
     color: $color-white;
     margin: spacing('xs') 0;
+    font-size: font-size('lg');
+
+    @include respond-to('md') {
+      font-size: font-size('xl');
+    }
   }
 
   &__desc {
@@ -911,9 +916,9 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
 
   &__icon {
     @include flex-center;
-    width: 56px;
-    height: 56px;
-    font-size: font-size('xl');
+    width: 48px;
+    height: 48px;
+    font-size: font-size('lg');
     background: rgba($color-math, 0.12);
     border-radius: $radius-md;
 
@@ -1001,11 +1006,12 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
   }
 
   &__icon {
-    font-size: font-size('xxl');
+    font-size: font-size('xl');
   }
 
   &__title {
     margin: 0;
+    font-size: font-size('md');
   }
 
   &__text {
@@ -1040,12 +1046,18 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
   &__title {
     color: $color-white;
     margin: 0;
+    font-size: font-size('lg');
+
+    @include respond-to('md') {
+      font-size: font-size('xl');
+    }
   }
 
   &__desc {
     color: rgba($color-white, 0.95);
     margin: 0;
     max-width: 560px;
+    font-size: font-size('sm');
   }
 
   &__actions {
@@ -1055,7 +1067,7 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
   }
 
   &__emoji {
-    font-size: font-size('giant');
+    font-size: font-size('xxl');
   }
 }
 
@@ -1076,9 +1088,9 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
 
 // ---------------- CTA ----------------
 .cta {
-  @include flex(column, center, center, spacing('lg'));
+  @include flex(column, center, center, spacing('md'));
   text-align: center;
-  padding: spacing('xxl') spacing('xl');
+  padding: spacing('xl');
   border-radius: $radius-xl;
   background: $gradient-primary;
   background-size: 180% 180%;
@@ -1089,16 +1101,23 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
     flex-direction: row;
     justify-content: space-between;
     text-align: left;
+    padding: spacing('xl') spacing('xxl');
   }
 
   &__title {
     color: $color-white;
     margin: 0;
+    font-size: font-size('lg');
+
+    @include respond-to('md') {
+      font-size: font-size('xl');
+    }
   }
 
   &__text {
     color: rgba($color-white, 0.9);
     margin: 0;
+    font-size: font-size('sm');
   }
 }
 </style>

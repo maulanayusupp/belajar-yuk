@@ -58,12 +58,12 @@ onMounted(() => {
     @include gradient-text($gradient-primary);
     font-family: $font-family-display;
     font-weight: $font-weight-bold;
-    font-size: font-size('xxl');
+    font-size: font-size('xl');
     line-height: 1;
   }
 
   &__label {
-    font-size: font-size('sm');
+    font-size: font-size('xs');
     font-weight: $font-weight-semibold;
     color: $color-text-muted;
   }
