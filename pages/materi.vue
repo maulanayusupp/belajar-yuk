@@ -15,12 +15,23 @@ const allLessons = lessonService.getLessons()
 const codingWorlds = codingService.getWorlds()
 const codingLevels = codingService.getLevels()
 
+const LinkComp = resolveComponent('NuxtLink')
+
 const codingStars = ref<Record<string, number>>({})
 const ready = ref(false)
 onMounted(() => {
   codingStars.value = codingService.getStarMap()
   ready.value = true
 })
+
+// A coding level is unlocked if it's first, the previous is completed, or it is
+// already completed. Computed from the reactive stars snapshot (client), so the
+// list matches the coding map and never links a locked level.
+function codingUnlocked(id: string): boolean {
+  const i = codingLevels.findIndex((l) => l.id === id)
+  if (i <= 0) return true
+  return (codingStars.value[codingLevels[i - 1].id] ?? 0) > 0 || (codingStars.value[id] ?? 0) > 0
+}
 
 // ---- Search + collapse ----
 const query = ref('')
@@ -200,16 +211,24 @@ useHead({ title: 'Daftar Materi — Belajar Yuk!' })
           </p>
           <ul class="rows">
             <li v-for="level in w.levels" :key="level.id">
-              <NuxtLink :to="`/coding/${level.id}`" class="row">
+              <component
+                :is="codingUnlocked(level.id) ? LinkComp : 'div'"
+                :to="codingUnlocked(level.id) ? `/coding/${level.id}` : undefined"
+                class="row"
+                :class="{ 'row--locked': !codingUnlocked(level.id) }"
+              >
                 <span class="row__emoji" aria-hidden="true">{{ w.world.icon }}</span>
                 <span class="row__title">{{ level.title }}</span>
                 <BaseStarRating
-                  v-if="ready && (codingStars[level.id] ?? 0) > 0"
+                  v-if="(codingStars[level.id] ?? 0) > 0"
                   :value="codingStars[level.id]"
                   size="sm"
                 />
+                <span v-else-if="!codingUnlocked(level.id)" class="row__lock" aria-hidden="true"
+                  >🔒</span
+                >
                 <span v-else class="row__todo" aria-hidden="true">○</span>
-              </NuxtLink>
+              </component>
             </li>
           </ul>
         </div>
@@ -337,6 +356,10 @@ useHead({ title: 'Daftar Materi — Belajar Yuk!' })
   &__head {
     @include tappable;
     @include flex(row, flex-start, center, spacing('sm'));
+    // Stick just below the global app header while scrolling a section.
+    position: sticky;
+    top: 60px;
+    z-index: 5;
     padding: spacing('sm') spacing('md');
     border-radius: $radius-lg;
     color: $color-white;
@@ -421,6 +444,16 @@ useHead({ title: 'Daftar Materi — Belajar Yuk!' })
     transform: translateX(3px);
   }
 
+  &--locked {
+    opacity: 0.6;
+    cursor: not-allowed;
+
+    &:hover {
+      border-color: $color-border;
+      transform: none;
+    }
+  }
+
   &__emoji {
     font-size: font-size('md');
     flex-shrink: 0;
@@ -434,6 +467,10 @@ useHead({ title: 'Daftar Materi — Belajar Yuk!' })
     flex-shrink: 0;
     color: $color-text-muted;
     font-size: font-size('lg');
+  }
+  &__lock {
+    flex-shrink: 0;
+    font-size: font-size('md');
   }
 }
 </style>

@@ -11,6 +11,12 @@ if (!level.value) {
   throw createError({ statusCode: 404, statusMessage: 'Level tidak ditemukan' })
 }
 
+// Guard: a locked level can't be opened directly (progress is client-side, so
+// check on mount and send the child back to the map).
+onMounted(() => {
+  if (level.value && !codingService.isUnlocked(level.value.id)) navigateTo('/coding')
+})
+
 // Which game component to render (levels can be different game kinds).
 const gameKind = computed(() => {
   const l = level.value

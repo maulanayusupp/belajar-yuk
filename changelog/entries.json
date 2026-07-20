@@ -1,6 +1,16 @@
 [
   {
     "date": "2026-07-20",
+    "version": "0.30.1",
+    "tag": "Perbaikan",
+    "title": "Daftar Materi: judul menempel & level terkunci tak bisa dibuka",
+    "changes": [
+      "Judul bagian kini menempel (sticky) saat digulir agar tetap terlihat.",
+      "Level Coding yang masih terkunci 🔒 tidak bisa lagi dibuka dari daftar (atau lewat tautan langsung)."
+    ]
+  },
+  {
+    "date": "2026-07-20",
     "version": "0.30.0",
     "tag": "Fitur",
     "title": "Header baru, logo baru, & Daftar Materi bisa dicari",

@@ -6,6 +6,14 @@ async function dismissOnboarding(page: Page) {
   if (await skip.isVisible().catch(() => false)) await skip.click()
 }
 
+// Unlock a specific coding level so a deep-link isn't blocked by the progress
+// gate (a level counts as unlocked if it's already been completed).
+async function unlockCodingLevel(page: Page, id: string) {
+  await page.addInitScript((levelId) => {
+    localStorage.setItem('belajar-yuk:coding:stars', JSON.stringify({ [levelId]: 3 }))
+  }, id)
+}
+
 test('home renders & can navigate to English', async ({ page }) => {
   await page.goto('/')
   await dismissOnboarding(page)
@@ -28,6 +36,7 @@ test('completing a counting lesson adds stars', async ({ page }) => {
 })
 
 test('coding level shows the robot grid and can be solved', async ({ page }) => {
+  await unlockCodingLevel(page, 'code-seq-1')
   await page.goto('/coding/code-seq-1')
   await dismissOnboarding(page)
   // The grid board MUST render (regression: an unresolved component once left
@@ -55,6 +64,7 @@ test('coding "order the steps" game can be solved', async ({ page }) => {
 })
 
 test('coding "predict" game renders', async ({ page }) => {
+  await unlockCodingLevel(page, 'predict-1')
   await page.goto('/coding/predict-1')
   await dismissOnboarding(page)
   await expect(page.locator('.grid__board')).toBeVisible()
