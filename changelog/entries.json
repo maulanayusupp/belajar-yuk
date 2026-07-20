@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-07-20",
+    "version": "0.33.0",
+    "tag": "Fitur",
+    "title": "Kemajuan Coding & Sertifikat Coding",
+    "changes": [
+      "Halaman Kemajuan kini menampilkan kartu progres Coding: bintang, jumlah level selesai, & bar kemajuan.",
+      "Sertifikat Coding baru — terbit saat semua level Coding tuntas, bisa dicetak & dibagikan.",
+      "Progres Coding kini terlihat jelas di satu tempat bersama pelajaran lain."
+    ]
+  },
+  {
+    "date": "2026-07-20",
     "version": "0.32.0",
     "tag": "Fitur",
     "title": "Coding: game baru 'Cari Bug' 🐞",

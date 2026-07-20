@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { lessonService } from '~/services/lessonService'
+import { codingService } from '~/services/codingService'
 
 // Per-subject certificate: issued when ALL of its lessons are completed.
 const { greetingName } = useProfile()
@@ -37,6 +38,25 @@ const cards = computed(() =>
   }),
 )
 
+// Coding certificate (its own store, client-only). Read after mount so SSR
+// renders the locked state and hydration matches.
+const coding = ref({
+  earned: false,
+  done: 0,
+  total: codingService.totalLevels(),
+  stars: 0,
+  dateText: '',
+})
+onMounted(() => {
+  coding.value = {
+    earned: codingService.allCompleted(),
+    done: codingService.completedCount(),
+    total: codingService.totalLevels(),
+    stars: codingService.totalStars(),
+    dateText: formatDate(Date.now()),
+  }
+})
+
 useHead({ title: 'Sertifikat' })
 </script>
 
@@ -45,7 +65,9 @@ useHead({ title: 'Sertifikat' })
     <NuxtLink to="/kemajuan" class="cert-page__back no-print">← Kemajuan</NuxtLink>
     <header class="cert-page__head no-print">
       <h1>🎓 Sertifikat</h1>
-      <p>Tuntaskan semua pelajaran satu mata pelajaran untuk mendapat sertifikat.</p>
+      <p>
+        Tuntaskan semua pelajaran satu mata pelajaran (atau semua level Coding) untuk sertifikat.
+      </p>
     </header>
 
     <div v-for="c in cards" :key="c.subject.id" class="cert-page__item">
@@ -66,6 +88,29 @@ useHead({ title: 'Sertifikat' })
           >
         </div>
         <BaseButton variant="ghost" @click="navigateTo(`/${c.subject.id}`)">Lanjut</BaseButton>
+      </div>
+    </div>
+
+    <!-- Coding certificate (separate module) -->
+    <div class="cert-page__item">
+      <Certificate
+        v-if="coding.earned"
+        :name="greetingName"
+        subject="Coding"
+        emoji="🤖"
+        :date-text="coding.dateText"
+        :stars="coding.stars"
+      />
+      <div v-else class="locked no-print">
+        <span class="locked__emoji" aria-hidden="true">🔒</span>
+        <div class="locked__text">
+          <strong>Sertifikat Coding</strong>
+          <span
+            >{{ coding.done }} / {{ coding.total }} level selesai — tuntaskan semua untuk
+            membukanya!</span
+          >
+        </div>
+        <BaseButton variant="ghost" @click="navigateTo('/coding')">Lanjut</BaseButton>
       </div>
     </div>
   </div>

@@ -66,4 +66,24 @@ export const codingService = {
   totalStars(): number {
     return Object.values(this.getStarMap()).reduce((sum, s) => sum + s, 0)
   },
+
+  /** Number of levels in the whole coding module. */
+  totalLevels(): number {
+    return codingLevels.length
+  },
+
+  /** Number of levels the child has completed (earned ≥ 1 star). */
+  completedCount(): number {
+    return codingLevels.filter((l) => this.isCompleted(l.id)).length
+  },
+
+  /** Maximum stars obtainable across every level (3 each). */
+  maxStars(): number {
+    return codingLevels.length * 3
+  },
+
+  /** True once every coding level is completed (unlocks the coding certificate). */
+  allCompleted(): boolean {
+    return codingLevels.length > 0 && this.completedCount() === codingLevels.length
+  },
 }

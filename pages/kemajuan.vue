@@ -2,6 +2,7 @@
 import { lessonService } from '~/services/lessonService'
 import { badgeService } from '~/services/badgeService'
 import { drillService } from '~/services/drillService'
+import { codingService } from '~/services/codingService'
 import { DAILY_GOAL } from '~/services/progressService'
 
 // Progress page: greeting, streak, daily goal, badges, achievement
@@ -42,11 +43,29 @@ const doneToday = computed(() => {
   return Object.values(progress.value).filter((e) => e.updatedAt >= start.getTime()).length
 })
 
+// Coding progress (its own store, client-only). Totals are static; the earned
+// counts are read after mount so SSR/hydration stay in sync.
+const coding = ref({
+  stars: 0,
+  done: 0,
+  total: codingService.totalLevels(),
+  max: codingService.maxStars(),
+})
+const codingPercent = computed(() =>
+  coding.value.total ? Math.round((coding.value.done / coding.value.total) * 100) : 0,
+)
+
 // Daily assignment ("Tugas Hari Ini") — Kumon-style short daily practice.
 // Derived from existing signals; drillPlayed is read on the client only.
 const drillPlayed = ref(false)
 onMounted(() => {
   drillPlayed.value = drillService.playedToday()
+  coding.value = {
+    stars: codingService.totalStars(),
+    done: codingService.completedCount(),
+    total: codingService.totalLevels(),
+    max: codingService.maxStars(),
+  }
 })
 const dailyTasks = computed(() => [
   {
@@ -122,6 +141,22 @@ useHead({ title: 'Kemajuan Belajar' })
         <span class="tile__label">dari {{ badges.length }} lencana</span>
       </div>
     </section>
+
+    <!-- Coding progress (separate module) -->
+    <NuxtLink to="/coding" class="coding-card">
+      <span class="coding-card__icon" aria-hidden="true">🤖</span>
+      <div class="coding-card__body">
+        <div class="coding-card__top">
+          <span class="coding-card__title">Coding</span>
+          <span class="coding-card__stars">⭐ {{ coding.stars }}/{{ coding.max }}</span>
+        </div>
+        <div class="coding-card__bar" role="presentation">
+          <span class="coding-card__fill" :style="{ '--p': `${codingPercent}%` }" />
+        </div>
+        <span class="coding-card__meta">{{ coding.done }}/{{ coding.total }} level selesai</span>
+      </div>
+      <span class="coding-card__cta" aria-hidden="true">→</span>
+    </NuxtLink>
 
     <!-- Recommendation -->
     <NuxtLink v-if="nextLesson" :to="`/${nextLesson.subject}/${nextLesson.id}`" class="resume">
@@ -294,6 +329,81 @@ useHead({ title: 'Kemajuan Belajar' })
     padding: spacing('sm') spacing('lg');
     border-radius: $radius-pill;
     font-weight: $font-weight-bold;
+    flex-shrink: 0;
+  }
+}
+
+.coding-card {
+  @include flex(row, flex-start, center, spacing('md'));
+  padding: spacing('md') spacing('lg');
+  border-radius: $radius-xl;
+  background: $color-white;
+  box-shadow: $shadow-sm;
+  border: 1px solid rgba($color-primary, 0.12);
+  transition: box-shadow $transition-base;
+
+  &:hover {
+    box-shadow: $shadow-md;
+  }
+
+  &__icon {
+    @include flex-center;
+    width: 56px;
+    height: 56px;
+    font-size: font-size('xl');
+    background: rgba($color-primary, 0.1);
+    border-radius: $radius-lg;
+    flex-shrink: 0;
+  }
+
+  &__body {
+    @include flex(column, center, stretch, spacing('xs'));
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__top {
+    @include flex(row, space-between, center, spacing('sm'));
+  }
+
+  &__title {
+    font-family: $font-family-display;
+    font-weight: $font-weight-bold;
+    font-size: font-size('lg');
+    color: $color-ink;
+  }
+
+  &__stars {
+    font-weight: $font-weight-bold;
+    color: $color-primary-dark;
+    font-size: font-size('sm');
+  }
+
+  &__bar {
+    height: 10px;
+    border-radius: $radius-pill;
+    background: rgba($color-primary, 0.12);
+    overflow: hidden;
+  }
+
+  &__fill {
+    display: block;
+    height: 100%;
+    width: var(--p, 0%);
+    border-radius: $radius-pill;
+    background: $gradient-primary;
+    transition: width $transition-base;
+  }
+
+  &__meta {
+    font-size: font-size('sm');
+    color: $color-text-muted;
+  }
+
+  &__cta {
+    font-weight: $font-weight-bold;
+    font-size: font-size('lg');
+    color: $color-primary;
     flex-shrink: 0;
   }
 }

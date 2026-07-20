@@ -31,4 +31,23 @@ describe('codingService progress & unlock', () => {
     expect(codingService.getNextLevel(levels[0].id)?.id).toBe(levels[1].id)
     expect(codingService.getNextLevel(levels.at(-1)!.id)).toBeNull()
   })
+
+  it('progress summary counts completed levels, stars & max', () => {
+    const levels = codingService.getLevels()
+    expect(codingService.totalLevels()).toBe(levels.length)
+    expect(codingService.maxStars()).toBe(levels.length * 3)
+    expect(codingService.completedCount()).toBe(0)
+    expect(codingService.allCompleted()).toBe(false)
+
+    codingService.saveStars(levels[0].id, 3)
+    codingService.saveStars(levels[1].id, 2)
+    expect(codingService.completedCount()).toBe(2)
+    expect(codingService.totalStars()).toBe(5)
+  })
+
+  it('allCompleted is true only once every level has a star', () => {
+    for (const l of codingService.getLevels()) codingService.saveStars(l.id, 3)
+    expect(codingService.allCompleted()).toBe(true)
+    expect(codingService.completedCount()).toBe(codingService.totalLevels())
+  })
 })

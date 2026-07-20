@@ -88,6 +88,10 @@ Lightbot/Code.org-style grid command-puzzles. Client-only, evidence-based (see
       fix succeeds.
 - [ ] **More distinct game formats** (each its own component, NOT grid reskins):
       pattern-complete, maze first-person. Consider reworking "Berburu Permata".
+- [x] **Coding on Kemajuan & certificate** — Kemajuan shows a coding progress card
+      (stars, levels done, progress bar); a Coding certificate issues once every level is
+      complete (`codingService.allCompleted/completedCount/maxStars`). Next: fold coding
+      stars into `badgeService` so coding contributes to badges too.
 - [ ] **Phase 3** — unlockable free-play sandbox as a reward; variables.
 
 ### P2 — Differentiators & polish
