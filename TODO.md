@@ -76,9 +76,12 @@ Lightbot/Code.org-style grid command-puzzles. Client-only, evidence-based (see
 - [x] **Order-the-steps game** ("Urutkan Langkah") — a DIFFERENT game format (not a
       grid reskin): arrange scrambled step cards. `CodingOrderLevel` (kind: 'order') +
       `CodingOrderRunner`. Levels can now have distinct game kinds via `level.kind`.
+- [x] **Predict-the-output game** ("Tebak Hasil") — read a program, tap the cell where the
+      robot stops. `CodingPredictLevel` (kind: 'predict') + `CodingPredictRunner` +
+      tappable `PuzzleGrid` markers. 5 levels.
 - [ ] **More distinct game formats** (each its own component, NOT grid reskins):
-      predict-the-output (where does the robot end?), spot-the-bug (tap the wrong step),
-      pattern-complete. Consider reworking "Berburu Permata" into something more novel.
+      spot-the-bug (tap the wrong step), pattern-complete, maze first-person.
+      Consider reworking "Berburu Permata" into something more novel.
 - [ ] **Phase 3** — unlockable free-play sandbox as a reward; variables.
 
 ### P2 — Differentiators & polish

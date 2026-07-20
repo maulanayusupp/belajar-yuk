@@ -1,15 +1,28 @@
 <script setup lang="ts">
-import type { CodingLevel, Facing } from '~/types'
+import type { Facing } from '~/types'
 import type { RobotState } from '~/utils/codeRunner'
 
-// Renders a level grid and the robot. Positions/sizes are computed in JS and
-// bound DIRECTLY to `transform` (not via CSS custom properties): Safari does
-// not animate a `transition: transform` when the value changes through a
-// var(), so a direct pixel value is required for the walking animation to play.
+// Renders a level grid + robot. Positions/sizes are computed in JS and bound
+// DIRECTLY to `transform` (not via CSS vars) so the walk animates in every
+// browser (incl. Safari). Optional `markers` add tappable labels on cells —
+// used by the "predict the output" game.
+interface Marker {
+  pos: string // "x,y"
+  label: string
+  state?: 'default' | 'chosen' | 'correct' | 'wrong'
+}
+
 const props = withDefaults(
-  defineProps<{ level: CodingLevel; robot: RobotState; collected?: string[] }>(),
-  { collected: () => [] },
+  defineProps<{
+    level: { grid: string[] }
+    robot: RobotState
+    collected?: string[]
+    markers?: Marker[]
+    selectable?: boolean
+  }>(),
+  { collected: () => [], markers: () => [], selectable: false },
 )
+const emit = defineEmits<{ pick: [pos: string] }>()
 
 const GAP = 4
 
@@ -40,6 +53,10 @@ onBeforeUnmount(() => {
 
 const ANGLE: Record<Facing, number> = { north: 0, east: 90, south: 180, west: 270 }
 
+function transformFor(x: number, y: number) {
+  return `translate(${x * (cell.value + GAP)}px, ${y * (cell.value + GAP)}px)`
+}
+
 const boardStyle = computed(() => ({
   gridTemplateColumns: `repeat(${cols.value}, ${cell.value}px)`,
   gridAutoRows: `${cell.value}px`,
@@ -48,10 +65,15 @@ const boardStyle = computed(() => ({
 const robotStyle = computed(() => ({
   width: `${cell.value}px`,
   height: `${cell.value}px`,
-  transform: `translate(${props.robot.x * (cell.value + GAP)}px, ${props.robot.y * (cell.value + GAP)}px)`,
+  transform: transformFor(props.robot.x, props.robot.y),
 }))
 const rotStyle = computed(() => ({ transform: `rotate(${ANGLE[props.robot.facing]}deg)` }))
 const faceStyle = computed(() => ({ transform: `rotate(${-ANGLE[props.robot.facing]}deg)` }))
+
+function markerStyle(pos: string) {
+  const [x, y] = pos.split(',').map(Number)
+  return { width: `${cell.value}px`, height: `${cell.value}px`, transform: transformFor(x, y) }
+}
 </script>
 
 <template>
@@ -75,6 +97,20 @@ const faceStyle = computed(() => ({ transform: `rotate(${-ANGLE[props.robot.faci
           >💎</span
         >
       </span>
+
+      <!-- Prediction markers (tappable candidate cells) -->
+      <component
+        :is="selectable ? 'button' : 'span'"
+        v-for="m in markers"
+        :key="m.pos"
+        class="grid__marker"
+        :class="`grid__marker--${m.state ?? 'default'}`"
+        :style="markerStyle(m.pos)"
+        :type="selectable ? 'button' : undefined"
+        @click="selectable && emit('pick', m.pos)"
+      >
+        {{ m.label }}
+      </component>
 
       <!-- Robot overlays the board and animates between cells -->
       <span class="grid__robot" :style="robotStyle" aria-label="Robot">
@@ -126,6 +162,40 @@ const faceStyle = computed(() => ({ transform: `rotate(${-ANGLE[props.robot.faci
     animation: pulse-glow 1.6s ease-in-out infinite;
   }
 
+  // Prediction markers
+  &__marker {
+    position: absolute;
+    top: spacing('sm');
+    left: spacing('sm');
+    @include flex-center;
+    font-family: $font-family-display;
+    font-weight: $font-weight-bold;
+    font-size: font-size('lg');
+    color: $color-primary-dark;
+    background: rgba($color-primary, 0.16);
+    border: 2px solid $color-primary;
+    border-radius: $radius-sm;
+
+    &--chosen {
+      background: rgba($color-primary, 0.35);
+      color: $color-white;
+      background-color: $color-primary;
+    }
+    &--correct {
+      background: rgba($color-success, 0.85);
+      border-color: $color-success;
+      color: $color-white;
+    }
+    &--wrong {
+      background: rgba($color-error, 0.8);
+      border-color: $color-error;
+      color: $color-white;
+    }
+  }
+  button.grid__marker {
+    cursor: pointer;
+  }
+
   // Robot position is set from JS (translate in px) so the transition animates
   // reliably in every browser, including Safari.
   &__robot {
@@ -135,6 +205,7 @@ const faceStyle = computed(() => ({ transform: `rotate(${-ANGLE[props.robot.faci
     @include flex-center;
     transition: transform 0.32s ease;
     will-change: transform;
+    pointer-events: none;
   }
 
   &__robot-rot {

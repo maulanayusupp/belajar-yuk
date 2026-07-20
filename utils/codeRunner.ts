@@ -54,7 +54,10 @@ export interface RunResult {
 }
 
 /** Run a program (tree of steps) on a level; returns animation frames + success. */
-export function runProgram(level: CodingLevel, program: CodingStep[]): RunResult {
+export function runProgram(
+  level: Pick<CodingLevel, 'grid' | 'start'>,
+  program: CodingStep[],
+): RunResult {
   let state: RobotState = { ...level.start }
   const collected = new Set<string>()
   const collectHere = () => {

@@ -54,6 +54,13 @@ test('coding "order the steps" game can be solved', async ({ page }) => {
   await expect(page.getByText('Urutan Benar!')).toBeVisible({ timeout: 6000 })
 })
 
+test('coding "predict" game renders', async ({ page }) => {
+  await page.goto('/coding/predict-1')
+  await dismissOnboarding(page)
+  await expect(page.locator('.grid__board')).toBeVisible()
+  await expect(page.getByRole('button', { name: /Jalankan/ })).toBeVisible()
+})
+
 test('the Progress page does not overflow horizontally', async ({ page }) => {
   await page.goto('/kemajuan')
   await dismissOnboarding(page)

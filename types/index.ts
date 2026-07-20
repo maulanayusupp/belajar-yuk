@@ -244,8 +244,23 @@ export interface CodingOrderLevel {
   hint?: string
 }
 
+/**
+ * A "predict the output" level — a DIFFERENT game: the child READS a given
+ * program and predicts which cell the robot ends on (code tracing).
+ */
+export interface CodingPredictLevel {
+  kind: 'predict'
+  id: string
+  title: string
+  grid: string[]
+  start: { x: number; y: number; facing: Facing }
+  /** The fixed program shown to the child to trace. */
+  program: CodingCommand[]
+  hint?: string
+}
+
 /** Any coding level (different game kinds share a map & progress). */
-export type AnyCodingLevel = CodingLevel | CodingOrderLevel
+export type AnyCodingLevel = CodingLevel | CodingOrderLevel | CodingPredictLevel
 
 /** A world groups levels (shown as a section on the map). */
 export interface CodingWorld {

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import type { CodingCommand, CodingStep } from '~/types'
-import { runProgram, starsForSolution, toSteps, countBlocks } from '~/utils/codeRunner'
+import { runProgram, starsForSolution, toSteps, countBlocks, isWalkable } from '~/utils/codeRunner'
 import { codingService } from '~/services/codingService'
 
 const F: CodingCommand = 'forward'
@@ -132,6 +132,22 @@ describe('codeRunner', () => {
       // cards must be visually distinct (icon+label) so ordering is unambiguous
       const cards = l.steps.map((s) => `${s.icon}|${s.label}`)
       expect(new Set(cards).size, `${l.id}: ambiguous (identical) cards`).toBe(cards.length)
+    }
+  })
+
+  it('every "predict" level ends on a walkable cell with enough candidate cells', () => {
+    const predicts = codingService.getLevels().filter((l) => l.kind === 'predict')
+    expect(predicts.length).toBeGreaterThan(0)
+    for (const l of predicts) {
+      if (l.kind !== 'predict') continue
+      const { frames } = runProgram(l, toSteps(l.program))
+      const end = frames.at(-1)!
+      expect(isWalkable(l.grid, end.x, end.y), `${l.id} ends off-path`).toBe(true)
+      const walkable = l.grid
+        .join('')
+        .split('')
+        .filter((c) => c === '.' || c === 'G' || c === 'C').length
+      expect(walkable, `${l.id} has too few candidate cells`).toBeGreaterThanOrEqual(4)
     }
   })
 

@@ -54,24 +54,15 @@ describe('material uniqueness', () => {
     const levels = codingService.getLevels()
     expect(duplicates(levels.map((l) => l.id))).toEqual([])
 
-    const gridSeen = new Map<string, string>()
-    const orderSeen = new Map<string, string>()
+    const seen = new Map<string, string>()
     for (const l of levels) {
-      if (l.kind === 'order') {
-        const sig = l.steps.map((s) => s.id).join(',')
-        expect(
-          orderSeen.get(sig),
-          `order "${l.id}" duplicates "${orderSeen.get(sig)}"`,
-        ).toBeUndefined()
-        orderSeen.set(sig, l.id)
-      } else {
-        const sig = JSON.stringify({ grid: l.grid, start: l.start })
-        expect(
-          gridSeen.get(sig),
-          `grid "${l.id}" duplicates "${gridSeen.get(sig)}"`,
-        ).toBeUndefined()
-        gridSeen.set(sig, l.id)
-      }
+      let sig: string
+      if (l.kind === 'order') sig = 'order|' + l.steps.map((s) => s.id).join(',')
+      else if (l.kind === 'predict')
+        sig = 'predict|' + JSON.stringify({ grid: l.grid, start: l.start, program: l.program })
+      else sig = 'grid|' + JSON.stringify({ grid: l.grid, start: l.start })
+      expect(seen.get(sig), `coding "${l.id}" duplicates "${seen.get(sig)}"`).toBeUndefined()
+      seen.set(sig, l.id)
     }
   })
 })

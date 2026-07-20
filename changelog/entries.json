@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-07-20",
+    "version": "0.27.0",
+    "tag": "Fitur",
+    "title": "Coding: game baru 'Tebak Hasil'",
+    "changes": [
+      "Jenis permainan baru lagi: baca program, lalu tebak di kotak mana robot berhenti.",
+      "Melatih membaca & menelusuri kode (bukan menyusun) — 5 level.",
+      "Coding kini punya 6 dunia dengan bentuk permainan berbeda-beda."
+    ]
+  },
+  {
     "date": "2026-07-19",
     "version": "0.26.0",
     "tag": "Konten",
