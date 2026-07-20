@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import type { CodingCommand, CodingStep } from '~/types'
+import type { CodingCommand, CodingCondition, CodingStep } from '~/types'
 import { runProgram, starsForSolution, toSteps, countBlocks, isWalkable } from '~/utils/codeRunner'
 import { codingService } from '~/services/codingService'
 
@@ -12,6 +12,23 @@ const rep = (times: number, ...body: CodingCommand[]): CodingStep => ({
   type: 'repeat',
   times,
   body: body.map((c) => ({ type: 'cmd' as const, cmd: c })),
+})
+// "Ulangi N × Panggil A" — the function-world solution shape.
+const repCall = (times: number): CodingStep => ({
+  type: 'repeat',
+  times,
+  body: [{ type: 'call', name: 'A' }],
+})
+// "Repeat until goal: if <cond> then X else Y" — the conditional-world shape.
+const loopIf = (
+  times: number,
+  cond: CodingCondition,
+  thenCmd: CodingCommand,
+  elseCmd: CodingCommand,
+): CodingStep => ({
+  type: 'repeat',
+  times,
+  body: [{ type: 'if', cond, body: [cmd(thenCmd)], elseBody: [cmd(elseCmd)] }],
 })
 
 // Intended optimal solution per authored level — validates the grids too.
@@ -166,6 +183,46 @@ describe('codeRunner', () => {
       expect(runProgram(l, toSteps(fixed)).success, `${l.id}: fix does not solve`).toBe(true)
       // The fix must actually change the command (a real bug).
       expect(l.buggy[l.fix.index], `${l.id}: fix equals buggy command`).not.toBe(l.fix.cmd)
+    }
+  })
+
+  it('every function level is solved by "Ulangi N × Panggil A" at its optimal count', () => {
+    const solutions: Record<string, { a: CodingCommand[]; n: number }> = {
+      'func-1': { a: [F, F, R], n: 4 },
+      'func-2': { a: [F, R, F, L], n: 3 },
+      'func-3': { a: [F, F, R], n: 2 },
+      'func-4': { a: [F, F, F, R], n: 4 },
+      'func-5': { a: [F, R, F, L], n: 3 },
+    }
+    for (const [id, { a, n }] of Object.entries(solutions)) {
+      const level = codingService.getLevel(id)!
+      const program = [repCall(n)]
+      const funcs = { A: toSteps(a) }
+      const { success, frames } = runProgram(level, program, funcs)
+      expect(success, `${id} not solved`).toBe(true)
+      const totalGems = level.grid
+        .join('')
+        .split('')
+        .filter((c) => c === 'C').length
+      expect(frames.at(-1)!.collected.length, `${id} missed gems`).toBe(totalGems)
+      const blocks = countBlocks(program) + countBlocks(funcs.A)
+      expect(blocks, `${id} optimal mismatch`).toBe(
+        (level as { optimalBlocks: number }).optimalBlocks,
+      )
+    }
+  })
+
+  it('every conditional level is solved by "repeat-until-goal: if path-ahead then/else"', () => {
+    const solutions: Record<string, { then: CodingCommand; else: CodingCommand }> = {
+      'cond-1': { then: F, else: R },
+      'cond-2': { then: F, else: L },
+      'cond-3': { then: F, else: R },
+    }
+    for (const [id, sol] of Object.entries(solutions)) {
+      const level = codingService.getLevel(id)!
+      const program = [loopIf(60, 'path-ahead', sol.then, sol.else)]
+      const { success } = runProgram(level, program, {}, true)
+      expect(success, `${id} not solved`).toBe(true)
     }
   })
 

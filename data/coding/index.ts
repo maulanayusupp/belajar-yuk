@@ -6,6 +6,8 @@ import { predictWorld } from './predict'
 import { bugWorld } from './bug'
 import { loopsWorld } from './loops'
 import { loopsGemsWorld } from './loops-gems'
+import { conditionalsWorld } from './conditionals'
+import { functionsWorld } from './functions'
 
 // All coding worlds, in order (easiest first). A "world" groups levels by
 // concept. The array order also drives the level unlock chain.
@@ -20,6 +22,8 @@ export const codingWorlds: CodingWorld[] = [
   bugWorld,
   loopsWorld,
   loopsGemsWorld,
+  conditionalsWorld,
+  functionsWorld,
 ]
 
 // Flat list of every level, in play order (used for unlock logic).

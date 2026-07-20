@@ -24,6 +24,8 @@ const gameKind = computed(() => {
   if (l.kind === 'order') return 'order'
   if (l.kind === 'predict') return 'predict'
   if (l.kind === 'bug') return 'bug'
+  if (l.concept === 'function') return 'func'
+  if (l.concept === 'conditional') return 'cond'
   return l.concept === 'loop' ? 'loop' : 'grid'
 })
 const titleIcon = computed(() => {
@@ -31,6 +33,8 @@ const titleIcon = computed(() => {
   if (l?.kind === 'order') return l.goalEmoji
   if (l?.kind === 'predict') return '🔮'
   if (l?.kind === 'bug') return '🐞'
+  if (l?.concept === 'function') return '🪄'
+  if (l?.concept === 'conditional') return '🔀'
   return '🤖'
 })
 
@@ -66,6 +70,18 @@ useHead(() => ({ title: `${level.value?.title} — Coding` }))
     />
     <CodingLoopRunner
       v-else-if="gameKind === 'loop'"
+      :key="level.id"
+      :level="level"
+      :next-id="nextId"
+    />
+    <CodingFuncRunner
+      v-else-if="gameKind === 'func'"
+      :key="level.id"
+      :level="level"
+      :next-id="nextId"
+    />
+    <CodingIfRunner
+      v-else-if="gameKind === 'cond'"
       :key="level.id"
       :level="level"
       :next-id="nextId"

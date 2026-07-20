@@ -94,9 +94,13 @@ conditionals → functions → variables.
 - Kodable curriculum ladder (Sequence → Conditions → Loops → Functions → Variables): https://www.kodable.com/learn/curriculum-live
 - CS Unplugged — Kidbots (unplugged sequencing/debugging for the youngest): https://www.csunplugged.org/en/topics/kidbots/whats-it-all-about/
 - Gamification that works for solo young learners (badges/flow vs. leaderboards): https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2024.1429452/full
+- Debugging as a first-class skill (spot/fix the wrong step) — CSTA/CS Unplugged rationale: https://www.csunplugged.org/en/topics/kidbots/whats-it-all-about/
+- Constrained if-else "rule that follows a path" mirrors Lightbot/Kodable Conditions; a single
+  named procedure ("Fungsi A") mirrors Lightbot P1/P2 procedures — decomposition before variables.
 
 Applied in: `data/coding/**`, `utils/codeRunner.ts`, `services/codingService.ts`,
-`components/coding/**`. Phase plan in `TODO.md`.
+`components/coding/**`. Game kinds: sequence/loops/gems (grid), order, predict, bug,
+plus Phase 2 `function` & `conditional`. Phase plan in `TODO.md`.
 
 ## Parent motivation & positioning (marketing)
 

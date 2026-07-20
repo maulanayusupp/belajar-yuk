@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-07-20",
+    "version": "0.34.0",
+    "tag": "Fitur",
+    "title": "Coding Fase 2: Kondisional & Fungsi",
+    "changes": [
+      "Dunia baru 'Fungsi Ajaib' 🪄: buat 'Fungsi A' sekali lalu panggil berulang — belajar memecah masalah (5 level).",
+      "Dunia baru 'Jika… Kalau Tidak…' 🔀: pilih aksi robot JIKA ada jalan & KALAU TIDAK — satu aturan kecil menuntun robot menyusuri jalan (3 level).",
+      "Mesin Coding kini mengerti blok jika/kalau-tidak, panggil fungsi, dan 'ulangi sampai tiba di tujuan'."
+    ]
+  },
+  {
+    "date": "2026-07-20",
     "version": "0.33.0",
     "tag": "Fitur",
     "title": "Kemajuan Coding & Sertifikat Coding",

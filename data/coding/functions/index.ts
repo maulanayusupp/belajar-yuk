@@ -1,0 +1,75 @@
+import type { CodingWorld } from '~/types'
+
+// World — "Fungsi Ajaib" (Phase 2). The child defines a reusable routine
+// ("Fungsi A") once, then calls it (often inside a loop) to solve the level.
+// Teaches decomposition: name a group of steps, reuse it. Solutions are
+// validated in tests/codeRunner.test.ts (A body + main program).
+export const functionsWorld: CodingWorld = {
+  id: 'functions',
+  title: 'Fungsi Ajaib',
+  icon: '🪄',
+  concept: 'function',
+  level: 'advanced',
+  description: 'Buat "Fungsi A" sekali, lalu panggil berulang untuk menyelesaikan level.',
+  levels: [
+    {
+      id: 'func-1',
+      title: 'Fungsi Persegi',
+      concept: 'function',
+      grid: ['.C.', 'C.C', 'GC.'],
+      start: { x: 0, y: 2, facing: 'north' },
+      allowed: ['forward', 'left', 'right'],
+      allowLoop: true,
+      useFunction: true,
+      optimalBlocks: 5,
+      hint: 'Isi Fungsi A: Maju, Maju, Kanan. Lalu Ulangi 4× Panggil A.',
+    },
+    {
+      id: 'func-2',
+      title: 'Naik Tangga',
+      concept: 'function',
+      grid: ['##.G', '#..#', '..##', '.###'],
+      start: { x: 0, y: 3, facing: 'north' },
+      allowed: ['forward', 'left', 'right'],
+      allowLoop: true,
+      useFunction: true,
+      optimalBlocks: 6,
+      hint: 'Satu anak tangga = Maju, Kanan, Maju, Kiri. Jadikan itu Fungsi A.',
+    },
+    {
+      id: 'func-3',
+      title: 'Panggil Dua Kali',
+      concept: 'function',
+      grid: ['.C.', '##.', '##G'],
+      start: { x: 0, y: 0, facing: 'east' },
+      allowed: ['forward', 'left', 'right'],
+      useFunction: true,
+      optimalBlocks: 5,
+      hint: 'Fungsi A: Maju, Maju, Kanan. Panggil A dua kali.',
+    },
+    {
+      id: 'func-4',
+      title: 'Keliling Taman',
+      concept: 'function',
+      grid: ['.C..', '.##.', '.##C', 'GC..'],
+      start: { x: 0, y: 3, facing: 'north' },
+      allowed: ['forward', 'left', 'right'],
+      allowLoop: true,
+      useFunction: true,
+      optimalBlocks: 6,
+      hint: 'Satu sisi = Maju, Maju, Maju, Kanan. Ulangi 4× Panggil A.',
+    },
+    {
+      id: 'func-5',
+      title: 'Tangga Menurun',
+      concept: 'function',
+      grid: ['..##', '#C.#', '##..', '###G'],
+      start: { x: 0, y: 0, facing: 'east' },
+      allowed: ['forward', 'left', 'right'],
+      allowLoop: true,
+      useFunction: true,
+      optimalBlocks: 6,
+      hint: 'Satu anak tangga = Maju, Kanan, Maju, Kiri. Ulangi 3× Panggil A.',
+    },
+  ],
+}

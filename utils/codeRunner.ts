@@ -1,4 +1,4 @@
-import type { CodingCommand, CodingLevel, CodingStep, Facing } from '~/types'
+import type { CodingCommand, CodingCondition, CodingLevel, CodingStep, Facing } from '~/types'
 
 // Pure, deterministic interpreter for the coding puzzles. No side effects,
 // so it is easy to unit-test. The runner turns a program (list of commands)
@@ -53,18 +53,32 @@ export interface RunResult {
   success: boolean
 }
 
-/** Run a program (tree of steps) on a level; returns animation frames + success. */
+/** Guard against runaway programs (e.g. a function that calls itself). */
+const MAX_EXECUTED_COMMANDS = 1000
+
+/**
+ * Run a program (tree of steps) on a level; returns animation frames + success.
+ * `funcs` supplies named function bodies for `call` steps (Phase 2 decomposition).
+ */
 export function runProgram(
   level: Pick<CodingLevel, 'grid' | 'start'>,
   program: CodingStep[],
+  funcs: Partial<Record<'A', CodingStep[]>> = {},
+  /** Stop as soon as the goal is reached with all gems (for "repeat until goal"). */
+  haltOnGoal = false,
 ): RunResult {
   let state: RobotState = { ...level.start }
   const collected = new Set<string>()
+  const gemGoal = totalGems(level.grid)
   const collectHere = () => {
     if (cellAt(level.grid, state.x, state.y) === 'C') collected.add(`${state.x},${state.y}`)
   }
   collectHere() // the start cell could (rarely) hold a gem
   const frames: Frame[] = [{ ...state, collected: [...collected] }]
+  let executed = 0
+  let halted = false
+
+  const atGoal = () => cellAt(level.grid, state.x, state.y) === 'G' && collected.size === gemGoal
 
   const step = (cmd: CodingCommand) => {
     if (cmd === 'left') {
@@ -79,14 +93,34 @@ export function runProgram(
     }
     collectHere()
     frames.push({ ...state, collected: [...collected] })
+    if (haltOnGoal && atGoal()) halted = true
+  }
+
+  // Evaluate a conditional against the robot's current state.
+  const evalCond = (cond: CodingCondition): boolean => {
+    if (cond === 'path-ahead') {
+      return isWalkable(level.grid, state.x + DX[state.facing], state.y + DY[state.facing])
+    }
+    // gem-here — standing on an as-yet-uncollected gem
+    return cellAt(level.grid, state.x, state.y) === 'C' && !collected.has(`${state.x},${state.y}`)
   }
 
   const walk = (steps: CodingStep[]) => {
     for (const s of steps) {
+      if (halted || executed >= MAX_EXECUTED_COMMANDS) return
       if (s.type === 'repeat') {
-        for (let i = 0; i < s.times; i++) walk(s.body)
+        for (let i = 0; i < s.times; i++) {
+          if (halted || executed >= MAX_EXECUTED_COMMANDS) break
+          walk(s.body)
+        }
+      } else if (s.type === 'if') {
+        if (evalCond(s.cond)) walk(s.body)
+        else if (s.elseBody) walk(s.elseBody)
+      } else if (s.type === 'call') {
+        walk(funcs[s.name] ?? [])
       } else {
         step(s.cmd)
+        executed++
       }
     }
   }
@@ -102,9 +136,17 @@ export function toSteps(cmds: CodingCommand[]): CodingStep[] {
   return cmds.map((cmd) => ({ type: 'cmd', cmd }))
 }
 
-/** Number of blocks placed — a repeat block counts as 1 + its body (loops win). */
+/**
+ * Number of blocks placed — a container (repeat/if) counts as 1 + its body, so
+ * loops/conditions/functions "win" by shrinking the block count. `cmd` and
+ * `call` each count as 1.
+ */
 export function countBlocks(program: CodingStep[]): number {
-  return program.reduce((n, s) => n + (s.type === 'repeat' ? 1 + s.body.length : 1), 0)
+  return program.reduce((n, s) => {
+    if (s.type === 'repeat') return n + 1 + countBlocks(s.body)
+    if (s.type === 'if') return n + 1 + countBlocks(s.body) + countBlocks(s.elseBody ?? [])
+    return n + 1 // cmd or call
+  }, 0)
 }
 
 /**

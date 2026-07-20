@@ -83,6 +83,34 @@ test('coding "predict" game renders', async ({ page }) => {
   await expect(page.getByRole('button', { name: /Jalankan/ })).toBeVisible()
 })
 
+test('coding "function" game can be solved', async ({ page }) => {
+  await unlockCodingLevel(page, 'func-1')
+  await page.goto('/coding/func-1')
+  await dismissOnboarding(page)
+  await expect(page.locator('.grid__board')).toBeVisible()
+  // Build Fungsi A = Maju, Maju, Kanan (palette buttons, exact avoids chips).
+  await page.getByRole('button', { name: 'Maju', exact: true }).click()
+  await page.getByRole('button', { name: 'Maju', exact: true }).click()
+  await page.getByRole('button', { name: 'Kanan', exact: true }).click()
+  // Ulangi ×4 (default 2 → +2)
+  await page.getByRole('button', { name: 'Tambah ulangan' }).click()
+  await page.getByRole('button', { name: 'Tambah ulangan' }).click()
+  await page.getByRole('button', { name: /Jalankan/ }).click()
+  await expect(page.getByText('Berhasil!')).toBeVisible({ timeout: 6000 })
+})
+
+test('coding "conditional" game can be solved', async ({ page }) => {
+  await unlockCodingLevel(page, 'cond-1')
+  await page.goto('/coding/cond-1')
+  await dismissOnboarding(page)
+  await expect(page.locator('.grid__board')).toBeVisible()
+  // THEN branch → Maju, ELSE branch → Kanan (scope by branch to disambiguate).
+  await page.locator('.ifr__branch').first().getByRole('button', { name: 'Maju' }).click()
+  await page.locator('.ifr__branch').nth(1).getByRole('button', { name: 'Kanan' }).click()
+  await page.getByRole('button', { name: /Jalankan/ }).click()
+  await expect(page.getByText('Berhasil!')).toBeVisible({ timeout: 6000 })
+})
+
 test('Daftar Materi lists lessons and links to one', async ({ page }) => {
   await page.goto('/materi')
   await dismissOnboarding(page)

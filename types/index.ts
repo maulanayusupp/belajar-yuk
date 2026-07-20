@@ -185,19 +185,45 @@ export interface DrillBest {
 // ---- Coding (separate module: grid command-puzzles, Lightbot-style) --------
 
 /** Concept a coding level teaches. */
-export type CodingConcept = 'sequence' | 'loop' | 'conditional'
+export type CodingConcept = 'sequence' | 'loop' | 'conditional' | 'function'
 
 /** A primitive command block the child can place in the program. */
 export type CodingCommand = 'forward' | 'left' | 'right'
 
 /**
- * A step in a coding program. Either a primitive command, or a `repeat` block
- * (loop) whose body holds primitive commands. Loops teach repetition/efficiency.
- * Body is primitives only (no nested loops) — enough for the loops world.
+ * A sensor a conditional (`if`) block tests against the robot's current state:
+ * - `path-ahead` → the cell directly in front is walkable.
+ * - `gem-here` → the robot stands on an uncollected gem.
  */
-export type CodingStep =
-  | { type: 'cmd'; cmd: CodingCommand }
-  | { type: 'repeat'; times: number; body: Array<{ type: 'cmd'; cmd: CodingCommand }> }
+export type CodingCondition = 'path-ahead' | 'gem-here'
+
+/** A primitive command step. */
+export type CodingCmdStep = { type: 'cmd'; cmd: CodingCommand }
+
+/** A call to the named function (Phase 2 decomposition). */
+export type CodingCallStep = { type: 'call'; name: 'A' }
+
+/** A conditional: run `body` when `cond` holds, else `elseBody` (if given). */
+export interface CodingIfStep {
+  type: 'if'
+  cond: CodingCondition
+  body: Array<CodingCmdStep | CodingCallStep>
+  elseBody?: Array<CodingCmdStep | CodingCallStep>
+}
+
+/** A loop: run `body` `times` times. Its body may contain a conditional. */
+export interface CodingRepeatStep {
+  type: 'repeat'
+  times: number
+  body: Array<CodingCmdStep | CodingCallStep | CodingIfStep>
+}
+
+/**
+ * A step in a coding program. Nesting is at most one level deep (a loop may hold
+ * a conditional; conditional/loop bodies hold primitives + calls) — enough for
+ * the Phase 2 worlds. The function body itself (see the runner) is primitives only.
+ */
+export type CodingStep = CodingCmdStep | CodingCallStep | CodingIfStep | CodingRepeatStep
 
 /** Direction the robot faces. */
 export type Facing = 'north' | 'east' | 'south' | 'west'
@@ -219,6 +245,13 @@ export interface CodingLevel {
   /** Block count for a 3-star solution. */
   optimalBlocks: number
   hint?: string
+  // ---- Phase 2 palette gates (opt-in per level) ----
+  /** Offer a "Ulangi ×N" (repeat) block in the palette. */
+  allowLoop?: boolean
+  /** Conditions offered as "Jika …" (if) blocks; omit/empty to disable. */
+  conditions?: CodingCondition[]
+  /** Offer a "Fungsi A" definition + "Panggil A" (call) block. */
+  useFunction?: boolean
 }
 
 /** One step card in an "order the steps" level. */

@@ -69,8 +69,13 @@ Lightbot/Code.org-style grid command-puzzles. Client-only, evidence-based (see
 - [x] **Collectibles world "Berburu Permata"** — new win condition (collect all
       gems 'C' then reach goal); interpreter tracks collected per-frame, PuzzleGrid
       renders/animates gems. 6 levels. Reuses the sequencing runner.
-- [ ] **Phase 2 — Conditionals & functions (ages 9-12)** — `if`/`if-else`, a single
-      "Function A" procedure slot, tighter `maxBlocks` to force decomposition.
+- [x] **Phase 2 — Conditionals & functions (ages 9-12)** — engine supports `if`/`if-else`
+      (`CodingIfStep`), `call` + a single "Fungsi A" (`CodingCallStep`), and
+      `runProgram(..., haltOnGoal)` for "repeat until goal". Two worlds: "Fungsi Ajaib"
+      (`concept: 'function'`, constrained build-A + Ulangi N × Panggil A → `CodingFuncRunner`)
+      and "Jika… Kalau Tidak…" (`concept: 'conditional'`, pick then/else → `CodingIfRunner`).
+      Solutions validated in `tests/codeRunner.test.ts`. Next: free-form builder with
+      nested if inside a loop; more levels; `gem-here` conditional puzzles.
 - [x] **Step-through execution** ("Jalan Langkah-demi-Langkah") — 👣 Langkah button
       runs the program one command at a time; the executing chip is highlighted in the
       sequence runner. Mode `edit`/`step`/`auto` in `CodingLevelRunner` & `CodingLoopRunner`.
