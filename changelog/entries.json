@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-07-20",
+    "version": "0.30.0",
+    "tag": "Fitur",
+    "title": "Header baru, logo baru, & Daftar Materi bisa dicari",
+    "changes": [
+      "Logo & favicon baru (topi wisuda) yang lebih khas; gambar preview share diperbarui.",
+      "Menu header dirapikan: 'Pelajaran' kini memuat semua mapel + Coding, tanpa ikon yang berantakan.",
+      "Daftar Materi kini punya kotak pencarian & bagian yang bisa dilipat (collapse)."
+    ]
+  },
+  {
+    "date": "2026-07-20",
     "version": "0.29.0",
     "tag": "Fitur",
     "title": "Daftar Materi — peta semua pelajaran",

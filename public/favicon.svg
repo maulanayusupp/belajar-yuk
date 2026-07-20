@@ -5,36 +5,34 @@
       <stop offset="0.5" stop-color="#6C5CE7"/>
       <stop offset="1" stop-color="#4834D4"/>
     </linearGradient>
-    <linearGradient id="balloon" x1="176" y1="96" x2="336" y2="360" gradientUnits="userSpaceOnUse">
+    <linearGradient id="cap" x1="106" y1="152" x2="406" y2="276" gradientUnits="userSpaceOnUse">
       <stop stop-color="#FFFFFF"/>
-      <stop offset="1" stop-color="#FFE0EC"/>
+      <stop offset="1" stop-color="#EFE9FF"/>
     </linearGradient>
-    <radialGradient id="shine" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(212 168) rotate(45) scale(70)">
-      <stop stop-color="#FFFFFF"/>
-      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
-    </radialGradient>
   </defs>
 
-  <!-- Latar rounded square -->
+  <!-- Rounded-square background -->
   <rect width="512" height="512" rx="120" fill="url(#bg)"/>
 
-  <!-- Aksen lingkaran halus -->
-  <circle cx="430" cy="90" r="120" fill="#FFFFFF" opacity="0.08"/>
-  <circle cx="80" cy="440" r="150" fill="#FFFFFF" opacity="0.06"/>
+  <!-- Soft decorative circles -->
+  <circle cx="428" cy="92" r="120" fill="#FFFFFF" opacity="0.08"/>
+  <circle cx="86" cy="438" r="150" fill="#FFFFFF" opacity="0.06"/>
 
-  <!-- Tali balon -->
-  <path d="M256 322 C 246 356, 274 372, 256 408" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" opacity="0.85"/>
+  <!-- Tassel cord + bead -->
+  <path d="M256 214 C 360 214, 402 222, 402 252 L 402 300" stroke="#FECA57" stroke-width="10" stroke-linecap="round" fill="none"/>
+  <circle cx="402" cy="312" r="14" fill="#FECA57"/>
+  <path d="M390 320 L 414 320 L 408 344 L 396 344 Z" fill="#FECA57"/>
 
-  <!-- Badan balon -->
-  <path d="M256 96 C 322 96, 356 148, 356 210 C 356 280, 306 322, 256 330 C 206 322, 156 280, 156 210 C 156 148, 190 96, 256 96 Z" fill="url(#balloon)"/>
+  <!-- Cap band (head) -->
+  <path d="M198 258 L 314 258 L 314 300 Q 256 342 198 300 Z" fill="#D9CCFF"/>
 
-  <!-- Simpul balon -->
-  <path d="M242 326 L 270 326 L 256 348 Z" fill="#FFD3E2"/>
+  <!-- Mortarboard top -->
+  <path d="M256 150 L 412 214 L 256 278 L 100 214 Z" fill="url(#cap)"/>
 
-  <!-- Kilau -->
-  <ellipse cx="212" cy="168" rx="34" ry="46" fill="url(#shine)" opacity="0.9" transform="rotate(-20 212 168)"/>
+  <!-- Button -->
+  <circle cx="256" cy="214" r="17" fill="#FECA57"/>
 
-  <!-- Bintang percikan -->
-  <path d="M368 250 l 10 24 l 24 10 l -24 10 l -10 24 l -10 -24 l -24 -10 l 24 -10 Z" fill="#FECA57"/>
-  <path d="M150 150 l 6 15 l 15 6 l -15 6 l -6 15 l -6 -15 l -15 -6 l 15 -6 Z" fill="#00CEC9"/>
+  <!-- Sparkle accents -->
+  <path d="M132 138 l 9 20 l 20 9 l -20 9 l -9 20 l -9 -20 l -20 -9 l 20 -9 Z" fill="#FECA57"/>
+  <path d="M398 398 l 6 14 l 14 6 l -14 6 l -6 14 l -6 -14 l -14 -6 l 14 -6 Z" fill="#00CEC9"/>
 </svg>

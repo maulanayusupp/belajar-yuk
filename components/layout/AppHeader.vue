@@ -1,28 +1,29 @@
 <script setup lang="ts">
 import { lessonService } from '~/services/lessonService'
 
-// Global premium glass header: logo + navigation + actions.
-// Subjects live under a "Pelajaran" dropdown (auto-includes every subject);
-// Coding/Latihan/Kemajuan are top-level. Mobile uses a slide-down menu.
+// Global glass header: logo + navigation + actions.
+// "Pelajaran" dropdown groups all subjects + Coding; a few top-level links.
+// Mobile uses a slide-down sheet.
 const subjects = lessonService.getSubjects()
+const learnMenu = [
+  ...subjects.map((s) => ({ to: `/${s.id}`, title: s.title, sub: s.titleEn, emoji: s.emoji })),
+  { to: '/coding', title: 'Coding', sub: 'Logika & Robot', emoji: '🤖' },
+]
 const links = [
-  { to: '/coding', label: 'Coding', emoji: '🤖' },
-  { to: '/materi', label: 'Daftar Materi', emoji: '📚' },
-  { to: '/latihan', label: 'Latihan Kilat', emoji: '⚡' },
-  { to: '/kemajuan', label: 'Kemajuan', emoji: '📊' },
+  { to: '/materi', label: 'Daftar Materi' },
+  { to: '/latihan', label: 'Latihan Kilat' },
+  { to: '/kemajuan', label: 'Kemajuan' },
 ]
 
 const route = useRoute()
 const mobileOpen = ref(false)
 const scrolled = ref(false)
 
-// Close the mobile menu whenever navigation happens.
 watch(
   () => route.fullPath,
   () => (mobileOpen.value = false),
 )
 
-// Subtle shadow/opacity boost once the page is scrolled.
 function onScroll() {
   scrolled.value = window.scrollY > 8
 }
@@ -32,7 +33,9 @@ onMounted(() => {
 })
 onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
 
-const isSubjectActive = computed(() => subjects.some((s) => route.path.startsWith(`/${s.id}`)))
+const isLearnActive = computed(
+  () => subjects.some((s) => route.path.startsWith(`/${s.id}`)) || route.path.startsWith('/coding'),
+)
 </script>
 
 <template>
@@ -40,7 +43,7 @@ const isSubjectActive = computed(() => subjects.some((s) => route.path.startsWit
     <div class="container hdr__inner">
       <!-- Logo -->
       <NuxtLink to="/" class="hdr__logo" aria-label="Belajar Yuk! — Beranda">
-        <span class="hdr__mark" aria-hidden="true">🎈</span>
+        <img src="/favicon.svg" alt="" class="hdr__mark" width="40" height="40" />
         <span class="hdr__name">Belajar Yuk!</span>
       </NuxtLink>
 
@@ -49,31 +52,31 @@ const isSubjectActive = computed(() => subjects.some((s) => route.path.startsWit
         <div class="drop">
           <button
             class="hdr__link drop__trigger"
-            :class="{ 'hdr__link--active': isSubjectActive }"
+            :class="{ 'hdr__link--active': isLearnActive }"
             type="button"
             aria-haspopup="true"
           >
-            📚 Pelajaran <span class="drop__caret" aria-hidden="true">▾</span>
+            Pelajaran <span class="drop__caret" aria-hidden="true">▾</span>
           </button>
           <div class="drop__menu" role="menu">
             <NuxtLink
-              v-for="s in subjects"
-              :key="s.id"
-              :to="`/${s.id}`"
+              v-for="item in learnMenu"
+              :key="item.to"
+              :to="item.to"
               class="drop__item"
               role="menuitem"
             >
-              <span class="drop__item-emoji" aria-hidden="true">{{ s.emoji }}</span>
+              <span class="drop__item-emoji" aria-hidden="true">{{ item.emoji }}</span>
               <span>
-                <span class="drop__item-title">{{ s.title }}</span>
-                <span class="drop__item-sub">{{ s.titleEn }}</span>
+                <span class="drop__item-title">{{ item.title }}</span>
+                <span class="drop__item-sub">{{ item.sub }}</span>
               </span>
             </NuxtLink>
           </div>
         </div>
 
         <NuxtLink v-for="item in links" :key="item.to" :to="item.to" class="hdr__link">
-          <span aria-hidden="true">{{ item.emoji }}</span> {{ item.label }}
+          {{ item.label }}
         </NuxtLink>
       </nav>
 
@@ -108,17 +111,15 @@ const isSubjectActive = computed(() => subjects.some((s) => route.path.startsWit
         <div class="container sheet__inner">
           <span class="sheet__label">Pelajaran</span>
           <div class="sheet__grid">
-            <NuxtLink v-for="s in subjects" :key="s.id" :to="`/${s.id}`" class="sheet__chip">
-              <span aria-hidden="true">{{ s.emoji }}</span> {{ s.title }}
+            <NuxtLink v-for="item in learnMenu" :key="item.to" :to="item.to" class="sheet__chip">
+              <span aria-hidden="true">{{ item.emoji }}</span> {{ item.title }}
             </NuxtLink>
           </div>
           <span class="sheet__label">Jelajahi</span>
           <NuxtLink v-for="item in links" :key="item.to" :to="item.to" class="sheet__link">
-            <span aria-hidden="true">{{ item.emoji }}</span> {{ item.label }}
+            {{ item.label }}
           </NuxtLink>
-          <NuxtLink to="/orangtua" class="sheet__link">
-            <span aria-hidden="true">👨‍👩‍👧</span> Area Orang Tua
-          </NuxtLink>
+          <NuxtLink to="/orangtua" class="sheet__link">Area Orang Tua</NuxtLink>
         </div>
       </nav>
     </Transition>
@@ -154,13 +155,10 @@ const isSubjectActive = computed(() => subjects.some((s) => route.path.startsWit
   }
 
   &__mark {
-    @include flex-center;
     width: 40px;
     height: 40px;
-    font-size: font-size('lg');
-    background: $gradient-primary;
-    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-    box-shadow: $shadow-primary;
+    border-radius: 26%;
+    box-shadow: $shadow-sm;
     animation: float 4s ease-in-out infinite;
   }
 
@@ -292,7 +290,6 @@ const isSubjectActive = computed(() => subjects.some((s) => route.path.startsWit
     transition: transform $transition-base;
   }
 
-  // Reveal on hover or keyboard focus.
   &:hover &__menu,
   &:focus-within &__menu {
     opacity: 1;
@@ -309,7 +306,7 @@ const isSubjectActive = computed(() => subjects.some((s) => route.path.startsWit
     top: calc(100% + #{spacing('sm')});
     left: 50%;
     transform: translate(-50%, 8px);
-    min-width: 240px;
+    min-width: 250px;
     padding: spacing('sm');
     background: rgba(255, 255, 255, 0.96);
     backdrop-filter: blur($glass-blur);
@@ -320,7 +317,6 @@ const isSubjectActive = computed(() => subjects.some((s) => route.path.startsWit
     visibility: hidden;
     transition: all $transition-base;
 
-    // Hover bridge so the menu doesn't close in the gap.
     &::before {
       content: '';
       position: absolute;
@@ -415,7 +411,6 @@ const isSubjectActive = computed(() => subjects.some((s) => route.path.startsWit
   }
 }
 
-// Slide-down transition for the mobile sheet.
 .sheet-enter-active,
 .sheet-leave-active {
   transition:

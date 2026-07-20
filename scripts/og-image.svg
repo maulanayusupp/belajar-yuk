@@ -5,73 +5,71 @@
       <stop offset="0.55" stop-color="#6C5CE7"/>
       <stop offset="1" stop-color="#00CEC9"/>
     </linearGradient>
-    <linearGradient id="balloon" x1="820" y1="120" x2="1040" y2="470" gradientUnits="userSpaceOnUse">
+    <linearGradient id="cap" x1="760" y1="176" x2="1120" y2="324" gradientUnits="userSpaceOnUse">
       <stop stop-color="#FFFFFF"/>
-      <stop offset="1" stop-color="#FFE0EC"/>
+      <stop offset="1" stop-color="#EFE9FF"/>
     </linearGradient>
-    <radialGradient id="shine" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(880 210) rotate(45) scale(90)">
-      <stop stop-color="#FFFFFF"/>
-      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
-    </radialGradient>
     <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
       <feDropShadow dx="0" dy="18" stdDeviation="26" flood-color="#1A1035" flood-opacity="0.28"/>
     </filter>
   </defs>
 
-  <!-- Latar -->
+  <!-- Background -->
   <rect width="1200" height="630" fill="url(#bg)"/>
   <circle cx="1120" cy="70" r="200" fill="#FFFFFF" opacity="0.08"/>
   <circle cx="90" cy="600" r="230" fill="#FFFFFF" opacity="0.06"/>
   <circle cx="640" cy="120" r="120" fill="#FFFFFF" opacity="0.05"/>
 
-  <!-- ============ Kolom kiri: teks ============ -->
-  <!-- Pill -->
-  <rect x="80" y="96" width="470" height="52" rx="26" fill="#FFFFFF" opacity="0.18"/>
-  <text x="108" y="131" font-family="Nunito, Arial, sans-serif" font-size="24" font-weight="800" fill="#FFFFFF">BELAJAR TERSTRUKTUR UNTUK ANAK</text>
+  <!-- ============ Left column: text ============ -->
+  <rect x="80" y="92" width="520" height="52" rx="26" fill="#FFFFFF" opacity="0.18"/>
+  <text x="108" y="127" font-family="Nunito, Arial, sans-serif" font-size="24" font-weight="800" fill="#FFFFFF">SATU APLIKASI, SEMUA MATERI ANAK</text>
 
-  <!-- Judul -->
-  <text x="76" y="266" font-family="'Baloo 2', Nunito, Arial, sans-serif" font-size="104" font-weight="800" fill="#FFFFFF" letter-spacing="-2">Belajar Yuk!</text>
+  <text x="76" y="262" font-family="'Baloo 2', Nunito, Arial, sans-serif" font-size="104" font-weight="800" fill="#FFFFFF" letter-spacing="-2">Belajar Yuk!</text>
 
-  <!-- Tagline (fokus manfaat & materi) -->
-  <text x="80" y="336" font-family="Nunito, Arial, sans-serif" font-size="38" font-weight="700" fill="#FFFFFF" opacity="0.96">Kuasai Bahasa Inggris &amp; Matematika</text>
-  <text x="80" y="388" font-family="Nunito, Arial, sans-serif" font-size="38" font-weight="700" fill="#FFFFFF" opacity="0.96">sejak dini — metode Singapore Math</text>
+  <text x="80" y="332" font-family="Nunito, Arial, sans-serif" font-size="36" font-weight="700" fill="#FFFFFF" opacity="0.96">Inggris · Matematika · Sains ·</text>
+  <text x="80" y="382" font-family="Nunito, Arial, sans-serif" font-size="36" font-weight="700" fill="#FFFFFF" opacity="0.96">Membaca · Coding — belajar terarah</text>
 
-  <!-- Chips mata pelajaran -->
+  <!-- Subject chips -->
   <g>
-    <rect x="80" y="440" width="230" height="70" rx="20" fill="#FFFFFF"/>
-    <text x="118" y="485" font-family="Nunito, Arial, sans-serif" font-size="30" font-weight="800" fill="#EE7752">ABC · English</text>
+    <rect x="80" y="440" width="150" height="66" rx="20" fill="#FFFFFF"/>
+    <text x="155" y="483" text-anchor="middle" font-family="Nunito, Arial, sans-serif" font-size="28" font-weight="800" fill="#EE7752">English</text>
   </g>
   <g>
-    <rect x="330" y="440" width="270" height="70" rx="20" fill="#FFFFFF"/>
-    <text x="366" y="485" font-family="Nunito, Arial, sans-serif" font-size="30" font-weight="800" fill="#3867D6">1+2 · Matematika</text>
+    <rect x="244" y="440" width="120" height="66" rx="20" fill="#FFFFFF"/>
+    <text x="304" y="483" text-anchor="middle" font-family="Nunito, Arial, sans-serif" font-size="28" font-weight="800" fill="#3867D6">1+2</text>
+  </g>
+  <g>
+    <rect x="378" y="440" width="170" height="66" rx="20" fill="#FFFFFF"/>
+    <text x="463" y="483" text-anchor="middle" font-family="Nunito, Arial, sans-serif" font-size="28" font-weight="800" fill="#0FA07B">Coding</text>
   </g>
 
-  <!-- Manfaat / metode -->
-  <text x="82" y="560" font-family="Nunito, Arial, sans-serif" font-size="26" font-weight="700" fill="#FFFFFF" opacity="0.9">Singapore Math · Phonics · Belajar Bertahap · Usia 6+</text>
+  <text x="82" y="556" font-family="Nunito, Arial, sans-serif" font-size="26" font-weight="700" fill="#FFFFFF" opacity="0.9">Tunas · Penjelajah · Juara · Usia 6+</text>
 
-  <!-- ============ Kolom kanan: balon ============ -->
+  <!-- ============ Right column: graduation cap ============ -->
   <g filter="url(#soft)">
-    <!-- Tali -->
-    <path d="M930 430 C 916 476, 952 500, 930 548" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round" opacity="0.9"/>
-    <!-- Badan balon -->
-    <path d="M930 120 C 1016 120, 1060 190, 1060 272 C 1060 366, 994 424, 930 436 C 866 424, 800 366, 800 272 C 800 190, 844 120, 930 120 Z" fill="url(#balloon)"/>
-    <!-- Simpul -->
-    <path d="M912 432 L 948 432 L 930 462 Z" fill="#FFD3E2"/>
-    <!-- Kilau -->
-    <ellipse cx="880" cy="210" rx="42" ry="58" fill="url(#shine)" opacity="0.9" transform="rotate(-20 880 210)"/>
+    <!-- Tassel cord + bead -->
+    <path d="M940 250 C 1080 250, 1128 260, 1128 300 L 1128 372" stroke="#FECA57" stroke-width="12" stroke-linecap="round" fill="none"/>
+    <circle cx="1128" cy="388" r="18" fill="#FECA57"/>
+    <path d="M1112 398 L 1144 398 L 1136 430 L 1120 430 Z" fill="#FECA57"/>
+    <!-- Cap band -->
+    <path d="M868 300 L 1012 300 L 1012 360 Q 940 410 868 360 Z" fill="#D9CCFF"/>
+    <!-- Mortarboard -->
+    <path d="M940 172 L 1132 250 L 940 328 L 748 250 Z" fill="url(#cap)"/>
+    <!-- Button -->
+    <circle cx="940" cy="250" r="20" fill="#FECA57"/>
   </g>
 
-  <!-- Kartu mengambang mini -->
+  <!-- Floating mini cards -->
   <g filter="url(#soft)">
-    <rect x="1030" y="330" width="120" height="120" rx="28" fill="#FFFFFF"/>
-    <text x="1090" y="415" text-anchor="middle" font-family="'Baloo 2', Nunito, Arial, sans-serif" font-size="72" font-weight="800" fill="#4B7BEC">5</text>
+    <rect x="1040" y="430" width="110" height="110" rx="26" fill="#FFFFFF"/>
+    <text x="1095" y="510" text-anchor="middle" font-family="'Baloo 2', Nunito, Arial, sans-serif" font-size="64" font-weight="800" fill="#4B7BEC">5</text>
   </g>
   <g filter="url(#soft)">
-    <rect x="720" y="150" width="120" height="120" rx="28" fill="#FFFFFF"/>
-    <text x="780" y="238" text-anchor="middle" font-family="'Baloo 2', Nunito, Arial, sans-serif" font-size="72" font-weight="800" fill="#EE7752">A</text>
+    <rect x="720" y="150" width="110" height="110" rx="26" fill="#FFFFFF"/>
+    <text x="775" y="230" text-anchor="middle" font-family="'Baloo 2', Nunito, Arial, sans-serif" font-size="64" font-weight="800" fill="#EE7752">A</text>
   </g>
 
-  <!-- Bintang vektor -->
-  <path d="M1120 470 l 14 34 l 34 14 l -34 14 l -14 34 l -14 -34 l -34 -14 l 34 -14 Z" fill="#FECA57"/>
-  <path d="M700 400 l 10 24 l 24 10 l -24 10 l -10 24 l -10 -24 l -24 -10 l 24 -10 Z" fill="#FECA57"/>
+  <!-- Vector stars -->
+  <path d="M700 400 l 12 28 l 28 12 l -28 12 l -12 28 l -12 -28 l -28 -12 l 28 -12 Z" fill="#FECA57"/>
+  <path d="M1150 150 l 9 20 l 20 9 l -20 9 l -9 20 l -9 -20 l -20 -9 l 20 -9 Z" fill="#00CEC9"/>
 </svg>
