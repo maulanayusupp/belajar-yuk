@@ -101,6 +101,11 @@ Lightbot/Code.org-style grid command-puzzles. Client-only, evidence-based (see
 
 ### P2 — Differentiators & polish
 
+- [x] **Legal & compliance pages** — `/privasi` (Privacy) & `/ketentuan` (Terms) via a shared
+      `<LegalDocument>`; honest client-only stance (no data leaves the device; COPPA/GDPR-K).
+      Linked in footer + sitemap; SEO enriched (JSON-LD WebApplication). **Set the real
+      `CONTACT_EMAIL`** in both pages before launch.
+
 - [ ] **Sempoa / mental arithmetic mode** — animate abacus beads → hide → answer.
       Strong local marketing hook; visualization translates well to screen.
 - [ ] **Parent progress report** — extend certificates into a shareable report

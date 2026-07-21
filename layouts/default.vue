@@ -10,6 +10,8 @@ const footerNav = [
   { to: '/sertifikat', label: 'Sertifikat' },
   { to: '/orangtua', label: 'Orang Tua' },
   { to: '/changelog', label: 'Changelog' },
+  { to: '/privasi', label: 'Privasi' },
+  { to: '/ketentuan', label: 'Ketentuan' },
 ]
 </script>
 

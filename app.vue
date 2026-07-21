@@ -31,6 +31,7 @@ useSeoMeta({
   twitterTitle: SHARE_TITLE,
   twitterDescription: DESCRIPTION,
   twitterImage: ogImage,
+  twitterImageAlt: 'Belajar Yuk! — belajar Inggris, Matematika, Sains, Membaca & Coding untuk anak',
 })
 
 // Canonical URL & og:url follow the active page.
@@ -40,15 +41,30 @@ useHead(() => ({
   meta: [{ property: 'og:url', content: canonicalUrl.value }],
 }))
 
-// Structured data (JSON-LD) for richer search results.
+// Structured data (JSON-LD) for richer search results. A WebApplication node
+// (free, in Indonesian) plus the EducationalOrganization publisher.
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'EducationalOrganization',
+  '@type': 'WebApplication',
   name: 'Belajar Yuk!',
   url: site.siteUrl,
-  logo: `${site.siteUrl}/icon-512.png`,
   description: DESCRIPTION,
-  audience: { '@type': 'EducationalAudience', educationalRole: 'student' },
+  applicationCategory: 'EducationalApplication',
+  operatingSystem: 'Web',
+  inLanguage: 'id-ID',
+  isAccessibleForFree: true,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'IDR' },
+  audience: {
+    '@type': 'EducationalAudience',
+    educationalRole: 'student',
+    audienceType: 'Anak usia 6+ dengan pendampingan orang tua',
+  },
+  publisher: {
+    '@type': 'EducationalOrganization',
+    name: 'Belajar Yuk!',
+    url: site.siteUrl,
+    logo: `${site.siteUrl}/icon-512.png`,
+  },
 }
 useHead({
   script: [{ type: 'application/ld+json', innerHTML: JSON.stringify(jsonLd) }],

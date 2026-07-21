@@ -122,6 +122,22 @@ test('Daftar Materi lists lessons and links to one', async ({ page }) => {
   await expect(page).toHaveURL(/\/english\//)
 })
 
+test('legal pages render and are linked from the footer', async ({ page }) => {
+  await page.goto('/privasi')
+  await dismissOnboarding(page)
+  await expect(page.getByRole('heading', { name: 'Kebijakan Privasi', level: 1 })).toBeVisible()
+
+  await page.goto('/ketentuan')
+  await dismissOnboarding(page)
+  await expect(page.getByRole('heading', { name: 'Ketentuan Layanan', level: 1 })).toBeVisible()
+
+  // Footer links exist on any page
+  await page.goto('/')
+  await dismissOnboarding(page)
+  await expect(page.getByRole('link', { name: 'Privasi' })).toBeVisible()
+  await expect(page.getByRole('link', { name: 'Ketentuan' })).toBeVisible()
+})
+
 test('the Progress page does not overflow horizontally', async ({ page }) => {
   await page.goto('/kemajuan')
   await dismissOnboarding(page)

@@ -16,6 +16,8 @@ export default defineEventHandler((event) => {
     '/latihan',
     '/kemajuan',
     '/changelog',
+    '/privasi',
+    '/ketentuan',
   ]
   for (const lesson of lessonService.getLessons()) {
     paths.push(`/${lesson.subject}/${lesson.id}`)

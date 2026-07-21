@@ -96,8 +96,12 @@ export default defineNuxtConfig({
             'belajar bahasa inggris anak, belajar matematika anak, belajar sains anak, belajar membaca anak, calistung, coding untuk anak, koding anak, singapore math, number bond, ten frame, phonics anak, kosakata bahasa inggris, belajar terstruktur, persiapan sekolah, edukasi anak usia dini, aplikasi belajar anak',
         },
         // App color & name for "Add to Home Screen"
+        { name: 'application-name', content: 'Belajar Yuk!' },
         { name: 'apple-mobile-web-app-title', content: 'Belajar Yuk!' },
         { name: 'apple-mobile-web-app-capable', content: 'yes' },
+        { name: 'mobile-web-app-capable', content: 'yes' },
+        // Don't turn numbers in lessons into phone links on mobile Safari.
+        { name: 'format-detection', content: 'telephone=no' },
       ],
       link: [
         // Favicon & icons

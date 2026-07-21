@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-07-21",
+    "version": "0.35.0",
+    "tag": "Fitur",
+    "title": "Halaman Privasi & Ketentuan + SEO",
+    "changes": [
+      "Halaman baru Kebijakan Privasi — jelas & jujur: tanpa akun, tanpa server, data belajar hanya di perangkat (sesuai semangat COPPA/GDPR-K).",
+      "Halaman baru Ketentuan Layanan — hak & tanggung jawab penggunaan yang mudah dipahami orang tua.",
+      "Tautan Privasi & Ketentuan ditambahkan di footer & sitemap; meta tag/SEO diperkaya (JSON-LD WebApplication, Twitter image alt, dll)."
+    ]
+  },
+  {
     "date": "2026-07-20",
     "version": "0.34.0",
     "tag": "Fitur",
