@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-07-21",
+    "version": "0.35.2",
+    "tag": "Perbaikan",
+    "title": "Ukuran font dirapikan (audit tipografi)",
+    "changes": [
+      "Ukuran teks dasar & judul dikecilkan sedikit agar halaman terasa lebih seimbang, tidak kebesaran.",
+      "Judul halaman & hero paling besar dikecilkan paling banyak; teks isi/pelajaran tetap nyaman dibaca anak.",
+      "Diaudit di beberapa halaman (beranda, mapel, Daftar Materi, Kemajuan) pada tampilan ponsel & desktop."
+    ]
+  },
+  {
+    "date": "2026-07-21",
     "version": "0.35.1",
     "tag": "Perbaikan",
     "title": "Footer baru yang lebih rapi",

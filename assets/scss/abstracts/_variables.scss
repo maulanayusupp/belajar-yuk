@@ -62,7 +62,7 @@ $gradient-hero: radial-gradient(
 // ---- Typography --------------------------------------------
 $font-family-display: 'Baloo 2', 'Comic Sans MS', system-ui, sans-serif; // headings
 $font-family-base: 'Nunito', 'Segoe UI', system-ui, sans-serif; // body text
-$font-size-base: 17px;
+$font-size-base: 16px;
 $font-weight-regular: 400;
 $font-weight-medium: 600;
 $font-weight-semibold: 700;
@@ -70,16 +70,18 @@ $font-weight-bold: 800;
 
 $line-height-base: 1.65;
 
-// Font size scale (rem)
+// Font size scale (rem). Base is 16px. Body sizes (xs–lg) stay comfortable for
+// young readers; the heading/hero tier (xl+) was trimmed so page titles & heroes
+// don't feel oversized.
 $font-sizes: (
   'xs': 0.78rem,
   'sm': 0.92rem,
-  'md': 1.05rem,
-  'lg': 1.35rem,
-  'xl': 1.9rem,
-  'xxl': 2.8rem,
-  'display': 4rem,
-  'giant': 5.5rem,
+  'md': 1.02rem,
+  'lg': 1.3rem,
+  'xl': 1.65rem,
+  'xxl': 2.3rem,
+  'display': 3.4rem,
+  'giant': 4.6rem,
 );
 
 // ---- Spacing (multiples of 4px) ----------------------------
