@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-07-22",
+    "version": "0.37.0",
+    "tag": "Fitur",
+    "title": "Header baru yang lebih modern & cantik",
+    "changes": [
+      "Menu 'Pelajaran' kini berupa mega-menu berwarna — tiap mapel punya warna khasnya (Inggris oranye, Matematika biru, Sains hijau, Membaca merah muda, Coding ungu).",
+      "Navigasi dikemas dalam bilah pill yang rapi dengan status aktif yang jelas, plus tombol '🚀 Mulai' bergaya gradien.",
+      "Logo & menu ponsel dipercantik: kartu mapel berwarna + tombol Mulai Belajar."
+    ]
+  },
+  {
     "date": "2026-07-21",
     "version": "0.36.1",
     "tag": "Perbaikan",
