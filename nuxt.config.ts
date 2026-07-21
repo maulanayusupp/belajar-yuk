@@ -10,11 +10,44 @@ const abstracts = fileURLToPath(new URL('./assets/scss/abstracts/index.scss', im
 // No trailing slash (og:url & canonical append the page's own path).
 const SITE_URL = process.env.NUXT_PUBLIC_SITE_URL || 'https://belajar-yuk-kappa.vercel.app'
 
+// Security headers applied to every response. The app is static & client-only,
+// so the allow-lists are tight: only self + the fonts/analytics we actually load.
+// 'unsafe-inline' is required for Nuxt's hydration script/styles (no user input,
+// no backend → low XSS surface). Permissions-Policy disables sensors we never use.
+const CSP = [
+  "default-src 'self'",
+  "base-uri 'self'",
+  "object-src 'none'",
+  "frame-ancestors 'self'",
+  "form-action 'self'",
+  "img-src 'self' data:",
+  "font-src 'self' https://fonts.gstatic.com",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "script-src 'self' 'unsafe-inline' https://plausible.io",
+  "connect-src 'self' https://plausible.io",
+  "media-src 'self' https:",
+  "manifest-src 'self'",
+].join('; ')
+
+const SECURITY_HEADERS = {
+  'Content-Security-Policy': CSP,
+  'X-Content-Type-Options': 'nosniff',
+  'X-Frame-Options': 'SAMEORIGIN',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), browsing-topics=()',
+  'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
+}
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   ssr: true,
+
+  // Apply the security headers to every route.
+  routeRules: {
+    '/**': { headers: SECURITY_HEADERS },
+  },
 
   modules: ['@vite-pwa/nuxt', '@nuxt/eslint'],
 

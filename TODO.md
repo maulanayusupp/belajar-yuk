@@ -102,9 +102,11 @@ Lightbot/Code.org-style grid command-puzzles. Client-only, evidence-based (see
 ### P2 — Differentiators & polish
 
 - [x] **Legal & compliance pages** — `/privasi` (Privacy) & `/ketentuan` (Terms) via a shared
-      `<LegalDocument>`; honest client-only stance (no data leaves the device; COPPA/GDPR-K).
-      Linked in footer + sitemap; SEO enriched (JSON-LD WebApplication). **Set the real
-      `CONTACT_EMAIL`** in both pages before launch.
+      `<LegalDocument>`; honest client-only stance (no data leaves the device; COPPA/GDPR-K +
+      UU PDP 27/2022, data-rights & security sections). Linked in footer + sitemap; SEO enriched.
+- [x] **HTTP security headers** — CSP + X-Frame-Options/X-Content-Type-Options/Referrer-Policy/
+      Permissions-Policy/HSTS via `routeRules` in `nuxt.config.ts`. Update CSP when adding new
+      external sources. **Still TODO: set the real `CONTACT_EMAIL`** in the legal pages before launch.
 
 - [ ] **Sempoa / mental arithmetic mode** — animate abacus beads → hide → answer.
       Strong local marketing hook; visualization translates well to screen.

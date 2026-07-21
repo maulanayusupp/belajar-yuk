@@ -246,6 +246,18 @@ plus aset opsional pelajaran itu). Detail & contoh: `data/README.md`.
 - **Halaman legal**: `/privasi` & `/ketentuan` (pakai `<LegalDocument>`), terdaftar di footer (`layouts/default.vue`) & `sitemap.xml`.
 - **Analitik** privasi (Plausible) opsional: set env `NUXT_PUBLIC_PLAUSIBLE_DOMAIN` (lihat `plugins/analytics.client.ts`).
 
+## Keamanan & Kepatuhan (Compliance)
+
+- **HTTP security headers** disetel global via `routeRules['/**'].headers` di `nuxt.config.ts`
+  (`SECURITY_HEADERS`): `Content-Security-Policy`, `X-Content-Type-Options`, `X-Frame-Options`,
+  `Referrer-Policy`, `Permissions-Policy`, `Strict-Transport-Security`. CSP hanya mengizinkan
+  sumber yang benar-benar dipakai: `self` + Google Fonts (`fonts.googleapis.com`/`gstatic.com`) +
+  Plausible (`plausible.io`). **Kalau menambah sumber eksternal baru** (script/CSS/gambar/audio
+  dari host lain), perbarui direktif CSP terkait — kalau tidak, browser akan memblokirnya.
+- **Halaman legal**: `/privasi` (COPPA/GDPR-K + **UU PDP 27/2022**, hak atas data) & `/ketentuan`.
+  Ganti `CONTACT_EMAIL` di kedua halaman dengan email resmi sebelum rilis.
+- App tanpa akun/server/cookie (localStorage saja) → permukaan data pribadi minimal.
+
 ## PWA
 
 - Diatur modul `@vite-pwa/nuxt` (`pwa` di `nuxt.config.ts`). Manifest & registrasi

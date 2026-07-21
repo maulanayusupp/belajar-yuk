@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-07-21",
+    "version": "0.36.0",
+    "tag": "Fitur",
+    "title": "Keamanan & kepatuhan diperkuat",
+    "changes": [
+      "Menambah header keamanan di setiap halaman (Content-Security-Policy, X-Frame-Options, Referrer-Policy, Permissions-Policy, HSTS).",
+      "Kebijakan Privasi kini menyebut UU Pelindungan Data Pribadi (UU 27/2022) selain COPPA & GDPR-K.",
+      "Bagian baru 'Hak Anda atas Data' & 'Keamanan' di halaman Privasi."
+    ]
+  },
+  {
+    "date": "2026-07-21",
     "version": "0.35.2",
     "tag": "Perbaikan",
     "title": "Ukuran font dirapikan (audit tipografi)",

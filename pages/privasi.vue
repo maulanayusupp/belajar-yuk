@@ -84,14 +84,51 @@ useSeoMeta({
       server kami.
     </p>
 
-    <h2>Privasi Anak &amp; Kepatuhan (COPPA / GDPR-K)</h2>
+    <h2>Privasi Anak &amp; Kepatuhan</h2>
     <p>
       Aplikasi ini ditujukan untuk anak dengan pendampingan orang tua. Karena kami
       <strong>tidak mengumpulkan data pribadi apa pun</strong> dari anak maupun orang dewasa, tidak
       ada data anak yang diproses, disimpan, atau dibagikan di server kami. Pendekatan ini sejalan
-      dengan semangat <strong>Children's Online Privacy Protection Act (COPPA)</strong> di AS dan
-      aturan perlindungan data anak (GDPR-K) di Uni Eropa. Kami menganjurkan orang tua tetap
-      mendampingi anak saat menggunakan perangkat.
+      dengan semangat peraturan perlindungan data anak, antara lain:
+    </p>
+    <ul>
+      <li>
+        <strong>UU No. 27 Tahun 2022 tentang Pelindungan Data Pribadi (UU PDP)</strong> — Indonesia.
+      </li>
+      <li><strong>Children's Online Privacy Protection Act (COPPA)</strong> — Amerika Serikat.</li>
+      <li>Aturan perlindungan data anak dalam <strong>GDPR (GDPR-K)</strong> — Uni Eropa.</li>
+    </ul>
+    <p>
+      Karena tidak ada data pribadi yang dikumpulkan, tidak ada dasar pemrosesan data yang perlu
+      kami minta. Kami tetap menganjurkan orang tua mendampingi anak saat menggunakan perangkat.
+    </p>
+
+    <h2>Hak Anda atas Data</h2>
+    <p>
+      Sesuai semangat UU PDP dan GDPR, Anda berhak mengakses, memperbaiki, dan menghapus data.
+      Karena semua data hanya ada di perangkat Anda, Anda memegang kendali penuh:
+    </p>
+    <ul>
+      <li>
+        <strong>Melihat &amp; memperbaiki:</strong> nama panggilan &amp; avatar dapat diubah di
+        <NuxtLink to="/orangtua">Area Orang Tua</NuxtLink>.
+      </li>
+      <li>
+        <strong>Menghapus:</strong> tekan Reset di Area Orang Tua, atau bersihkan data situs di
+        peramban — seluruh data langsung hilang dari perangkat.
+      </li>
+      <li>
+        <strong>Portabilitas:</strong> tidak ada data yang terkunci di server kami; semuanya milik
+        Anda di perangkat.
+      </li>
+    </ul>
+
+    <h2>Keamanan</h2>
+    <p>
+      Situs disajikan melalui koneksi terenkripsi (HTTPS) dan menerapkan header keamanan (mis.
+      Content-Security-Policy) untuk membatasi sumber daya yang dimuat. Karena tidak ada server atau
+      basis data yang menyimpan data Anda, risiko kebocoran data pribadi dari sisi kami sangat
+      kecil.
     </p>
 
     <h2>Perubahan Kebijakan</h2>
