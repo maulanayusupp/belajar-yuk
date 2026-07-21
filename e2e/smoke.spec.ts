@@ -134,8 +134,8 @@ test('legal pages render and are linked from the footer', async ({ page }) => {
   // Footer links exist on any page
   await page.goto('/')
   await dismissOnboarding(page)
-  await expect(page.getByRole('link', { name: 'Privasi' })).toBeVisible()
-  await expect(page.getByRole('link', { name: 'Ketentuan' })).toBeVisible()
+  await expect(page.getByRole('link', { name: 'Kebijakan Privasi' })).toBeVisible()
+  await expect(page.getByRole('link', { name: 'Ketentuan Layanan' })).toBeVisible()
 })
 
 test('the Progress page does not overflow horizontally', async ({ page }) => {

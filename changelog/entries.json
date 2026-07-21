@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-07-21",
+    "version": "0.35.1",
+    "tag": "Perbaikan",
+    "title": "Footer baru yang lebih rapi",
+    "changes": [
+      "Footer dirombak: blok brand + tautan dikelompokkan (Belajar, Kemajuan, Info) alih-alih satu baris panjang.",
+      "Ada baris bawah dengan hak cipta tahun berjalan & pesan hangat untuk anak-anak.",
+      "Tata letak responsif — rapi di ponsel maupun desktop."
+    ]
+  },
+  {
+    "date": "2026-07-21",
     "version": "0.35.0",
     "tag": "Fitur",
     "title": "Halaman Privasi & Ketentuan + SEO",
