@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// "Tugas Hari Ini" — a small daily assignment checklist (Kumon-style short
+// "Tugas Hari Ini" — a small daily assignment checklist (short
 // daily practice). Presentational: the parent derives the done state.
 interface DailyTask {
   id: string

@@ -65,7 +65,7 @@ useHead(() => ({ title: `${lesson.value?.title} — Belajar Yuk!` }))
     <template v-else>
       <MathMethodInfo :method="lesson.method" />
       <MathCompareLesson v-if="lesson.method === 'compare'" :lesson="lesson" />
-      <MathSingaporeLesson v-else :lesson="lesson" />
+      <MathMethodLesson v-else :lesson="lesson" />
     </template>
   </div>
 </template>

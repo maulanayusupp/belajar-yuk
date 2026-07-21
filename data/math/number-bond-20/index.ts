@@ -4,9 +4,9 @@ import type { MathLesson } from '~/types'
 export const numberBond20: MathLesson = {
   id: 'mt-number-bond-20',
   subject: 'math',
-  type: 'singapore-math',
+  type: 'math-method',
   method: 'number-bond',
-  methodLabel: 'Singapore Math — Ikatan Bilangan (Number Bond)',
+  methodLabel: 'Ikatan Bilangan (Number Bond)',
   title: 'Ikatan Bilangan sampai 20',
   titleEn: 'Number Bonds to 20',
   level: 'beginner',

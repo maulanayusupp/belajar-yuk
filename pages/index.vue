@@ -35,7 +35,7 @@ const features = [
   {
     icon: '🧠',
     title: 'Metode Terbukti',
-    text: 'Singapore Math, phonics, & puzzle logika — anak paham konsep, bukan menghafal.',
+    text: 'Metode bertahap, phonics, & puzzle logika — anak paham konsep, bukan menghafal.',
     tint: 'math' as const,
   },
   {
@@ -111,7 +111,7 @@ const skills = [
   {
     icon: '🔢',
     title: 'Matematika',
-    text: 'Berhitung, tambah–kurang, & Singapore Math (number bond, ten frame).',
+    text: 'Berhitung, tambah–kurang, dengan number bond & ten frame.',
     tint: 'math' as const,
   },
   {

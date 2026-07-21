@@ -6,9 +6,9 @@ import type { MathLesson } from '~/types'
 export const teenNumbers: MathLesson = {
   id: 'mt-teen-numbers',
   subject: 'math',
-  type: 'singapore-math',
+  type: 'math-method',
   method: 'ten-frame',
-  methodLabel: 'Singapore Math — Sepuluh Kotak (Nilai Tempat)',
+  methodLabel: 'Sepuluh Kotak (Nilai Tempat)',
   title: 'Bilangan Belasan (11–20)',
   titleEn: 'Teen Numbers',
   level: 'beginner',

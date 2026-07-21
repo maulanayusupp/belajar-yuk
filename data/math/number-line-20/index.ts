@@ -4,9 +4,9 @@ import type { MathLesson } from '~/types'
 export const numberLine20: MathLesson = {
   id: 'mt-number-line-20',
   subject: 'math',
-  type: 'singapore-math',
+  type: 'math-method',
   method: 'number-line',
-  methodLabel: 'Singapore Math — Garis Bilangan (0–20)',
+  methodLabel: 'Garis Bilangan (0–20)',
   title: 'Garis Bilangan 0–20',
   titleEn: 'Number Line to 20',
   level: 'beginner',

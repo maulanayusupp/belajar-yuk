@@ -1,8 +1,7 @@
 <script setup lang="ts">
 // Privacy Policy. Honest & simple because the app is 100% client-side: no
 // accounts, no backend, no personal data leaves the device (localStorage only).
-// NOTE: update CONTACT_EMAIL to your real contact address before launch.
-const CONTACT_EMAIL = 'kontak@belajar-yuk.app'
+const CONTACT_EMAIL = 'maulanayusupp@gmail.com'
 const UPDATED = '21 Juli 2026'
 
 const DESCRIPTION =
@@ -58,30 +57,29 @@ useSeoMeta({
 
     <h2>Suara &amp; Pengucapan</h2>
     <p>
-      Fitur "dengar" membacakan teks pelajaran menggunakan pembaca suara bawaan peramban (Web Speech
-      API) atau layanan text-to-speech. Yang dibacakan hanyalah materi pelajaran (kata, kalimat,
-      instruksi) — bukan data pribadi.
+      Fitur "dengar" membacakan teks pelajaran menggunakan pembaca suara bawaan peramban Anda. Yang
+      dibacakan hanyalah materi pelajaran (kata, kalimat, instruksi) — bukan data pribadi.
     </p>
 
     <h2>Analitik</h2>
     <p>
-      Jika analitik diaktifkan, kami hanya memakai layanan yang ramah privasi (Plausible Analytics)
-      yang <strong>tanpa cookie</strong> dan tidak mengumpulkan data pribadi — hanya statistik
-      kunjungan agregat (mis. jumlah halaman dibuka). Tidak ada profil pengguna yang dibangun, dan
-      tidak ada data yang dijual atau dibagikan.
+      Jika analitik diaktifkan, kami hanya memakai layanan analitik yang ramah privasi &amp;
+      <strong>tanpa cookie</strong> yang tidak mengumpulkan data pribadi — hanya statistik kunjungan
+      agregat (mis. jumlah halaman dibuka). Tidak ada profil pengguna yang dibangun, dan tidak ada
+      data yang dijual atau dibagikan.
     </p>
 
     <h2>Tanpa Iklan &amp; Tanpa Pelacak Pihak Ketiga</h2>
     <p>
       Belajar Yuk! tidak menampilkan iklan dan tidak memuat pelacak iklan pihak ketiga. Satu-satunya
-      sumber daya eksternal adalah font (Google Fonts) untuk tampilan huruf yang ramah anak.
+      sumber daya eksternal adalah berkas font web untuk tampilan huruf yang ramah anak.
     </p>
 
     <h2>Berbagi Sertifikat</h2>
     <p>
       Saat Anda menekan "Bagikan" pada sertifikat, gambar dibuat langsung di perangkat. Anda sendiri
-      yang memilih untuk membagikannya (mis. ke WhatsApp) — aplikasi tidak mengunggah gambar itu ke
-      server kami.
+      yang memilih untuk membagikannya lewat aplikasi pilihan Anda — Belajar Yuk! tidak mengunggah
+      gambar itu ke server kami.
     </p>
 
     <h2>Privasi Anak &amp; Kepatuhan</h2>
@@ -139,7 +137,7 @@ useSeoMeta({
 
     <h2>Hubungi Kami</h2>
     <p>
-      Ada pertanyaan tentang privasi? Hubungi kami di
+      Ada pertanyaan tentang privasi? Hubungi <strong>Maulana Yusup A.</strong> di
       <a :href="`mailto:${CONTACT_EMAIL}`">{{ CONTACT_EMAIL }}</a
       >.
     </p>

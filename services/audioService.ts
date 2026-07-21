@@ -92,7 +92,7 @@ const RECIPES: Record<SoundEffect, Array<[number, number, number]>> = {
 
 // -------- Pronunciation (SpeechSynthesis) -------------------
 // Cache the voice list. In Chrome, getVoices() is often EMPTY on the first
-// call, so the default "Google" (remote) voice gets picked and IGNORES
+// call, so the default remote voice gets picked and IGNORES
 // `rate`. We preload it + listen for `voiceschanged`.
 let cachedVoices: SpeechSynthesisVoice[] = []
 function refreshVoices() {

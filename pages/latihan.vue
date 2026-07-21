@@ -2,7 +2,7 @@
 import type { DrillMode } from '~/types'
 import { drillService } from '~/services/drillService'
 
-// "Latihan Kilat" — timed fluency drills (Kumon-style speed practice).
+// "Latihan Kilat" — timed fluency drills (timed speed practice).
 // Pick a mode, then run one drill. Personal bests are shown per mode.
 const modes = drillService.modes()
 const selected = ref<DrillMode | null>(null)

@@ -1,111 +1,71 @@
-# REFERENCE.md — Material & Pedagogy Sources
+# REFERENCE — Dasar Pedagogi Belajar Yuk!
 
-Every lesson in this app should be **evidence-based**, not guessed. This file records
-the curriculum frameworks and reputable programs each subject's content is grounded in.
-When you add or change material, add the source you used here (link + one line on how
-it informed the content).
+Catatan **internal** tentang alasan di balik desain materi & mekanik Belajar Yuk!.
+Ditulis dengan kata sendiri, fokus pada pendekatan kami — **tanpa tautan eksternal
+atau menyebut produk/pihak lain**. Perbarui ringkas saat menambah/mengubah materi.
 
-> Note: some source pages are third-party analyses of proprietary programs; where a
-> claim is not from a primary/official page it is marked. Verify before external use.
+> Prinsip menyeluruh: **fokus pada _cara_ anak belajar**, bukan sekadar isi. Setiap
+> materi harus jelas, bertahap, dan menumbuhkan rasa percaya diri sejak menit pertama.
 
----
+## Filosofi "Cara Belajar" (lintas mapel)
 
-## Learning method (cross-subject) — Kumon
+- **Langkah kecil, naik bertahap.** Materi dipecah jadi potongan kecil yang bisa
+  dikuasai satu per satu, dari mudah ke sulit — anak selalu merasa "aku bisa".
+- **Kuasai dulu, baru lanjut.** Jawaban salah tidak menghukum; anak mengulang sampai
+  paham (lihat `pages/ulangi` — kesalahan dikumpulkan untuk dilatih ulang).
+- **Kecepatan + ketepatan.** Latihan berwaktu singkat (`Latihan Kilat`) melatih
+  kelancaran berhitung, bukan sekadar benar.
+- **Kebiasaan harian.** "Tugas Hari Ini" & streak membangun rutinitas belajar.
+- **Ceritakan caramu.** Setelah selesai, anak diminta menjelaskan _bagaimana_ ia
+  menyelesaikannya (`BaseReflectPrompt`) — metakognisi menguatkan pemahaman.
+- **Belajar mandiri.** Umpan balik benar/salah jelas & langsung, sehingga anak bisa
+  maju tanpa perlu ditunggui.
 
-Basis for the planned mastery mechanics (see `TODO.md` P0): small steps, start-easy,
-mastery-before-advancing, speed + accuracy, short daily practice, self-correction.
+## Bahasa Inggris
 
-- Kumon — Self-learning method: https://www.kumongroup.com/eng/about-kumon/method/self-learning/index.html
-- Kumon — Five features / small steps: https://www.kumongroup.com/eng/about-kumon/method/small-steps/explanation/index.html
-- Kumon UK — why worksheets are timed (Standard Completion Time, speed+accuracy): https://www.kumon.co.uk/blog/why-does-kumon-time-my-child-as-they-complete-worksheets
-- Kumon math levels 7A→A progression (third-party guide): https://blog.masterygenius.com/kumon-math-levels-the-comprehensive-guide/
-- Kumon reading program (phonemic awareness → sight words → phonics → sentences → comprehension): https://www.kumon.com/reading-program
+- Mulai dari **fondasi bunyi (phonics)** dan **kosakata bertema** dengan gambar +
+  suara, sebelum ke kata & kalimat.
+- Aktivitas bertingkat: kenal kata → menyimak → mengeja → merangkai. Setiap materi
+  memakai kata yang **berbeda** agar tidak ada pengulangan isi.
 
----
+## Matematika
 
-## Bahasa Indonesia — Reading (Calistung)
+- Pendekatan **bertahap dari konkret ke abstrak**: benda/blok yang bisa "dilihat" →
+  gambar/diagram → lambang bilangan. Anak paham _konsep_, bukan menghafal.
+- Teknik yang dipakai (nama umum, deskriptif): _number bond_ (ikatan bilangan),
+  _ten frame_ (sepuluh kotak), garis bilangan, blok penjumlahan/pengurangan,
+  bilangan hilang, membandingkan bilangan, nilai tempat.
+- Panel "Cara Belajar Yuk vs Cara Biasa" (`MethodInfo`) menjelaskan kelebihan tiap
+  teknik dengan bahasa sederhana untuk orang tua.
 
-The syllable (suku kata) is the core unit; Indonesian orthography is phonetic and
-regular, so the letters → syllables → words → sentences sequence maps directly.
+## Sains
 
-- Kurikulum Merdeka — CP Bahasa Indonesia Fase A (kelas 1–2), official: https://guru.kemendikdasmen.go.id/kurikulum/referensi-penerapan/capaian-pembelajaran/sd-sma/bahasa-indonesia/fase-a/
-- Calistung materials, kelas 1 (syllable-based reading): https://www.ikatancendikia.com/2022/10/blog-post_21.html
-- Kumon Indonesia — Bahasa Indonesia reading program (6A→5A: word → phrase → sentence): https://id.kumonglobal.com/bahasa-indonesia/
-- Marbel "Belajar Membaca" (dominant local kids app, syllable spelling) — competitor benchmark: https://www.educastudio.com/brand/marbel/product/marbel-belajar-membaca
+- **Kenali fakta → kuis.** Anak mengenal konsep/istilah lewat fakta singkat + emoji,
+  lalu diuji dengan pertanyaan ringan. Pengelompokan (`group`) dipakai untuk membuat
+  pilihan pengecoh yang masuk akal.
 
-Applied in: `data/bahasa/**` (vowels, syllable families ma/ba, word building, sentences).
+## Membaca (Bahasa Indonesia / Calistung)
 
----
+- Urutan alami membaca: **huruf → suku kata → kata → kalimat**. Mode "rangkai"
+  menyusun suku kata menjadi kata; suara memakai pembaca bahasa Indonesia.
 
-## English
+## Coding
 
-Current content = vocabulary + phonics + listening + spelling. Research shows the gap is
-production: sentence building, speaking/pronunciation, conversation, comprehension
-(CEFR Pre-A1/A1, Cambridge Young Learners). See `TODO.md` P1.
+- Puzzle grid "pandu robot ke tujuan": anak menyusun perintah, menjalankannya, dan
+  melihat hasilnya secara langsung — **self-teaching** (benar/salah jelas tanpa guru).
+- Urutan konsep dari mudah ke sulit: **urutan perintah → perulangan → koleksi
+  (permata) → membaca/menelusuri kode → mencari bug → kondisional → fungsi**.
+- Tiap konsep bisa punya **bentuk permainan sendiri** (bukan sekadar grid yang sama)
+  agar tetap menarik: susun kartu langkah, tebak hasil, cari bug, jika/kalau-tidak,
+  dan fungsi. Detail teknis: lihat `CLAUDE.md` (bagian `pages/coding/`).
 
-- CEFR / Cambridge Pre-A1 Starters (young learners benchmark): https://www.cambridgeenglish.org/exams-and-tests/starters/
-- British Council — Primary Plus methodology (communicative, role-play): https://www.britishcouncil.org.ua/en/primary-plus
-- EF Efekta "Learn–Try–Apply" loop & AI speech practice (background on premium method).
-- Phonics sequence corroboration (Kumon reading program, above).
-- Kurikulum Merdeka — English becomes mandatory at SD from 2027/28 (positioning): https://www.detik.com/edu/sekolah/d-7362271/perjalanan-bahasa-inggris-dalam-kurikulum-sd-di-ri-dari-pilihan-hingga-wajib
+## Tingkatan (Tunas / Penjelajah / Juara)
 
-Applied in: `data/english/**`.
-
----
-
-## Math
-
-Singapore Math (CPA: Concrete–Pictorial–Abstract), number bonds, ten-frames, number
-lines. National curriculum expects more real-world topics (see `TODO.md` P1).
-
-- Kurikulum Merdeka — CP Matematika Fase A (numbers to 100, place value, +/- to 20,
-  fractions ½ & ¼, "=" symbol, basic geometry & measurement), official: https://guru.kemendikdasmen.go.id/kurikulum/referensi-penerapan/capaian-pembelajaran/sd-sma/matematika/fase-a/
-- Kumon early math sequence (count → subitize → write → +1/+2/+3 isolated → mental → subtraction): https://blog.masterygenius.com/kumon-math-levels-the-comprehensive-guide/
-- Sempoa / mental arithmetic (planned P2 mode) — background: https://www.cmaindo.com/articles/mengenal-mental-aritmatika-beserta-manfaatnya/
-
-Applied in: `data/math/**`.
-
----
-
-## Science
-
-Beginner concepts aligned to early-primary science (body/senses, animals & habitats,
-solar system). Grounded in common K–1 science strands (life science, earth & space).
-
-- Kurikulum Merdeka Fase A integrates science within "IPAS" (science & social studies).
-  Reference the official CP portal: https://guru.kemendikdasmen.go.id/kurikulum/
-
-Applied in: `data/science/**`.
+Setiap materi diberi tingkat usia/kemampuan (`data/levels.ts`). Diferensiasi harus
+**jujur**: naikkan tingkat hanya bila kesulitan/mekaniknya memang berbeda, bukan
+sekadar berganti tema.
 
 ---
 
-## Coding (separate module — `/coding`)
-
-Grid command-puzzle engine (Lightbot × Code.org Maze): the child sequences command
-blocks to guide a robot to the goal. Chosen because it's self-teaching (unambiguous
-pass/fail with no teacher), client-only/offline, and forces the target CS concepts.
-Concept order follows the K-12 CS Framework: sequencing → loops → events →
-conditionals → functions → variables.
-
-- K-12 CS Framework, grade-band statements (concept progression by age): https://k12cs.org/framework-statements-by-grade-band/
-- Code.org CS Fundamentals (Courses A-F structure): https://code.org/en-US/curriculum/computer-science-fundamentals
-- Lightbot — how the puzzle teaches sequencing/loops/procedures/conditionals: https://lightbot.com/Lightbot_HowDoesLightbotTeachProgramming.pdf
-- Blockly Games (open-source, offline-capable puzzle progression): https://blockly.games/about
-- Kodable curriculum ladder (Sequence → Conditions → Loops → Functions → Variables): https://www.kodable.com/learn/curriculum-live
-- CS Unplugged — Kidbots (unplugged sequencing/debugging for the youngest): https://www.csunplugged.org/en/topics/kidbots/whats-it-all-about/
-- Gamification that works for solo young learners (badges/flow vs. leaderboards): https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2024.1429452/full
-- Debugging as a first-class skill (spot/fix the wrong step) — CSTA/CS Unplugged rationale: https://www.csunplugged.org/en/topics/kidbots/whats-it-all-about/
-- Constrained if-else "rule that follows a path" mirrors Lightbot/Kodable Conditions; a single
-  named procedure ("Fungsi A") mirrors Lightbot P1/P2 procedures — decomposition before variables.
-
-Applied in: `data/coding/**`, `utils/codeRunner.ts`, `services/codingService.ts`,
-`components/coding/**`. Game kinds: sequence/loops/gems (grid), order, predict, bug,
-plus Phase 2 `function` & `conditional`. Phase plan in `TODO.md`.
-
-## Parent motivation & positioning (marketing)
-
-Why parents enroll kids in bimbel — informs copy and feature priorities.
-
-- "Demam Bimbel" on young children (academic anxiety, productive screen time): https://conference.uin-suka.ac.id/index.php/aciece/article/download/1810/1293
-- Calistung entrance-test ban (Permendikbud 1/2021) → frame as play-based readiness,
-  not test drilling: https://bbpmpjatim.kemdikbud.go.id/main/satuan-pendidikan-sd-dilarang-wajibkan-tes-calistung-saat-ppdb/
+Diterapkan di: `data/**`, `utils/codeRunner.ts`, `services/**`, `components/**`.
+Rencana pengembangan: `TODO.md`.

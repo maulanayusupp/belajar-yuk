@@ -53,7 +53,7 @@ async function onShare() {
     </div>
 
     <BaseButton variant="success" size="lg" :disabled="sharing" @click="onShare">
-      📤 Bagikan ke WhatsApp
+      📤 Bagikan Pencapaian
     </BaseButton>
   </div>
 </template>

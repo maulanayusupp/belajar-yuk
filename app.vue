@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // Global SEO: Open Graph & Twitter Card use absolute URLs (from
 // runtimeConfig.public.siteUrl) — they MUST be absolute so the preview/thumbnail
-// shows up when a link is shared on WhatsApp, Twitter, Facebook, etc.
+// shows up when a link is shared on social & chat apps.
 const site = useRuntimeConfig().public
 const route = useRoute()
 
@@ -14,7 +14,7 @@ const ogImage = `${site.siteUrl}/og-image.png`
 
 useSeoMeta({
   description: DESCRIPTION,
-  // Open Graph (WhatsApp/Facebook/LinkedIn)
+  // Open Graph (link preview on social & chat apps)
   ogType: 'website',
   ogSiteName: 'Belajar Yuk!',
   ogTitle: SHARE_TITLE,

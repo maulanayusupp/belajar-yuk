@@ -25,7 +25,7 @@ import { compare } from './compare'
 //   1. Create a new FOLDER with an `index.ts` that exports a MathLesson.
 //   2. Import it here, then add it to the array (position = display order).
 //   Need a new method? Add a value to `MathMethod` (types), metadata in
-//   `math/methods.ts`, & a render branch in components/math/SingaporeLesson.vue.
+//   `math/methods.ts`, & a render branch in components/math/MethodLesson.vue.
 export const mathLessons: MathLesson[] = [
   // Counting
   counting,

@@ -52,7 +52,7 @@ export const codingService = {
 
   /**
    * A level is unlocked if it is the first one, the previous level in play
-   * order has been completed (Kumon-style: earn your way forward), OR it has
+   * order has been completed (earn your way forward), OR it has
    * already been completed itself (so reordering worlds never re-locks a level
    * the child already beat).
    */

@@ -35,7 +35,7 @@ export interface VocabularyItem {
   example?: string
   /**
    * Pronunciation audio URL/path (optional). If set, this audio is
-   * played; if empty, the synthesized voice is used (Google/Web Speech).
+   * played; if empty, the synthesized voice is used (browser speech synthesis).
    * Example: '/audio/en/apple.mp3' or 'https://cdn.../apple.mp3'.
    */
   audioUrl?: string
@@ -92,9 +92,9 @@ export interface EnglishLesson extends LessonBase {
 
 export interface MathLesson extends LessonBase {
   subject: 'math'
-  type: 'singapore-math'
+  type: 'math-method'
   method: MathMethod
-  /** Display name of the method, e.g. "Singapore Math — Number Bond". */
+  /** Display name of the method, e.g. "Ikatan Bilangan (Number Bond)". */
   methodLabel: string
   problems: MathProblem[]
 }
@@ -157,7 +157,7 @@ export interface BahasaLesson extends LessonBase {
 
 export type Lesson = EnglishLesson | MathLesson | ScienceLesson | BahasaLesson
 
-/** Timed fluency drill mode (Kumon-style speed + accuracy practice). */
+/** Timed fluency drill mode (timed speed + accuracy practice). */
 export type DrillMode = 'add-10' | 'add-20' | 'sub-10' | 'bond-10' | 'mixed'
 
 /** A single drill question. */
@@ -182,7 +182,7 @@ export interface DrillBest {
   updatedAt: number
 }
 
-// ---- Coding (separate module: grid command-puzzles, Lightbot-style) --------
+// ---- Coding (separate module: grid command-puzzles) --------
 
 /** Concept a coding level teaches. */
 export type CodingConcept = 'sequence' | 'loop' | 'conditional' | 'function'

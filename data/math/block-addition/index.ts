@@ -6,9 +6,9 @@ import type { MathLesson } from '~/types'
 export const blockAddition: MathLesson = {
   id: 'mt-block-addition',
   subject: 'math',
-  type: 'singapore-math',
+  type: 'math-method',
   method: 'block-addition',
-  methodLabel: 'Singapore Math — Concrete–Pictorial–Abstract',
+  methodLabel: 'Concrete–Pictorial–Abstract',
   title: 'Menjumlah dengan Blok',
   titleEn: 'Adding with Blocks',
   level: 'beginner',

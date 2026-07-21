@@ -2,7 +2,7 @@ import type { DrillBest, DrillMode, DrillQuestion } from '~/types'
 import { storage } from '~/utils/storage'
 import { generateNumberOptions, randInt } from '~/utils/math'
 
-// Timed fluency drills ("Latihan Kilat") — Kumon-style speed + accuracy
+// Timed fluency drills ("Latihan Kilat") — timed speed + accuracy
 // practice for automaticity. Separate from lessons: no progress/mistake
 // coupling, just a personal best per mode stored in localStorage.
 

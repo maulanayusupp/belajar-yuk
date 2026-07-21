@@ -5,9 +5,9 @@ import type { MathLesson } from '~/types'
 export const missingNumber: MathLesson = {
   id: 'mt-missing-number',
   subject: 'math',
-  type: 'singapore-math',
+  type: 'math-method',
   method: 'missing-number',
-  methodLabel: 'Singapore Math — Cari Bilangan Hilang',
+  methodLabel: 'Cari Bilangan Hilang',
   title: 'Cari Bilangan Hilang',
   titleEn: 'Missing Number',
   level: 'intermediate',

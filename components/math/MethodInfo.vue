@@ -2,7 +2,7 @@
 import type { MathMethod } from '~/types'
 import { lessonService } from '~/services/lessonService'
 
-// Explanation panel: how the Singapore method differs from the usual way.
+// Explanation panel: how the step-by-step method differs from the usual way.
 // Uses <details> so it can be opened/closed without JavaScript.
 const props = defineProps<{ method: MathMethod }>()
 const meta = computed(() => lessonService.getMathMethodMeta(props.method))
@@ -12,14 +12,14 @@ const meta = computed(() => lessonService.getMathMethodMeta(props.method))
   <details class="method-info">
     <summary class="method-info__summary">
       <span aria-hidden="true">💡</span>
-      Apa bedanya <strong>{{ meta.label }}</strong> (Singapore) dengan cara biasa?
+      Apa bedanya cara <strong>{{ meta.label }}</strong> dengan cara biasa?
       <span class="method-info__chevron" aria-hidden="true">▾</span>
     </summary>
 
     <div class="method-info__body">
-      <div class="method-info__col method-info__col--singapore">
-        <span class="method-info__tag">🇸🇬 Cara Singapore</span>
-        <p>{{ meta.singaporeWay }}</p>
+      <div class="method-info__col method-info__col--method">
+        <span class="method-info__tag">✨ Cara Belajar Yuk</span>
+        <p>{{ meta.smartWay }}</p>
       </div>
       <div class="method-info__col method-info__col--usual">
         <span class="method-info__tag method-info__tag--usual">✏️ Cara Biasa</span>
@@ -75,7 +75,7 @@ const meta = computed(() => lessonService.getMathMethodMeta(props.method))
     padding: spacing('md');
     border-radius: $radius-md;
 
-    &--singapore {
+    &--method {
       background: rgba($color-math, 0.1);
     }
     &--usual {

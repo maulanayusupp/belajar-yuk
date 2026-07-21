@@ -1,6 +1,6 @@
 import { storage } from '~/utils/storage'
 
-// Collection of "mistakes" to review (Kumon-style spaced repetition).
+// Collection of "mistakes" to review (spaced repetition).
 // Key = `${lessonId}::${itemId}` (itemId = word id or problem id).
 const KEY = 'belajar-yuk:mistakes'
 

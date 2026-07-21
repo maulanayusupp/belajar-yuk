@@ -3,7 +3,7 @@ import type { ReviewQuestion } from '~/services/lessonService'
 import { range } from '~/utils/array'
 
 // "Redo mistakes" quiz. A CORRECT answer = mastered → removed from the list
-// (emit resolve). A wrong answer can be retried (Kumon-style: master it first).
+// (emit resolve). A wrong answer can be retried (master it first).
 const props = defineProps<{ questions: ReviewQuestion[] }>()
 const emit = defineEmits<{ resolve: [q: ReviewQuestion]; done: [] }>()
 

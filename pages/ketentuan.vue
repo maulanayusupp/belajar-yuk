@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // Terms of Service. Kept short & plain because the app is free, client-only,
-// and collects no data. NOTE: update CONTACT_EMAIL before launch.
-const CONTACT_EMAIL = 'kontak@belajar-yuk.app'
+// and collects no data.
+const CONTACT_EMAIL = 'maulanayusupp@gmail.com'
 const UPDATED = '21 Juli 2026'
 
 const DESCRIPTION =
@@ -65,10 +65,11 @@ useSeoMeta({
       <li>Menyajikan aplikasi seolah-olah milik pihak lain.</li>
     </ul>
 
-    <h2>7. Layanan Pihak Ketiga</h2>
+    <h2>7. Komponen Teknis</h2>
     <p>
-      Aplikasi memakai beberapa layanan pihak ketiga (mis. Google Fonts untuk huruf, dan pembaca
-      suara peramban). Penggunaan layanan tersebut tunduk pada kebijakan masing-masing penyedia.
+      Untuk berjalan, aplikasi memuat beberapa komponen teknis standar (berkas font web dan pembaca
+      suara bawaan peramban). Komponen ini hanya menampilkan/membacakan materi pelajaran dan tidak
+      mengumpulkan data pribadi.
     </p>
 
     <h2>8. Tanpa Jaminan &amp; Batasan Tanggung Jawab</h2>
@@ -89,7 +90,7 @@ useSeoMeta({
 
     <h2>11. Hubungi Kami</h2>
     <p>
-      Pertanyaan tentang ketentuan ini? Hubungi kami di
+      Pertanyaan tentang ketentuan ini? Hubungi <strong>Maulana Yusup A.</strong> di
       <a :href="`mailto:${CONTACT_EMAIL}`">{{ CONTACT_EMAIL }}</a
       >.
     </p>

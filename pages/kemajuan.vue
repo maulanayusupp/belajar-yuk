@@ -55,7 +55,7 @@ const codingPercent = computed(() =>
   coding.value.total ? Math.round((coding.value.done / coding.value.total) * 100) : 0,
 )
 
-// Daily assignment ("Tugas Hari Ini") — Kumon-style short daily practice.
+// Daily assignment ("Tugas Hari Ini") — short daily practice.
 // Derived from existing signals; drillPlayed is read on the client only.
 const drillPlayed = ref(false)
 onMounted(() => {
@@ -120,7 +120,7 @@ useHead({ title: 'Kemajuan Belajar' })
       </div>
     </section>
 
-    <!-- Daily assignment checklist (Kumon-style) -->
+    <!-- Daily assignment checklist -->
     <DailyTasks :tasks="dailyTasks" />
 
     <!-- Daily goal -->

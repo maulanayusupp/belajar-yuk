@@ -2,7 +2,7 @@
 
 Single source of truth for planned work. Update this in the **same commit** as any
 change: move finished items to **Done**, add new ideas under the right priority.
-Priorities are grounded in research — see `REFERENCE.md` for the evidence behind each.
+Priorities follow our internal pedagogy notes — see `REFERENCE.md`.
 
 Legend: **P0** = highest impact, do next · **P1** = strong · **P2** = nice-to-have.
 
@@ -10,7 +10,7 @@ Legend: **P0** = highest impact, do next · **P1** = strong · **P2** = nice-to-
 
 ## Next up
 
-### P0 — Kumon-style "how to learn" mechanics (cross-subject)
+### P0 — Mastery-based "how to learn" mechanics (cross-subject)
 
 The biggest pedagogical differentiator from school, and the original product intent
 ("focus on how kids learn"). Applies to every subject. No backend (localStorage only).
@@ -55,8 +55,8 @@ We only cover arithmetic ≤20. National curriculum expects more.
 
 ### P1 — Coding module (separate area, `/coding`)
 
-Lightbot/Code.org-style grid command-puzzles. Client-only, evidence-based (see
-`REFERENCE.md`). Phase 1 shipped; expand per the K-12 CS concept order.
+Grid command-puzzles (program a robot). Client-only; see
+`REFERENCE.md` for our pedagogy notes. Phase 1 shipped; expand per the K-12 CS concept order.
 
 - [x] **Phase 1 — Sequencing** — engine (`utils/codeRunner.ts` interpreter,
       `CodingPuzzleGrid`, `CodingLevelRunner`), `services/codingService.ts` (own

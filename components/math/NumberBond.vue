@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// "Number Bond" diagram, characteristic of Singapore Math:
+// "Number Bond" diagram (part-part-whole):
 // one WHOLE number connected to two PARTS. When `whole` is null,
 // show "?" (the child works out the result).
 defineProps<{ whole: number | null; partA: number; partB: number }>()

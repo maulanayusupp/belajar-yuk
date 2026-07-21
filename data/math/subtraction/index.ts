@@ -5,9 +5,9 @@ import type { MathLesson } from '~/types'
 export const subtraction: MathLesson = {
   id: 'mt-subtraction',
   subject: 'math',
-  type: 'singapore-math',
+  type: 'math-method',
   method: 'block-subtraction',
-  methodLabel: 'Singapore Math — Pengurangan dengan Blok',
+  methodLabel: 'Pengurangan dengan Blok',
   title: 'Mengurang dengan Blok',
   titleEn: 'Taking Away',
   level: 'beginner',

@@ -6,9 +6,9 @@ import type { MathLesson } from '~/types'
 export const tenFrame: MathLesson = {
   id: 'mt-ten-frame',
   subject: 'math',
-  type: 'singapore-math',
+  type: 'math-method',
   method: 'ten-frame',
-  methodLabel: 'Singapore Math — Sepuluh Kotak (Ten Frame)',
+  methodLabel: 'Sepuluh Kotak (Ten Frame)',
   title: 'Sepuluh Kotak',
   titleEn: 'Ten Frame',
   level: 'beginner',

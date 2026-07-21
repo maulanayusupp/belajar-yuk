@@ -126,7 +126,7 @@ export default defineNuxtConfig({
         {
           name: 'keywords',
           content:
-            'belajar bahasa inggris anak, belajar matematika anak, belajar sains anak, belajar membaca anak, calistung, coding untuk anak, koding anak, singapore math, number bond, ten frame, phonics anak, kosakata bahasa inggris, belajar terstruktur, persiapan sekolah, edukasi anak usia dini, aplikasi belajar anak',
+            'belajar bahasa inggris anak, belajar matematika anak, belajar sains anak, belajar membaca anak, calistung, coding untuk anak, koding anak, berhitung anak, number bond, ten frame, phonics anak, kosakata bahasa inggris, belajar terstruktur, persiapan sekolah, edukasi anak usia dini, aplikasi belajar anak',
         },
         // App color & name for "Add to Home Screen"
         { name: 'application-name', content: 'Belajar Yuk!' },

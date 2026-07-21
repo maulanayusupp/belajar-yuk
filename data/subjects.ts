@@ -17,7 +17,7 @@ export const subjects: Subject[] = [
     titleEn: 'Math',
     emoji: '🔢',
     theme: 'math',
-    description: 'Berhitung seru pakai metode Singapore Math.',
+    description: 'Berhitung seru dengan cara bertahap yang mudah dipahami.',
   },
   {
     id: 'science',

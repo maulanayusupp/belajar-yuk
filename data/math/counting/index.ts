@@ -6,9 +6,9 @@ import type { MathLesson } from '~/types'
 export const counting: MathLesson = {
   id: 'mt-counting',
   subject: 'math',
-  type: 'singapore-math',
+  type: 'math-method',
   method: 'counting',
-  methodLabel: 'Singapore Math — Menghitung Benda',
+  methodLabel: 'Menghitung Benda',
   title: 'Ayo Berhitung',
   titleEn: 'Count the Objects',
   level: 'beginner',

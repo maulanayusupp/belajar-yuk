@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { range } from '~/utils/array'
 
-// A group of blocks (the "Concrete" approach in Singapore Math).
+// A group of blocks (the "Concrete" approach (concrete–pictorial–abstract)).
 // `taken` = the number of trailing blocks that are "taken away" (faded & crossed out) —
 // used to visualize subtraction.
 const props = withDefaults(

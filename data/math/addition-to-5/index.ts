@@ -4,9 +4,9 @@ import type { MathLesson } from '~/types'
 export const additionTo5: MathLesson = {
   id: 'mt-addition-to-5',
   subject: 'math',
-  type: 'singapore-math',
+  type: 'math-method',
   method: 'block-addition',
-  methodLabel: 'Singapore Math — Concrete–Pictorial–Abstract',
+  methodLabel: 'Concrete–Pictorial–Abstract',
   title: 'Menjumlah sampai 5',
   titleEn: 'Adding to 5',
   level: 'beginner',

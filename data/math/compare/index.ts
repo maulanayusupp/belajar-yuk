@@ -5,9 +5,9 @@ import type { MathLesson } from '~/types'
 export const compare: MathLesson = {
   id: 'mt-compare',
   subject: 'math',
-  type: 'singapore-math',
+  type: 'math-method',
   method: 'compare',
-  methodLabel: 'Singapore Math — Membandingkan Bilangan',
+  methodLabel: 'Membandingkan Bilangan',
   title: 'Membandingkan Bilangan',
   titleEn: 'Comparing Numbers',
   level: 'advanced',

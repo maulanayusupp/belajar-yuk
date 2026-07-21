@@ -3,12 +3,12 @@ import type { MathMethod } from '~/types'
 // =============================================================
 //  Registry metadata for Math METHODS (dynamic content engine).
 //  A single place for the icon, label, instruction, & EXPLANATION of the
-//  difference between the Singapore method and the usual way.
+//  difference between the step-by-step method and the usual way.
 //
 //  ➕ Adding a new method:
 //    1. Add a value to `MathMethod` (types/index.ts).
-//    2. Add an entry here (icon + label + instruction + singaporeWay + usualWay).
-//    3. Add a visual render branch in components/math/SingaporeLesson.vue.
+//    2. Add an entry here (icon + label + instruction + smartWay + usualWay).
+//    3. Add a visual render branch in components/math/MethodLesson.vue.
 //  The UI (home, cards, header, mascot, explanation panel) follows automatically.
 // =============================================================
 
@@ -21,8 +21,8 @@ export interface MathMethodMeta {
   description: string
   /** Mascot instruction (Indonesian). */
   instruction: string
-  /** How the Singapore method teaches it (its strengths). */
-  singaporeWay: string
+  /** How the step-by-step method teaches it (its strengths). */
+  smartWay: string
   /** How the usual/traditional way teaches it (its limitations). */
   usualWay: string
 }
@@ -33,7 +33,7 @@ export const mathMethodMeta: Record<MathMethod, MathMethodMeta> = {
     label: 'Menghitung Benda',
     description: 'Anak menghitung benda satu per satu untuk mengenal jumlah.',
     instruction: 'Hitung bendanya satu per satu. Ada berapa?',
-    singaporeWay:
+    smartWay:
       'Anak menghitung benda nyata sambil menunjuk, sehingga paham bahwa angka mewakili "jumlah" yang bisa dilihat & disentuh.',
     usualWay:
       'Anak menghafal urutan "satu, dua, tiga…" tanpa benda, sering tanpa paham arti angkanya.',
@@ -43,7 +43,7 @@ export const mathMethodMeta: Record<MathMethod, MathMethodMeta> = {
     label: 'Ikatan Bilangan',
     description: 'Number Bond: melihat bilangan utuh terbentuk dari dua bagian.',
     instruction: 'Gabungkan dua bagian ini. Berapa jumlah seluruhnya?',
-    singaporeWay:
+    smartWay:
       'Anak melihat satu angka sebagai gabungan dua bagian (5 = 2 dan 3), membangun pemahaman hubungan antar-angka yang fleksibel.',
     usualWay: 'Anak menghafal fakta "2 + 3 = 5" satu per satu tanpa memahami hubungannya.',
   },
@@ -52,7 +52,7 @@ export const mathMethodMeta: Record<MathMethod, MathMethodMeta> = {
     label: 'Penjumlahan Blok',
     description: 'Pendekatan Concrete–Pictorial–Abstract: hitung blok nyata dulu.',
     instruction: 'Hitung semua bloknya. Ada berapa jumlahnya?',
-    singaporeWay:
+    smartWay:
       'Bertahap: dari blok nyata (concrete) → gambar (pictorial) → angka (abstract), sehingga konsep tertanam sebelum simbol.',
     usualWay:
       'Langsung ke angka & simbol; anak sering berhitung di jari atau menghafal tanpa gambaran.',
@@ -62,7 +62,7 @@ export const mathMethodMeta: Record<MathMethod, MathMethodMeta> = {
     label: 'Pengurangan Blok',
     description: 'Ambil sebagian blok untuk memahami konsep pengurangan.',
     instruction: 'Blok yang dicoret sudah diambil. Berapa sisanya?',
-    singaporeWay:
+    smartWay:
       'Anak melihat langsung proses "mengambil" dari sekumpulan benda, jadi paham makna pengurangan.',
     usualWay: 'Anak berhitung mundur atau menghafal hasil tanpa membayangkan apa yang terjadi.',
   },
@@ -71,7 +71,7 @@ export const mathMethodMeta: Record<MathMethod, MathMethodMeta> = {
     label: 'Sepuluh Kotak',
     description: 'Ten Frame: melihat bilangan dalam kerangka 10 untuk membangun rasa angka.',
     instruction: 'Lihat titik di dalam kotak. Ada berapa jumlahnya?',
-    singaporeWay:
+    smartWay:
       'Kerangka 10 membantu anak "melihat" angka & pasangannya menuju 10 (mis. 7 butuh 3 lagi), membangun rasa angka.',
     usualWay: 'Anak menghafal angka tanpa gambaran terhadap 10, sehingga sulit berhitung cepat.',
   },
@@ -80,7 +80,7 @@ export const mathMethodMeta: Record<MathMethod, MathMethodMeta> = {
     label: 'Garis Bilangan',
     description: 'Mengenali posisi angka pada garis bilangan — dasar penjumlahan lanjut.',
     instruction: 'Lihat penanda di garis. Ada di angka berapa?',
-    singaporeWay:
+    smartWay:
       'Anak melihat angka punya posisi & jarak, dasar untuk menambah/mengurang dengan "melompat" di garis.',
     usualWay: 'Anak menghafal urutan angka tanpa memahami jarak & hubungan antar-angka.',
   },
@@ -89,7 +89,7 @@ export const mathMethodMeta: Record<MathMethod, MathMethodMeta> = {
     label: 'Cari Bilangan Hilang',
     description: 'Menemukan bagian yang hilang (mis. 7 + ▢ = 12) — berpikir mundur.',
     instruction: 'Berapa bilangan yang hilang agar benar?',
-    singaporeWay:
+    smartWay:
       'Anak memahami hubungan bagian–keseluruhan sehingga bisa mencari bagian yang hilang, bukan hanya menjumlah maju.',
     usualWay:
       'Anak hanya terlatih menjumlah dari kiri ke kanan, bingung bila yang ditanya di tengah.',
@@ -99,7 +99,7 @@ export const mathMethodMeta: Record<MathMethod, MathMethodMeta> = {
     label: 'Membandingkan',
     description: 'Menentukan mana lebih besar, lebih kecil, atau sama (>, <, =).',
     instruction: 'Mana yang benar: lebih besar, lebih kecil, atau sama?',
-    singaporeWay:
+    smartWay:
       'Anak membandingkan kuantitas nyata (mis. dua kelompok benda) sebelum memakai simbol >, <, =.',
     usualWay: 'Anak menghafal arah simbol tanpa memahami makna "lebih banyak / lebih sedikit".',
   },

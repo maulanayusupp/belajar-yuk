@@ -14,7 +14,7 @@ const levelMeta = computed(() => lessonService.getLevelMeta(props.lesson.level))
 
 const stars = computed(() => getStars(props.lesson.id))
 const done = computed(() => isCompleted(props.lesson.id))
-const mastered = computed(() => stars.value >= 3) // 3★ = mastered (Kumon-style)
+const mastered = computed(() => stars.value >= 3) // 3★ = mastered
 </script>
 
 <template>

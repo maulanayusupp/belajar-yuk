@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-07-21",
+    "version": "0.36.1",
+    "tag": "Perbaikan",
+    "title": "Fokus ke Belajar Yuk! (tanpa menyebut pihak lain)",
+    "changes": [
+      "Menghapus penyebutan merek/website pihak lain di seluruh aplikasi — konten kini fokus pada Belajar Yuk!.",
+      "Metode matematika ditampilkan sebagai teknik yang jelas (Number Bond, Ten Frame, dll) dengan panel 'Cara Belajar Yuk'.",
+      "Kontak resmi ditambahkan di halaman Privasi & Ketentuan."
+    ]
+  },
+  {
+    "date": "2026-07-21",
     "version": "0.36.0",
     "tag": "Fitur",
     "title": "Keamanan & kepatuhan diperkuat",
@@ -40,7 +51,7 @@
     "changes": [
       "Halaman baru Kebijakan Privasi — jelas & jujur: tanpa akun, tanpa server, data belajar hanya di perangkat (sesuai semangat COPPA/GDPR-K).",
       "Halaman baru Ketentuan Layanan — hak & tanggung jawab penggunaan yang mudah dipahami orang tua.",
-      "Tautan Privasi & Ketentuan ditambahkan di footer & sitemap; meta tag/SEO diperkaya (JSON-LD WebApplication, Twitter image alt, dll)."
+      "Tautan Privasi & Ketentuan ditambahkan di footer & sitemap; meta tag/SEO diperkaya (JSON-LD WebApplication, gambar pratinjau, dll)."
     ]
   },
   {
@@ -308,7 +319,7 @@
     "changes": [
       "Beranda kini menampilkan semua yang ditawarkan: Inggris, Matematika, Sains, Membaca, & Coding.",
       "Bagian baru 'Sesuai Usia' menampilkan kategori Junior, Medium, & Senior.",
-      "Judul, deskripsi, & tag berbagi (WhatsApp/pencarian) diperbarui agar lebih relevan."
+      "Judul, deskripsi, & tag berbagi & pencarian diperbarui agar lebih relevan."
     ]
   },
   {
@@ -327,7 +338,7 @@
     "tag": "Fitur",
     "title": "Coding — belajar logika sambil bermain",
     "changes": [
-      "Modul baru Coding: pandu robot ke tujuan dengan menyusun perintah (ala Lightbot/Code.org).",
+      "Modul baru Coding: pandu robot ke tujuan dengan menyusun perintah.",
       "Dunia 1 'Urutan Perintah' — 6 level dengan tingkat kesulitan menanjak & bintang.",
       "Bintang dinilai dari efisiensi: makin sedikit perintah, makin banyak bintang.",
       "Dunia berikutnya (Perulangan & Kondisional) segera hadir."
@@ -340,7 +351,7 @@
     "title": "Tugas Hari Ini (rutinitas belajar harian)",
     "changes": [
       "Daftar tugas harian di halaman Kemajuan: belajar, latihan kilat, & bereskan kesalahan.",
-      "Pantau kemajuan harian dengan tanda centang — bangun kebiasaan belajar tiap hari (ala Kumon).",
+      "Pantau kemajuan harian dengan tanda centang — bangun kebiasaan belajar tiap hari.",
       "Selesaikan semua tugas untuk menjaga rentetan harimu tetap menyala."
     ]
   },
@@ -350,7 +361,7 @@
     "tag": "Fitur",
     "title": "Latihan Kilat (latih kecepatan berhitung)",
     "changes": [
-      "Mode latihan berwaktu 60 detik: jawab soal sebanyak-banyaknya (ala Kumon).",
+      "Mode latihan berwaktu 60 detik: jawab soal sebanyak-banyaknya.",
       "5 jenis: tambah s/d 10, tambah s/d 20, kurang s/d 10, pasangan 10, & campur.",
       "Rekor pribadi tersimpan per jenis — pecahkan rekormu sendiri!"
     ]
@@ -426,7 +437,7 @@
     "tag": "Fitur",
     "title": "Pencapaian, Lencana & Target Harian",
     "changes": [
-      "Kartu Pencapaian yang bisa dibagikan ke WhatsApp (gambar otomatis).",
+      "Kartu Pencapaian yang bisa dibagikan (gambar otomatis).",
       "9 lencana pencapaian yang terbuka sesuai progres.",
       "Target harian untuk mendorong kebiasaan belajar."
     ]
@@ -452,7 +463,7 @@
       "Kategori tingkat: Pemula, Menengah, Mahir.",
       "Phonics A–Z, kata CVC, sight words, dan banyak kosakata bertema.",
       "Bilangan belasan (nilai tempat) & metode Garis Bilangan.",
-      "Tag metode pada tiap pelajaran + penjelasan 'Cara Singapore vs Cara Biasa'."
+      "Tag metode pada tiap pelajaran + penjelasan 'Cara Belajar Yuk vs Cara Biasa'."
     ]
   },
   {
@@ -462,7 +473,7 @@
     "title": "PWA, SEO & Kualitas Kode",
     "changes": [
       "Bisa dipasang di layar utama & dipakai offline (PWA).",
-      "Pratinjau tautan untuk WhatsApp/Twitter (Open Graph) + favicon & ikon.",
+      "Pratinjau tautan saat dibagikan (Open Graph) + favicon & ikon.",
       "Halaman error ramah-anak, ESLint, Prettier, unit test, & CI."
     ]
   },
@@ -480,7 +491,7 @@
     "date": "2026-07-06",
     "version": "0.3.0",
     "tag": "Fitur",
-    "title": "Metode Singapore Math & Phonics",
+    "title": "Metode Berhitung Bertahap & Phonics",
     "changes": [
       "Number Bond, Ten Frame, Garis Bilangan, blok, & berhitung benda.",
       "Phonics (bunyi huruf) untuk fondasi membaca."
@@ -493,7 +504,7 @@
     "title": "Rilis awal Belajar Yuk!",
     "changes": [
       "Belajar Bahasa Inggris (kartu kosakata + kuis) dengan suara.",
-      "Belajar Matematika dengan pendekatan Singapore Math."
+      "Belajar Matematika dengan pendekatan bertahap yang mudah dipahami."
     ]
   }
 ]

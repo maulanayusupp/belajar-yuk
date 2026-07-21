@@ -36,7 +36,7 @@ export function useAudio() {
 
   /**
    * Speak a word: use the audio file if `audioUrl` is present, otherwise use
-   * the synthesized voice (default Google). The recommended pronunciation entry point.
+   * the synthesized voice (browser default). The recommended pronunciation entry point.
    */
   function pronounce(text: string, audioUrl?: string, lang = 'en-US') {
     if (!muted.value) audioService.pronounce(text, audioUrl, lang)
