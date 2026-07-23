@@ -1,5 +1,15 @@
 [
   {
+    "date": "2026-07-23",
+    "version": "0.38.0",
+    "tag": "Fitur",
+    "title": "Coding kini tampil di kartu mapel beranda",
+    "changes": [
+      "Beranda kini menampilkan 5 area belajar sebagai kartu berwarna — termasuk kartu Coding 🤖 yang sebelumnya tidak ada.",
+      "Kartu Coding menampilkan jumlah level & langsung menuju peta Coding."
+    ]
+  },
+  {
     "date": "2026-07-22",
     "version": "0.37.0",
     "tag": "Fitur",

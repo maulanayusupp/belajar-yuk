@@ -1,11 +1,37 @@
 <script setup lang="ts">
 import { lessonService } from '~/services/lessonService'
 import { profileService } from '~/services/profileService'
+import { codingService } from '~/services/codingService'
 import { levels as categories } from '~/data/levels'
 import { storage } from '~/utils/storage'
+import type { AreaCard } from '~/components/SubjectCard.vue'
 
 // Home page (premium landing).
 const subjects = lessonService.getSubjects()
+
+// Learning-area cards shown on the home page: every subject + the Coding module.
+const subjectCards = computed<AreaCard[]>(() => [
+  ...subjects.map((s) => ({
+    to: `/${s.id}`,
+    theme: s.theme,
+    emoji: s.emoji,
+    eyebrow: s.titleEn,
+    title: s.title,
+    desc: s.description,
+    count: lessonService.getLessons(s.id).length,
+    countLabel: 'pelajaran',
+  })),
+  {
+    to: '/coding',
+    theme: 'coding',
+    emoji: '🤖',
+    eyebrow: 'Coding',
+    title: 'Coding',
+    desc: 'Logika, robot, & memecahkan masalah — seru seperti main game.',
+    count: codingService.totalLevels(),
+    countLabel: 'level',
+  },
+])
 
 // Profile, progress, & recommendation (client-side).
 const { hasProfile, greetingName, profile } = useProfile()
@@ -270,10 +296,10 @@ useHead({ title: 'Belajar Yuk! — Belajar jadi Petualangan Seru' })
       />
       <div class="subject-grid">
         <SubjectCard
-          v-for="(subject, i) in subjects"
-          :key="subject.id"
-          v-reveal="i * 120"
-          :subject="subject"
+          v-for="(card, i) in subjectCards"
+          :key="card.to"
+          v-reveal="i * 100"
+          :card="card"
         />
       </div>
     </section>

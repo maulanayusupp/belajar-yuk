@@ -1,25 +1,34 @@
 <script setup lang="ts">
-import type { Subject } from '~/types'
-import { lessonService } from '~/services/lessonService'
+// Large learning-area card (premium look). Works for subjects AND the Coding
+// module — the parent passes a normalized card so it's not tied to `Subject`.
+export interface AreaCard {
+  to: string
+  /** Theme name for the gradient: english | math | science | bahasa | coding. */
+  theme: string
+  emoji: string
+  eyebrow: string
+  title: string
+  desc: string
+  count: number
+  /** Unit for the count, e.g. "pelajaran" or "level". */
+  countLabel: string
+}
 
-// Large subject-selection card (premium look).
-const props = defineProps<{ subject: Subject }>()
-
-const lessonCount = computed(() => lessonService.getLessons(props.subject.id).length)
+defineProps<{ card: AreaCard }>()
 </script>
 
 <template>
-  <NuxtLink :to="`/${subject.id}`" class="subject-card" :class="`subject-card--${subject.theme}`">
+  <NuxtLink :to="card.to" class="subject-card" :class="`subject-card--${card.theme}`">
     <div class="subject-card__pattern" aria-hidden="true" />
     <div class="subject-card__top">
-      <span class="subject-card__emoji anim-float" aria-hidden="true">{{ subject.emoji }}</span>
-      <span class="subject-card__count">{{ lessonCount }} pelajaran</span>
+      <span class="subject-card__emoji anim-float" aria-hidden="true">{{ card.emoji }}</span>
+      <span class="subject-card__count">{{ card.count }} {{ card.countLabel }}</span>
     </div>
 
     <div class="subject-card__body">
-      <p class="subject-card__eyebrow">{{ subject.titleEn }}</p>
-      <h3 class="subject-card__title">{{ subject.title }}</h3>
-      <p class="subject-card__desc">{{ subject.description }}</p>
+      <p class="subject-card__eyebrow">{{ card.eyebrow }}</p>
+      <h3 class="subject-card__title">{{ card.title }}</h3>
+      <p class="subject-card__desc">{{ card.desc }}</p>
     </div>
 
     <span class="subject-card__cta">
@@ -56,6 +65,10 @@ const lessonCount = computed(() => lessonService.getLessons(props.subject.id).le
   &--bahasa {
     background: $gradient-bahasa;
     box-shadow: $shadow-glow-bahasa;
+  }
+  &--coding {
+    background: $gradient-coding;
+    box-shadow: $shadow-glow-coding;
   }
 
   &:hover {
