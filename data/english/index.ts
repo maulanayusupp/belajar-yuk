@@ -33,6 +33,8 @@ import { listenAnimals } from './listen-animals'
 import { listenFood } from './listen-food'
 import { spellCvc } from './spell-cvc'
 import { spellColors } from './spell-colors'
+import { sentenceBasic } from './sentence-basic'
+import { sentenceActions } from './sentence-actions'
 
 // List & ORDER of English lessons (beginner → advanced).
 //
@@ -78,4 +80,7 @@ export const englishLessons: EnglishLesson[] = [
   // Advanced: spell / build words
   spellCvc,
   spellColors,
+  // Sentence building (word tiles → sentence)
+  sentenceBasic,
+  sentenceActions,
 ]

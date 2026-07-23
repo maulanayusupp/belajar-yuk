@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-07-23",
+    "version": "0.39.0",
+    "tag": "Fitur",
+    "title": "Bahasa Inggris: Menyusun Kalimat 🧩",
+    "changes": [
+      "Aktivitas baru 'Menyusun Kalimat': susun kata-kata acak menjadi kalimat Inggris yang benar.",
+      "Dilengkapi gambar & arti Bahasa Indonesia, plus pengucapan saat benar — melatih tata bahasa, bukan sekadar kosakata.",
+      "Dua pelajaran baru: 'Ini & Itu' (Penjelajah) dan 'Aku Bisa' (Juara)."
+    ]
+  },
+  {
+    "date": "2026-07-23",
     "version": "0.38.0",
     "tag": "Fitur",
     "title": "Coding kini tampil di kartu mapel beranda",

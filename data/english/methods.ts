@@ -29,4 +29,9 @@ export const englishActivityMeta: Record<EnglishActivity, EnglishActivityMeta> =
     label: 'Eja Kata',
     description: 'Susun huruf menjadi kata yang benar — melatih menulis & membaca.',
   },
+  sentence: {
+    icon: '🧩',
+    label: 'Menyusun Kalimat',
+    description: 'Susun kata-kata menjadi kalimat yang benar — memahami tata bahasa.',
+  },
 }

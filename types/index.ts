@@ -81,7 +81,7 @@ interface LessonBase {
 }
 
 /** English lesson activity types. */
-export type EnglishActivity = 'vocabulary' | 'phonics' | 'listening' | 'spelling'
+export type EnglishActivity = 'vocabulary' | 'phonics' | 'listening' | 'spelling' | 'sentence'
 
 export interface EnglishLesson extends LessonBase {
   subject: 'english'

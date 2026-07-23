@@ -211,9 +211,10 @@ plus aset opsional pelajaran itu). Detail & contoh: `data/README.md`.
      `block-addition`, `block-subtraction` (prop `taken`), `missing-number`
      (jawaban = `operandB`; MethodLesson pakai computed `correctValue`), `compare`
      (operator `'compare'`, runner khusus `MathCompareLesson` — bukan MethodLesson).
-- **Aktivitas Bahasa Inggris baru** (`vocabulary`/`phonics`/`listening`/`spelling`): tambah nilai
+- **Aktivitas Bahasa Inggris baru** (`vocabulary`/`phonics`/`listening`/`spelling`/`sentence`): tambah nilai
   di `EnglishActivity` (`types/`), entri di `data/english/methods.ts`, buat komponen runner
-  (mis. `EnglishListeningLesson`, `EnglishSpellingLesson`), lalu cabang di `pages/[subject]/[id].vue` per `lesson.type`.
+  (mis. `EnglishListeningLesson`, `EnglishSpellingLesson`, `EnglishSentenceLesson`), lalu cabang di `pages/[subject]/[id].vue` per `lesson.type`.
+  Catatan `sentence` (Menyusun Kalimat): memakai ulang `VocabularyItem` — `word` = kalimat penuh, `translation` = arti, `emoji` = petunjuk gambar; runner memecah kalimat jadi kartu kata.
 - **Tingkat (Pemula/Menengah/Mahir)**: set `level` pada tiap pelajaran. Metadata kategori
   di `data/levels.ts`. Halaman pelajaran mengelompokkan via `lessonService.getLessonsGrouped`;
   kartu menampilkan tag metode + badge tingkat via `lessonService.getLessonTag` & `getLevelMeta`.

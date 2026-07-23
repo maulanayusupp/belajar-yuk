@@ -122,6 +122,15 @@ test('Daftar Materi lists lessons and links to one', async ({ page }) => {
   await expect(page).toHaveURL(/\/english\//)
 })
 
+test('english "sentence building" lesson renders word tiles', async ({ page }) => {
+  await page.goto('/english/en-sentence-basic')
+  await dismissOnboarding(page)
+  await expect(page.locator('.sent__tile').first()).toBeVisible()
+  // tapping a tile places it into the assembled sentence
+  await page.locator('.sent__tile:not([disabled])').first().click()
+  await expect(page.locator('.sent__slot').first()).not.toBeEmpty()
+})
+
 test('legal pages render and are linked from the footer', async ({ page }) => {
   await page.goto('/privasi')
   await dismissOnboarding(page)

@@ -36,8 +36,10 @@ The biggest pedagogical differentiator from school, and the original product int
 Research (CEFR / Cambridge Pre-A1, competitor matrix) shows we sit at the weakest,
 input-only tier. Even free Duolingo ABC has speech recognition we lack.
 
-- [ ] **Sentence building** — assemble a sentence from word tiles ("It is a ___",
-      "I can ___"). Reuse the spelling/tile mechanic.
+- [x] **Sentence building** ("Menyusun Kalimat" 🧩) — arrange scrambled word tiles into a
+      sentence. `EnglishActivity: 'sentence'` + `EnglishSentenceLesson` (reuses `VocabularyItem`
+      with `word` = full sentence). 2 lessons (basic + actions). Next: reading comprehension
+      (sentence → pick the matching picture).
 - [ ] **Reading comprehension** — short sentence → pick the matching picture.
 - [ ] **Speaking / "listen & repeat"** — record-and-compare (British Council style);
       later, optional speech-recognition scoring (Web Speech API `SpeechRecognition`).
