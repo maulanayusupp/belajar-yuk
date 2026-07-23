@@ -122,6 +122,24 @@ test('Daftar Materi lists lessons and links to one', async ({ page }) => {
   await expect(page).toHaveURL(/\/english\//)
 })
 
+test('math "pattern" lesson can be solved', async ({ page }) => {
+  await page.goto('/math/mt-patterns')
+  await dismissOnboarding(page)
+  await expect(page.locator('.mlesson__seq')).toBeVisible()
+  // First problem is 2, 4, 6, ? → 8 (problems are not shuffled)
+  await page.getByRole('button', { name: '8', exact: true }).click()
+  await expect(page.getByText(/Lanjut|Selesai/)).toBeVisible()
+})
+
+test('math "clock" lesson can be solved', async ({ page }) => {
+  await page.goto('/math/mt-clock')
+  await dismissOnboarding(page)
+  await expect(page.locator('.clock')).toBeVisible()
+  // First clock shows 3 o'clock; the answer options are buttons (SVG numbers aren't)
+  await page.getByRole('button', { name: '3', exact: true }).click()
+  await expect(page.getByText(/Lanjut|Selesai/)).toBeVisible()
+})
+
 test('english "sentence building" lesson renders word tiles', async ({ page }) => {
   await page.goto('/english/en-sentence-basic')
   await dismissOnboarding(page)

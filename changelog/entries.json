@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-07-23",
+    "version": "0.40.0",
+    "tag": "Fitur",
+    "title": "Matematika dunia nyata: Pola Bilangan & Membaca Jam",
+    "changes": [
+      "Pelajaran baru 'Pola Bilangan' 🔢: lanjutkan pola & loncat bilangan (2, 4, 6, …) — melatih berpikir logis.",
+      "Pelajaran baru 'Membaca Jam' 🕐: baca jam analog (pukul berapa?) dengan tampilan jam sungguhan.",
+      "Matematika kini tak cuma berhitung — ada topik yang dipakai sehari-hari."
+    ]
+  },
+  {
+    "date": "2026-07-23",
     "version": "0.39.0",
     "tag": "Fitur",
     "title": "Bahasa Inggris: Menyusun Kalimat 🧩",

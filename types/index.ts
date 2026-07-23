@@ -51,16 +51,21 @@ export type MathMethod =
   | 'number-line' // Number Line (identify a number on the line)
   | 'missing-number' // Find the missing number (e.g. 7 + ▢ = 12)
   | 'compare' // Compare two numbers (>, <, =)
+  | 'pattern' // Skip-counting / number pattern (what comes next?)
+  | 'clock' // Read the clock (o'clock)
 
 /** A single Math problem. */
 export interface MathProblem {
   id: string
   operandA: number
   operandB: number
-  operator: '+' | '-' | 'compare'
+  /** Omit for non-arithmetic methods (pattern/clock). */
+  operator?: '+' | '-' | 'compare'
   answer: number
   /** Object emoji for the 'counting' method (e.g. '🍎'). */
   emoji?: string
+  /** Number sequence shown for the 'pattern' method (last item is the ? to solve). */
+  sequence?: number[]
 }
 
 /** Properties common to all lessons. */

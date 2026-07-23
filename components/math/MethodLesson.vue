@@ -163,6 +163,35 @@ function optionState(value: number): 'default' | 'correct' | 'wrong' {
             <span>{{ problem.answer }}</span>
           </p>
 
+          <!-- Method: Pattern / skip-counting (what comes next?) -->
+          <div
+            v-else-if="lesson.method === 'pattern'"
+            :key="`pt-${problem.id}`"
+            class="mlesson__seq"
+          >
+            <template v-for="(n, i) in problem.sequence ?? []" :key="i">
+              <span
+                class="mlesson__seq-item"
+                :class="{ 'mlesson__seq-item--q': i === (problem.sequence?.length ?? 0) - 1 }"
+              >
+                {{ i === (problem.sequence?.length ?? 0) - 1 ? '?' : n }}
+              </span>
+              <span
+                v-if="i < (problem.sequence?.length ?? 0) - 1"
+                class="mlesson__seq-arrow"
+                aria-hidden="true"
+                >→</span
+              >
+            </template>
+          </div>
+
+          <!-- Method: Clock (read the hour) -->
+          <MathClock
+            v-else-if="lesson.method === 'clock'"
+            :key="`ck-${problem.id}`"
+            :hour="problem.answer"
+          />
+
           <!-- Method: Block Subtraction (take some away) -->
           <div v-else-if="lesson.method === 'block-subtraction'" class="mlesson__blocks">
             <MathBlockGroup
@@ -194,6 +223,10 @@ function optionState(value: number): 'default' | 'correct' | 'wrong' {
           <p v-else-if="lesson.method === 'missing-number'" class="mlesson__equation">
             Berapa bilangan yang hilang?
           </p>
+          <p v-else-if="lesson.method === 'pattern'" class="mlesson__equation">
+            Angka berapa selanjutnya?
+          </p>
+          <p v-else-if="lesson.method === 'clock'" class="mlesson__equation">Pukul berapa?</p>
           <p v-else class="mlesson__equation">
             {{ problem.operandA }} {{ problem.operator }} {{ problem.operandB }} =
             <span
@@ -262,6 +295,36 @@ function optionState(value: number): 'default' | 'correct' | 'wrong' {
   &__blocks {
     @include flex(row, center, center, spacing('lg'));
     flex-wrap: wrap;
+  }
+
+  // Number pattern / skip-counting sequence
+  &__seq {
+    @include flex(row, center, center, spacing('sm'));
+    flex-wrap: wrap;
+  }
+
+  &__seq-item {
+    @include flex-center;
+    min-width: 56px;
+    height: 56px;
+    padding-inline: spacing('sm');
+    font-family: $font-family-display;
+    font-weight: $font-weight-bold;
+    font-size: font-size('xl');
+    color: $color-math-dark;
+    background: rgba($color-math, 0.1);
+    border-radius: $radius-md;
+
+    &--q {
+      color: $color-math;
+      background: rgba($color-math, 0.06);
+      border: 3px dashed $color-math;
+    }
+  }
+
+  &__seq-arrow {
+    color: $color-text-muted;
+    font-weight: $font-weight-bold;
   }
 
   &__op {

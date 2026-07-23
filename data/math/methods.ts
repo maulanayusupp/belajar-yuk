@@ -103,4 +103,22 @@ export const mathMethodMeta: Record<MathMethod, MathMethodMeta> = {
       'Anak membandingkan kuantitas nyata (mis. dua kelompok benda) sebelum memakai simbol >, <, =.',
     usualWay: 'Anak menghafal arah simbol tanpa memahami makna "lebih banyak / lebih sedikit".',
   },
+  pattern: {
+    icon: '🔢',
+    label: 'Pola Bilangan',
+    description: 'Melanjutkan pola & loncat bilangan (2, 4, 6, …) — melatih berpikir logis.',
+    instruction: 'Lihat polanya. Angka berapa selanjutnya?',
+    smartWay:
+      'Anak menemukan aturan di balik urutan angka (loncat berapa), bukan sekadar menghafal — dasar berpikir aljabar.',
+    usualWay: 'Anak hanya menghafal urutan angka tanpa melihat pola/loncatannya.',
+  },
+  clock: {
+    icon: '🕐',
+    label: 'Membaca Jam',
+    description: 'Membaca jam bulat (pukul berapa?) — matematika untuk kehidupan sehari-hari.',
+    instruction: 'Lihat jarum jamnya. Pukul berapa sekarang?',
+    smartWay:
+      'Anak membaca jam analog sungguhan dan mengaitkannya dengan kegiatan sehari-hari, bukan hanya angka.',
+    usualWay: 'Anak hanya membaca jam digital tanpa memahami posisi jarum jam.',
+  },
 }

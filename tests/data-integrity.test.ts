@@ -47,6 +47,8 @@ describe('lesson data integrity', () => {
       'block-subtraction',
       'missing-number',
       'compare',
+      'pattern',
+      'clock',
     ])
     for (const l of lessons) {
       if (l.subject !== 'math') continue

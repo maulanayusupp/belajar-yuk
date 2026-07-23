@@ -50,9 +50,12 @@ input-only tier. Even free Duolingo ABC has speech recognition we lack.
 
 We only cover arithmetic ≤20. National curriculum expects more.
 
+- [x] **Patterns / skip-counting** ("Pola Bilangan") — method `pattern` + `sequence` on
+      MathProblem; MethodLesson render branch. `data/math/patterns`.
+- [x] **Time (o'clock)** ("Membaca Jam") — method `clock` + `MathClock` SVG face.
+      `data/math/clock`. Next: half-past / quarter times.
 - [ ] Shapes / geometry, measurement (compare length/size)
-- [ ] Time (o'clock), money (rupiah coins)
-- [ ] Patterns, skip-counting
+- [ ] Money (rupiah coins) — needs larger-value answer options
 - [ ] Numbers to 100 & place value; simple word problems
 
 ### P1 — Coding module (separate area, `/coding`)

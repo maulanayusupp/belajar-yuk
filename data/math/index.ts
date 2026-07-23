@@ -18,6 +18,8 @@ import { numberLine10 } from './number-line-10'
 import { numberLine20 } from './number-line-20'
 import { missingNumber } from './missing-number'
 import { compare } from './compare'
+import { patterns } from './patterns'
+import { clock } from './clock'
 
 // List & ORDER of Math lessons (easy → challenging, all Beginner).
 //
@@ -51,6 +53,9 @@ export const mathLessons: MathLesson[] = [
   numberLine20,
   // Intermediate: find the missing number
   missingNumber,
+  // Real-world & logic
+  patterns,
+  clock,
   // Advanced: comparing numbers
   compare,
 ]

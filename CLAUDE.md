@@ -210,7 +210,10 @@ plus aset opsional pelajaran itu). Detail & contoh: `data/README.md`.
      `number-line` (`MathNumberLine`, jawaban = `operandA`), `number-bond`,
      `block-addition`, `block-subtraction` (prop `taken`), `missing-number`
      (jawaban = `operandB`; MethodLesson pakai computed `correctValue`), `compare`
-     (operator `'compare'`, runner khusus `MathCompareLesson` — bukan MethodLesson).
+     (operator `'compare'`, runner khusus `MathCompareLesson` — bukan MethodLesson),
+     `pattern` (loncat bilangan; pakai `problem.sequence`, item terakhir = jawaban "?"),
+     `clock` (`MathClock` SVG; jawaban = jam pada `problem.answer`). Metode non-aritmetika
+     boleh mengosongkan `operator` (opsional) — uji konsistensi +/- otomatis melewatinya.
 - **Aktivitas Bahasa Inggris baru** (`vocabulary`/`phonics`/`listening`/`spelling`/`sentence`): tambah nilai
   di `EnglishActivity` (`types/`), entri di `data/english/methods.ts`, buat komponen runner
   (mis. `EnglishListeningLesson`, `EnglishSpellingLesson`, `EnglishSentenceLesson`), lalu cabang di `pages/[subject]/[id].vue` per `lesson.type`.
