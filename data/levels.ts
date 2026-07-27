@@ -21,21 +21,20 @@ export const levels: LevelMeta[] = [
     label: 'Tunas',
     age: '6–7 th',
     icon: '🌱',
-    description: 'Langkah pertama — mengenal huruf, kata, & angka sampai 10 dengan bantuan gambar.',
+    description: 'Langkah pertama — materi paling dasar dengan banyak bantuan gambar & suara.',
   },
   {
     id: 'intermediate',
     label: 'Penjelajah',
     age: '8–9 th',
     icon: '🚀',
-    description: 'Selangkah lebih tinggi — angka lebih besar (sampai 20) & menyimak tanpa teks.',
+    description: 'Selangkah lebih tinggi — materi yang sedikit lebih menantang untuk diasah.',
   },
   {
     id: 'advanced',
     label: 'Juara',
     age: '10+ th',
     icon: '🏆',
-    description:
-      'Tantangan lanjutan: menyusun kata & kalimat, membandingkan bilangan, & soal abstrak.',
+    description: 'Tantangan lanjutan — materi yang membuat anak makin percaya diri.',
   },
 ]

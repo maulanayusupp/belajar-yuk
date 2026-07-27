@@ -109,6 +109,10 @@ useHead({ title: 'Tes Penempatan' })
 <template>
   <div class="tes">
     <NuxtLink to="/" class="tes__back">← Beranda</NuxtLink>
+    <header class="tes__head">
+      <h1 class="tes__title"><span aria-hidden="true">🎯</span> Tes Penempatan</h1>
+      <p class="tes__subtitle">Jawab soal singkat untuk tahu dari mana sebaiknya kamu mulai.</p>
+    </header>
 
     <template v-if="!done">
       <BaseMascot
@@ -187,6 +191,20 @@ useHead({ title: 'Tes Penempatan' })
     color: $color-primary-dark;
     padding: spacing('xs') spacing('md');
     border-radius: $radius-pill;
+  }
+
+  &__head {
+    @include flex(column, flex-start, flex-start, spacing('xs'));
+    margin-bottom: spacing('sm');
+  }
+
+  &__title {
+    margin: 0;
+  }
+
+  &__subtitle {
+    margin: 0;
+    color: $color-text-muted;
   }
 
   &__stage {

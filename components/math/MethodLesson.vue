@@ -13,6 +13,13 @@ const props = defineProps<{ lesson: MathLesson }>()
 // Method metadata (icon + instruction) comes from a central registry.
 const methodMeta = computed(() => lessonService.getMathMethodMeta(props.lesson.method))
 const instruction = computed(() => methodMeta.value.instruction)
+// A short English flourish that fits the method (not "Let's count!" everywhere).
+const messageEn = computed(() => {
+  if (props.lesson.method === 'clock') return 'What time is it?'
+  if (props.lesson.method === 'pattern') return "What's next?"
+  if (props.lesson.method === 'compare') return 'Compare!'
+  return "Let's count!"
+})
 
 const { saveResult } = useProgress()
 const { play, speak } = useAudio()
@@ -102,7 +109,7 @@ function optionState(value: number): 'default' | 'correct' | 'wrong' {
 <template>
   <div class="mlesson">
     <template v-if="!done">
-      <BaseMascot :message="instruction" message-en="Let's count!" />
+      <BaseMascot :message="instruction" :message-en="messageEn" />
 
       <BaseProgressBar :current="index + 1" :total="lesson.problems.length" accent="math" />
 

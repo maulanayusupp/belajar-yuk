@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-07-27",
+    "version": "0.40.1",
+    "tag": "Perbaikan",
+    "title": "Poles UI kecil-kecil",
+    "changes": [
+      "Ikon suara di header diganti dengan ikon garis yang lebih tajam & konsisten (bukan emoji).",
+      "Halaman Tes Penempatan kini punya judul & keterangan yang jelas di atas.",
+      "Keterangan tingkat (Tunas/Penjelajah/Juara) dibuat netral agar cocok untuk semua mapel."
+    ]
+  },
+  {
     "date": "2026-07-23",
     "version": "0.40.0",
     "tag": "Fitur",
