@@ -5,7 +5,7 @@
 
 export type SubjectId = 'english' | 'math' | 'science' | 'bahasa' | 'english-life'
 
-export type Level = 'beginner' | 'intermediate' | 'advanced'
+export type Level = 'beginner' | 'intermediate' | 'advanced' | 'expert'
 
 /** Subject (card on the home page). */
 export interface Subject {

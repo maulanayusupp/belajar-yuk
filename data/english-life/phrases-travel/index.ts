@@ -7,7 +7,7 @@ export const phrasesTravel: EnglishLesson = {
   type: 'sentence',
   title: 'Frasa saat Bepergian',
   titleEn: 'Travel Phrases',
-  level: 'advanced',
+  level: 'expert',
   emoji: '🧭',
   durationMin: 7,
   items: [

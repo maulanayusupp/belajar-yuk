@@ -1,4 +1,4 @@
-import type { Level } from '~/types'
+import type { Level, SubjectId } from '~/types'
 
 // Difficulty/age tiers ("categories") used to group materials so parents & kids
 // know which is for whom. Named Tunas / Penjelajah / Juara with an age hint.
@@ -8,8 +8,8 @@ export interface LevelMeta {
   id: Level
   /** Category name shown to users (Tunas / Penjelajah / Juara). */
   label: string
-  /** Age hint for the tier, e.g. '6–7 th'. */
-  age: string
+  /** Age hint for the tier, e.g. '6–7 th'. Omitted for proficiency-based tracks. */
+  age?: string
   icon: string
   description: string
 }
@@ -38,3 +38,37 @@ export const levels: LevelMeta[] = [
     description: 'Tantangan lanjutan — materi yang membuat anak makin percaya diri.',
   },
 ]
+
+// "English for Life" uses a PROFICIENCY ladder (no age gate) — from survival
+// English up to fluent, real-world usage. Four tiers so the ramp is genuine.
+export const englishLifeLevels: LevelMeta[] = [
+  {
+    id: 'beginner',
+    label: 'Pemula',
+    icon: '🌱',
+    description: 'Kata & frasa paling dasar untuk kebutuhan sehari-hari.',
+  },
+  {
+    id: 'intermediate',
+    label: 'Menengah',
+    icon: '💬',
+    description: 'Menggambarkan hal & menyusun kalimat sederhana untuk situasi umum.',
+  },
+  {
+    id: 'advanced',
+    label: 'Mahir',
+    icon: '🎯',
+    description: 'Kosakata untuk situasi nyata: bepergian, belanja, restoran, & kantor.',
+  },
+  {
+    id: 'expert',
+    label: 'Jagoan',
+    icon: '🦸',
+    description: 'Tingkat lanjut: frasa kerja (phrasal verb), idiom, & percakapan menantang.',
+  },
+]
+
+/** The tier list for a subject — English for Life has its own proficiency ladder. */
+export function levelsFor(subject: SubjectId): LevelMeta[] {
+  return subject === 'english-life' ? englishLifeLevels : levels
+}

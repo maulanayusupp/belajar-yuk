@@ -16,7 +16,7 @@ import { mathMethodMeta, type MathMethodMeta } from '~/data/math/methods'
 import { englishActivityMeta, type EnglishActivityMeta } from '~/data/english/methods'
 import { scienceActivityMeta, type ScienceActivityMeta } from '~/data/science/methods'
 import { bahasaActivityMeta, type BahasaActivityMeta } from '~/data/bahasa/methods'
-import { levels, type LevelMeta } from '~/data/levels'
+import { levels, levelsFor, type LevelMeta } from '~/data/levels'
 import { generateNumberOptions } from '~/utils/math'
 import { shuffle } from '~/utils/array'
 
@@ -147,13 +147,18 @@ export const lessonService = {
     return [...used].map((activity) => ({ activity, ...bahasaActivityMeta[activity] }))
   },
 
-  /** Level metadata (Beginner/Intermediate/Advanced). */
+  /** Level metadata (default kid tiers: Tunas/Penjelajah/Juara). */
   getLevels(): LevelMeta[] {
     return levels
   },
 
-  getLevelMeta(level: Level): LevelMeta {
-    return levels.find((l) => l.id === level) ?? levels[0]
+  /**
+   * Metadata for a level. `subject` picks the tier set — English for Life uses
+   * its own proficiency ladder (Pemula → Jagoan), other subjects use the kid tiers.
+   */
+  getLevelMeta(level: Level, subject?: SubjectId): LevelMeta {
+    const list = subject ? levelsFor(subject) : levels
+    return list.find((l) => l.id === level) ?? list[0]
   },
 
   /**
@@ -162,7 +167,7 @@ export const lessonService = {
    */
   getLessonsGrouped(subject: SubjectId): Array<{ meta: LevelMeta; lessons: Lesson[] }> {
     const lessons = this.getLessons(subject)
-    return levels
+    return levelsFor(subject)
       .map((meta) => ({ meta, lessons: lessons.filter((l) => l.level === meta.id) }))
       .filter((group) => group.lessons.length > 0)
   },
@@ -170,7 +175,7 @@ export const lessonService = {
   /** Levels that don't have lessons yet (for the "coming soon" teaser). */
   getUpcomingLevels(subject: SubjectId): LevelMeta[] {
     const filled = new Set(this.getLessonsGrouped(subject).map((g) => g.meta.id))
-    return levels.filter((l) => !filled.has(l.id))
+    return levelsFor(subject).filter((l) => !filled.has(l.id))
   },
 
   /**

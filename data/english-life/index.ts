@@ -22,6 +22,10 @@ import { directions } from './directions'
 import { health } from './health'
 import { phrasesPolite } from './phrases-polite'
 import { phrasesTravel } from './phrases-travel'
+import { phrasalVerbs } from './phrasal-verbs'
+import { idioms } from './idioms'
+import { businessPhrases } from './business-phrases'
+import { travelSituations } from './travel-situations'
 
 export const englishLifeLessons: EnglishLesson[] = [
   // Tunas — everyday basics
@@ -45,6 +49,11 @@ export const englishLifeLessons: EnglishLesson[] = [
   officeWork,
   directions,
   health,
+  // Jagoan — advanced, real fluency (phrasal verbs, idioms, work & travel phrases)
   phrasesPolite,
   phrasesTravel,
+  phrasalVerbs,
+  idioms,
+  businessPhrases,
+  travelSituations,
 ]

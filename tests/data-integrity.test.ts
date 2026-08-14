@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { lessonService } from '~/services/lessonService'
 
-const LEVELS = ['beginner', 'intermediate', 'advanced']
+const LEVELS = ['beginner', 'intermediate', 'advanced', 'expert']
 
 describe('lesson data integrity', () => {
   const lessons = lessonService.getLessons()

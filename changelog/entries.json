@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-07-27",
+    "version": "0.46.0",
+    "tag": "Fitur",
+    "title": "English for Life: tingkat & materi tingkat lanjut",
+    "changes": [
+      "Modul English for Life kini punya tingkatnya sendiri (bukan Tunas/Penjelajah/Juara): Pemula → Menengah → Mahir → Jagoan, tanpa patokan usia.",
+      "Materi tingkat Jagoan yang benar-benar mahir: Phrasal Verb, Idiom Populer, Frasa Kantor, & Situasi Perjalanan (idiom & frasa kerja sungguhan).",
+      "Ramp yang nyata dari kata dasar → situasi sehari-hari → dunia nyata → fasih (24 pelajaran)."
+    ]
+  },
+  {
+    "date": "2026-07-27",
     "version": "0.45.0",
     "tag": "Fitur",
     "title": "Modul baru terpisah: English for Life 🌍",

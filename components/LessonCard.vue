@@ -10,7 +10,9 @@ const { getStars, isCompleted } = useProgress()
 
 // Method tags (e.g. "Ikatan Bilangan", "Phonics") + level from the service.
 const tag = computed(() => lessonService.getLessonTag(props.lesson))
-const levelMeta = computed(() => lessonService.getLevelMeta(props.lesson.level))
+const levelMeta = computed(() =>
+  lessonService.getLevelMeta(props.lesson.level, props.lesson.subject),
+)
 
 const stars = computed(() => getStars(props.lesson.id))
 const done = computed(() => isCompleted(props.lesson.id))
@@ -43,7 +45,8 @@ const mastered = computed(() => stars.value >= 3) // 3★ = mastered
           <span aria-hidden="true">{{ tag.icon }}</span> {{ tag.label }}
         </span>
         <span class="lesson-card__level" :class="`lesson-card__level--${lesson.level}`">
-          {{ levelMeta.icon }} {{ levelMeta.label }} · {{ levelMeta.age }}
+          {{ levelMeta.icon }} {{ levelMeta.label
+          }}<template v-if="levelMeta.age"> · {{ levelMeta.age }}</template>
         </span>
       </div>
 
@@ -177,6 +180,10 @@ const mastered = computed(() => stars.value >= 3) // 3★ = mastered
       color: $color-bahasa-dark;
       background: rgba($color-bahasa, 0.15);
     }
+    &--english-life {
+      color: #0a8ba8;
+      background: rgba(18, 181, 201, 0.15);
+    }
   }
 
   &__level {
@@ -196,6 +203,10 @@ const mastered = computed(() => stars.value >= 3) // 3★ = mastered
     &--advanced {
       color: #c2410c;
       background: rgba($color-accent-2, 0.22);
+    }
+    &--expert {
+      color: #b31860;
+      background: rgba($color-accent, 0.16);
     }
   }
 

@@ -225,8 +225,11 @@ plus aset opsional pelajaran itu). Detail & contoh: `data/README.md`.
   di `EnglishActivity` (`types/`), entri di `data/english/methods.ts`, buat komponen runner
   (mis. `EnglishListeningLesson`, `EnglishSpellingLesson`, `EnglishSentenceLesson`), lalu cabang di `pages/[subject]/[id].vue` per `lesson.type`.
   Catatan `sentence` (Menyusun Kalimat): memakai ulang `VocabularyItem` — `word` = kalimat penuh, `translation` = arti, `emoji` = petunjuk gambar; runner memecah kalimat jadi kartu kata.
-- **Tingkat (Pemula/Menengah/Mahir)**: set `level` pada tiap pelajaran. Metadata kategori
-  di `data/levels.ts`. Halaman pelajaran mengelompokkan via `lessonService.getLessonsGrouped`;
+- **Tingkat**: set `level` pada tiap pelajaran (`beginner`/`intermediate`/`advanced`/`expert`).
+  Metadata kategori di `data/levels.ts`, **per-subject** via `levelsFor(subject)`: mapel anak
+  memakai **Tunas/Penjelajah/Juara** (dengan usia), sedangkan `english-life` memakai tangga
+  kemahiran **Pemula/Menengah/Mahir/Jagoan** (tanpa usia; `age` opsional). `getLevelMeta(level,
+subject?)`, `getLessonsGrouped`, `getUpcomingLevels` semua subject-aware. Halaman pelajaran mengelompokkan via `lessonService.getLessonsGrouped`;
   kartu menampilkan tag metode + badge tingkat via `lessonService.getLessonTag` & `getLevelMeta`.
   Tingkat kosong tampil sebagai teaser "segera hadir" (`getUpcomingLevels`).
   Catatan kejujuran: saat ini beda level hanya rentang angka (≤10 vs ≤20) untuk math;

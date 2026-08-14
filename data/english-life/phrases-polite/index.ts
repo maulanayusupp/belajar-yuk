@@ -7,7 +7,7 @@ export const phrasesPolite: EnglishLesson = {
   type: 'sentence',
   title: 'Frasa Sopan',
   titleEn: 'Polite Phrases',
-  level: 'advanced',
+  level: 'expert',
   emoji: '🙏',
   durationMin: 7,
   items: [
