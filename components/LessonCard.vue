@@ -4,7 +4,9 @@ import { lessonService } from '~/services/lessonService'
 
 // Single lesson card (premium look) with progress stars,
 // method/activity tags, and a level badge.
-const props = defineProps<{ lesson: Lesson }>()
+const props = withDefaults(defineProps<{ lesson: Lesson; compact?: boolean }>(), {
+  compact: false,
+})
 
 const { getStars, isCompleted } = useProgress()
 
@@ -23,7 +25,7 @@ const mastered = computed(() => stars.value >= 3) // 3★ = mastered
   <NuxtLink
     :to="`/${lesson.subject}/${lesson.id}`"
     class="lesson-card"
-    :class="`lesson-card--${lesson.subject}`"
+    :class="[`lesson-card--${lesson.subject}`, { 'lesson-card--compact': compact }]"
   >
     <span class="lesson-card__icon" aria-hidden="true">{{ lesson.emoji }}</span>
 
@@ -91,6 +93,9 @@ const mastered = computed(() => stars.value >= 3) // 3★ = mastered
   &--bahasa::before {
     background: $gradient-bahasa;
   }
+  &--english-life::before {
+    background: $gradient-english-life;
+  }
 
   &:hover {
     box-shadow: $shadow-lg;
@@ -120,6 +125,9 @@ const mastered = computed(() => stars.value >= 3) // 3★ = mastered
   }
   &--bahasa &__icon {
     background: rgba($color-bahasa, 0.15);
+  }
+  &--english-life &__icon {
+    background: rgba(18, 181, 201, 0.15);
   }
 
   &__info {
@@ -224,6 +232,30 @@ const mastered = computed(() => stars.value >= 3) // 3★ = mastered
     color: $color-primary-dark;
     font-size: font-size('sm');
     transition: transform $transition-base;
+  }
+
+  // ---- Compact variant: a slim one-line-ish row (used by English for Life) ----
+  &--compact {
+    @include hover-lift(-3px);
+    padding: spacing('sm') spacing('md');
+    gap: spacing('sm');
+
+    .lesson-card__icon {
+      width: 40px;
+      height: 40px;
+      font-size: font-size('md');
+    }
+    .lesson-card__title {
+      font-size: font-size('md');
+    }
+    .lesson-card__tags {
+      margin-block: 3px 0;
+    }
+    // Hide the secondary meta line and the star row → keep it short.
+    .lesson-card__meta,
+    .lesson-card__footer {
+      display: none;
+    }
   }
 }
 </style>

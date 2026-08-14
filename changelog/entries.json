@@ -1,6 +1,16 @@
 [
   {
     "date": "2026-07-27",
+    "version": "0.48.3",
+    "tag": "Perbaikan",
+    "title": "English for Life: kartu daftar versi ringkas (compact)",
+    "changes": [
+      "Kartu materi di English for Life dibuat lebih kecil & ringkas — ikon kecil + judul + tag dalam satu baris pendek, tanpa detail berlebih.",
+      "Ditambah garis aksen & warna ikon teal khas modul ini."
+    ]
+  },
+  {
+    "date": "2026-07-27",
     "version": "0.48.2",
     "tag": "Perbaikan",
     "title": "English for Life: tata letak jadi daftar (list)",

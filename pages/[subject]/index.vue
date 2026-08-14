@@ -67,7 +67,12 @@ useHead(() => ({ title: `${subject.value?.title} — Belajar Yuk!` }))
         class="subject-page__list"
         :class="{ 'subject-page__list--single': subject.id === 'english-life' }"
       >
-        <LessonCard v-for="lesson in group.lessons" :key="lesson.id" :lesson="lesson" />
+        <LessonCard
+          v-for="lesson in group.lessons"
+          :key="lesson.id"
+          :lesson="lesson"
+          :compact="subject.id === 'english-life'"
+        />
       </div>
     </section>
 
