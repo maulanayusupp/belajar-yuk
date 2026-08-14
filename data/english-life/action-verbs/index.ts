@@ -1,25 +1,19 @@
 import type { EnglishLesson } from '~/types'
 
-// Vocabulary: common action verbs (a different set from the basic "Verbs" lesson).
+// Listening: everyday/practical verbs you use in real life & at work.
 export const actionVerbs: EnglishLesson = {
   id: 'en-action-verbs',
   subject: 'english-life',
   type: 'listening',
-  title: 'Kata Kerja Aksi',
-  titleEn: 'Action Verbs',
+  title: 'Kata Kerja Sehari-hari',
+  titleEn: 'Everyday Verbs',
   level: 'intermediate',
   emoji: '🏃',
   durationMin: 6,
   items: [
-    { id: 'sing', word: 'Sing', translation: 'Menyanyi', emoji: '🎤', example: 'I sing a song.' },
-    {
-      id: 'dance',
-      word: 'Dance',
-      translation: 'Menari',
-      emoji: '💃',
-      example: 'We dance together.',
-    },
-    { id: 'draw', word: 'Draw', translation: 'Menggambar', emoji: '🖍️', example: 'I draw a cat.' },
+    { id: 'buy', word: 'Buy', translation: 'Membeli', emoji: '🛒', example: 'I buy some bread.' },
+    { id: 'pay', word: 'Pay', translation: 'Membayar', emoji: '💳', example: 'Please pay here.' },
+    { id: 'call', word: 'Call', translation: 'Menelepon', emoji: '📞', example: 'Call me later.' },
     {
       id: 'write',
       word: 'Write',

@@ -36,7 +36,7 @@ export const fillPrepositions: EnglishLesson = {
       translation: 'di atas',
       emoji: '📖',
       prompt: 'The book is ___ the table.',
-      options: ['on', 'in', 'under'],
+      options: ['on', 'in', 'of'],
       answer: 'on',
     },
     {
