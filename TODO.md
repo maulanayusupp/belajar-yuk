@@ -43,7 +43,8 @@ input-only tier. Even free Duolingo ABC has speech recognition we lack.
 - [x] **"English for Life" module** — 20 practical lessons beginner→advanced (daily life, home,
       town, travel, hotel, restaurant, shopping, office/work, directions, health, common phrases).
       Data-driven (`data/english/*`); curriculum in `data/english/MODULE_PLAN.md`.
-- [ ] **Reading comprehension** — short sentence → pick the matching picture.
+- [x] **Reading comprehension** ("Baca & Pahami" 📖) — read a sentence → pick the matching
+      picture. `EnglishActivity: 'reading'` + `EnglishReadingLesson`. 2 lessons (animals/actions).
 - [ ] **Speaking / "listen & repeat"** — record-and-compare (British Council style);
       later, optional speech-recognition scoring (Web Speech API `SpeechRecognition`).
 - [ ] **CEFR / Cambridge YLE alignment** — map lessons to Pre-A1/A1 can-dos; issue
