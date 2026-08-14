@@ -63,7 +63,10 @@ useHead(() => ({ title: `${subject.value?.title} — Belajar Yuk!` }))
         </h2>
         <p class="level-group__desc">{{ group.meta.description }}</p>
       </header>
-      <div class="subject-page__list">
+      <div
+        class="subject-page__list"
+        :class="{ 'subject-page__list--single': subject.id === 'english-life' }"
+      >
         <LessonCard v-for="lesson in group.lessons" :key="lesson.id" :lesson="lesson" />
       </div>
     </section>
@@ -101,6 +104,16 @@ useHead(() => ({ title: `${subject.value?.title} — Belajar Yuk!` }))
 
     @include respond-to('md') {
       grid-template-columns: 1fr 1fr;
+    }
+
+    // Single-column list (used by English for Life — a tidy vertical list
+    // instead of a grid of boxes). Kept to a readable width.
+    &--single {
+      max-width: 680px;
+
+      @include respond-to('md') {
+        grid-template-columns: 1fr;
+      }
     }
   }
 }
