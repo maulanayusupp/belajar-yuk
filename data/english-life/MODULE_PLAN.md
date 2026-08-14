@@ -9,9 +9,10 @@ Format: setiap materi = 1 folder `data/english-life/<slug>/index.ts` (`EnglishLe
 dengan `subject: 'english-life'`), didaftarkan di `data/english-life/index.ts`. Runner
 memakai ulang komponen English. Semua materi harus **unik** (`tests/uniqueness.test.ts`).
 
-**Tingkat khusus modul ini** (tangga kemahiran, TANPA patokan usia — dari `levelsFor`
-di `data/levels.ts`): **Pemula** (beginner) → **Menengah** (intermediate) →
-**Mahir** (advanced) → **Jagoan** (expert).
+**Tingkat = band CEFR** (bukan usia; bukan sekadar jenis soal) — dari `levelsFor` di
+`data/levels.ts`: **Pemula = A1** → **Menengah = A2** → **Mahir = B1** →
+**Jagoan = B2–C1**. Materi ditempatkan sesuai level ISI-nya menurut CEFR (mis. preposisi
+tempat = A1, phrasal verb dasar = B1, idiom = B2–C1). Badge kartu menampilkan band-nya.
 
 **Kesulitan SOAL naik per tingkat lewat JENIS latihan (`type`), bukan sekadar tema:**
 

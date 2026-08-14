@@ -41,30 +41,36 @@ export const levels: LevelMeta[] = [
 
 // "English for Life" uses a PROFICIENCY ladder (no age gate) — from survival
 // English up to fluent, real-world usage. Four tiers so the ramp is genuine.
+// Tiers mapped to CEFR bands so the level matches the CONTENT difficulty
+// (not just the exercise type): A1 → A2 → B1 → B2–C1.
 export const englishLifeLevels: LevelMeta[] = [
   {
     id: 'beginner',
     label: 'Pemula',
+    age: 'A1',
     icon: '🌱',
-    description: 'Kata & frasa paling dasar untuk kebutuhan sehari-hari.',
+    description: 'Setara A1 — kata & frasa paling dasar untuk kebutuhan sehari-hari.',
   },
   {
     id: 'intermediate',
     label: 'Menengah',
+    age: 'A2',
     icon: '💬',
-    description: 'Menggambarkan hal & menyusun kalimat sederhana untuk situasi umum.',
+    description: 'Setara A2 — mendeskripsikan hal, kalimat & percakapan sederhana.',
   },
   {
     id: 'advanced',
     label: 'Mahir',
+    age: 'B1',
     icon: '🎯',
-    description: 'Kosakata untuk situasi nyata: bepergian, belanja, restoran, & kantor.',
+    description: 'Setara B1 — menghadapi situasi nyata: bepergian, belanja, kerja, & phrasal verb.',
   },
   {
     id: 'expert',
     label: 'Jagoan',
+    age: 'B2–C1',
     icon: '🦸',
-    description: 'Tingkat lanjut: frasa kerja (phrasal verb), idiom, & percakapan menantang.',
+    description: 'Setara B2–C1 — frasa lanjutan, idiom, & ungkapan fasih.',
   },
 ]
 

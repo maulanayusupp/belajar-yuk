@@ -1,6 +1,6 @@
 import type { EnglishLesson } from '~/types'
 
-// Jagoan (advanced): reading comprehension — read a short passage, then answer
+// Menengah (A2): reading comprehension — read a short passage, then answer
 // a question about it. Real reading skill, the hardest tier.
 export const readingStory: EnglishLesson = {
   id: 'enl-reading-story',
@@ -8,7 +8,7 @@ export const readingStory: EnglishLesson = {
   type: 'comprehension',
   title: 'Baca Paham',
   titleEn: 'Reading Comprehension',
-  level: 'expert',
+  level: 'intermediate',
   emoji: '📕',
   durationMin: 9,
   items: [

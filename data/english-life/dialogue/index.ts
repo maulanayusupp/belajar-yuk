@@ -1,6 +1,6 @@
 import type { EnglishLesson } from '~/types'
 
-// Jagoan (advanced): dialogue — read what someone says, pick the best reply.
+// Menengah (A2): dialogue — read what someone says, pick the best reply.
 // Tests conversational competence, not just words.
 export const dialogue: EnglishLesson = {
   id: 'enl-dialogue',
@@ -8,7 +8,7 @@ export const dialogue: EnglishLesson = {
   type: 'dialogue',
   title: 'Percakapan Sehari-hari',
   titleEn: 'Everyday Dialogue',
-  level: 'expert',
+  level: 'intermediate',
   emoji: '💬',
   durationMin: 8,
   items: [

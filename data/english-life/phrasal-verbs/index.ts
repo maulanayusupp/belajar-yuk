@@ -1,6 +1,6 @@
 import type { EnglishLesson } from '~/types'
 
-// Jagoan (advanced): phrasal verbs — multi-word verbs whose meaning isn't literal.
+// Mahir (B1): phrasal verbs — multi-word verbs whose meaning isn't literal.
 // A real step up from single-word vocabulary.
 export const phrasalVerbs: EnglishLesson = {
   id: 'enl-phrasal-verbs',
@@ -8,7 +8,7 @@ export const phrasalVerbs: EnglishLesson = {
   type: 'vocabulary',
   title: 'Phrasal Verb',
   titleEn: 'Phrasal Verbs',
-  level: 'expert',
+  level: 'advanced',
   emoji: '🔗',
   durationMin: 7,
   items: [

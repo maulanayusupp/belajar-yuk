@@ -30,22 +30,28 @@ import { fillPrepositions } from './fill-prepositions'
 import { fillVerbs } from './fill-verbs'
 import { dialogue } from './dialogue'
 import { readingStory } from './reading-story'
+import { idiomsAdvanced } from './idioms-advanced'
+import { opinions } from './opinions'
 
+// Grouped by CEFR band (matches the tier level in each lesson):
 export const englishLifeLessons: EnglishLesson[] = [
-  // Tunas — everyday basics
+  // ── Pemula (A1) — core everyday vocabulary & prepositions of place
   dailyRoutine,
   kitchen,
   bathroom,
   months,
   placesTown,
-  // Penjelajah — describing & doing
+  positions,
+  // ── Menengah (A2) — describing, simple sentences, basic conversation & reading
   actionVerbs,
   adjectives,
-  positions,
   moreFeelings,
   listenHome,
   sentenceDaily,
-  // Juara — real-world English (travel, work, phrases)
+  fillPrepositions,
+  dialogue,
+  readingStory,
+  // ── Mahir (B1) — real situations (travel/work/shopping) & phrasal verbs
   travelAirport,
   hotel,
   restaurant,
@@ -53,17 +59,14 @@ export const englishLifeLessons: EnglishLesson[] = [
   officeWork,
   directions,
   health,
-  // Mahir — usage in context (fill in the blank)
-  fillPrepositions,
   fillVerbs,
-  // Jagoan — advanced, real fluency (phrasal verbs, idioms, work & travel phrases,
-  // conversation, and reading comprehension)
-  dialogue,
-  readingStory,
+  phrasalVerbs,
+  // ── Jagoan (B2–C1) — functional phrases, idioms & fluent expression
   phrasesPolite,
   phrasesTravel,
-  phrasalVerbs,
-  idioms,
   businessPhrases,
   travelSituations,
+  idioms,
+  idiomsAdvanced,
+  opinions,
 ]

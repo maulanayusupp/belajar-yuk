@@ -1,6 +1,6 @@
 import type { EnglishLesson } from '~/types'
 
-// Mahir (advanced): fill-in-the-blank with prepositions — notoriously tricky,
+// Menengah (A2): fill-in-the-blank with prepositions — notoriously tricky,
 // tests grammar/usage in context (not just recognition).
 export const fillPrepositions: EnglishLesson = {
   id: 'enl-fill-prepositions',
@@ -8,7 +8,7 @@ export const fillPrepositions: EnglishLesson = {
   type: 'fill-blank',
   title: 'Isian: Kata Depan',
   titleEn: 'Fill in: Prepositions',
-  level: 'advanced',
+  level: 'intermediate',
   emoji: '✏️',
   durationMin: 7,
   items: [

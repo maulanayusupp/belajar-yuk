@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-07-27",
+    "version": "0.49.0",
+    "tag": "Perbaikan",
+    "title": "English for Life: tingkat kini sesuai level CEFR",
+    "changes": [
+      "Tingkat dipetakan ke band CEFR (Pemula=A1, Menengah=A2, Mahir=B1, Jagoan=B2–C1) berdasarkan sumber — badge kartu menampilkan band-nya.",
+      "Materi yang salah tingkat dibetulkan: preposisi & percakapan dasar & baca-paham turun ke A1/A2; phrasal verb dasar ke B1 (bukan Jagoan).",
+      "Menambah 2 materi B2–C1 yang benar-benar lanjutan (Idiom Lanjutan & Beropini/Setuju) agar tingkat Jagoan sah."
+    ]
+  },
+  {
+    "date": "2026-07-27",
     "version": "0.48.5",
     "tag": "Perbaikan",
     "title": "Audit relevansi soal English for Life",

@@ -7,7 +7,7 @@ export const positions: EnglishLesson = {
   type: 'listening',
   title: 'Letak & Posisi',
   titleEn: 'Where Is It?',
-  level: 'intermediate',
+  level: 'beginner',
   emoji: '📍',
   durationMin: 6,
   items: [
