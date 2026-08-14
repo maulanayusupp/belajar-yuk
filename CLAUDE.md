@@ -231,7 +231,9 @@ plus aset opsional pelajaran itu). Detail & contoh: `data/README.md`.
 - **Tingkat**: set `level` pada tiap pelajaran (`beginner`/`intermediate`/`advanced`/`expert`).
   Metadata kategori di `data/levels.ts`, **per-subject** via `levelsFor(subject)`: mapel anak
   memakai **Tunas/Penjelajah/Juara** (dengan usia), sedangkan `english-life` memakai tangga
-  kemahiran **Pemula/Menengah/Mahir/Jagoan** (tanpa usia; `age` opsional). `getLevelMeta(level,
+  kemahiran **Pemula/Menengah/Mahir/Jagoan** yang dipetakan ke band **CEFR** —
+  Pemula=A1, Menengah=A2, Mahir=B1, Jagoan=B2–C1 (band ditaruh di `age`, tampil di badge).
+  Tempatkan materi baru menurut level ISI-nya menurut CEFR, bukan sekadar jenis soal. `getLevelMeta(level,
 subject?)`, `getLessonsGrouped`, `getUpcomingLevels` semua subject-aware. Halaman pelajaran mengelompokkan via `lessonService.getLessonsGrouped`;
   kartu menampilkan tag metode + badge tingkat via `lessonService.getLessonTag` & `getLevelMeta`.
   Tingkat kosong tampil sebagai teaser "segera hadir" (`getUpcomingLevels`).
