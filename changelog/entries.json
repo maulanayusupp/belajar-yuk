@@ -1,6 +1,15 @@
 [
   {
     "date": "2026-07-27",
+    "version": "0.44.0",
+    "tag": "Konten",
+    "title": "Coding: 2 level Urutkan Langkah baru",
+    "changes": [
+      "Dunia Urutkan Langkah bertambah: Cuci Tangan & Buat Teh Manis — menyusun urutan kegiatan sehari-hari."
+    ]
+  },
+  {
+    "date": "2026-07-27",
     "version": "0.43.0",
     "tag": "Konten",
     "title": "Materi baru: Sains & Membaca",
