@@ -1,0 +1,70 @@
+import type { ScienceLesson } from '~/types'
+
+// Science lesson: Our Body — organs & parts inside us (a different set from
+// "The Five Senses").
+export const body: ScienceLesson = {
+  id: 'sci-tubuh',
+  subject: 'science',
+  type: 'explore',
+  title: 'Tubuh Kita',
+  titleEn: 'Our Body',
+  level: 'intermediate',
+  emoji: '🫀',
+  durationMin: 6,
+  facts: [
+    {
+      id: 'brain',
+      term: 'Brain',
+      name: 'Otak',
+      emoji: '🧠',
+      fact: 'Otak (brain) mengatur seluruh tubuh dan membantu kita berpikir.',
+      clue: 'Bagian tubuh untuk berpikir?',
+      group: 'tubuh',
+    },
+    {
+      id: 'lungs',
+      term: 'Lungs',
+      name: 'Paru-paru',
+      emoji: '🫁',
+      fact: 'Paru-paru (lungs) menghirup udara agar kita bisa bernapas.',
+      clue: 'Bagian tubuh untuk bernapas?',
+      group: 'tubuh',
+    },
+    {
+      id: 'bones',
+      term: 'Bones',
+      name: 'Tulang',
+      emoji: '🦴',
+      fact: 'Tulang (bones) membuat tubuh kuat dan tegak berdiri.',
+      clue: 'Bagian tubuh yang membuat kita kuat & tegak?',
+      group: 'tubuh',
+    },
+    {
+      id: 'teeth',
+      term: 'Teeth',
+      name: 'Gigi',
+      emoji: '🦷',
+      fact: 'Gigi (teeth) mengunyah makanan menjadi halus.',
+      clue: 'Bagian tubuh untuk mengunyah?',
+      group: 'tubuh',
+    },
+    {
+      id: 'muscle',
+      term: 'Muscle',
+      name: 'Otot',
+      emoji: '💪',
+      fact: 'Otot (muscle) membantu tubuh bergerak dan mengangkat benda.',
+      clue: 'Bagian tubuh untuk bergerak & mengangkat?',
+      group: 'tubuh',
+    },
+    {
+      id: 'blood',
+      term: 'Blood',
+      name: 'Darah',
+      emoji: '🩸',
+      fact: 'Darah (blood) mengalir membawa makanan ke seluruh tubuh.',
+      clue: 'Cairan merah yang mengalir di tubuh?',
+      group: 'tubuh',
+    },
+  ],
+}

@@ -6,8 +6,12 @@ import { syllablesSa } from './suku-kata-sa'
 import { syllablesTa } from './suku-kata-ta'
 import { syllablesNa } from './suku-kata-na'
 import { syllablesPa } from './suku-kata-pa'
+import { syllablesKa } from './suku-kata-ka'
+import { syllablesDa } from './suku-kata-da'
+import { syllablesLa } from './suku-kata-la'
 import { buildWords } from './merangkai-kata'
 import { buildWords2 } from './merangkai-kata-2'
+import { buildWords3 } from './merangkai-kata-3'
 import { simpleSentences } from './kalimat-sederhana'
 import { simpleSentences2 } from './kalimat-sederhana-2'
 
@@ -25,9 +29,13 @@ export const bahasaLessons: BahasaLesson[] = [
   syllablesTa,
   syllablesNa,
   syllablesPa,
+  syllablesKa,
+  syllablesDa,
+  syllablesLa,
   // Intermediate: building words
   buildWords,
   buildWords2,
+  buildWords3,
   // Advanced: reading sentences
   simpleSentences,
   simpleSentences2,

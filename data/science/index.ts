@@ -6,6 +6,8 @@ import { weather } from './weather'
 import { insects } from './insects'
 import { solarSystem } from './tata-surya'
 import { statesOfMatter } from './states-of-matter'
+import { body } from './tubuh'
+import { nature } from './alam'
 
 // List and ORDER of Science lessons (beginner -> advanced).
 //
@@ -20,6 +22,8 @@ export const scienceLessons: ScienceLesson[] = [
   weather,
   insects,
   // Intermediate: more abstract concepts
+  body,
+  nature,
   solarSystem,
   statesOfMatter,
 ]
