@@ -35,4 +35,12 @@ export const subjects: Subject[] = [
     theme: 'bahasa',
     description: 'Belajar membaca dari huruf, suku kata, kata, hingga kalimat.',
   },
+  {
+    id: 'english-life',
+    title: 'English for Life',
+    titleEn: 'Everyday English',
+    emoji: '🌍',
+    theme: 'english-life',
+    description: 'Bahasa Inggris praktis: sehari-hari, kerja, travelling, & frasa penting.',
+  },
 ]

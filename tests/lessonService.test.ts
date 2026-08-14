@@ -4,7 +4,13 @@ import { lessonService } from '~/services/lessonService'
 describe('lessonService', () => {
   it('returns the subjects', () => {
     const subjects = lessonService.getSubjects()
-    expect(subjects.map((s) => s.id).sort()).toEqual(['bahasa', 'english', 'math', 'science'])
+    expect(subjects.map((s) => s.id).sort()).toEqual([
+      'bahasa',
+      'english',
+      'english-life',
+      'math',
+      'science',
+    ])
   })
 
   it('filters lessons by subject', () => {

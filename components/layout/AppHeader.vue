@@ -13,6 +13,7 @@ const ACCENT: Record<string, string> = {
   math: '#4b7bec',
   science: '#16c79a',
   bahasa: '#e8567c',
+  'english-life': '#12b5c9',
   coding: '#6c5ce7',
 }
 const learnMenu = [

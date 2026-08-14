@@ -8,6 +8,7 @@ export default defineEventHandler((event) => {
   const paths = [
     '/',
     '/english',
+    '/english-life',
     '/math',
     '/science',
     '/bahasa',

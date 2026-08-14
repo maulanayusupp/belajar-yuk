@@ -49,7 +49,8 @@ useHead(() => ({ title: `${lesson.value?.title} — Belajar Yuk!` }))
     </header>
 
     <!-- Pick the lesson component based on subject & activity type -->
-    <template v-if="lesson.subject === 'english'">
+    <!-- The "English for Life" module reuses the same English runners. -->
+    <template v-if="lesson.subject === 'english' || lesson.subject === 'english-life'">
       <EnglishPhonicsLesson v-if="lesson.type === 'phonics'" :lesson="lesson" />
       <EnglishListeningLesson v-else-if="lesson.type === 'listening'" :lesson="lesson" />
       <EnglishSpellingLesson v-else-if="lesson.type === 'spelling'" :lesson="lesson" />

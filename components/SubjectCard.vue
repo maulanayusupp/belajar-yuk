@@ -70,6 +70,10 @@ defineProps<{ card: AreaCard }>()
     background: $gradient-coding;
     box-shadow: $shadow-glow-coding;
   }
+  &--english-life {
+    background: $gradient-english-life;
+    box-shadow: $shadow-glow-english-life;
+  }
 
   &:hover {
     box-shadow: $shadow-xl;

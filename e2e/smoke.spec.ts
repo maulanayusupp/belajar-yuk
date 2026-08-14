@@ -149,6 +149,18 @@ test('english "sentence building" lesson renders word tiles', async ({ page }) =
   await expect(page.locator('.sent__slot').first()).not.toBeEmpty()
 })
 
+test('English for Life is a separate module with its own page & lessons', async ({ page }) => {
+  await page.goto('/english-life')
+  await dismissOnboarding(page)
+  await expect(page.getByRole('heading', { name: 'English for Life', level: 1 })).toBeVisible()
+  const lesson = page
+    .getByRole('link', { name: /Kegiatan Harian|Di Hotel|Peralatan Makan/ })
+    .first()
+  await expect(lesson).toBeVisible()
+  await lesson.click()
+  await expect(page).toHaveURL(/\/english-life\//)
+})
+
 test('english "reading comprehension" lesson renders & is answerable', async ({ page }) => {
   await page.goto('/english/en-reading-animals')
   await dismissOnboarding(page)

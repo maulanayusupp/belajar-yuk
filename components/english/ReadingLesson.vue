@@ -86,7 +86,7 @@ function restart() {
   done.value = false
 }
 function goHome() {
-  navigateTo('/english')
+  navigateTo('/' + props.lesson.subject)
 }
 </script>
 

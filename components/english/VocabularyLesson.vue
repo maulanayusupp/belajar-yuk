@@ -46,7 +46,7 @@ function restart() {
 }
 
 function goHome() {
-  navigateTo('/english')
+  navigateTo('/' + props.lesson.subject)
 }
 </script>
 

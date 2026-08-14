@@ -1,6 +1,7 @@
 import type { Lesson } from '~/types'
 import { subjects } from './subjects'
 import { englishLessons } from './english'
+import { englishLifeLessons } from './english-life'
 import { mathLessons } from './math'
 import { scienceLessons } from './science'
 import { bahasaLessons } from './bahasa'
@@ -17,11 +18,12 @@ import { bahasaLessons } from './bahasa'
 //      index.ts             -> this file (aggregate)
 // =============================================================
 
-export { subjects, englishLessons, mathLessons, scienceLessons, bahasaLessons }
+export { subjects, englishLessons, englishLifeLessons, mathLessons, scienceLessons, bahasaLessons }
 
 // Combination of all lessons from every subject.
 export const allLessons: Lesson[] = [
   ...englishLessons,
+  ...englishLifeLessons,
   ...mathLessons,
   ...scienceLessons,
   ...bahasaLessons,

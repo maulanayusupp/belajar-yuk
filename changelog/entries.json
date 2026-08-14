@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-07-27",
+    "version": "0.45.0",
+    "tag": "Fitur",
+    "title": "Modul baru terpisah: English for Life 🌍",
+    "changes": [
+      "\"English for Life\" kini jadi modul tersendiri — kartu sendiri di beranda & halaman sendiri (/english-life), seperti Coding.",
+      "Berisi 20 pelajaran Inggris praktis (sehari-hari, kerja, travelling, frasa) dari dasar sampai mahir, dengan tema warna teal khas.",
+      "Materi dipindahkan keluar dari mapel Inggris inti agar tidak bercampur; comprehension (Baca & Pahami) tetap di Bahasa Inggris."
+    ]
+  },
+  {
+    "date": "2026-07-27",
     "version": "0.44.0",
     "tag": "Konten",
     "title": "Coding: 2 level Urutkan Langkah baru",

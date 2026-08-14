@@ -105,7 +105,7 @@ function restart() {
   setup()
 }
 function goHome() {
-  navigateTo('/english')
+  navigateTo('/' + props.lesson.subject)
 }
 </script>
 

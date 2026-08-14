@@ -65,10 +65,12 @@ export const lessonService = {
     return list.find((l) => !isCompleted(l.id)) ?? list[0] ?? null
   },
 
-  /** Get an English lesson with the type narrowed. */
+  /** Get an English lesson with the type narrowed (core subject or the Life module). */
   getEnglishLesson(id: string): EnglishLesson | null {
     const lesson = this.getLesson(id)
-    return lesson && lesson.subject === 'english' ? lesson : null
+    return lesson && (lesson.subject === 'english' || lesson.subject === 'english-life')
+      ? lesson
+      : null
   },
 
   /** Get a Math lesson with the type narrowed. */
@@ -181,7 +183,7 @@ export const lessonService = {
       const lesson = this.getLesson(lessonId)
       if (!lesson) continue
 
-      if (lesson.subject === 'english') {
+      if (lesson.subject === 'english' || lesson.subject === 'english-life') {
         const item = lesson.items.find((i) => i.id === itemId)
         if (!item) continue
         const distractors = shuffle(lesson.items.filter((i) => i.id !== item.id))

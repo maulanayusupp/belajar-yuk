@@ -185,6 +185,13 @@ plus aset opsional pelajaran itu). Detail & contoh: `data/README.md`.
 
 - **Pelajaran Inggris** → buat folder baru di `data/english/<nama>/index.ts`
   (export `EnglishLesson`), lalu daftarkan di `data/english/index.ts`.
+- **Modul "English for Life"** → subject TERPISAH `english-life` (tema teal 🌍, route
+  `/english-life`, kartu sendiri di beranda) untuk Inggris praktis (sehari-hari, kerja,
+  travelling, frasa). Materi di `data/english-life/<nama>/index.ts` (`EnglishLesson` dengan
+  `subject: 'english-life'`), daftarkan di `data/english-life/index.ts`. **Memakai ULANG runner
+  English** — dispatch di `pages/[subject]/[id].vue` menangani `english`\|`english-life`;
+  `getLessonTag`/`getEnglishActivityMeta`/`getEnglishLesson`/`getReviewQuestions` sudah
+  memperlakukan keduanya. Kurikulum: `data/english-life/MODULE_PLAN.md`.
 - **Pelajaran Matematika** → buat folder baru di `data/math/<nama>/index.ts`
   (export `MathLesson`), lalu daftarkan di `data/math/index.ts`.
 - **Pelajaran Sains** → buat folder baru di `data/science/<nama>/index.ts`

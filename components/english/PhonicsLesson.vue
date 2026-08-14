@@ -108,7 +108,7 @@ function restart() {
   phase.value = 'learn'
 }
 function goHome() {
-  navigateTo('/english')
+  navigateTo('/' + props.lesson.subject)
 }
 </script>
 

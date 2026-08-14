@@ -3,7 +3,7 @@
 //  and data. One place to define the shape of the data.
 // =============================================================
 
-export type SubjectId = 'english' | 'math' | 'science' | 'bahasa'
+export type SubjectId = 'english' | 'math' | 'science' | 'bahasa' | 'english-life'
 
 export type Level = 'beginner' | 'intermediate' | 'advanced'
 
@@ -90,7 +90,8 @@ export type EnglishActivity =
   'vocabulary' | 'phonics' | 'listening' | 'spelling' | 'sentence' | 'reading'
 
 export interface EnglishLesson extends LessonBase {
-  subject: 'english'
+  /** 'english' = the core subject; 'english-life' = the separate practical module. */
+  subject: 'english' | 'english-life'
   /** 'vocabulary' = word cards + quiz; 'phonics' = letter sounds. */
   type: EnglishActivity
   items: VocabularyItem[]
