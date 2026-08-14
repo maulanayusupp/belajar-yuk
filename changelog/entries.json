@@ -1,6 +1,16 @@
 [
   {
     "date": "2026-07-27",
+    "version": "0.48.1",
+    "tag": "Perbaikan",
+    "title": "Audit soal English for Life",
+    "changes": [
+      "Menambah uji otomatis integritas soal (jawaban ada di pilihan, distraktor unik, kata eja tanpa spasi, emoji menyimak berbeda, isian punya bagian kosong).",
+      "Mahir tidak lagi didominasi eja: 2 pelajaran dengan kata terpanjang (mis. Expensive) dipindah ke Menyimak agar tidak melelahkan & lebih bervariasi."
+    ]
+  },
+  {
+    "date": "2026-07-27",
     "version": "0.48.0",
     "tag": "Fitur",
     "title": "English for Life: jenis soal baru (Isian, Percakapan, Baca Paham)",
