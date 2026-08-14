@@ -4,7 +4,7 @@ import type { EnglishLesson } from '~/types'
 export const shoppingMoney: EnglishLesson = {
   id: 'en-shopping-money',
   subject: 'english-life',
-  type: 'vocabulary',
+  type: 'spelling',
   title: 'Belanja & Uang',
   titleEn: 'Shopping & Money',
   level: 'advanced',

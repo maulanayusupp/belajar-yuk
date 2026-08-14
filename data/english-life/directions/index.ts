@@ -4,7 +4,7 @@ import type { EnglishLesson } from '~/types'
 export const directions: EnglishLesson = {
   id: 'en-directions',
   subject: 'english-life',
-  type: 'vocabulary',
+  type: 'spelling',
   title: 'Petunjuk Arah',
   titleEn: 'Directions',
   level: 'advanced',

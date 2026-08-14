@@ -4,7 +4,7 @@ import type { EnglishLesson } from '~/types'
 export const travelAirport: EnglishLesson = {
   id: 'en-travel-airport',
   subject: 'english-life',
-  type: 'vocabulary',
+  type: 'spelling',
   title: 'Di Bandara & Travelling',
   titleEn: 'At the Airport',
   level: 'advanced',

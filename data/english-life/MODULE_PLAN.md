@@ -11,8 +11,14 @@ memakai ulang komponen English. Semua materi harus **unik** (`tests/uniqueness.t
 
 **Tingkat khusus modul ini** (tangga kemahiran, TANPA patokan usia — dari `levelsFor`
 di `data/levels.ts`): **Pemula** (beginner) → **Menengah** (intermediate) →
-**Mahir** (advanced) → **Jagoan** (expert). Ramp difokuskan naik dari kata dasar →
-kalimat & situasi → dunia nyata → fasih (idiom, phrasal verb, frasa kerja).
+**Mahir** (advanced) → **Jagoan** (expert).
+
+**Kesulitan SOAL naik per tingkat lewat JENIS latihan (`type`), bukan sekadar tema:**
+
+- **Pemula → `vocabulary`**: lihat gambar + kata (ada teks) → pilih. Pengenalan, paling mudah.
+- **Menengah → `listening`**: dengar kata (TANPA teks) → pilih gambar. Mengingat lewat suara.
+- **Mahir → `spelling`**: susun huruf sendiri → produksi kata. Lebih sulit (produksi).
+- **Jagoan → `sentence`/idiom**: susun frasa panjang + idiom (`vocabulary` makna). Paling sulit.
 
 ---
 

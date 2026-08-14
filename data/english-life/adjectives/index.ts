@@ -4,7 +4,7 @@ import type { EnglishLesson } from '~/types'
 export const adjectives: EnglishLesson = {
   id: 'en-adjectives',
   subject: 'english-life',
-  type: 'vocabulary',
+  type: 'listening',
   title: 'Kata Sifat',
   titleEn: 'Describing Words',
   level: 'intermediate',

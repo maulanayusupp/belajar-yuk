@@ -1,6 +1,16 @@
 [
   {
     "date": "2026-07-27",
+    "version": "0.47.0",
+    "tag": "Perbaikan",
+    "title": "English for Life: soal beda & makin sulit tiap tingkat",
+    "changes": [
+      "Sebelumnya banyak tingkat (terutama Mahir) memakai jenis soal yang SAMA (kartu → pilih) — hanya beda tema. Kini diperbaiki.",
+      "Tiap tingkat pakai jenis latihan berbeda yang makin sulit: Pemula (lihat → pilih) → Menengah (dengar tanpa teks → pilih) → Mahir (susun huruf) → Jagoan (susun frasa & idiom)."
+    ]
+  },
+  {
+    "date": "2026-07-27",
     "version": "0.46.0",
     "tag": "Fitur",
     "title": "English for Life: tingkat & materi tingkat lanjut",

@@ -4,7 +4,7 @@ import type { EnglishLesson } from '~/types'
 export const officeWork: EnglishLesson = {
   id: 'en-office-work',
   subject: 'english-life',
-  type: 'vocabulary',
+  type: 'spelling',
   title: 'Di Kantor & Kerja',
   titleEn: 'At the Office',
   level: 'advanced',

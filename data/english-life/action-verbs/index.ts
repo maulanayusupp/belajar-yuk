@@ -4,7 +4,7 @@ import type { EnglishLesson } from '~/types'
 export const actionVerbs: EnglishLesson = {
   id: 'en-action-verbs',
   subject: 'english-life',
-  type: 'vocabulary',
+  type: 'listening',
   title: 'Kata Kerja Aksi',
   titleEn: 'Action Verbs',
   level: 'intermediate',

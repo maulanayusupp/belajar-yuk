@@ -4,7 +4,7 @@ import type { EnglishLesson } from '~/types'
 export const health: EnglishLesson = {
   id: 'en-health',
   subject: 'english-life',
-  type: 'vocabulary',
+  type: 'spelling',
   title: 'Kesehatan & Dokter',
   titleEn: 'Health & Doctor',
   level: 'advanced',
