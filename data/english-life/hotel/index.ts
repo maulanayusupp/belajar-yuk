@@ -17,15 +17,31 @@ export const hotel: EnglishLesson = {
       translation: 'Hotel',
       emoji: '🏨',
       example: 'We stay at a hotel.',
+      why: 'Hotel = hotel, tempat menginap dan tidur saat kita bepergian jauh.',
     },
-    { id: 'room', word: 'Room', translation: 'Kamar', emoji: '🛏️', example: 'My room is clean.' },
-    { id: 'key', word: 'Key', translation: 'Kunci', emoji: '🔑', example: 'Here is your key.' },
+    {
+      id: 'room',
+      word: 'Room',
+      translation: 'Kamar',
+      emoji: '🛏️',
+      example: 'My room is clean.',
+      why: 'Room = kamar, ruang tempat kita tidur dan istirahat di hotel.',
+    },
+    {
+      id: 'key',
+      word: 'Key',
+      translation: 'Kunci',
+      emoji: '🔑',
+      example: 'Here is your key.',
+      why: 'Key = kunci, alat untuk membuka pintu kamar hotel kita.',
+    },
     {
       id: 'reception',
       word: 'Reception',
-      translation: 'Resepsionis',
+      translation: 'Resepsi (meja depan)',
       emoji: '🛎️',
       example: 'Ask at the reception.',
+      why: 'Reception = resepsi, meja depan hotel tempat kita mendaftar dan bertanya.',
     },
     {
       id: 'elevator',
@@ -33,6 +49,7 @@ export const hotel: EnglishLesson = {
       translation: 'Lift',
       emoji: '🛗',
       example: 'Take the elevator.',
+      why: 'Elevator = lift, ruang yang mengantar kita naik-turun antar lantai.',
     },
     {
       id: 'pool',
@@ -40,6 +57,7 @@ export const hotel: EnglishLesson = {
       translation: 'Kolam renang',
       emoji: '🏊',
       example: 'The pool is big.',
+      why: 'Pool = kolam renang, tempat berair untuk berenang di hotel.',
     },
     {
       id: 'balcony',
@@ -47,6 +65,7 @@ export const hotel: EnglishLesson = {
       translation: 'Balkon',
       emoji: '🌇',
       example: 'Sit on the balcony.',
+      why: 'Balcony = balkon, teras kecil di luar kamar untuk melihat pemandangan.',
     },
     {
       id: 'guest',
@@ -54,6 +73,7 @@ export const hotel: EnglishLesson = {
       translation: 'Tamu',
       emoji: '🧳',
       example: 'The guest is happy.',
+      why: 'Guest = tamu, orang yang menginap atau berkunjung ke hotel.',
     },
   ],
 }

@@ -18,6 +18,7 @@ export const phrasalVerbs: EnglishLesson = {
       translation: 'Menyalakan',
       emoji: '💡',
       example: 'Turn on the light.',
+      why: 'Turn on = menyalakan alat; bukan arti harfiah "memutar ke atas".',
     },
     {
       id: 'turn-off',
@@ -25,6 +26,7 @@ export const phrasalVerbs: EnglishLesson = {
       translation: 'Mematikan',
       emoji: '🔌',
       example: 'Turn off the TV.',
+      why: 'Turn off = mematikan alat, kebalikan dari turn on.',
     },
     {
       id: 'look-for',
@@ -32,6 +34,7 @@ export const phrasalVerbs: EnglishLesson = {
       translation: 'Mencari',
       emoji: '🔎',
       example: 'I look for my keys.',
+      why: 'Look for = mencari sesuatu; bukan sekadar "melihat untuk".',
     },
     {
       id: 'give-up',
@@ -39,6 +42,7 @@ export const phrasalVerbs: EnglishLesson = {
       translation: 'Menyerah',
       emoji: '🏳️',
       example: 'Never give up!',
+      why: 'Give up = menyerah, berhenti mencoba; bukan arti harfiah "memberi ke atas".',
     },
     {
       id: 'find-out',
@@ -46,6 +50,7 @@ export const phrasalVerbs: EnglishLesson = {
       translation: 'Mencari tahu',
       emoji: '🕵️',
       example: "Let's find out.",
+      why: 'Find out = mencari tahu atau menemukan fakta baru.',
     },
     {
       id: 'run-out',
@@ -53,6 +58,7 @@ export const phrasalVerbs: EnglishLesson = {
       translation: 'Kehabisan',
       emoji: '⛽',
       example: 'We run out of milk.',
+      why: 'Run out = kehabisan; bukan arti harfiah "berlari keluar".',
     },
     {
       id: 'put-on',
@@ -60,6 +66,7 @@ export const phrasalVerbs: EnglishLesson = {
       translation: 'Memakai',
       emoji: '🧥',
       example: 'Put on your jacket.',
+      why: 'Put on = memakai baju atau aksesori; bukan "menaruh di atas".',
     },
     {
       id: 'take-off',
@@ -67,6 +74,7 @@ export const phrasalVerbs: EnglishLesson = {
       translation: 'Melepas / lepas landas',
       emoji: '🛫',
       example: 'The plane takes off.',
+      why: 'Take off = melepas baju, atau pesawat lepas landas ke udara.',
     },
   ],
 }

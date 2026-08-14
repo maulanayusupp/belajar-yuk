@@ -17,6 +17,7 @@ export const positions: EnglishLesson = {
       translation: 'Di dalam',
       emoji: '📥',
       example: 'The cat is in the box.',
+      why: '"In" dipakai saat benda berada di dalam sesuatu, seperti di dalam kotak.',
     },
     {
       id: 'on',
@@ -24,6 +25,7 @@ export const positions: EnglishLesson = {
       translation: 'Di atas',
       emoji: '🔛',
       example: 'The book is on the table.',
+      why: '"On" dipakai saat benda menempel di atas permukaan, seperti di atas meja.',
     },
     {
       id: 'under',
@@ -31,6 +33,7 @@ export const positions: EnglishLesson = {
       translation: 'Di bawah',
       emoji: '⬇️',
       example: 'The ball is under the bed.',
+      why: '"Under" dipakai saat benda ada di bawah benda lain, seperti bola di bawah kasur.',
     },
     {
       id: 'behind',
@@ -38,6 +41,7 @@ export const positions: EnglishLesson = {
       translation: 'Di belakang',
       emoji: '🔙',
       example: 'I stand behind you.',
+      why: '"Behind" dipakai saat sesuatu ada di belakang benda lain, tersembunyi di baliknya.',
     },
     {
       id: 'between',
@@ -45,6 +49,7 @@ export const positions: EnglishLesson = {
       translation: 'Di antara',
       emoji: '↔️',
       example: 'Sit between us.',
+      why: '"Between" dipakai saat sesuatu ada di antara dua benda, di tengah keduanya.',
     },
     {
       id: 'above',
@@ -52,8 +57,23 @@ export const positions: EnglishLesson = {
       translation: 'Di atas (lebih tinggi)',
       emoji: '⬆️',
       example: 'The moon is above.',
+      why: '"Above" dipakai untuk yang lebih tinggi tanpa menempel, seperti bulan di langit.',
     },
-    { id: 'near', word: 'Near', translation: 'Dekat', emoji: '📍', example: 'The park is near.' },
-    { id: 'far', word: 'Far', translation: 'Jauh', emoji: '🔭', example: 'The star is far.' },
+    {
+      id: 'near',
+      word: 'Near',
+      translation: 'Dekat',
+      emoji: '📍',
+      example: 'The park is near.',
+      why: '"Near" dipakai saat jarak sesuatu dekat, tidak jauh dari kita.',
+    },
+    {
+      id: 'far',
+      word: 'Far',
+      translation: 'Jauh',
+      emoji: '🔭',
+      example: 'The star is far.',
+      why: '"Far" dipakai saat jarak sesuatu jauh, butuh waktu lama untuk sampai.',
+    },
   ],
 }

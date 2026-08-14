@@ -20,6 +20,7 @@ export const readingStory: EnglishLesson = {
       prompt: 'Tom goes to the market. He buys apples and milk. What does Tom buy?',
       options: ['Apples and milk', 'Bread and eggs', 'A new book'],
       answer: 'Apples and milk',
+      why: 'Di teks tertulis "He buys apples and milk", jadi Tom membeli apel dan susu.',
     },
     {
       id: 'umbrella',
@@ -29,6 +30,7 @@ export const readingStory: EnglishLesson = {
       prompt: 'It is raining. Ann takes an umbrella. Why does Ann take an umbrella?',
       options: ['Because it is raining', 'Because it is hot', 'Because she is hungry'],
       answer: 'Because it is raining',
+      why: 'Di teks tertulis "It is raining", jadi Ann membawa payung karena hujan.',
     },
     {
       id: 'train',
@@ -38,6 +40,7 @@ export const readingStory: EnglishLesson = {
       prompt: 'The train leaves at eight. It is seven now. How long until the train leaves?',
       options: ['One hour', 'Two hours', 'Ten minutes'],
       answer: 'One hour',
+      why: 'Sekarang jam tujuh dan kereta berangkat jam delapan, jadi selisihnya satu jam.',
     },
     {
       id: 'sleep',
@@ -47,6 +50,7 @@ export const readingStory: EnglishLesson = {
       prompt: 'Sara is very tired. She goes to bed early. What does Sara do?',
       options: ['She goes to bed early', 'She plays outside', 'She cooks dinner'],
       answer: 'She goes to bed early',
+      why: 'Di teks tertulis "She goes to bed early", jadi Sara tidur lebih awal karena lelah.',
     },
     {
       id: 'zoo',
@@ -56,6 +60,7 @@ export const readingStory: EnglishLesson = {
       prompt: 'We visit the zoo. We see lions and monkeys. What do we see?',
       options: ['Lions and monkeys', 'Fish and birds', 'Cars and buses'],
       answer: 'Lions and monkeys',
+      why: 'Di teks tertulis "We see lions and monkeys", jadi yang dilihat adalah singa dan monyet.',
     },
   ],
 }

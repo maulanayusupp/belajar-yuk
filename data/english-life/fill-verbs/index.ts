@@ -20,6 +20,7 @@ export const fillVerbs: EnglishLesson = {
       prompt: 'Please ___ on the light.',
       options: ['turn', 'run', 'give'],
       answer: 'turn',
+      why: 'Turn on = menyalakan; "turn on the light" berarti menghidupkan lampu.',
     },
     {
       id: 'look-for',
@@ -29,6 +30,7 @@ export const fillVerbs: EnglishLesson = {
       prompt: 'I ___ for my keys everywhere.',
       options: ['look', 'put', 'take'],
       answer: 'look',
+      why: 'Look for = mencari; "look for my keys" berarti mencari kunci.',
     },
     {
       id: 'give-up',
@@ -38,6 +40,7 @@ export const fillVerbs: EnglishLesson = {
       prompt: "Don't ___ up — keep trying!",
       options: ['give', 'turn', 'find'],
       answer: 'give',
+      why: 'Give up = menyerah; kalimat ini artinya jangan berhenti mencoba.',
     },
     {
       id: 'run-out',
@@ -47,6 +50,7 @@ export const fillVerbs: EnglishLesson = {
       prompt: 'We ___ out of milk.',
       options: ['run', 'look', 'put'],
       answer: 'run',
+      why: 'Run out of = kehabisan; "run out of milk" berarti susunya habis.',
     },
     {
       id: 'put-on',
@@ -56,6 +60,7 @@ export const fillVerbs: EnglishLesson = {
       prompt: "___ on your jacket, it's cold.",
       options: ['Put', 'Turn', 'Find'],
       answer: 'Put',
+      why: 'Put on = memakai; "put on your jacket" berarti pakailah jaketmu.',
     },
     {
       id: 'find-out',
@@ -63,8 +68,9 @@ export const fillVerbs: EnglishLesson = {
       translation: 'mencari tahu',
       emoji: '🕵️',
       prompt: "Let's ___ out the answer.",
-      options: ['find', 'give', 'run'],
+      options: ['find', 'look', 'run'],
       answer: 'find',
+      why: 'Find out = mencari tahu; "find out the answer" berarti menemukan jawabannya.',
     },
   ],
 }

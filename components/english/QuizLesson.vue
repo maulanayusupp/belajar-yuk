@@ -136,6 +136,8 @@ function goHome() {
         Belum tepat. Jawaban benar: <strong>{{ current.answer }}</strong>
       </p>
 
+      <EnglishWhyNote v-if="answered" :text="current.item.why" />
+
       <BaseButton v-if="answered" variant="english" size="lg" @click="next">
         {{ isLast ? 'Selesai 🎉' : 'Lanjut →' }}
       </BaseButton>

@@ -20,6 +20,7 @@ export const fillPrepositions: EnglishLesson = {
       prompt: 'The cat is ___ the box.',
       options: ['in', 'of', 'at'],
       answer: 'in',
+      why: '"In" dipakai untuk sesuatu yang berada di dalam ruang tertutup, jadi kucing di dalam kotak.',
     },
     {
       id: 'at-stop',
@@ -29,6 +30,7 @@ export const fillPrepositions: EnglishLesson = {
       prompt: 'I wait ___ the bus stop.',
       options: ['at', 'in', 'on'],
       answer: 'at',
+      why: '"At" dipakai untuk satu titik atau tempat tertentu, jadi menunggu di halte bus = at.',
     },
     {
       id: 'on-table',
@@ -38,6 +40,7 @@ export const fillPrepositions: EnglishLesson = {
       prompt: 'The book is ___ the table.',
       options: ['on', 'in', 'of'],
       answer: 'on',
+      why: '"On" untuk benda di atas permukaan yang menempel, jadi buku di atas meja = on the table.',
     },
     {
       id: 'on-monday',
@@ -47,6 +50,7 @@ export const fillPrepositions: EnglishLesson = {
       prompt: 'We meet ___ Monday.',
       options: ['on', 'in', 'at'],
       answer: 'on',
+      why: '"On" dipakai di depan nama hari, jadi pada hari Senin = on Monday.',
     },
     {
       id: 'good-at',
@@ -56,6 +60,7 @@ export const fillPrepositions: EnglishLesson = {
       prompt: 'She is good ___ English.',
       options: ['at', 'on', 'in'],
       answer: 'at',
+      why: 'Frasa "good at" selalu berpasangan untuk menyatakan pandai dalam sesuatu.',
     },
     {
       id: 'listen-to',
@@ -65,6 +70,7 @@ export const fillPrepositions: EnglishLesson = {
       prompt: 'Please listen ___ me.',
       options: ['to', 'at', 'on'],
       answer: 'to',
+      why: 'Kata kerja "listen" selalu diikuti "to" sebelum orang atau benda yang didengar.',
     },
   ],
 }

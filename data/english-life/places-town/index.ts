@@ -17,6 +17,7 @@ export const placesTown: EnglishLesson = {
       translation: 'Rumah sakit',
       emoji: '🏥',
       example: 'The doctor is at the hospital.',
+      why: 'Hospital = rumah sakit, tempat dokter merawat orang yang sakit.',
     },
     {
       id: 'market',
@@ -24,6 +25,7 @@ export const placesTown: EnglishLesson = {
       translation: 'Pasar',
       emoji: '🛒',
       example: 'We buy food at the market.',
+      why: 'Market = pasar, tempat orang berjualan dan membeli makanan.',
     },
     {
       id: 'park',
@@ -31,6 +33,7 @@ export const placesTown: EnglishLesson = {
       translation: 'Taman',
       emoji: '🏞️',
       example: 'We play in the park.',
+      why: 'Park = taman, tempat terbuka penuh pohon untuk bermain dan santai.',
     },
     {
       id: 'bank',
@@ -38,6 +41,7 @@ export const placesTown: EnglishLesson = {
       translation: 'Bank',
       emoji: '🏦',
       example: 'Money is at the bank.',
+      why: 'Bank = bank, tempat orang menyimpan dan mengambil uang.',
     },
     {
       id: 'library',
@@ -45,6 +49,7 @@ export const placesTown: EnglishLesson = {
       translation: 'Perpustakaan',
       emoji: '📚',
       example: 'I read at the library.',
+      why: 'Library = perpustakaan, tempat banyak buku untuk dibaca dan dipinjam.',
     },
     {
       id: 'airport',
@@ -52,6 +57,7 @@ export const placesTown: EnglishLesson = {
       translation: 'Bandara',
       emoji: '🛫',
       example: 'Planes are at the airport.',
+      why: 'Airport = bandara, tempat pesawat terbang mendarat dan lepas landas.',
     },
     {
       id: 'station',
@@ -59,6 +65,7 @@ export const placesTown: EnglishLesson = {
       translation: 'Stasiun',
       emoji: '🚉',
       example: 'The train is at the station.',
+      why: 'Station = stasiun, tempat kereta berhenti untuk menaikkan penumpang.',
     },
     {
       id: 'restaurant',
@@ -66,6 +73,7 @@ export const placesTown: EnglishLesson = {
       translation: 'Restoran',
       emoji: '🍽️',
       example: 'We eat at a restaurant.',
+      why: 'Restaurant = restoran, tempat kita membeli dan makan makanan.',
     },
   ],
 }

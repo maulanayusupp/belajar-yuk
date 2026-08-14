@@ -153,6 +153,7 @@ function goHome() {
       <p v-else-if="status === 'wrong'" class="sent__retry">
         Belum tepat — ketuk "Hapus" & coba lagi 😊
       </p>
+      <EnglishWhyNote v-if="status === 'correct'" :text="current.why" />
     </template>
 
     <CelebrationOverlay

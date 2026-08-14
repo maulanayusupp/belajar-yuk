@@ -17,6 +17,7 @@ export const officeWork: EnglishLesson = {
       translation: 'Kantor',
       emoji: '🏢',
       example: 'Dad works at an office.',
+      why: 'Office = kantor, tempat orang dewasa bekerja setiap hari.',
     },
     {
       id: 'computer',
@@ -24,6 +25,7 @@ export const officeWork: EnglishLesson = {
       translation: 'Komputer',
       emoji: '💻',
       example: 'I use a computer.',
+      why: 'Computer = komputer, mesin untuk mengetik, bekerja, dan mencari informasi.',
     },
     {
       id: 'phone',
@@ -31,6 +33,7 @@ export const officeWork: EnglishLesson = {
       translation: 'Telepon',
       emoji: '📱',
       example: 'Answer the phone.',
+      why: 'Phone = telepon, alat untuk berbicara dengan orang dari jarak jauh.',
     },
     {
       id: 'email',
@@ -38,6 +41,7 @@ export const officeWork: EnglishLesson = {
       translation: 'Surel / email',
       emoji: '📧',
       example: 'Send an email.',
+      why: 'Email = surel, surat yang dikirim lewat internet ke orang lain.',
     },
     {
       id: 'meeting',
@@ -45,6 +49,7 @@ export const officeWork: EnglishLesson = {
       translation: 'Rapat',
       emoji: '👥',
       example: 'We have a meeting.',
+      why: 'Meeting = rapat, saat orang berkumpul untuk berbicara dan berdiskusi.',
     },
     {
       id: 'boss',
@@ -52,6 +57,7 @@ export const officeWork: EnglishLesson = {
       translation: 'Atasan / bos',
       emoji: '👔',
       example: 'The boss is busy.',
+      why: 'Boss = atasan, pemimpin yang mengatur pekerjaan di kantor.',
     },
     {
       id: 'desk',
@@ -59,6 +65,7 @@ export const officeWork: EnglishLesson = {
       translation: 'Meja kerja',
       emoji: '🗄️',
       example: 'My desk is tidy.',
+      why: 'Desk = meja kerja, tempat menaruh komputer dan bekerja di kantor.',
     },
     {
       id: 'report',
@@ -66,6 +73,7 @@ export const officeWork: EnglishLesson = {
       translation: 'Laporan',
       emoji: '📊',
       example: 'Finish the report.',
+      why: 'Report = laporan, tulisan yang menjelaskan hasil suatu pekerjaan.',
     },
   ],
 }

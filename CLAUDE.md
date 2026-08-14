@@ -228,6 +228,13 @@ plus aset opsional pelajaran itu). Detail & contoh: `data/README.md`.
   Jenis soal pilihan-teks `fill-blank` (Isian) / `dialogue` (Percakapan) / `comprehension` (Baca
   Paham) memakai SATU runner `EnglishQuizLesson` — item mengisi `prompt`/`options`/`answer`
   (opsional di `VocabularyItem`); pesan maskot & tag menyesuaikan `type`.
+- **Penjelasan "Kenapa?" (teori tiap jawaban)**: setiap `VocabularyItem` boleh mengisi
+  `why` — satu kalimat Bahasa Indonesia yang menjelaskan ALASAN jawaban itu benar (aturan
+  grammar, bentuk verb, arti idiom, susunan kalimat), supaya anak paham bukan menebak.
+  Komponen `EnglishWhyNote` (`<EnglishWhyNote :text="item.why">`) menampilkan kotak 💡 ini
+  setelah anak menjawab — sudah dipasang di SEMUA runner English (Vocabulary/Quiz, Listening,
+  Spelling, Sentence, Reading, QuizLesson). Materi English for Life WAJIB mengisi `why` di tiap
+  item (dijaga `tests/english-life.test.ts`). Tulis `why` yang benar & ringkas, jangan ngasal.
 - **Tingkat**: set `level` pada tiap pelajaran (`beginner`/`intermediate`/`advanced`/`expert`).
   Metadata kategori di `data/levels.ts`, **per-subject** via `levelsFor(subject)`: mapel anak
   memakai **Tunas/Penjelajah/Juara** (dengan usia), sedangkan `english-life` memakai tangga

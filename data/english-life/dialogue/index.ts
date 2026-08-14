@@ -20,6 +20,7 @@ export const dialogue: EnglishLesson = {
       prompt: 'How are you today?',
       options: ["I'm fine, thank you", 'It is a book', 'Yes, please'],
       answer: "I'm fine, thank you",
+      why: 'Saat ditanya kabar (How are you?), balasan sopannya menyebut keadaan kita: "I\'m fine, thank you".',
     },
     {
       id: 'what-do-you-do',
@@ -29,6 +30,7 @@ export const dialogue: EnglishLesson = {
       prompt: 'What do you do?',
       options: ["I'm a teacher", "I'm fine", "It's raining"],
       answer: "I'm a teacher",
+      why: 'Pertanyaan "What do you do?" menanyakan pekerjaan, jadi jawabannya menyebut pekerjaan kita.',
     },
     {
       id: 'would-you-like-tea',
@@ -38,6 +40,7 @@ export const dialogue: EnglishLesson = {
       prompt: 'Would you like some tea?',
       options: ['Yes, please', "I'm a doctor", "It's Monday"],
       answer: 'Yes, please',
+      why: 'Saat ditawari sesuatu (Would you like...?), balasan sopan untuk menerima adalah "Yes, please".',
     },
     {
       id: 'where-from',
@@ -47,6 +50,7 @@ export const dialogue: EnglishLesson = {
       prompt: 'Where are you from?',
       options: ["I'm from Jakarta", "I'm hungry", "It's cold"],
       answer: "I'm from Jakarta",
+      why: 'Pertanyaan "Where are you from?" menanyakan asal, jadi jawabannya menyebut tempat asal kita.',
     },
     {
       id: 'thank-you',
@@ -56,6 +60,7 @@ export const dialogue: EnglishLesson = {
       prompt: 'Thank you very much!',
       options: ["You're welcome", 'Good night', 'How much?'],
       answer: "You're welcome",
+      why: 'Saat orang berterima kasih (Thank you), balasan sopannya adalah "You\'re welcome" (sama-sama).',
     },
     {
       id: 'see-you',
@@ -65,6 +70,7 @@ export const dialogue: EnglishLesson = {
       prompt: 'See you tomorrow!',
       options: ['See you!', "I'm sorry", "It's mine"],
       answer: 'See you!',
+      why: 'Saat seseorang berpamitan (See you tomorrow!), balasannya juga ucapan pamit: "See you!".',
     },
   ],
 }

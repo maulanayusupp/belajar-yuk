@@ -11,13 +11,21 @@ export const shoppingMoney: EnglishLesson = {
   emoji: '🛍️',
   durationMin: 6,
   items: [
-    { id: 'money', word: 'Money', translation: 'Uang', emoji: '💰', example: 'I save my money.' },
+    {
+      id: 'money',
+      word: 'Money',
+      translation: 'Uang',
+      emoji: '💰',
+      example: 'I save my money.',
+      why: 'Money = uang, alat yang kita pakai untuk membeli barang.',
+    },
     {
       id: 'price',
       word: 'Price',
       translation: 'Harga',
       emoji: '🏷️',
       example: 'What is the price?',
+      why: 'Price = harga, jumlah uang yang harus dibayar untuk sebuah barang.',
     },
     {
       id: 'cheap',
@@ -25,6 +33,7 @@ export const shoppingMoney: EnglishLesson = {
       translation: 'Murah',
       emoji: '💸',
       example: 'This bag is cheap.',
+      why: 'Cheap = murah, harganya kecil sehingga tidak butuh banyak uang.',
     },
     {
       id: 'expensive',
@@ -32,6 +41,7 @@ export const shoppingMoney: EnglishLesson = {
       translation: 'Mahal',
       emoji: '💎',
       example: 'The ring is expensive.',
+      why: 'Expensive = mahal, harganya tinggi dan butuh banyak uang.',
     },
     {
       id: 'cashier',
@@ -39,6 +49,7 @@ export const shoppingMoney: EnglishLesson = {
       translation: 'Kasir',
       emoji: '🧑‍💼',
       example: 'Pay the cashier.',
+      why: 'Cashier = kasir, petugas tempat kita membayar belanjaan di toko.',
     },
     {
       id: 'receipt',
@@ -46,6 +57,7 @@ export const shoppingMoney: EnglishLesson = {
       translation: 'Struk / kwitansi',
       emoji: '📃',
       example: 'Keep the receipt.',
+      why: 'Receipt = struk, bukti tertulis setelah kita membayar belanjaan.',
     },
     {
       id: 'wallet',
@@ -53,6 +65,7 @@ export const shoppingMoney: EnglishLesson = {
       translation: 'Dompet',
       emoji: '👛',
       example: 'My wallet is small.',
+      why: 'Wallet = dompet, tempat kecil untuk menyimpan uang dan kartu.',
     },
     {
       id: 'discount',
@@ -60,6 +73,7 @@ export const shoppingMoney: EnglishLesson = {
       translation: 'Diskon / potongan harga',
       emoji: '🔖',
       example: 'A big discount today!',
+      why: 'Discount = diskon, potongan harga supaya barang jadi lebih murah.',
     },
   ],
 }

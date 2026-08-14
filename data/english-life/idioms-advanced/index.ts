@@ -17,6 +17,7 @@ export const idiomsAdvanced: EnglishLesson = {
       translation: 'Sangat mahal',
       emoji: '💸',
       example: 'That car cost an arm and a leg.',
+      why: 'Idiom ini berarti sangat mahal, bukan membayar pakai tangan dan kaki.',
     },
     {
       id: 'ball-in-court',
@@ -24,6 +25,7 @@ export const idiomsAdvanced: EnglishLesson = {
       translation: 'Keputusan ada di tanganmu',
       emoji: '🎾',
       example: 'I have done my part; the ball is in your court.',
+      why: 'Idiom ini berarti sekarang giliranmu memutuskan, bukan soal bola sungguhan.',
     },
     {
       id: 'cut-corners',
@@ -31,6 +33,7 @@ export const idiomsAdvanced: EnglishLesson = {
       translation: 'Mengambil jalan pintas (asal jadi)',
       emoji: '✂️',
       example: "Don't cut corners on safety.",
+      why: 'Idiom "cut corners" berarti asal cepat demi hemat, bukan memotong sudut.',
     },
     {
       id: 'same-page',
@@ -38,6 +41,7 @@ export const idiomsAdvanced: EnglishLesson = {
       translation: 'Sepaham',
       emoji: '📄',
       example: 'Let us make sure we are on the same page.',
+      why: 'Idiom "on the same page" berarti sepaham, bukan di halaman yang sama.',
     },
     {
       id: 'hang-of-it',
@@ -45,6 +49,7 @@ export const idiomsAdvanced: EnglishLesson = {
       translation: 'Mulai terbiasa / menguasai',
       emoji: '🎯',
       example: "You'll get the hang of it soon.",
+      why: 'Idiom ini berarti mulai terbiasa atau menguasai cara melakukan sesuatu.',
     },
     {
       id: 'bite-the-bullet',
@@ -52,6 +57,7 @@ export const idiomsAdvanced: EnglishLesson = {
       translation: 'Hadapi hal sulit dengan berani',
       emoji: '😤',
       example: 'I decided to bite the bullet and start.',
+      why: 'Idiom "bite the bullet" berarti berani hadapi hal sulit, bukan menggigit peluru.',
     },
   ],
 }

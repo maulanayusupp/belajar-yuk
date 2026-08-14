@@ -17,6 +17,7 @@ export const travelAirport: EnglishLesson = {
       translation: 'Paspor',
       emoji: '🛂',
       example: 'Show your passport.',
+      why: 'Passport = paspor, buku identitas resmi untuk bepergian ke luar negeri.',
     },
     {
       id: 'ticket',
@@ -24,6 +25,7 @@ export const travelAirport: EnglishLesson = {
       translation: 'Tiket',
       emoji: '🎫',
       example: 'I have a ticket.',
+      why: 'Ticket = tiket, kartu bukti kita boleh naik pesawat atau masuk.',
     },
     {
       id: 'luggage',
@@ -31,6 +33,7 @@ export const travelAirport: EnglishLesson = {
       translation: 'Bagasi',
       emoji: '🧳',
       example: 'My luggage is heavy.',
+      why: 'Luggage = bagasi, semua tas dan koper barang bawaan saat bepergian.',
     },
     {
       id: 'suitcase',
@@ -38,14 +41,23 @@ export const travelAirport: EnglishLesson = {
       translation: 'Koper',
       emoji: '💼',
       example: 'Pack the suitcase.',
+      why: 'Suitcase = koper, tas besar keras untuk menyimpan baju saat travelling.',
     },
-    { id: 'gate', word: 'Gate', translation: 'Gerbang', emoji: '🚪', example: 'Go to gate five.' },
+    {
+      id: 'gate',
+      word: 'Gate',
+      translation: 'Gerbang',
+      emoji: '🚪',
+      example: 'Go to gate five.',
+      why: 'Gate = gerbang, pintu di bandara tempat kita naik ke pesawat.',
+    },
     {
       id: 'seat',
       word: 'Seat',
       translation: 'Kursi (tempat duduk)',
       emoji: '💺',
       example: 'This is my seat.',
+      why: 'Seat = kursi, tempat duduk kita di pesawat sesuai nomor di tiket.',
     },
     {
       id: 'tourist',
@@ -53,6 +65,7 @@ export const travelAirport: EnglishLesson = {
       translation: 'Wisatawan',
       emoji: '📸',
       example: 'The tourist takes photos.',
+      why: 'Tourist = wisatawan, orang yang jalan-jalan mengunjungi tempat baru.',
     },
     {
       id: 'souvenir',
@@ -60,6 +73,7 @@ export const travelAirport: EnglishLesson = {
       translation: 'Oleh-oleh',
       emoji: '🎁',
       example: 'Buy a souvenir.',
+      why: 'Souvenir = oleh-oleh, barang kenangan yang dibeli dari tempat wisata.',
     },
   ],
 }

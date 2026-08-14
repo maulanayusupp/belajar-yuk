@@ -125,6 +125,8 @@ function goHome() {
 
       <p v-if="answered" class="read__meaning">{{ current.item.translation }}</p>
 
+      <EnglishWhyNote v-if="answered" :text="current.item.why" />
+
       <BaseButton v-if="answered" variant="english" size="lg" @click="next">
         {{ isLast ? 'Selesai 🎉' : 'Lanjut →' }}
       </BaseButton>

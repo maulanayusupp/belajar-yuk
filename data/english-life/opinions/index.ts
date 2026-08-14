@@ -20,6 +20,7 @@ export const opinions: EnglishLesson = {
       prompt: 'I think we should leave early.',
       options: ['I totally agree', 'It is a cat', 'Yes, I am fine'],
       answer: 'I totally agree',
+      why: 'Untuk menyetujui pendapat, kita bilang "I totally agree" = aku sangat setuju.',
     },
     {
       id: 'the-plan',
@@ -29,6 +30,7 @@ export const opinions: EnglishLesson = {
       prompt: 'What do you think of the plan?',
       options: ['It sounds great to me', 'I am from Jakarta', 'See you later'],
       answer: 'It sounds great to me',
+      why: 'Untuk menyetujui sebuah rencana, kita bilang "It sounds great to me".',
     },
     {
       id: 'agree-with-me',
@@ -38,6 +40,7 @@ export const opinions: EnglishLesson = {
       prompt: 'Do you agree with me?',
       options: ['I see your point, but no', 'I am hungry', 'It is Monday'],
       answer: 'I see your point, but no',
+      why: '"I see your point, but no" cara sopan menolak walau paham maksud lawan bicara.',
     },
     {
       id: 'expensive',
@@ -47,6 +50,7 @@ export const opinions: EnglishLesson = {
       prompt: 'This restaurant is really expensive.',
       options: ['I could not agree more', 'I am a teacher', 'Turn left here'],
       answer: 'I could not agree more',
+      why: '"I could not agree more" berarti sangat setuju, tak bisa lebih setuju lagi.',
     },
     {
       id: 'take-train',
@@ -56,6 +60,7 @@ export const opinions: EnglishLesson = {
       prompt: 'Should we take the train?',
       options: ['I would rather fly', 'Yes, have some tea', 'It is raining'],
       answer: 'I would rather fly',
+      why: '"I would rather fly" menyatakan lebih memilih terbang daripada naik kereta.',
     },
   ],
 }

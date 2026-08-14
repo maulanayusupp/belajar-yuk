@@ -33,6 +33,12 @@ export interface VocabularyItem {
   image?: string
   /** A simple example sentence (optional). */
   example?: string
+  /**
+   * Short explanation (in Indonesian) of WHY this answer is correct — the
+   * "theory" behind it (grammar rule, verb form, preposition use, meaning).
+   * Shown after the child answers so they learn the reason, not just guess.
+   */
+  why?: string
   // ---- Quiz activities (fill-blank / dialogue / comprehension) ----
   /** The question / sentence-with-a-gap / dialogue line / short passage + question. */
   prompt?: string

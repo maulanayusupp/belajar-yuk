@@ -57,6 +57,18 @@ describe('English for Life — exercise integrity', () => {
     }
   })
 
+  it('every item has a non-empty `why` (the theory behind the answer)', () => {
+    for (const l of englishLifeLessons) {
+      for (const it of l.items) {
+        expect(it.why?.trim(), `${l.id}/${it.id}: missing "why" explanation`).toBeTruthy()
+        // A real explanation, not a placeholder.
+        expect((it.why ?? '').trim().length, `${l.id}/${it.id}: "why" too short`).toBeGreaterThan(
+          10,
+        )
+      }
+    }
+  })
+
   it('quiz lessons (fill-blank/dialogue/comprehension): prompt + valid options + answer', () => {
     const quizTypes = ['fill-blank', 'dialogue', 'comprehension']
     for (const l of englishLifeLessons.filter((l) => quizTypes.includes(l.type))) {

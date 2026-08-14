@@ -17,14 +17,23 @@ export const bathroom: EnglishLesson = {
       translation: 'Sikat gigi',
       emoji: '🪥',
       example: 'Use a toothbrush.',
+      why: 'Toothbrush = sikat gigi, alat kecil berbulu untuk membersihkan gigi.',
     },
-    { id: 'soap', word: 'Soap', translation: 'Sabun', emoji: '🧼', example: 'Wash with soap.' },
+    {
+      id: 'soap',
+      word: 'Soap',
+      translation: 'Sabun',
+      emoji: '🧼',
+      example: 'Wash with soap.',
+      why: 'Soap = sabun, dipakai bersama air untuk membersihkan badan dan tangan.',
+    },
     {
       id: 'towel',
       word: 'Towel',
       translation: 'Handuk',
       emoji: '🧺',
       example: 'Dry with a towel.',
+      why: 'Towel = handuk, kain tebal untuk mengeringkan badan setelah mandi.',
     },
     {
       id: 'shower',
@@ -32,6 +41,7 @@ export const bathroom: EnglishLesson = {
       translation: 'Pancuran',
       emoji: '🚿',
       example: 'I take a shower.',
+      why: 'Shower = pancuran, alat yang menyemprotkan air dari atas saat mandi.',
     },
     {
       id: 'mirror',
@@ -39,6 +49,7 @@ export const bathroom: EnglishLesson = {
       translation: 'Cermin',
       emoji: '🪞',
       example: 'Look in the mirror.',
+      why: 'Mirror = cermin, kaca yang memantulkan bayangan wajah kita.',
     },
     {
       id: 'shampoo',
@@ -46,6 +57,7 @@ export const bathroom: EnglishLesson = {
       translation: 'Sampo',
       emoji: '🧴',
       example: 'Wash your hair with shampoo.',
+      why: 'Shampoo = sampo, sabun khusus untuk mencuci rambut.',
     },
     {
       id: 'toilet',
@@ -53,6 +65,7 @@ export const bathroom: EnglishLesson = {
       translation: 'Toilet',
       emoji: '🚽',
       example: 'The toilet is clean.',
+      why: 'Toilet = toilet, tempat kita buang air kecil dan buang air besar.',
     },
     {
       id: 'sink',
@@ -60,6 +73,7 @@ export const bathroom: EnglishLesson = {
       translation: 'Wastafel',
       emoji: '🚰',
       example: 'Wash at the sink.',
+      why: 'Sink = wastafel, bak kecil berkeran untuk mencuci tangan dan muka.',
     },
   ],
 }

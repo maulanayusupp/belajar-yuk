@@ -141,6 +141,7 @@ function goHome() {
       <p v-if="status === 'wrong'" class="spell__retry">
         Belum tepat — ketuk "Hapus" & coba lagi 😊
       </p>
+      <EnglishWhyNote v-if="status === 'correct'" :text="current.why" />
     </template>
 
     <CelebrationOverlay

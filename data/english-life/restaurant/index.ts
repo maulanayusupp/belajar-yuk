@@ -17,6 +17,7 @@ export const restaurant: EnglishLesson = {
       translation: 'Menu / daftar makanan',
       emoji: '📋',
       example: 'Read the menu.',
+      why: 'Menu = daftar makanan dan minuman yang bisa kita pesan di restoran.',
     },
     {
       id: 'waiter',
@@ -24,6 +25,7 @@ export const restaurant: EnglishLesson = {
       translation: 'Pelayan',
       emoji: '🧑‍🍳',
       example: 'The waiter is kind.',
+      why: 'Waiter = pelayan, orang yang mengantar pesanan makanan ke meja kita.',
     },
     {
       id: 'order',
@@ -31,6 +33,7 @@ export const restaurant: EnglishLesson = {
       translation: 'Memesan',
       emoji: '📝',
       example: 'I order noodles.',
+      why: 'Order = memesan, memberi tahu pelayan makanan yang kita inginkan.',
     },
     {
       id: 'bill',
@@ -38,6 +41,7 @@ export const restaurant: EnglishLesson = {
       translation: 'Tagihan / bon',
       emoji: '🧾',
       example: 'Please bring the bill.',
+      why: 'Bill = tagihan, kertas berisi jumlah uang yang harus kita bayar.',
     },
     {
       id: 'water',
@@ -45,6 +49,7 @@ export const restaurant: EnglishLesson = {
       translation: 'Air',
       emoji: '💧',
       example: 'A glass of water, please.',
+      why: 'Water = air, minuman bening yang kita minum agar tidak haus.',
     },
     {
       id: 'coffee',
@@ -52,14 +57,23 @@ export const restaurant: EnglishLesson = {
       translation: 'Kopi',
       emoji: '☕',
       example: 'Dad drinks coffee.',
+      why: 'Coffee = kopi, minuman pahit hangat yang biasa diminum orang dewasa.',
     },
-    { id: 'tea', word: 'Tea', translation: 'Teh', emoji: '🍵', example: 'I like sweet tea.' },
+    {
+      id: 'tea',
+      word: 'Tea',
+      translation: 'Teh',
+      emoji: '🍵',
+      example: 'I like sweet tea.',
+      why: 'Tea = teh, minuman hangat dari daun teh, bisa manis atau tawar.',
+    },
     {
       id: 'dessert',
       word: 'Dessert',
       translation: 'Hidangan penutup',
       emoji: '🍮',
       example: 'Dessert is my favorite.',
+      why: 'Dessert = hidangan penutup, makanan manis yang disantap sesudah makan.',
     },
   ],
 }

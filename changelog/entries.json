@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-08-14",
+    "version": "0.50.0",
+    "tag": "Fitur",
+    "title": "English for Life: setiap jawaban kini ada penjelasan \"Kenapa?\"",
+    "changes": [
+      "Setiap soal (213 item di 30 materi) diberi penjelasan teori singkat — kenapa jawabannya benar (aturan preposisi, bentuk kata kerja, arti idiom, susunan kalimat) — supaya anak paham, bukan menebak.",
+      "Kotak 💡 \"Kenapa?\" muncul setelah menjawab di semua jenis latihan (kosakata, menyimak, eja, susun kalimat, isian, percakapan, baca paham).",
+      "Audit semua soal: memperbaiki 1 pilihan ambigu di Isian Kata Kerja (\"give out\") & merapikan terjemahan \"Reception\" jadi \"Resepsi (meja depan)\".",
+      "Test baru menjaga setiap item English for Life wajib punya penjelasan."
+    ]
+  },
+  {
     "date": "2026-07-27",
     "version": "0.49.0",
     "tag": "Perbaikan",

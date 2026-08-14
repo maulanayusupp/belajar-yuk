@@ -18,6 +18,7 @@ export const idioms: EnglishLesson = {
       translation: 'Sangat mudah',
       emoji: '🍰',
       example: 'The test was a piece of cake.',
+      why: 'Idiom "piece of cake" berarti sangat mudah, bukan sepotong kue betulan.',
     },
     {
       id: 'break-a-leg',
@@ -25,6 +26,7 @@ export const idioms: EnglishLesson = {
       translation: 'Semoga sukses',
       emoji: '🍀',
       example: 'Break a leg on stage!',
+      why: 'Idiom "break a leg" berarti semoga sukses, bukan mematahkan kaki.',
     },
     {
       id: 'under-the-weather',
@@ -32,6 +34,7 @@ export const idioms: EnglishLesson = {
       translation: 'Kurang enak badan',
       emoji: '🤧',
       example: 'I feel under the weather today.',
+      why: 'Idiom "under the weather" berarti kurang sehat, bukan di bawah cuaca.',
     },
     {
       id: 'hit-the-books',
@@ -39,6 +42,7 @@ export const idioms: EnglishLesson = {
       translation: 'Belajar dengan giat',
       emoji: '📚',
       example: 'I must hit the books tonight.',
+      why: 'Idiom "hit the books" berarti belajar giat, bukan memukul buku.',
     },
     {
       id: 'blue-moon',
@@ -46,6 +50,7 @@ export const idioms: EnglishLesson = {
       translation: 'Jarang sekali',
       emoji: '🌙',
       example: 'We meet once in a blue moon.',
+      why: 'Idiom "once in a blue moon" berarti jarang sekali terjadi.',
     },
     {
       id: 'call-it-a-day',
@@ -53,6 +58,7 @@ export const idioms: EnglishLesson = {
       translation: 'Berhenti / sudahi',
       emoji: '🌇',
       example: "Let's call it a day.",
+      why: 'Idiom "call it a day" berarti mengakhiri kegiatan untuk hari itu.',
     },
   ],
 }

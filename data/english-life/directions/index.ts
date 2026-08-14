@@ -11,13 +11,21 @@ export const directions: EnglishLesson = {
   emoji: '🧭',
   durationMin: 6,
   items: [
-    { id: 'left', word: 'Left', translation: 'Kiri', emoji: '⬅️', example: 'Turn left here.' },
+    {
+      id: 'left',
+      word: 'Left',
+      translation: 'Kiri',
+      emoji: '⬅️',
+      example: 'Turn left here.',
+      why: 'Left = kiri, sisi tangan kiri kita saat menghadap ke depan.',
+    },
     {
       id: 'right',
       word: 'Right',
       translation: 'Kanan',
       emoji: '➡️',
       example: 'The shop is on the right.',
+      why: 'Right = kanan, sisi tangan kanan kita saat menghadap ke depan.',
     },
     {
       id: 'straight',
@@ -25,14 +33,23 @@ export const directions: EnglishLesson = {
       translation: 'Lurus',
       emoji: '⏫',
       example: 'Go straight ahead.',
+      why: 'Straight = lurus, jalan terus ke depan tanpa berbelok.',
     },
-    { id: 'turn', word: 'Turn', translation: 'Belok', emoji: '🔄', example: 'Turn at the corner.' },
+    {
+      id: 'turn',
+      word: 'Turn',
+      translation: 'Belok',
+      emoji: '🔄',
+      example: 'Turn at the corner.',
+      why: 'Turn = belok, berpindah arah ke kiri atau kanan.',
+    },
     {
       id: 'stop',
       word: 'Stop',
       translation: 'Berhenti',
       emoji: '🛑',
       example: 'Stop at the light.',
+      why: 'Stop = berhenti, tidak bergerak maju lagi.',
     },
     {
       id: 'corner',
@@ -40,6 +57,7 @@ export const directions: EnglishLesson = {
       translation: 'Sudut / pojok',
       emoji: '📐',
       example: 'Wait at the corner.',
+      why: 'Corner = sudut/pojok, tempat dua jalan bertemu.',
     },
     {
       id: 'crossing',
@@ -47,6 +65,7 @@ export const directions: EnglishLesson = {
       translation: 'Penyeberangan',
       emoji: '🚸',
       example: 'Use the crossing.',
+      why: 'Crossing = penyeberangan, tempat aman untuk menyeberang jalan.',
     },
     {
       id: 'traffic',
@@ -54,6 +73,7 @@ export const directions: EnglishLesson = {
       translation: 'Lalu lintas',
       emoji: '🚦',
       example: 'The traffic is busy.',
+      why: 'Traffic = lalu lintas, kendaraan yang berlalu-lalang di jalan.',
     },
   ],
 }

@@ -92,6 +92,8 @@ function optionState(option: VocabularyItem): 'default' | 'correct' | 'wrong' {
       </button>
     </div>
 
+    <EnglishWhyNote v-if="answered" :text="current.item.why" />
+
     <BaseButton v-if="answered" variant="english" size="lg" @click="next">
       {{ isLast ? 'Selesai 🎉' : 'Lanjut →' }}
     </BaseButton>

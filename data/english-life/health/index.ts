@@ -11,13 +11,21 @@ export const health: EnglishLesson = {
   emoji: '🩺',
   durationMin: 6,
   items: [
-    { id: 'sick', word: 'Sick', translation: 'Sakit', emoji: '🤒', example: 'I feel sick.' },
+    {
+      id: 'sick',
+      word: 'Sick',
+      translation: 'Sakit',
+      emoji: '🤒',
+      example: 'I feel sick.',
+      why: 'Sick = sakit, saat badan terasa tidak sehat.',
+    },
     {
       id: 'medicine',
       word: 'Medicine',
       translation: 'Obat',
       emoji: '💊',
       example: 'Take your medicine.',
+      why: 'Medicine = obat, yang diminum agar cepat sembuh.',
     },
     {
       id: 'nurse',
@@ -25,14 +33,23 @@ export const health: EnglishLesson = {
       translation: 'Perawat',
       emoji: '👩‍⚕️',
       example: 'The nurse is kind.',
+      why: 'Nurse = perawat, yang merawat pasien di rumah sakit.',
     },
-    { id: 'fever', word: 'Fever', translation: 'Demam', emoji: '🌡️', example: 'She has a fever.' },
+    {
+      id: 'fever',
+      word: 'Fever',
+      translation: 'Demam',
+      emoji: '🌡️',
+      example: 'She has a fever.',
+      why: 'Fever = demam, saat suhu badan menjadi panas.',
+    },
     {
       id: 'headache',
       word: 'Headache',
       translation: 'Sakit kepala',
       emoji: '🤕',
       example: 'I have a headache.',
+      why: 'Headache = sakit kepala; head (kepala) + ache (nyeri).',
     },
     {
       id: 'dentist',
@@ -40,6 +57,7 @@ export const health: EnglishLesson = {
       translation: 'Dokter gigi',
       emoji: '🦷',
       example: 'Visit the dentist.',
+      why: 'Dentist = dokter gigi, yang merawat gigi kita.',
     },
     {
       id: 'bandage',
@@ -47,7 +65,15 @@ export const health: EnglishLesson = {
       translation: 'Perban',
       emoji: '🩹',
       example: 'Put on a bandage.',
+      why: 'Bandage = perban, kain untuk menutup dan melindungi luka.',
     },
-    { id: 'cough', word: 'Cough', translation: 'Batuk', emoji: '😷', example: 'Cover your cough.' },
+    {
+      id: 'cough',
+      word: 'Cough',
+      translation: 'Batuk',
+      emoji: '😷',
+      example: 'Cover your cough.',
+      why: 'Cough = batuk, saat tenggorokan mengeluarkan udara dengan keras.',
+    },
   ],
 }
