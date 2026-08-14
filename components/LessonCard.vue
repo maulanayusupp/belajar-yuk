@@ -94,7 +94,7 @@ const mastered = computed(() => stars.value >= 3) // 3★ = mastered
     background: $gradient-bahasa;
   }
   &--english-life::before {
-    background: $gradient-english-life;
+    background: #12b5c9;
   }
 
   &:hover {
@@ -240,10 +240,16 @@ const mastered = computed(() => stars.value >= 3) // 3★ = mastered
     padding: spacing('sm') spacing('md');
     gap: spacing('sm');
 
+    // Drop the heavy left accent bar — the tinted icon already signals the theme.
+    &::before {
+      display: none;
+    }
+
     .lesson-card__icon {
       width: 40px;
       height: 40px;
       font-size: font-size('md');
+      border-radius: $radius-pill;
     }
     .lesson-card__title {
       font-size: font-size('md');

@@ -1,6 +1,16 @@
 [
   {
     "date": "2026-07-27",
+    "version": "0.48.4",
+    "tag": "Perbaikan",
+    "title": "English for Life: kartu daftar dirapikan",
+    "changes": [
+      "Garis warna tebal di kiri kartu (yang terlihat aneh) dihilangkan pada tampilan ringkas; ikon dibuat bulat teal yang lembut.",
+      "Baris daftar jadi lebih bersih & rapi."
+    ]
+  },
+  {
+    "date": "2026-07-27",
     "version": "0.48.3",
     "tag": "Perbaikan",
     "title": "English for Life: kartu daftar versi ringkas (compact)",
