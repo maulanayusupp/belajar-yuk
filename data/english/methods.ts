@@ -39,4 +39,19 @@ export const englishActivityMeta: Record<EnglishActivity, EnglishActivityMeta> =
     label: 'Baca & Pahami',
     description: 'Baca kalimat lalu pilih gambar yang tepat — melatih pemahaman membaca.',
   },
+  'fill-blank': {
+    icon: '✏️',
+    label: 'Isian',
+    description: 'Isi bagian kosong dalam kalimat dengan kata yang tepat — memahami tata bahasa.',
+  },
+  dialogue: {
+    icon: '💬',
+    label: 'Percakapan',
+    description: 'Baca ucapan lalu pilih balasan yang paling pas — melatih percakapan.',
+  },
+  comprehension: {
+    icon: '📕',
+    label: 'Baca Paham',
+    description: 'Baca teks pendek lalu jawab pertanyaannya — pemahaman membaca tingkat lanjut.',
+  },
 }

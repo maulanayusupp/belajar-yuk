@@ -26,6 +26,10 @@ import { phrasalVerbs } from './phrasal-verbs'
 import { idioms } from './idioms'
 import { businessPhrases } from './business-phrases'
 import { travelSituations } from './travel-situations'
+import { fillPrepositions } from './fill-prepositions'
+import { fillVerbs } from './fill-verbs'
+import { dialogue } from './dialogue'
+import { readingStory } from './reading-story'
 
 export const englishLifeLessons: EnglishLesson[] = [
   // Tunas — everyday basics
@@ -49,7 +53,13 @@ export const englishLifeLessons: EnglishLesson[] = [
   officeWork,
   directions,
   health,
-  // Jagoan — advanced, real fluency (phrasal verbs, idioms, work & travel phrases)
+  // Mahir — usage in context (fill in the blank)
+  fillPrepositions,
+  fillVerbs,
+  // Jagoan — advanced, real fluency (phrasal verbs, idioms, work & travel phrases,
+  // conversation, and reading comprehension)
+  dialogue,
+  readingStory,
   phrasesPolite,
   phrasesTravel,
   phrasalVerbs,

@@ -56,6 +56,10 @@ useHead(() => ({ title: `${lesson.value?.title} — Belajar Yuk!` }))
       <EnglishSpellingLesson v-else-if="lesson.type === 'spelling'" :lesson="lesson" />
       <EnglishSentenceLesson v-else-if="lesson.type === 'sentence'" :lesson="lesson" />
       <EnglishReadingLesson v-else-if="lesson.type === 'reading'" :lesson="lesson" />
+      <EnglishQuizLesson
+        v-else-if="['fill-blank', 'dialogue', 'comprehension'].includes(lesson.type)"
+        :lesson="lesson"
+      />
       <EnglishVocabularyLesson v-else :lesson="lesson" />
     </template>
     <template v-else-if="lesson.subject === 'science'">

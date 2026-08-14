@@ -33,6 +33,13 @@ export interface VocabularyItem {
   image?: string
   /** A simple example sentence (optional). */
   example?: string
+  // ---- Quiz activities (fill-blank / dialogue / comprehension) ----
+  /** The question / sentence-with-a-gap / dialogue line / short passage + question. */
+  prompt?: string
+  /** Answer choices to show (includes the correct one). */
+  options?: string[]
+  /** The correct choice (must be one of `options`). */
+  answer?: string
   /**
    * Pronunciation audio URL/path (optional). If set, this audio is
    * played; if empty, the synthesized voice is used (browser speech synthesis).
@@ -87,7 +94,15 @@ interface LessonBase {
 
 /** English lesson activity types. */
 export type EnglishActivity =
-  'vocabulary' | 'phonics' | 'listening' | 'spelling' | 'sentence' | 'reading'
+  | 'vocabulary'
+  | 'phonics'
+  | 'listening'
+  | 'spelling'
+  | 'sentence'
+  | 'reading'
+  | 'fill-blank' // read a sentence with a gap → pick the word that fits
+  | 'dialogue' // read a line someone says → pick the best reply
+  | 'comprehension' // read a short passage → answer a question
 
 export interface EnglishLesson extends LessonBase {
   /** 'english' = the core subject; 'english-life' = the separate practical module. */

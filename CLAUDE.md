@@ -225,6 +225,9 @@ plus aset opsional pelajaran itu). Detail & contoh: `data/README.md`.
   di `EnglishActivity` (`types/`), entri di `data/english/methods.ts`, buat komponen runner
   (mis. `EnglishListeningLesson`, `EnglishSpellingLesson`, `EnglishSentenceLesson`), lalu cabang di `pages/[subject]/[id].vue` per `lesson.type`.
   Catatan `sentence` (Menyusun Kalimat): memakai ulang `VocabularyItem` — `word` = kalimat penuh, `translation` = arti, `emoji` = petunjuk gambar; runner memecah kalimat jadi kartu kata.
+  Jenis soal pilihan-teks `fill-blank` (Isian) / `dialogue` (Percakapan) / `comprehension` (Baca
+  Paham) memakai SATU runner `EnglishQuizLesson` — item mengisi `prompt`/`options`/`answer`
+  (opsional di `VocabularyItem`); pesan maskot & tag menyesuaikan `type`.
 - **Tingkat**: set `level` pada tiap pelajaran (`beginner`/`intermediate`/`advanced`/`expert`).
   Metadata kategori di `data/levels.ts`, **per-subject** via `levelsFor(subject)`: mapel anak
   memakai **Tunas/Penjelajah/Juara** (dengan usia), sedangkan `english-life` memakai tangga

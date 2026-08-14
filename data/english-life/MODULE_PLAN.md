@@ -17,8 +17,13 @@ di `data/levels.ts`): **Pemula** (beginner) → **Menengah** (intermediate) →
 
 - **Pemula → `vocabulary`**: lihat gambar + kata (ada teks) → pilih. Pengenalan, paling mudah.
 - **Menengah → `listening`**: dengar kata (TANPA teks) → pilih gambar. Mengingat lewat suara.
-- **Mahir → `spelling`**: susun huruf sendiri → produksi kata. Lebih sulit (produksi).
-- **Jagoan → `sentence`/idiom**: susun frasa panjang + idiom (`vocabulary` makna). Paling sulit.
+- **Mahir → `spelling` + `fill-blank`**: susun huruf sendiri (produksi) **dan** isi bagian
+  kosong dalam kalimat (tata bahasa/pemakaian dalam konteks).
+- **Jagoan → `sentence` + `dialogue` + `comprehension` + idiom**: susun frasa panjang, pilih
+  balasan percakapan yang tepat, baca teks pendek lalu jawab pertanyaan, & idiom. Paling sulit.
+
+**Jenis soal baru** (`fill-blank`, `dialogue`, `comprehension`) memakai satu runner
+`EnglishQuizLesson` (baca `prompt` → pilih jawaban teks; data di `item.prompt/options/answer`).
 
 ---
 

@@ -149,6 +149,15 @@ test('english "sentence building" lesson renders word tiles', async ({ page }) =
   await expect(page.locator('.sent__slot').first()).not.toBeEmpty()
 })
 
+test('english-life "fill-blank" quiz is answerable', async ({ page }) => {
+  await page.goto('/english-life/enl-fill-prepositions')
+  await dismissOnboarding(page)
+  await expect(page.locator('.quiz__text')).toBeVisible()
+  await page.locator('.quiz__option').first().click()
+  // after answering, the continue button appears
+  await expect(page.getByText(/Lanjut|Selesai/)).toBeVisible()
+})
+
 test('English for Life is a separate module with its own page & lessons', async ({ page }) => {
   await page.goto('/english-life')
   await dismissOnboarding(page)

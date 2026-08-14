@@ -1,0 +1,70 @@
+import type { EnglishLesson } from '~/types'
+
+// Jagoan (advanced): dialogue — read what someone says, pick the best reply.
+// Tests conversational competence, not just words.
+export const dialogue: EnglishLesson = {
+  id: 'enl-dialogue',
+  subject: 'english-life',
+  type: 'dialogue',
+  title: 'Percakapan Sehari-hari',
+  titleEn: 'Everyday Dialogue',
+  level: 'expert',
+  emoji: '💬',
+  durationMin: 8,
+  items: [
+    {
+      id: 'how-are-you',
+      word: "I'm fine, thank you",
+      translation: 'Aku baik, terima kasih',
+      emoji: '😊',
+      prompt: 'How are you today?',
+      options: ["I'm fine, thank you", 'It is a book', 'Yes, please'],
+      answer: "I'm fine, thank you",
+    },
+    {
+      id: 'what-do-you-do',
+      word: "I'm a teacher",
+      translation: 'Aku seorang guru',
+      emoji: '🧑‍🏫',
+      prompt: 'What do you do?',
+      options: ["I'm a teacher", "I'm fine", "It's raining"],
+      answer: "I'm a teacher",
+    },
+    {
+      id: 'would-you-like-tea',
+      word: 'Yes, please',
+      translation: 'Ya, boleh',
+      emoji: '🍵',
+      prompt: 'Would you like some tea?',
+      options: ['Yes, please', "I'm a doctor", "It's Monday"],
+      answer: 'Yes, please',
+    },
+    {
+      id: 'where-from',
+      word: "I'm from Jakarta",
+      translation: 'Aku dari Jakarta',
+      emoji: '🗺️',
+      prompt: 'Where are you from?',
+      options: ["I'm from Jakarta", "I'm hungry", "It's cold"],
+      answer: "I'm from Jakarta",
+    },
+    {
+      id: 'thank-you',
+      word: "You're welcome",
+      translation: 'Sama-sama',
+      emoji: '🤝',
+      prompt: 'Thank you very much!',
+      options: ["You're welcome", 'Good night', 'How much?'],
+      answer: "You're welcome",
+    },
+    {
+      id: 'see-you',
+      word: 'See you!',
+      translation: 'Sampai jumpa!',
+      emoji: '👋',
+      prompt: 'See you tomorrow!',
+      options: ['See you!', "I'm sorry", "It's mine"],
+      answer: 'See you!',
+    },
+  ],
+}

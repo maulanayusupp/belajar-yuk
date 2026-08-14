@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-07-27",
+    "version": "0.48.0",
+    "tag": "Fitur",
+    "title": "English for Life: jenis soal baru (Isian, Percakapan, Baca Paham)",
+    "changes": [
+      "Tiga jenis soal baru yang lebih menantang: Isian (isi bagian kosong dalam kalimat), Percakapan (pilih balasan yang tepat), & Baca Paham (baca teks pendek lalu jawab pertanyaan).",
+      "Mahir kini menambah Isian (kata depan & kata kerja dalam konteks); Jagoan menambah Percakapan & Baca Paham.",
+      "Tiap tingkat kini punya variasi soal, bukan satu mekanik saja."
+    ]
+  },
+  {
+    "date": "2026-07-27",
     "version": "0.47.0",
     "tag": "Perbaikan",
     "title": "English for Life: soal beda & makin sulit tiap tingkat",

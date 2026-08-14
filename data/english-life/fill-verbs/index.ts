@@ -1,0 +1,70 @@
+import type { EnglishLesson } from '~/types'
+
+// Mahir (advanced): fill-in-the-blank with the right verb (mostly phrasal verbs
+// in context) — usage practice, a step up from recognizing single words.
+export const fillVerbs: EnglishLesson = {
+  id: 'enl-fill-verbs',
+  subject: 'english-life',
+  type: 'fill-blank',
+  title: 'Isian: Kata Kerja',
+  titleEn: 'Fill in: Verbs',
+  level: 'advanced',
+  emoji: '✏️',
+  durationMin: 7,
+  items: [
+    {
+      id: 'turn-on',
+      word: 'turn on',
+      translation: 'menyalakan',
+      emoji: '💡',
+      prompt: 'Please ___ on the light.',
+      options: ['turn', 'run', 'give'],
+      answer: 'turn',
+    },
+    {
+      id: 'look-for',
+      word: 'look for',
+      translation: 'mencari',
+      emoji: '🔎',
+      prompt: 'I ___ for my keys everywhere.',
+      options: ['look', 'put', 'take'],
+      answer: 'look',
+    },
+    {
+      id: 'give-up',
+      word: 'give up',
+      translation: 'menyerah',
+      emoji: '🏳️',
+      prompt: "Don't ___ up — keep trying!",
+      options: ['give', 'turn', 'find'],
+      answer: 'give',
+    },
+    {
+      id: 'run-out',
+      word: 'run out',
+      translation: 'kehabisan',
+      emoji: '⛽',
+      prompt: 'We ___ out of milk.',
+      options: ['run', 'look', 'put'],
+      answer: 'run',
+    },
+    {
+      id: 'put-on',
+      word: 'put on',
+      translation: 'memakai',
+      emoji: '🧥',
+      prompt: "___ on your jacket, it's cold.",
+      options: ['Put', 'Turn', 'Find'],
+      answer: 'Put',
+    },
+    {
+      id: 'find-out',
+      word: 'find out',
+      translation: 'mencari tahu',
+      emoji: '🕵️',
+      prompt: "Let's ___ out the answer.",
+      options: ['find', 'give', 'run'],
+      answer: 'find',
+    },
+  ],
+}
