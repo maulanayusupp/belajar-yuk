@@ -1,6 +1,18 @@
 [
   {
     "date": "2026-07-27",
+    "version": "0.41.0",
+    "tag": "Konten",
+    "title": "Modul baru: Bahasa Inggris untuk Kehidupan (20 materi)",
+    "changes": [
+      "20 pelajaran baru dari dasar sampai mahir untuk bahasa Inggris yang dipakai sehari-hari.",
+      "Tema praktis: kegiatan harian, dapur, kamar mandi, bulan, tempat di kota, kata kerja & sifat, posisi, perasaan.",
+      "Dunia nyata: travelling/bandara, hotel, restoran, belanja, kantor/kerja, arah, kesehatan.",
+      "Frasa yang sering diucapkan: 'Nice to meet you', 'Can you help me', 'How much is this', dll."
+    ]
+  },
+  {
+    "date": "2026-07-27",
     "version": "0.40.1",
     "tag": "Perbaikan",
     "title": "Poles UI kecil-kecil",

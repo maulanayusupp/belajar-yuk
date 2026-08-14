@@ -27,6 +27,10 @@ atau menyebut produk/pihak lain**. Perbarui ringkas saat menambah/mengubah mater
   suara, sebelum ke kata & kalimat.
 - Aktivitas bertingkat: kenal kata → menyimak → mengeja → merangkai. Setiap materi
   memakai kata yang **berbeda** agar tidak ada pengulangan isi.
+- **Modul "English for Life"** (beginner → mahir): kosakata & frasa yang benar-benar
+  dipakai sehari-hari, di tempat kerja, saat bepergian, dan yang sering diucapkan —
+  agar anak belajar bahasa yang berguna, bukan sekadar daftar kata. Rencana lengkap &
+  daftar materi: `data/english/MODULE_PLAN.md`.
 
 ## Matematika
 

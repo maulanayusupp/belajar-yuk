@@ -35,6 +35,27 @@ import { spellCvc } from './spell-cvc'
 import { spellColors } from './spell-colors'
 import { sentenceBasic } from './sentence-basic'
 import { sentenceActions } from './sentence-actions'
+// "English for Life" module (beginner → advanced) — see MODULE_PLAN.md
+import { dailyRoutine } from './daily-routine'
+import { kitchen } from './kitchen'
+import { bathroom } from './bathroom'
+import { months } from './months'
+import { placesTown } from './places-town'
+import { actionVerbs } from './action-verbs'
+import { adjectives } from './adjectives'
+import { positions } from './positions'
+import { moreFeelings } from './more-feelings'
+import { listenHome } from './listen-home'
+import { sentenceDaily } from './sentence-daily'
+import { travelAirport } from './travel-airport'
+import { hotel } from './hotel'
+import { restaurant } from './restaurant'
+import { shoppingMoney } from './shopping-money'
+import { officeWork } from './office-work'
+import { directions } from './directions'
+import { health } from './health'
+import { phrasesPolite } from './phrases-polite'
+import { phrasesTravel } from './phrases-travel'
 
 // List & ORDER of English lessons (beginner → advanced).
 //
@@ -83,4 +104,29 @@ export const englishLessons: EnglishLesson[] = [
   // Sentence building (word tiles → sentence)
   sentenceBasic,
   sentenceActions,
+
+  // ===== "English for Life" module (practical, beginner → advanced) =====
+  // Tunas — everyday basics
+  dailyRoutine,
+  kitchen,
+  bathroom,
+  months,
+  placesTown,
+  // Penjelajah — describing & doing
+  actionVerbs,
+  adjectives,
+  positions,
+  moreFeelings,
+  listenHome,
+  sentenceDaily,
+  // Juara — real-world English (travel, work, phrases)
+  travelAirport,
+  hotel,
+  restaurant,
+  shoppingMoney,
+  officeWork,
+  directions,
+  health,
+  phrasesPolite,
+  phrasesTravel,
 ]

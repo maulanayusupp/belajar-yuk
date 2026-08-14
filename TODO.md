@@ -40,6 +40,9 @@ input-only tier. Even free Duolingo ABC has speech recognition we lack.
       sentence. `EnglishActivity: 'sentence'` + `EnglishSentenceLesson` (reuses `VocabularyItem`
       with `word` = full sentence). 2 lessons (basic + actions). Next: reading comprehension
       (sentence → pick the matching picture).
+- [x] **"English for Life" module** — 20 practical lessons beginner→advanced (daily life, home,
+      town, travel, hotel, restaurant, shopping, office/work, directions, health, common phrases).
+      Data-driven (`data/english/*`); curriculum in `data/english/MODULE_PLAN.md`.
 - [ ] **Reading comprehension** — short sentence → pick the matching picture.
 - [ ] **Speaking / "listen & repeat"** — record-and-compare (British Council style);
       later, optional speech-recognition scoring (Web Speech API `SpeechRecognition`).
