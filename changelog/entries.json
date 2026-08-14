@@ -1,6 +1,16 @@
 [
   {
     "date": "2026-07-27",
+    "version": "0.42.0",
+    "tag": "Fitur",
+    "title": "Bahasa Inggris: Baca & Pahami (reading comprehension)",
+    "changes": [
+      "Aktivitas baru: baca kalimat lalu pilih gambar yang tepat — melatih pemahaman membaca, bukan sekadar hafalan kata.",
+      "Dua pelajaran baru: Hewan (Penjelajah) & Kegiatan (Juara), lengkap dengan tombol dengar & arti."
+    ]
+  },
+  {
+    "date": "2026-07-27",
     "version": "0.41.0",
     "tag": "Konten",
     "title": "Modul baru: Bahasa Inggris untuk Kehidupan (20 materi)",

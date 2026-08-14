@@ -56,6 +56,8 @@ import { directions } from './directions'
 import { health } from './health'
 import { phrasesPolite } from './phrases-polite'
 import { phrasesTravel } from './phrases-travel'
+import { readingAnimals } from './reading-animals'
+import { readingActions } from './reading-actions'
 
 // List & ORDER of English lessons (beginner → advanced).
 //
@@ -129,4 +131,7 @@ export const englishLessons: EnglishLesson[] = [
   health,
   phrasesPolite,
   phrasesTravel,
+  // Reading comprehension (read → pick the picture)
+  readingAnimals,
+  readingActions,
 ]

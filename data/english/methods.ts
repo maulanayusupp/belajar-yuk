@@ -34,4 +34,9 @@ export const englishActivityMeta: Record<EnglishActivity, EnglishActivityMeta> =
     label: 'Menyusun Kalimat',
     description: 'Susun kata-kata menjadi kalimat yang benar — memahami tata bahasa.',
   },
+  reading: {
+    icon: '📖',
+    label: 'Baca & Pahami',
+    description: 'Baca kalimat lalu pilih gambar yang tepat — melatih pemahaman membaca.',
+  },
 }

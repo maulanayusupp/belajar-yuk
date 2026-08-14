@@ -149,6 +149,15 @@ test('english "sentence building" lesson renders word tiles', async ({ page }) =
   await expect(page.locator('.sent__slot').first()).not.toBeEmpty()
 })
 
+test('english "reading comprehension" lesson renders & is answerable', async ({ page }) => {
+  await page.goto('/english/en-reading-animals')
+  await dismissOnboarding(page)
+  await expect(page.locator('.read__sentence')).toBeVisible()
+  await page.locator('.read__option').first().click()
+  // after answering, the Indonesian meaning is revealed
+  await expect(page.locator('.read__meaning')).toBeVisible()
+})
+
 test('legal pages render and are linked from the footer', async ({ page }) => {
   await page.goto('/privasi')
   await dismissOnboarding(page)
